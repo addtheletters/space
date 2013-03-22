@@ -27,6 +27,8 @@ public class Test3D {
 	private long lastFrame;
 	
 	private double zpos;
+	private double xpos;
+	private double ypos;
 
 	private long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
@@ -60,7 +62,7 @@ public class Test3D {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		// glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
-		gluPerspective((float) 30, (float) WIDTH / HEIGHT, 0.001f, 300);
+		gluPerspective((float) 45, (float) WIDTH / HEIGHT, 0.001f, 3000);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
 	}
@@ -83,7 +85,9 @@ public class Test3D {
 	public ArrayList<Tickable> toUpdate;
 	public ArrayList<Renderable> toRender;
 
-	float speed = 0.0f;
+	float zspeed = 0.0f;
+	float xspeed = 0.0f;
+	float yspeed = 0.0f;
 	float quadX = 100;
 	float quadY = 100;
 	float quadWidth = 100;
@@ -104,7 +108,9 @@ public class Test3D {
 			tick();
 			input();
 			render();
-			zpos += speed;
+			zpos += zspeed;
+			xpos += xspeed;
+			ypos += yspeed;
 			// System.out.println(getDelta());
 
 			Display.update();
@@ -118,11 +124,20 @@ public class Test3D {
 	private void addEntities() {
 		// SampleDeltaMover box = new SampleDeltaMover(0, 0, 0, 0);
 		Random random = new Random();
-		for (int i = 0; i < 10000; i++) {
-			Point p = new Point((random.nextFloat() - 0.5f)*200f,
-					(random.nextFloat() - 0.5f)*200f, random.nextInt(10000) - 10000);
+		Point last = new Point((random.nextFloat() - 0.5f)*10000f,
+				(random.nextFloat() - 0.5f)*10000f, random.nextInt(14000) - 14000);
+		for (int i = 0; i < 30000; i++) {
+			Point p = new Point((random.nextFloat() - 0.5f)*10000f,
+					(random.nextFloat() - 0.5f)*10000f, random.nextInt(14000) - 14000);
 			toUpdate.add(p);
 			toRender.add(p);
+			
+			if(random.nextFloat() * 1000 < 1){
+				Line l = new Line(p, last);
+				toUpdate.add(l);
+				toRender.add(l);
+			}
+			last = p;
 		}
 	}
 
@@ -142,15 +157,27 @@ public class Test3D {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		glMatrixMode(GL_PROJECTION);
-	    gluPerspective((float) 30, (float) WIDTH / HEIGHT, 0.001f, 300);
+	    gluPerspective((float) 45, (float) WIDTH / HEIGHT, 0.001f, 3000);
 		glMatrixMode(GL_MODELVIEW);
 		
 		glLoadIdentity();
-		glTranslated(0, 0, zpos);
+		glTranslated(xpos, ypos, zpos);
 		
+		glBegin(GL_POINTS);
+		Point p = new Point(0, 0, 0);
 		for (Renderable o : toRender) {
-			o.render();
+			if(o.getClass() == p.getClass())
+				o.render();
 		}
+		glEnd();
+		glBegin(GL_LINES);
+		Line l = new Line(new Point(0, 0, 0) , new Point(0, 0, 0));
+		for (Renderable o : toRender) {
+			if(o.getClass() == l.getClass())
+				o.render();
+		
+		}
+		glEnd();
 		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -205,22 +232,38 @@ public class Test3D {
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			//mouseEnabled = true;
 			//zpos = 0;
-			speed = 0;
+			zspeed = 0;
+			xspeed = 0;
+			yspeed = 0;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
 			//mouseEnabled = false;
 			//glLoadIdentity();
 			zpos = 0;
+			xpos = 0;
+			ypos = 0;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			Display.destroy();
 			System.exit(0);
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			speed += 0.01f;
+		if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
+			zspeed += 0.1f;
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_V)) {
+			zspeed -= 0.1f;
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+			xspeed += 0.1f;
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+			xspeed -= 0.1f;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			speed -= 0.01f;
+			yspeed += 0.1f;
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+			yspeed -= 0.1f;
 		}
 
 	}
@@ -231,6 +274,30 @@ public class Test3D {
 
 	}
 
+}
+
+class Line implements Tickable, Renderable {
+	Point p1;
+	Point p2;
+	public Line(Point p1, Point p2){
+		super();
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		//glBegin(GL_LINES);
+		glVertex3f(p1.x, p1.y, p1.z);
+		glVertex3f(p2.x, p2.y, p2.z);
+		//glEnd();
+		
+	}
+	@Override
+	public void step(int delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class Point implements Tickable, Renderable {
@@ -249,9 +316,11 @@ class Point implements Tickable, Renderable {
 	public void render() {
 		//glPointSize(10);
 		//glBegin(GL_3D);
-		glBegin(GL_POINTS);
+		//glBegin(GL_POINTS);
 		glVertex3f(x, y, z);
-		glEnd();
+		//glEnd();
+		
+		
 	}
 
 	@Override
