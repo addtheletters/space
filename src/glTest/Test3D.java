@@ -19,8 +19,11 @@ import org.lwjgl.input.Mouse;
 //E to enable mouse, D to disable mouse
 	//With mouse enabled:
 	//Right click / Hold space to drag XY view
+	//Right click or Hold Space + Scroll wheel for zoom / z axis movement
 	//Left click to move 2d white square
-	//Scroll wheel for zoom / z axis movement
+	
+//S to stop all camera movement
+//R to reset camera position to "center"
 
 
 public class Test3D {
@@ -229,10 +232,10 @@ public class Test3D {
 				if(mouseX > 0 && mouseY < HEIGHT - 1){
 					xspeed = Mouse.getDX();
 					yspeed = Mouse.getDY();
-					
+					zspeed = Mouse.getDWheel();
 				}
 			}
-			zspeed = Mouse.getDWheel();
+			
 		}
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
