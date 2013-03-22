@@ -14,12 +14,20 @@ import org.lwjgl.input.Mouse;
 
 //RK4 okay.
 
+//F and V for z-axis movement
+//Arrow keys for X and Y movement
+//E to enable mouse, D to disable mouse
+	//With mouse enabled:
+	//Right click / Hold space to drag XY view
+	//Left click to move 2d white square
+	//Scroll wheel for zoom / z axis movement
+
 
 public class Test3D {
 
 	// basic 3d 
 
-	private boolean mouseEnabled = false;
+	private boolean mouseEnabled = true;
 
 	private final String TITLE = "Points!";
 
@@ -217,10 +225,14 @@ public class Test3D {
 				quadX = 2*mouseX - quadWidth/2;
 				quadY = 2*mouseY - quadHeight/2;
 			}
-			if (Mouse.isButtonDown(1)) {
-
-				// System.out.println(mouseX + ", " + mouseY);
+			if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+				if(mouseX > 0 && mouseY < HEIGHT - 1){
+					xspeed = Mouse.getDX();
+					yspeed = Mouse.getDY();
+					
+				}
 			}
+			zspeed = Mouse.getDWheel();
 		}
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
