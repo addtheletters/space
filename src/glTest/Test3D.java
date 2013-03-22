@@ -6,6 +6,7 @@ import static org.lwjgl.util.glu.GLU.*; //gluPerspective
 import java.util.*;
 
 import org.lwjgl.opengl.*;
+import org.lwjgl.util.Color;
 import org.lwjgl.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -59,6 +60,7 @@ public class Test3D {
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
 			Display.setTitle(TITLE);
+			Display.setVSyncEnabled(true);
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -204,6 +206,7 @@ public class Test3D {
 		
 		//glDisable(GL_DEPTH_TEST);
 		glBegin(GL_QUADS);
+			glColor3f(1f, 1f, 1f);
 			glVertex2f(xMin, yMin);
 			glVertex2f(xMin, yMax);
 			glVertex2f(xMax, yMax);
@@ -228,7 +231,7 @@ public class Test3D {
 				quadX = 2*mouseX - quadWidth/2;
 				quadY = 2*mouseY - quadHeight/2;
 			}
-			if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			if (Mouse.isButtonDown(1) || Mouse.isButtonDown(2) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 				if(mouseX > 0 && mouseY < HEIGHT - 1){
 					xspeed = Mouse.getDX();
 					yspeed = Mouse.getDY();
@@ -294,16 +297,23 @@ public class Test3D {
 class Line implements Tickable, Renderable {
 	Point p1;
 	Point p2;
+	Color color1;
+	Color color2;
 	public Line(Point p1, Point p2){
 		super();
 		this.p1 = p1;
 		this.p2 = p2;
+		color1 = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
+		color2 = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 	}
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub
 		//glBegin(GL_LINES);
+		//System.out.println(color1);
+		glColor3f(color1.getRed()/255.0f, color1.getBlue()/255.0f, color1.getGreen()/255.0f);
 		glVertex3f(p1.x, p1.y, p1.z);
+		glColor3f(color2.getRed()/255.0f, color2.getBlue()/255.0f, color2.getGreen()/255.0f);
 		glVertex3f(p2.x, p2.y, p2.z);
 		//glEnd();
 		
@@ -332,6 +342,7 @@ class Point implements Tickable, Renderable {
 		//glPointSize(10);
 		//glBegin(GL_3D);
 		//glBegin(GL_POINTS);
+		glColor3f(1f, 1f, 1f);
 		glVertex3f(x, y, z);
 		//glEnd();
 		
