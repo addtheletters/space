@@ -78,7 +78,7 @@ public class Test3D {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		// glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
-		gluPerspective((float) 45, (float) WIDTH / HEIGHT, 0.001f, 3000);
+		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
 	}
@@ -102,12 +102,17 @@ public class Test3D {
 	//public ArrayList<Renderable> toRender;
 	//Made obsolete by new VBO render code.
 	
-	final float POINTS_XDISTR = 10000f;
-	final float POINTS_YDISTR = 10000f;
-	final float POINTS_ZDISTR = 14000f;
+	final float FOV = 45f;
+	final float ASPECT_RATIO = (float) WIDTH/HEIGHT;
+	final float CLOSE_RENDER_LIM = 0.001f;
+	final float FAR_RENDER_LIM = 6000;
 	
-	final int NUM_POINTS = 30000;
-	final int NUM_LINES = 30;
+	final float POINTS_XDISTR = 23000f;
+	final float POINTS_YDISTR = 23000f;
+	final float POINTS_ZDISTR = 28000f;
+	
+	final int NUM_POINTS = 100000;
+	final int NUM_LINES = 105;
 	final int NUM_LINE_VERTICES = NUM_LINES * 2;
 	int vboPointVertexHandle;
 	int vboLineVertexHandle;
@@ -178,12 +183,7 @@ public class Test3D {
 	}
 
 	private void addEntities() { //adds points, render buffers
-		// SampleDeltaMover box = new SampleDeltaMover(0, 0, 0, 0);
 		setUpRenderBuffers();
-		
-		//float[] pointVertexArray = new float[NUM_POINTS * VERTEX_DIM];
-		//float[] lineVertexArray = new float[NUM_LINE_VERTICES * VERTEX_DIM];
-		//float[] lineColorArray = new float[NUM_LINE_VERTICES * COLOR_DIM];
 		
 		Random random = new Random();
 		Point last = new Point((random.nextFloat() - 0.5f)*POINTS_XDISTR,
@@ -192,10 +192,7 @@ public class Test3D {
 		for (int i = 0; i < NUM_POINTS; i++) {
 			Point p = new Point((random.nextFloat() - 0.5f)*POINTS_XDISTR,
 					(random.nextFloat() - 0.5f)*POINTS_YDISTR, random.nextInt((int)POINTS_ZDISTR) - POINTS_ZDISTR);
-			/*pointVertexArray[VERTEX_DIM*i] = p.x;
-			pointVertexArray[VERTEX_DIM*i + 1] = p.y;
-			pointVertexArray[VERTEX_DIM*i + 2] = p.z;
-			*/
+			
 			pointVertexData.put(new float[]{p.x, p.y, p.z});
 			
 			toUpdate.add(p);
@@ -210,28 +207,14 @@ public class Test3D {
 				lineVertexData.put(new float[]{l.p2.x, l.p2.y, l.p2.z});
 				lineColorData.put(new float[]{l.color1.getRed()/255.0f, l.color1.getBlue()/255.0f, l.color1.getGreen()/255.0f}); 
 				lineColorData.put(new float[]{l.color2.getRed()/255.0f, l.color2.getBlue()/255.0f, l.color2.getGreen()/255.0f});
-				/*lineVertexArray[VERTEX_DIM*linecount] = l.p1.x;
-				lineVertexArray[VERTEX_DIM*linecount + 1] = l.p1.y;
-				lineVertexArray[VERTEX_DIM*linecount + 2] = l.p1.z;
-				lineVertexArray[VERTEX_DIM*linecount + 3] = l.p2.x;
-				lineVertexArray[VERTEX_DIM*linecount + 4] = l.p2.y;
-				lineVertexArray[VERTEX_DIM*linecount + 5] = l.p2.z;
-				lineColorArray[VERTEX_DIM*linecount] = l.color1.getRed()/255.0f;
-				lineColorArray[VERTEX_DIM*linecount + 1] = l.color1.getBlue()/255.0f;
-				lineColorArray[VERTEX_DIM*linecount + 2] = l.color1.getGreen()/255.0f;
-				lineColorArray[VERTEX_DIM*linecount + 3] = l.color2.getRed()/255.0f;
-				lineColorArray[VERTEX_DIM*linecount + 4] = l.color2.getBlue()/255.0f;
-				lineColorArray[VERTEX_DIM*linecount + 5] = l.color2.getGreen()/255.0f;
-				*/
+				
 				
 				toUpdate.add(l);
 				//toRender.add(l);
 			}
 			last = p;
 		}
-		//pointVertexData.put(pointVertexArray);
-		//lineVertexData.put(lineVertexArray);
-		//lineColorData.put(lineColorArray);
+		
 		
 		flipRenderBuffers();
 		setUpBufferHandles();
@@ -270,7 +253,7 @@ public class Test3D {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		glMatrixMode(GL_PROJECTION);
-	    gluPerspective((float) 45, (float) WIDTH / HEIGHT, 0.001f, 3000);
+		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
 		
 		
