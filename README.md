@@ -12,6 +12,6 @@ Anyways...
 
 Current Test3D functionality:
 -Generates large grid of random points and lines
--X, Y and Z camera movement, determinable by mouse and keyboard
+-X, Y and Z camera movement, determinable by mouse and keyboard, delta-adjusted for framerate
   -see comments in Test3D
--Draws a square. Yeah. So good.
+-Vertex Buffer Object rendering
