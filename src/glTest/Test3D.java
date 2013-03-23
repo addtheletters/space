@@ -24,8 +24,7 @@ import org.lwjgl.input.Mouse;
 	//With mouse enabled:
 	//Right click / Hold space to drag XY view
 	//Right click or Hold Space + Scroll wheel for zoom / z axis movement
-	//Left click to move 2d white square
-	
+	//Click / spin scroll wheel to keep same XY movement and shift along Z
 //S to stop all camera movement
 //R to reset camera position to "center"
 
@@ -353,12 +352,15 @@ public class Test3D {
 				quadX = 2*mouseX - quadWidth/2;
 				quadY = 2*mouseY - quadHeight/2;
 			}
-			if (Mouse.isButtonDown(1) || Mouse.isButtonDown(2) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 				if(mouseX > 0 && mouseY < HEIGHT - 1){
 					xspeed = Mouse.getDX();
 					yspeed = Mouse.getDY();
 					zspeed = Mouse.getDWheel();
 				}
+			}
+			if(Mouse.isButtonDown(2)){
+				zspeed = Mouse.getDWheel();
 			}
 			
 		}
