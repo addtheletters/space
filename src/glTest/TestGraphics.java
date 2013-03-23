@@ -1,10 +1,15 @@
 package glTest;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.*; //GLSL shaders?
 //import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.opengl.GL15.*; //Vertex Buffer Array Rendering n'stuff
 import static org.lwjgl.util.glu.GLU.*; //gluPerspective
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.util.*;
 
@@ -20,6 +25,8 @@ import glTest.Point;
 //import tk.sritwinkles.Point;
 
 //RK4 okay.
+
+//Shaders use shader.vert and shader.frag
 
 //F and V for z-axis movement
 //Arrow keys for X and Y movement
@@ -38,7 +45,7 @@ public class TestGraphics {
 
 	private boolean mouseEnabled = true;
 
-	private final String TITLE = "Testing Effects / Moving Objects";
+	private final String TITLE = "Testing Effects, Shaders, and Moving Objects";
 
 	// frame independent movement speed using delta
 	private long lastFrame;
@@ -46,7 +53,63 @@ public class TestGraphics {
 	private double zpos;
 	private double xpos;
 	private double ypos;
-
+	
+	//Shader variables
+	int shaderProgram;
+	int vertexShader; 
+	int fragmentShader;
+	StringBuilder vertexShaderSource;
+	StringBuilder fragmentShaderSource;
+	
+	private void setUpShaders(){
+		shaderProgram = glCreateProgram();
+		vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		vertexShaderSource = new StringBuilder();
+		fragmentShaderSource = new StringBuilder();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("src/glTest/shader.vert"));
+			String line;
+			while((line = reader.readLine()) != null){
+				vertexShaderSource.append(line).append("\n");
+			}
+			reader.close();
+			
+			reader = new BufferedReader(new FileReader("src/glTest/shader.frag"));
+			while((line = reader.readLine()) != null){
+				fragmentShaderSource.append(line).append("\n");
+			}
+			reader.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Shaders not loaded properly.");
+			Display.destroy();
+			System.exit(1);
+		}
+		
+		glShaderSource(vertexShader, vertexShaderSource);
+		glShaderSource(fragmentShader, fragmentShaderSource);
+		glCompileShader(vertexShader);
+		glCompileShader(fragmentShader);
+		if(glGetShaderi(vertexShader, GL_COMPILE_STATUS) == GL_FALSE){
+			System.err.println("Vertex shader failed to compile.");
+		}
+		if(glGetShaderi(fragmentShader, GL_COMPILE_STATUS) == GL_FALSE){
+			System.err.println("Fragment shader failed to compile.");
+		}
+		
+		glAttachShader(shaderProgram, vertexShader);
+		glAttachShader(shaderProgram, fragmentShader);
+		glLinkProgram(shaderProgram);
+		glValidateProgram(shaderProgram);
+		
+		
+	}
+	
+	
 	private long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
@@ -70,7 +133,7 @@ public class TestGraphics {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 			Display.destroy();
-			System.exit(0);
+			System.exit(1);
 		}
 	}
 
@@ -124,7 +187,7 @@ public class TestGraphics {
 	final int VERTEX_DIM = 3; //3 dimensions
 	final int COLOR_DIM = 3; //no alpha, or it would be 4
 	
-	final float camAccel = 0.15f;
+	final float camAccel = 0.4f;
 	float zspeed = 0.0f;
 	float xspeed = 0.0f;
 	float yspeed = 0.0f;
@@ -140,10 +203,10 @@ public class TestGraphics {
 	public TestGraphics() {
 		setUpDisplay();
 		setUpOpenGL();
-
+		setUpShaders();
 		setUpEntities();
 		
-		//setUpRenderBuffers();
+		//Render buffers set up in setUpEntities()
 		
 		setUpTimer();
 		
@@ -171,6 +234,9 @@ public class TestGraphics {
 		glDeleteBuffers(vboPointVertexHandle);
 		glDeleteBuffers(vboLineVertexHandle);
 		glDeleteBuffers(vboLineColorHandle);
+		glDeleteShader(vertexShader);
+		glDeleteShader(fragmentShader);
+		glDeleteProgram(shaderProgram);
 		Display.destroy();
 		System.exit(0);
 	}
@@ -187,6 +253,7 @@ public class TestGraphics {
 	}
 
 	private void addEntities() { //adds points, render buffers
+		
 		setUpRenderBuffers();
 		
 		Random random = new Random();
@@ -264,9 +331,13 @@ public class TestGraphics {
 		glLoadIdentity();
 		glTranslated(xpos, ypos, zpos);
 		
+		//Shaders!
+		glUseProgram(shaderProgram);
+		
+		//glUseProgram(0);
+		
 		//Vertex Buffer Object mode for points n lines
 		//Let's go! Yeah! How do you even do this? I don't know!
-		
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glBindBuffer(GL_ARRAY_BUFFER, vboPointVertexHandle);
 		glVertexPointer(VERTEX_DIM, GL_FLOAT, 0, 0L);
@@ -398,7 +469,6 @@ public class TestGraphics {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new TestGraphics();
 
 	}

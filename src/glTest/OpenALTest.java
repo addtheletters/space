@@ -19,7 +19,7 @@ import org.lwjgl.openal.*;
 import org.lwjgl.util.WaveData;
 
 //Testing openAL sound stuff
-
+//leftclick to make laser noises
 
 public class OpenALTest {
 
@@ -34,6 +34,8 @@ public class OpenALTest {
 	//Sound buffer int handlers
 	IntBuffer soundbuffer = ByteBuffer.allocateDirect(NUM_SOUND_BYTES).asIntBuffer();
 	IntBuffer sourcebuffer = ByteBuffer.allocateDirect(NUM_SOUND_BYTES).asIntBuffer();
+	//deletion requires direct buffers, so bytebuffers morphed to intbuffers
+	
 	// frame independent movement speed using delta
 	private long lastFrame;
 
@@ -148,9 +150,10 @@ public class OpenALTest {
 	private void quit() {
 		alDeleteBuffers(soundbuffer);
 		alDeleteSources(sourcebuffer);
-		Display.destroy();
 		AL.destroy();
+		Display.destroy();
 		System.exit(0);
+		//but... why error.... why
 	}
 
 	private void addEntities() {
@@ -182,12 +185,12 @@ public class OpenALTest {
 		// check for input
 		// Sample mouse and key usage
 		if (mouseEnabled) {
-			int mouseX = Mouse.getX();// - WIDTH / 2;
-			int mouseY = Mouse.getY();// - HEIGHT / 2;
+			//int mouseX = Mouse.getX();// - WIDTH / 2;
+			//int mouseY = Mouse.getY();// - HEIGHT / 2;
 			if (Mouse.isButtonDown(0)) {
 				//PLAY LAZORS
 				alSourcePlay(sourcebuffer.get(0));
-				
+				//might wanna get some hashmaps in dis ****
 			}
 			if (Mouse.isButtonDown(1)) {
 				
