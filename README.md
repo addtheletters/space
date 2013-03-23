@@ -11,7 +11,8 @@ Umm... It's not really even a game yet so I'll hold off on version numbers for n
 Anyways...
 
 Current TestGraphics functionality:
--Pretty much Test3D
+-Test3D's random points/lines
+-First person cam (see comments for more)
 -Rudimentary GLSL Shaders
 
 Planned TestGraphics functionality:

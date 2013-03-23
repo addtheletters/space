@@ -147,9 +147,9 @@ public class Test3D {
 
 		while (!Display.isCloseRequested()) {
 			// loop
-			double delta = getDelta() / 16.0;
-			
-			tick();
+			double delta = getDelta();
+			System.out.println(delta);
+			tick(delta);
 			input();
 			render();
 			zpos += zspeed * delta;
@@ -238,9 +238,9 @@ public class Test3D {
 		
 	}
 
-	private void tick() {
+	private void tick(double delta) {
 		for (Tickable o : toUpdate) {
-			o.step(getDelta());
+			o.step((int)delta);
 		}
 		interactions();
 	}
