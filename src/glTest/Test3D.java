@@ -2,7 +2,10 @@ package glTest;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL15.*; //Vertex Buffer Array Rendering n'stuff
 import static org.lwjgl.util.glu.GLU.*; //gluPerspective
+
+import java.nio.FloatBuffer;
 import java.util.*;
 
 import org.lwjgl.opengl.*;
@@ -86,7 +89,7 @@ public class Test3D {
 
 	private void setUpEntities() {
 		toUpdate = new ArrayList<Tickable>();
-		toRender = new ArrayList<Renderable>();
+		//toRender = new ArrayList<Renderable>();
 
 		addEntities();
 	}
@@ -96,8 +99,23 @@ public class Test3D {
 
 	// all objects that need updating
 	public ArrayList<Tickable> toUpdate;
-	public ArrayList<Renderable> toRender;
-
+	//public ArrayList<Renderable> toRender;
+	//Made obsolete by new VBO render code.
+	
+	final float POINTS_XDISTR = 10000f;
+	final float POINTS_YDISTR = 10000f;
+	final float POINTS_ZDISTR = 14000f;
+	
+	final int NUM_POINTS = 30000;
+	final int NUM_LINES = 30;
+	final int NUM_LINE_VERTICES = NUM_LINES * 2;
+	int vboPointVertexHandle;
+	int vboLineVertexHandle;
+	int vboLineColorHandle;
+	//for vertex buffer objects
+	
+	final int VERTEX_DIM = 3; //3 dimensions
+	final int COLOR_DIM = 3; //no alpha, or it would be 4
 	float zspeed = 0.0f;
 	float xspeed = 0.0f;
 	float yspeed = 0.0f;
@@ -106,52 +124,134 @@ public class Test3D {
 	float quadWidth = 100;
 	float quadHeight = 100;
 	
+	FloatBuffer pointVertexData;
+	FloatBuffer lineVertexData;
+	FloatBuffer lineColorData;
+	
 	public Test3D() {
 		setUpDisplay();
 		setUpOpenGL();
 
 		setUpEntities();
-
+		
+		//setUpRenderBuffers();
+		
 		setUpTimer();
+		
 
 		while (!Display.isCloseRequested()) {
 			// loop
-			
+			int delta = getDelta();
 			
 			tick();
 			input();
 			render();
-			zpos += zspeed;
-			xpos += xspeed;
-			ypos += yspeed;
+			zpos += zspeed * delta / 10.0;
+			xpos += xspeed * delta / 10.0;
+			ypos += yspeed * delta / 10.0;
 			// System.out.println(getDelta());
 
 			Display.update();
 			Display.sync(60);
 		}
+		
+		quit();
+	}
 
+	private void quit() {
+		glDeleteBuffers(vboPointVertexHandle);
+		glDeleteBuffers(vboLineVertexHandle);
+		glDeleteBuffers(vboLineColorHandle);
 		Display.destroy();
 		System.exit(0);
 	}
 
-	private void addEntities() {
+	private void setUpRenderBuffers() {
+		pointVertexData = BufferUtils.createFloatBuffer(NUM_POINTS * VERTEX_DIM);
+		lineVertexData = BufferUtils.createFloatBuffer(NUM_LINE_VERTICES * VERTEX_DIM);
+		lineColorData = BufferUtils.createFloatBuffer(NUM_LINE_VERTICES * COLOR_DIM);
+	}
+	private void flipRenderBuffers(){
+		pointVertexData.flip();
+		lineVertexData.flip();
+		lineColorData.flip();
+	}
+
+	private void addEntities() { //adds points, render buffers
 		// SampleDeltaMover box = new SampleDeltaMover(0, 0, 0, 0);
+		setUpRenderBuffers();
+		
+		//float[] pointVertexArray = new float[NUM_POINTS * VERTEX_DIM];
+		//float[] lineVertexArray = new float[NUM_LINE_VERTICES * VERTEX_DIM];
+		//float[] lineColorArray = new float[NUM_LINE_VERTICES * COLOR_DIM];
+		
 		Random random = new Random();
-		Point last = new Point((random.nextFloat() - 0.5f)*10000f,
-				(random.nextFloat() - 0.5f)*10000f, random.nextInt(14000) - 14000);
-		for (int i = 0; i < 30000; i++) {
-			Point p = new Point((random.nextFloat() - 0.5f)*10000f,
-					(random.nextFloat() - 0.5f)*10000f, random.nextInt(14000) - 14000);
-			toUpdate.add(p);
-			toRender.add(p);
+		Point last = new Point((random.nextFloat() - 0.5f)*POINTS_XDISTR,
+				(random.nextFloat() - 0.5f)*POINTS_YDISTR, random.nextInt((int)POINTS_ZDISTR) -POINTS_ZDISTR);
+		int linecount = 0;
+		for (int i = 0; i < NUM_POINTS; i++) {
+			Point p = new Point((random.nextFloat() - 0.5f)*POINTS_XDISTR,
+					(random.nextFloat() - 0.5f)*POINTS_YDISTR, random.nextInt((int)POINTS_ZDISTR) - POINTS_ZDISTR);
+			/*pointVertexArray[VERTEX_DIM*i] = p.x;
+			pointVertexArray[VERTEX_DIM*i + 1] = p.y;
+			pointVertexArray[VERTEX_DIM*i + 2] = p.z;
+			*/
+			pointVertexData.put(new float[]{p.x, p.y, p.z});
 			
-			if(random.nextFloat() * 1000 < 1){
+			toUpdate.add(p);
+			//toRender.add(p);
+			
+			
+			if( i % 1000 == 0 && linecount < NUM_LINES){//random.nextFloat() * 1000 < 1){
+				linecount ++;
 				Line l = new Line(p, last);
+				
+				lineVertexData.put(new float[]{l.p1.x, l.p1.y, l.p1.z});
+				lineVertexData.put(new float[]{l.p2.x, l.p2.y, l.p2.z});
+				lineColorData.put(new float[]{l.color1.getRed()/255.0f, l.color1.getBlue()/255.0f, l.color1.getGreen()/255.0f}); 
+				lineColorData.put(new float[]{l.color2.getRed()/255.0f, l.color2.getBlue()/255.0f, l.color2.getGreen()/255.0f});
+				/*lineVertexArray[VERTEX_DIM*linecount] = l.p1.x;
+				lineVertexArray[VERTEX_DIM*linecount + 1] = l.p1.y;
+				lineVertexArray[VERTEX_DIM*linecount + 2] = l.p1.z;
+				lineVertexArray[VERTEX_DIM*linecount + 3] = l.p2.x;
+				lineVertexArray[VERTEX_DIM*linecount + 4] = l.p2.y;
+				lineVertexArray[VERTEX_DIM*linecount + 5] = l.p2.z;
+				lineColorArray[VERTEX_DIM*linecount] = l.color1.getRed()/255.0f;
+				lineColorArray[VERTEX_DIM*linecount + 1] = l.color1.getBlue()/255.0f;
+				lineColorArray[VERTEX_DIM*linecount + 2] = l.color1.getGreen()/255.0f;
+				lineColorArray[VERTEX_DIM*linecount + 3] = l.color2.getRed()/255.0f;
+				lineColorArray[VERTEX_DIM*linecount + 4] = l.color2.getBlue()/255.0f;
+				lineColorArray[VERTEX_DIM*linecount + 5] = l.color2.getGreen()/255.0f;
+				*/
+				
 				toUpdate.add(l);
-				toRender.add(l);
+				//toRender.add(l);
 			}
 			last = p;
 		}
+		//pointVertexData.put(pointVertexArray);
+		//lineVertexData.put(lineVertexArray);
+		//lineColorData.put(lineColorArray);
+		
+		flipRenderBuffers();
+		setUpBufferHandles();
+		//System.out.println(linecount);
+	}
+
+	private void setUpBufferHandles() {
+		vboPointVertexHandle = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, vboPointVertexHandle);
+		glBufferData(GL_ARRAY_BUFFER, pointVertexData, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		vboLineVertexHandle = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, vboLineVertexHandle);
+		glBufferData(GL_ARRAY_BUFFER, lineVertexData, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		vboLineColorHandle = glGenBuffers();
+		glBindBuffer(GL_ARRAY_BUFFER, vboLineColorHandle);
+		glBufferData(GL_ARRAY_BUFFER, lineColorData, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		
 	}
 
 	private void tick() {
@@ -173,9 +273,42 @@ public class Test3D {
 	    gluPerspective((float) 45, (float) WIDTH / HEIGHT, 0.001f, 3000);
 		glMatrixMode(GL_MODELVIEW);
 		
+		
 		glLoadIdentity();
 		glTranslated(xpos, ypos, zpos);
 		
+		//Vertex Buffer Object mode for points n lines
+		//Let's go! Yeah! How do you even do this? I don't know!
+		
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glBindBuffer(GL_ARRAY_BUFFER, vboPointVertexHandle);
+		glVertexPointer(VERTEX_DIM, GL_FLOAT, 0, 0L);
+		
+		glDrawArrays(GL_POINTS, 0, NUM_POINTS);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		
+		
+		//Lines
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_COLOR_ARRAY);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, vboLineVertexHandle);
+		glVertexPointer(VERTEX_DIM, GL_FLOAT, 0, 0L);
+		glBindBuffer(GL_ARRAY_BUFFER, vboLineColorHandle);
+		glColorPointer(COLOR_DIM, GL_FLOAT, 0, 0L);
+		
+		glDrawArrays(GL_LINES, 0, NUM_LINE_VERTICES);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+		//End of VBO render code
+		
+		
+		//Immediate mode for points n lines
+		/*
 		glBegin(GL_POINTS);
 		Point p = new Point(0, 0, 0);
 		for (Renderable o : toRender) {
@@ -190,7 +323,10 @@ public class Test3D {
 				o.render();
 		
 		}
-		glEnd();
+		glEnd(); */
+		
+		
+		//Reed.... What teh crap does this do XD
 		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -199,6 +335,8 @@ public class Test3D {
 		glLoadIdentity();
 		
 		
+		//Immediate mode for the overlay quad
+		/*
 		float xMin = quadX/WIDTH -1.f;
 		float yMin = quadY/HEIGHT - 1.f;
 		float xMax = (quadX + quadWidth)/WIDTH - 1.f;
@@ -212,12 +350,13 @@ public class Test3D {
 			glVertex2f(xMax, yMax);
 			glVertex2f(xMax, yMin);
 		glEnd();
+		*/
 		
-		
-		int error = glGetError();
-		if (error != GL_NO_ERROR) {
-			System.out.println(gluGetString(error));
-		}
+		//Errors?
+		//int error = glGetError();
+		//if (error != GL_NO_ERROR) {
+		//	System.out.println(gluGetString(error));
+		//}
 	}
 
 	private void input() {
@@ -262,8 +401,7 @@ public class Test3D {
 			ypos = 0;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
-			Display.destroy();
-			System.exit(0);
+			quit();
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
 			zspeed += 0.1f;
