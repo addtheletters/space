@@ -12,9 +12,9 @@ Anyways...
 
 Current TestGraphics functionality:
 -Pretty much Test3D
+-Rudimentary GLSL Shaders
 
 Planned TestGraphics functionality:
--GLSL Shader testing
 -2d overlay testing
 -3d model testing
 -Moving entity display
