@@ -10,8 +10,22 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
+Current TestGraphics functionality:
+-Pretty much Test3D
+
+Planned TestGraphics functionality:
+-GLSL Shader testing
+-2d overlay testing
+-3d model testing
+-Moving entity display
+-Laser display
+
 Current Test3D functionality:
 -Generates large grid of random points and lines
 -X, Y and Z camera movement, determinable by mouse and keyboard, delta-adjusted for framerate
   -see comments in Test3D
 -Vertex Buffer Object rendering
+
+Current OpenALTest functionality:
+-Plays sound when you click
+-Uses direct IntBuffers to store source / sound buffer handles
