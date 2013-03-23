@@ -14,6 +14,9 @@ import org.lwjgl.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import glTest.Line;
+import glTest.Point;
+
 //import tk.sritwinkles.Point;
 
 //RK4 okay.
@@ -29,13 +32,13 @@ import org.lwjgl.input.Mouse;
 //R to reset camera position to "center"
 
 
-public class Test3D {
+public class TestGraphics {
 
 	// basic 3d 
 
 	private boolean mouseEnabled = true;
 
-	private final String TITLE = "Points!";
+	private final String TITLE = "Testing Effects / Moving Objects";
 
 	// frame independent movement speed using delta
 	private long lastFrame;
@@ -134,7 +137,7 @@ public class Test3D {
 	FloatBuffer lineVertexData;
 	FloatBuffer lineColorData;
 	
-	public Test3D() {
+	public TestGraphics() {
 		setUpDisplay();
 		setUpOpenGL();
 
@@ -319,23 +322,6 @@ public class Test3D {
 		glLoadIdentity();
 		
 		
-		//Immediate mode for the overlay quad
-		/*
-		float xMin = quadX/WIDTH -1.f;
-		float yMin = quadY/HEIGHT - 1.f;
-		float xMax = (quadX + quadWidth)/WIDTH - 1.f;
-		float yMax = (quadY + quadHeight)/HEIGHT - 1.f;
-		
-		//glDisable(GL_DEPTH_TEST);
-		glBegin(GL_QUADS);
-			glColor3f(1f, 1f, 1f);
-			glVertex2f(xMin, yMin);
-			glVertex2f(xMin, yMax);
-			glVertex2f(xMax, yMax);
-			glVertex2f(xMax, yMin);
-		glEnd();
-		*/
-		
 		//Errors?
 		//int error = glGetError();
 		//if (error != GL_NO_ERROR) {
@@ -413,101 +399,8 @@ public class Test3D {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Test3D();
+		new TestGraphics();
 
 	}
 
 }
-
-class Line implements Tickable, Renderable {
-	Point p1;
-	Point p2;
-	Color color1;
-	Color color2;
-	public Line(Point p1, Point p2){
-		super();
-		this.p1 = p1;
-		this.p2 = p2;
-		color1 = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
-		color2 = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
-	}
-	@Override
-	public void render() {
-		// TODO Auto-generated method stub
-		//glBegin(GL_LINES);
-		//System.out.println(color1);
-		glColor3f(color1.getRed()/255.0f, color1.getBlue()/255.0f, color1.getGreen()/255.0f);
-		glVertex3f(p1.x, p1.y, p1.z);
-		glColor3f(color2.getRed()/255.0f, color2.getBlue()/255.0f, color2.getGreen()/255.0f);
-		glVertex3f(p2.x, p2.y, p2.z);
-		//glEnd();
-		
-	}
-	@Override
-	public void step(int delta) {
-		// TODO Auto-generated method stub
-		
-	}
-}
-
-class Point implements Tickable, Renderable {
-	public Point(float x, float y, float z) {
-		super();
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
-
-	final float x;
-	final float y;
-	final float z;
-
-	@Override
-	public void render() {
-		//glPointSize(10);
-		//glBegin(GL_3D);
-		//glBegin(GL_POINTS);
-		glColor3f(1f, 1f, 1f);
-		glVertex3f(x, y, z);
-		//glEnd();
-		
-		
-	}
-
-	@Override
-	public void step(int delta) {
-		//donothin
-
-	}
-
-}
-
-/*
- * class SampleDeltaMover implements Tickable, Renderable { private double x =
- * 0; private double y = 0; private double dx; private double dy; private static
- * final double BOX_SIZE = Test3D.WIDTH / 20;
- * 
- * public SampleDeltaMover(double x, double y, double dx, double dy) {
- * this.setX(x); this.setY(y); this.setDX(dx); this.setDY(dy); }
- * 
- * public void step(int delta) { x += delta * dx; y += delta * dy; }
- * 
- * @Override public void render() { glRectd(x, y, x + BOX_SIZE, y + BOX_SIZE);
- * //System.out.println(BOX_SIZE); }
- * 
- * public double getX() { return x; }
- * 
- * public void setX(double x) { this.x = x; }
- * 
- * public double getY() { return y; }
- * 
- * public void setY(double y) { this.y = y; }
- * 
- * public double getDX() { return dx; }
- * 
- * public void setDX(double dx) { this.dx = dx; }
- * 
- * public double getDY() { return dy; }
- * 
- * public void setDY(double dy) { this.dy = dy; } }
- */
