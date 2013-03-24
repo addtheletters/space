@@ -15,7 +15,7 @@ public class TurningComponent extends Component { //don't use this, use restrict
 	public void update(int delta) {
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		Vector3f.add(fc.facing, turn, fc.facing);
-		fc.restrictLength();
+		Entity.restrictLength(fc.facing, 1);
 	}
 
 	public Component getStepped(int delta) {

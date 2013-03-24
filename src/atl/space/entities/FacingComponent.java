@@ -11,13 +11,13 @@ public class FacingComponent extends Component {
 	public FacingComponent(Vector3f f){
 		id = "facing";
 		facing = f;
-		restrictLength();
+		Entity.restrictLength(facing, 1);
 	}
-	public void restrictLength(){
+	/*public void restrictLength(){
 		if(facing.length() > 1 || facing.length() < -1){ //set length of the vector to 1
 			facing.scale((float)(1/facing.length()));
 		}
-	}
+	}*/
 	
 	public void update(int delta) {
 		//do nothing?
@@ -25,7 +25,9 @@ public class FacingComponent extends Component {
 
 	@Override
 	public Component getStepped(int delta) {
-		return this;
+		FacingComponent fc = new FacingComponent();
+		fc.update(delta);
+		return fc;
 	}
 	
 	
