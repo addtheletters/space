@@ -15,6 +15,12 @@ public class RAccelComponent extends AccelComponent {
 		maxAccel = ma;
 		Entity.restrictLength(accel, maxAccel);
 	}
+	
+	public RAccelComponent(RAccelComponent rac){
+		super(rac);
+		maxAccel = rac.maxAccel;
+		Entity.restrictLength(accel, maxAccel);
+	}
 
 	public void update(int delta) {
 		Entity.restrictLength(accel, maxAccel);
@@ -22,7 +28,7 @@ public class RAccelComponent extends AccelComponent {
 	}
 
 	public Component getStepped(int delta) {
-		RAccelComponent rac = new RAccelComponent(accel, maxAccel);
+		RAccelComponent rac = new RAccelComponent(this);
 		rac.update(delta);
 		return rac;
 	}

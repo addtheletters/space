@@ -10,9 +10,8 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
-Changed functionality of Renderer class
-EntityRenderer, a basic one, not yet actually implemented render()
-Restricted turn and acceleration components
+Added more acceleration components for varying primary, reverse, and secondary thrust
+Other small tweaks
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

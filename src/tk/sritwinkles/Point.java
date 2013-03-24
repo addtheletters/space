@@ -1,8 +1,8 @@
 package tk.sritwinkles;
 
 import static org.lwjgl.opengl.GL11.*;
-import org.lwjgl.opengl.*;
-import org.lwjgl.*;
+//import org.lwjgl.opengl.*;
+//import org.lwjgl.*;
 
 //Can represent a point in 3d space
 //Can also represent a vector starting at the origin(0,0,0)
