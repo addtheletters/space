@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class AccelComponent extends Component { //don't use this, use restricted version
@@ -17,13 +19,13 @@ public class AccelComponent extends Component { //don't use this, use restricted
 		accel = ac.accel;
 	}
 	
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		MovementComponent mc = (MovementComponent)owner.getComponent("movement");
 		Vector3f.add(mc.speed, accel, mc.speed);
 	}
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		AccelComponent ac = new AccelComponent(this);
-		ac.update(delta);
+		ac.update(delta, entities);
 		return ac;
 	}
 

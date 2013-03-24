@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 
 public class RDAccelComponent extends DAccelComponent {
 	public float maxAccelForward;
@@ -28,14 +30,14 @@ public class RDAccelComponent extends DAccelComponent {
 		maxAccelSecondary = rdac.maxAccelSecondary;
 	}
 
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		checkMaxes();
-		super.update(delta);
+		super.update(delta, entities);
 	}
 
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		RDAccelComponent rac = new RDAccelComponent(this);
-		rac.update(delta);
+		rac.update(delta, entities);
 		return rac;
 	}
 	public void checkMaxes(){

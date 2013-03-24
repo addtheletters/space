@@ -109,7 +109,7 @@ public class EntityTest {
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
-	final float CLOSE_RENDER_LIM = 0.001f;
+	final float CLOSE_RENDER_LIM = 0.01f;
 	final float FAR_RENDER_LIM = 100000;
 
 	// for vertex buffer objects
@@ -191,11 +191,11 @@ public class EntityTest {
 
 	private void tick(double delta) {
 		for (Entity e : entities) {
-			e.update((int) delta);
+			e.update((int) delta, entities);
 		}
 		interactions();
 	}
-
+	
 	private void interactions() { // how objects react to each other
 
 	}

@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class RAccelComponent extends AccelComponent {
@@ -22,14 +24,14 @@ public class RAccelComponent extends AccelComponent {
 		Entity.restrictLength(accel, maxAccel);
 	}
 
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		Entity.restrictLength(accel, maxAccel);
-		super.update(delta);
+		super.update(delta, entities);
 	}
 
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		RAccelComponent rac = new RAccelComponent(this);
-		rac.update(delta);
+		rac.update(delta, entities);
 		return rac;
 	}
 

@@ -3,6 +3,7 @@ package atl.space.entities;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
@@ -13,15 +14,15 @@ public class PointTrailRenderComponent extends RenderableComponent {
 		trail = new ArrayList<Vector3f>();
 	}
 	
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		trail.add(owner.position);
 		//System.out.println(trail.size());
 	}
 
 	@Override
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		PointTrailRenderComponent prc = new PointTrailRenderComponent();
-		prc.update(delta);
+		prc.update(delta, entities);
 		return prc;
 	}
 

@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class DAccelComponent extends AccelComponent {
@@ -33,15 +35,15 @@ public class DAccelComponent extends AccelComponent {
 		calcNetAccel();
 	}
 
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		//Modify acceleration vector
 		calcNetAccel();
-		super.update(delta);
+		super.update(delta, entities);
 	}
 
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		DAccelComponent dac = new DAccelComponent(this);
-		dac.update(delta);
+		dac.update(delta, entities);
 		return dac;
 	}
 	

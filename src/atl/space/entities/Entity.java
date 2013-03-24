@@ -75,9 +75,9 @@ public class Entity {
 		this.position = position;
 	}
 
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		for (Component component : components) {
-			component.update(delta);
+			component.update(delta, entities);
 		}
 	}
 
@@ -93,9 +93,9 @@ public class Entity {
 		}
 	}
 
-	public Entity getStepped(int delta) {
+	public Entity getStepped(int delta, List<Entity> entities) {
 		Entity stepped = new Entity(id, position, components);
-		stepped.update(delta);
+		stepped.update(delta, entities);
 		return stepped;
 	}
 

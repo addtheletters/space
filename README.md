@@ -10,6 +10,9 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
+Entity update now needs delta and all other entities in the area
+Todo: Make update actually use delta
+
 Current EntityTest functionality:
 -Draws a feild of stars, as entities with PointRenderComponents
 -Draws a few wanderers, moving in one random direction

@@ -3,16 +3,18 @@ package atl.space.entities;
 import static org.lwjgl.opengl.GL11.*;
 //import org.lwjgl.util.vector.Vector3f;
 
+import java.util.List;
+
 public class PointRenderComponent extends RenderableComponent {
 	
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		//do nothing
 	}
 
 	@Override
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		PointRenderComponent prc = new PointRenderComponent();
-		prc.update(delta);
+		prc.update(delta, entities);
 		return prc;
 	}
 

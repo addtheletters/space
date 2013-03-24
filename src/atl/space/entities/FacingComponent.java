@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class FacingComponent extends Component {
@@ -25,14 +27,14 @@ public class FacingComponent extends Component {
 		}
 	}*/
 	
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		facing.normalise();
 	}
 
 	@Override
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		FacingComponent fc = new FacingComponent(this);
-		fc.update(delta);
+		fc.update(delta, entities);
 		return fc;
 	}
 	

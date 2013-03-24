@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class MovementComponent extends Component {
@@ -12,13 +14,13 @@ public class MovementComponent extends Component {
 		id = "movement";
 		speed = s;
 	}
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		Vector3f.add(owner.getPosition(), speed, owner.position);
 	}
 
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		MovementComponent cs = new MovementComponent(speed);
-		cs.update(delta);
+		cs.update(delta, entities);
 		return cs;
 	}
 

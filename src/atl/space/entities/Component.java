@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 public abstract class Component {
 	 
     protected String id;
@@ -16,9 +18,9 @@ public abstract class Component {
     	this.owner = owner;
     }
     
-    public abstract void update(int delta);
+    public abstract void update(int delta, List<Entity> entities);
     
-    public abstract Component getStepped(int delta);
+    public abstract Component getStepped(int delta, List<Entity> entities);
     
     public boolean isRenderable(){
     	return false;

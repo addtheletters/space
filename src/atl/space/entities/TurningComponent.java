@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class TurningComponent extends Component { //don't use this, use restricted version
@@ -12,15 +14,15 @@ public class TurningComponent extends Component { //don't use this, use restrict
 		id = "turning";
 		turn = t;
 	}
-	public void update(int delta) {
+	public void update(int delta, List<Entity> entities) {
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		Vector3f.add(fc.facing, turn, fc.facing);
 		Entity.restrictLength(fc.facing, 1);
 	}
 
-	public Component getStepped(int delta) {
+	public Component getStepped(int delta, List<Entity> entities) {
 		TurningComponent tc = new TurningComponent(turn);
-		tc.update(delta);
+		tc.update(delta, entities);
 		return tc;
 	}
 
