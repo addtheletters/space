@@ -7,8 +7,8 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Entity {
 
-	String id;
-	Vector3f position;
+	public String id;
+	public Vector3f position;
 
 	ArrayList<Component> components = null;
 

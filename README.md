@@ -10,6 +10,8 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
+Added a bunch of Entities and Components to atl.space.entities.
+
 Current TestGraphics functionality:
 -Test3D's random points/lines
 -First person cam (see comments for more)
