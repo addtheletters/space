@@ -20,6 +20,7 @@ public class Entity {
 	}
 	
 	public Entity(String id) {
+		//System.out.println("Instantiate!");
 		this.id = id;
 		components = new ArrayList<Component>();
 		position = new Vector3f(0, 0, 0);
@@ -35,6 +36,7 @@ public class Entity {
 	public void addComponent(Component component) {
 		component.setOwnerEntity(this);
 		components.add(component);
+		//System.out.println("Add!");
 	}
 
 	public void addComponents(List<Component> cs) {
@@ -80,11 +82,13 @@ public class Entity {
 	}
 
 	public void render() {
+		//System.out.println("Render!");
 		for (Component component : components) {
+			//System.out.println("Thing!");
 			if (component.isRenderable()) {
 				RenderableComponent rc = (RenderableComponent) component;
 				rc.render();
-				System.out.println("render!");
+				//System.out.println("render!");
 			}
 		}
 	}

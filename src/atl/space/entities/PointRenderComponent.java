@@ -22,7 +22,7 @@ public class PointRenderComponent extends RenderableComponent {
 		//float[] point = new float[]{owner.position.x, owner.position.y, owner.position.z};
 		
 		//request a point somewhere, when all renders are called compiles requests into a VBO
-		System.out.println("render!");
+		//System.out.println("render!");
 		glBegin(GL_POINTS);
 			glVertex3f(owner.position.x, owner.position.y, owner.position.z);
 		glEnd();

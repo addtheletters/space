@@ -24,17 +24,16 @@ import org.lwjgl.input.Mouse;
 //F and V for z-axis movement
 //Arrow keys for X and Y movement
 //E to enable mouse, D to disable mouse
-	//With mouse enabled:
-	//Right click / Hold space to drag XY view
-	//Right click or Hold Space + Scroll wheel for zoom / z axis movement
-	//Click / spin scroll wheel to keep same XY movement and shift along Z
+//With mouse enabled:
+//Right click / Hold space to drag XY view
+//Right click or Hold Space + Scroll wheel for zoom / z axis movement
+//Click / spin scroll wheel to keep same XY movement and shift along Z
 //S to stop all camera movement
 //R to reset camera position to "center"
 
-
 public class EntityTest {
 
-	// basic 3d 
+	// basic 3d
 
 	private boolean mouseEnabled = true;
 
@@ -42,7 +41,7 @@ public class EntityTest {
 
 	// frame independent movement speed using delta
 	private long lastFrame;
-	
+
 	private double zpos;
 	private double xpos;
 	private double ypos;
@@ -100,19 +99,22 @@ public class EntityTest {
 
 	// all objects that need updating
 	public ArrayList<Entity> entities;
-	//public ArrayList<Renderable> toRender;
-	//Made obsolete by new VBO render code.
-	
+	// public ArrayList<Renderable> toRender;
+	// Made obsolete by new VBO render code.
+
+	final float STAR_FEILD_SIZE = 5000;
+	final float NUM_STARS = 100;
+
 	final float FOV = 45f;
-	final float ASPECT_RATIO = (float) WIDTH/HEIGHT;
+	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.001f;
 	final float FAR_RENDER_LIM = 10000;
-	
-	//for vertex buffer objects
-	
-	final int VERTEX_DIM = 3; //3 dimensions
-	final int COLOR_DIM = 3; //no alpha, or it would be 4
-	
+
+	// for vertex buffer objects
+
+	final int VERTEX_DIM = 3; // 3 dimensions
+	final int COLOR_DIM = 3; // no alpha, or it would be 4
+
 	final float camAccel = 0.05f;
 	float zspeed = 0.0f;
 	float xspeed = 0.0f;
@@ -121,20 +123,18 @@ public class EntityTest {
 	float quadY = 100;
 	float quadWidth = 100;
 	float quadHeight = 100;
-	
-	
+
 	public EntityTest() {
 		setUpDisplay();
 		setUpOpenGL();
 
-		setUpEntities();	
+		setUpEntities();
 		setUpTimer();
-		
 
 		while (!Display.isCloseRequested()) {
 			// loop
 			double delta = getDelta();
-			//System.out.println(delta);
+			// System.out.println(delta);
 			tick(delta);
 			input();
 			render();
@@ -146,7 +146,7 @@ public class EntityTest {
 			Display.update();
 			Display.sync(60);
 		}
-		
+
 		quit();
 	}
 
@@ -156,18 +156,26 @@ public class EntityTest {
 		System.exit(0);
 	}
 
-
 	private void addEntities() {
-		Entity e1 = new Entity("e1");
-		e1.addComponent(new PointRenderComponent());
-		e1.position = new Vector3f(100f, 100f, - 100f);
-		//entities.add();
+		for (int i = 0; i < NUM_STARS; i++) {
+			addPoint((float) (Math.random() * STAR_FEILD_SIZE)
+					- STAR_FEILD_SIZE / 2,
+					(float) (Math.random() * STAR_FEILD_SIZE) - STAR_FEILD_SIZE
+							/ 2, (float) (Math.random() * STAR_FEILD_SIZE)
+							- STAR_FEILD_SIZE / 2);
+		}
 	}
 
+	private void addPoint(float x, float y, float z) {
+		Entity temp = new Entity("defaultpoint");
+		temp.addComponent(new PointRenderComponent());
+		temp.position = new Vector3f(x, y, z);
+		entities.add(temp);
+	}
 
 	private void tick(double delta) {
 		for (Entity e : entities) {
-			e.update((int)delta);
+			e.update((int) delta);
 		}
 		interactions();
 	}
@@ -179,28 +187,27 @@ public class EntityTest {
 	private void render() {
 		// draw
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		//glMatrixMode(GL_PROJECTION);
-		//gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
-		//glMatrixMode(GL_MODELVIEW);
-		
-		
-		//glLoadIdentity();
-		//glTranslated(xpos, ypos, zpos);
+
+		glMatrixMode(GL_PROJECTION);
+		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
+		glMatrixMode(GL_MODELVIEW);
+
+		glLoadIdentity();
+		glTranslated(xpos, ypos, zpos);
 		//
+		// System.out.println("Hi!");
 		for (Entity e : entities) {
 			e.render();
+			// System.out.println(e.getPosition().x);
 		}
-		
-		//glMatrixMode(GL_PROJECTION);
-		//glLoadIdentity();
-		//glMatrixMode(GL_MODELVIEW);
-		//glLoadIdentity();
-		
-		
-		
-		
-		//Errors?
+		// System.out.println(entities.isEmpty());
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+
+		// Errors?
 		int error = glGetError();
 		if (error != GL_NO_ERROR) {
 			System.out.println(gluGetString(error));
@@ -215,22 +222,22 @@ public class EntityTest {
 			int mouseX = Mouse.getX();// - WIDTH / 2;
 			int mouseY = Mouse.getY();// - HEIGHT / 2;
 			if (Mouse.isButtonDown(0)) {
-				quadX = 2*mouseX - quadWidth/2;
-				quadY = 2*mouseY - quadHeight/2;
+				quadX = 2 * mouseX - quadWidth / 2;
+				quadY = 2 * mouseY - quadHeight / 2;
 			}
 			if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-				if(mouseX > 0 && mouseY < HEIGHT - 1){
-					xspeed = Mouse.getDX();
-					yspeed = Mouse.getDY();
-					zspeed = Mouse.getDWheel();
+				if (mouseX > 0 && mouseY < HEIGHT - 1) {
+					xspeed = Mouse.getDX() * camAccel;
+					yspeed = Mouse.getDY() * camAccel;
+					zspeed = Mouse.getDWheel() * camAccel;
 				}
 			}
-			if(Mouse.isButtonDown(2)){
+			if (Mouse.isButtonDown(2)) {
 				zspeed = Mouse.getDWheel();
 			}
-			
+
 		}
-		
+
 		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
 			mouseEnabled = true;
 		}
@@ -238,15 +245,15 @@ public class EntityTest {
 			mouseEnabled = false;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			//mouseEnabled = true;
-			//zpos = 0;
+			// mouseEnabled = true;
+			// zpos = 0;
 			zspeed = 0;
 			xspeed = 0;
 			yspeed = 0;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
-			//mouseEnabled = false;
-			//glLoadIdentity();
+			// mouseEnabled = false;
+			// glLoadIdentity();
 			zpos = 0;
 			xpos = 0;
 			ypos = 0;
@@ -282,4 +289,3 @@ public class EntityTest {
 	}
 
 }
-
