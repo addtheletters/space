@@ -148,7 +148,7 @@ public class Test3D {
 		while (!Display.isCloseRequested()) {
 			// loop
 			double delta = getDelta();
-			System.out.println(delta);
+			//System.out.println(delta);
 			tick(delta);
 			input();
 			render();

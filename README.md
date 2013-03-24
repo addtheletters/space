@@ -10,8 +10,7 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
-Added more acceleration components for varying primary, reverse, and secondary thrust
-Other small tweaks
+Using Vertex normalize method, small tweaks
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

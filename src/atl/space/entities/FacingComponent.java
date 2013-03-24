@@ -11,12 +11,13 @@ public class FacingComponent extends Component {
 	public FacingComponent(Vector3f f){
 		id = "facing";
 		facing = f;
-		Entity.restrictLength(facing, 1);
+		facing.normalise();
 	}
 	public FacingComponent(FacingComponent fc){
 		id = fc.id;
 		facing = fc.facing;
-		Entity.restrictLength(facing, 1);
+		facing.normalise();
+		//Entity.restrictLength(facing, 1); //does the same thing as facing.normalise()
 	}
 	/*public void restrictLength(){
 		if(facing.length() > 1 || facing.length() < -1){ //set length of the vector to 1
@@ -25,7 +26,7 @@ public class FacingComponent extends Component {
 	}*/
 	
 	public void update(int delta) {
-		Entity.restrictLength(facing, 1);
+		facing.normalise();
 	}
 
 	@Override

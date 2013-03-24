@@ -13,7 +13,8 @@ public class Entity {
 	ArrayList<Component> components = null;
 	
 	public static void restrictLength(Vector3f v, float length){
-		v.scale((float)(length/v.length()));
+		v.normalise();
+		v.scale(length);
 	}
 	
 	public Entity(String id) {
