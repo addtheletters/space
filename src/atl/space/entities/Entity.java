@@ -11,6 +11,8 @@ public class Entity {
 	public Vector3f position;
 
 	ArrayList<Component> components = null;
+	//renderable components in this list
+	
 	
 	public static void restrictLength(Vector3f v, float length){
 		v.normalise();
@@ -81,7 +83,7 @@ public class Entity {
 		for (Component component : components) {
 			if (component.isRenderable()) {
 				RenderableComponent rc = (RenderableComponent) component;
-				rc.renderer.render();
+				rc.render();
 			}
 		}
 	}

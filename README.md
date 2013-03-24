@@ -10,7 +10,7 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
-Using Vertex normalize method, small tweaks
+Streamlined renderable stuff, stuck render() into RenderableComponent
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

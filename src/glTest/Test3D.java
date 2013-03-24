@@ -436,10 +436,10 @@ class Line implements Tickable, Renderable {
 		// TODO Auto-generated method stub
 		//glBegin(GL_LINES);
 		//System.out.println(color1);
-		glColor3f(color1.getRed()/255.0f, color1.getBlue()/255.0f, color1.getGreen()/255.0f);
-		glVertex3f(p1.x, p1.y, p1.z);
-		glColor3f(color2.getRed()/255.0f, color2.getBlue()/255.0f, color2.getGreen()/255.0f);
-		glVertex3f(p2.x, p2.y, p2.z);
+		//glColor3f(color1.getRed()/255.0f, color1.getBlue()/255.0f, color1.getGreen()/255.0f);
+		//glVertex3f(p1.x, p1.y, p1.z);
+		//glColor3f(color2.getRed()/255.0f, color2.getBlue()/255.0f, color2.getGreen()/255.0f);
+		//glVertex3f(p2.x, p2.y, p2.z);
 		//glEnd();
 		
 	}
