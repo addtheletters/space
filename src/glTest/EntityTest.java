@@ -102,20 +102,20 @@ public class EntityTest {
 	// public ArrayList<Renderable> toRender;
 	// Made obsolete by new VBO render code.
 
-	final float STAR_FEILD_SIZE = 5000;
-	final float NUM_STARS = 100;
+	final float STAR_FEILD_SIZE = 500000;
+	final float NUM_STARS = 1000;
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.001f;
-	final float FAR_RENDER_LIM = 10000;
+	final float FAR_RENDER_LIM = 100000;
 
 	// for vertex buffer objects
 
 	final int VERTEX_DIM = 3; // 3 dimensions
 	final int COLOR_DIM = 3; // no alpha, or it would be 4
 
-	final float camAccel = 0.05f;
+	final float camAccel = 1f;
 	float zspeed = 0.0f;
 	float xspeed = 0.0f;
 	float yspeed = 0.0f;
@@ -227,9 +227,9 @@ public class EntityTest {
 			}
 			if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 				if (mouseX > 0 && mouseY < HEIGHT - 1) {
-					xspeed = Mouse.getDX() * camAccel;
-					yspeed = Mouse.getDY() * camAccel;
-					zspeed = Mouse.getDWheel() * camAccel;
+					xspeed = Mouse.getDX();
+					yspeed = Mouse.getDY();
+					zspeed = Mouse.getDWheel();
 				}
 			}
 			if (Mouse.isButtonDown(2)) {
