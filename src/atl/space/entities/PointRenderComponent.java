@@ -1,5 +1,6 @@
 package atl.space.entities;
 
+import static org.lwjgl.opengl.GL11.*;
 //import org.lwjgl.util.vector.Vector3f;
 
 public class PointRenderComponent extends RenderableComponent {
@@ -21,6 +22,9 @@ public class PointRenderComponent extends RenderableComponent {
 		//float[] point = new float[]{owner.position.x, owner.position.y, owner.position.z};
 		
 		//request a point somewhere, when all renders are called compiles requests into a VBO
-		
+		System.out.println("render!");
+		glBegin(GL_POINTS);
+			glVertex3f(owner.position.x, owner.position.y, owner.position.z);
+		glEnd();
 	}
 }

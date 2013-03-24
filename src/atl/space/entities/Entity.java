@@ -84,6 +84,7 @@ public class Entity {
 			if (component.isRenderable()) {
 				RenderableComponent rc = (RenderableComponent) component;
 				rc.render();
+				System.out.println("render!");
 			}
 		}
 	}
