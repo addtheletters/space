@@ -7,4 +7,5 @@ public abstract class RenderableComponent extends Component {
 		return true;
 	}
 	
+	
 }

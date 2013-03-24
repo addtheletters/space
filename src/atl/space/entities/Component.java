@@ -18,6 +18,8 @@ public abstract class Component {
     
     public abstract void update(int delta);
     
+    public abstract Component getStepped(int delta);
+    
     public boolean isRenderable(){
     	return false;
     }
