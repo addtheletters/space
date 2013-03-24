@@ -11,6 +11,7 @@ Umm... It's not really even a game yet so I'll hold off on version numbers for n
 Anyways...
 
 Added a bunch of Entities and Components to atl.space.entities.
+More needed! Always more components. Yay.
 
 Current TestGraphics functionality:
 -Test3D's random points/lines
