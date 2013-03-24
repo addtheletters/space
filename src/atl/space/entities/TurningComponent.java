@@ -5,9 +5,11 @@ import org.lwjgl.util.vector.Vector3f;
 public class TurningComponent extends Component { //don't use this, use restricted version
 	public Vector3f turn;
 	public TurningComponent(){
+		id = "turning";
 		turn = new Vector3f(0, 0, 0);
 	}
 	public TurningComponent(Vector3f t){
+		id = "turning";
 		turn = t;
 	}
 	public void update(int delta) {

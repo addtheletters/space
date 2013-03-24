@@ -5,9 +5,11 @@ import org.lwjgl.util.vector.Vector3f;
 public class AccelComponent extends Component { //don't use this, use restricted version
 	public Vector3f accel;
 	public AccelComponent(){
+		id = "accel";
 		accel = new Vector3f(0, 0, 0);
 	}
 	public AccelComponent(Vector3f a){
+		id = "accel";
 		accel = a;
 	}
 	public void update(int delta) {
