@@ -12,6 +12,7 @@ Anyways...
 
 Current EntityTest functionality:
 -Draws a feild of stars, as entities with PointRenderComponents
+-Draws a few wanderers, moving in one random direction
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

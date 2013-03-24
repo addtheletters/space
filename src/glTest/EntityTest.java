@@ -104,6 +104,8 @@ public class EntityTest {
 
 	final float STAR_FEILD_SIZE = 500000;
 	final float NUM_STARS = 1000;
+	final float NUM_TRAILERS = 10;
+	final float TRAILER_SPEED = 100;
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
@@ -164,11 +166,25 @@ public class EntityTest {
 							/ 2, (float) (Math.random() * STAR_FEILD_SIZE)
 							- STAR_FEILD_SIZE / 2);
 		}
+		for (int i = 0; i < NUM_TRAILERS; i++) {
+			addMover((float) (Math.random() * STAR_FEILD_SIZE)
+					- STAR_FEILD_SIZE / 2,
+					(float) (Math.random() * STAR_FEILD_SIZE) - STAR_FEILD_SIZE
+							/ 2, (float) (Math.random() * STAR_FEILD_SIZE)
+							- STAR_FEILD_SIZE / 2, (float)(Math.random()-1) * TRAILER_SPEED, (float)(Math.random()-1) * TRAILER_SPEED, (float)(Math.random()-1) * TRAILER_SPEED);
+		}
 	}
 
 	private void addPoint(float x, float y, float z) {
 		Entity temp = new Entity("defaultpoint");
 		temp.addComponent(new PointRenderComponent());
+		temp.position = new Vector3f(x, y, z);
+		entities.add(temp);
+	}
+	private void addMover(float x, float y, float z, float dx, float dy, float dz) {
+		Entity temp = new Entity("defaultmover");
+		temp.addComponent(new PointRenderComponent()); //PointTrailRenderComponent doesn't work :O
+		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
 		temp.position = new Vector3f(x, y, z);
 		entities.add(temp);
 	}
