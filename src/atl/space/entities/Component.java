@@ -15,7 +15,7 @@ public abstract class Component {
     {
     	this.owner = owner;
     }
- 
+    
     public abstract void update(int delta);
     
     public boolean isRenderable(){

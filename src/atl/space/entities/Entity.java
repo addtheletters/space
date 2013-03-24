@@ -1,4 +1,4 @@
-package atl.space.entities;
+ package atl.space.entities;
 
 import java.util.ArrayList;
 
@@ -69,4 +69,5 @@ public class Entity {
         	}
         }
     }
+    
 }
