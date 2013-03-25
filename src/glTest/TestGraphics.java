@@ -33,7 +33,6 @@ import glTest.Line;
 //Shaders use shader.vert and shader.frag
 
 //WASD or arrow keys to move on XZ
-//Space and lShift to go up/down
 //Click to use mouse, right click to stop using mouse
 	//Use mouse to look
 
@@ -44,13 +43,13 @@ public class TestGraphics {
 	
 	//2d text overlay
 	private static UnicodeFont font;
-	private static DecimalFormat formatter = new DecimalFormat("#.##");
+	private static DecimalFormat formatter = new DecimalFormat("0.00");
 	
 	@SuppressWarnings("unchecked")
 	private void setUpFonts(){
-		java.awt.Font awtFont = new java.awt.Font("Arial", java.awt.Font.BOLD, 10); 
+		java.awt.Font awtFont = new java.awt.Font("Arial", java.awt.Font.BOLD, 18); 
 		font = new UnicodeFont(awtFont);
-		font.getEffects().add(new ColorEffect(java.awt.Color.white));
+		font.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
 		font.addAsciiGlyphs();
 		try{
 			font.loadGlyphs();
@@ -175,6 +174,22 @@ public class TestGraphics {
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+	}
+	private void alternateOpenGLSetup(){
+		glShadeModel(GL_SMOOTH);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_LIGHT0);
+        glLightModel(GL_LIGHT_MODEL_AMBIENT, BufferTools.asFlippedFloatBuffer(new float[]{0.05f, 0.05f, 0.05f, 1f}));
+        glLight(GL_LIGHT0, GL_POSITION, BufferTools.asFlippedFloatBuffer(new float[]{0, 0, 0, 1}));
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glEnable(GL_COLOR_MATERIAL);
+        glColorMaterial(GL_FRONT, GL_DIFFUSE);
 	}
 	
 	private void setUpProjectionMatrices(){ //called in camera setup
@@ -246,6 +261,7 @@ public class TestGraphics {
 		setUpDisplay();
 		setUpFonts();
 		setUpOpenGL();
+		//alternateOpenGLSetup();
 		setUpShaders();
 		setUpEntities();
 		setUpCamera();
@@ -432,6 +448,7 @@ public class TestGraphics {
 		// End of VBO render code
 
 		//Text rendering
+		glUseProgram(0);
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrix(orthographicProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
@@ -440,6 +457,7 @@ public class TestGraphics {
 		//glDisable(GL_LIGHTING); //yaknow just in case
 		font.drawString(10, 10, "Camera: [x=" + formatter.format(camera.x()) +
 				" y=" + formatter.format(camera.y()) + " z=" + formatter.format(camera.z()) + "]");
+		//glRectd(10, 300, 20, 350);
 		//glEnable(GL_LIGHTING);
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
@@ -454,10 +472,10 @@ public class TestGraphics {
 		//this is... important?
 
 		// Errors?
-		// int error = glGetError();
-		// if (error != GL_NO_ERROR) {
-		// System.out.println(gluGetString(error));
-		// }
+		int error = glGetError();
+		if (error != GL_NO_ERROR) {
+		 System.out.println(gluGetString(error));
+		 }
 	}
 
 	private void input() {
