@@ -10,6 +10,12 @@ TODO, Release Notes, Version History
 Umm... It's not really even a game yet so I'll hold off on version numbers for now...
 Anyways...
 
+*Text overlay in TestGraphics displays odd blocks instead of actual characters.
+*Someone find a fix! Use the powah of the internet XD
+
+-added slick2d library
+-removed slick_util because of conflicts with slick
+
 Entity update now needs delta and all other entities in the area
 Todo: Make update actually use delta
 

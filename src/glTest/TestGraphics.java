@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.FloatBuffer;
+import java.text.DecimalFormat;
 import java.util.*;
 import utility.*;
 
@@ -19,9 +20,11 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.newdawn.slick.*;
+import org.newdawn.slick.font.effects.ColorEffect;
 
-import glTest.Line;
 import glTest.Point;
+import glTest.Line;
 
 //import tk.sritwinkles.Point;
 
@@ -38,7 +41,33 @@ public class TestGraphics {
 
 	// basic 3d
 	private static Camera camera;
-
+	
+	//2d text overlay
+	private static UnicodeFont font;
+	private static DecimalFormat formatter = new DecimalFormat("#.##");
+	
+	@SuppressWarnings("unchecked")
+	private void setUpFonts(){
+		java.awt.Font awtFont = new java.awt.Font("Arial", java.awt.Font.BOLD, 10); 
+		font = new UnicodeFont(awtFont);
+		font.getEffects().add(new ColorEffect(java.awt.Color.white));
+		font.addAsciiGlyphs();
+		try{
+			font.loadGlyphs();
+		}catch(SlickException e){
+			e.printStackTrace();
+			quit();
+		}
+		
+	}
+	
+	//storing projection matrices
+	//orthographic for text
+	//perspective for camera
+	private static FloatBuffer perspectiveProjectionMatrix = BufferTools.reserveData(16);
+	private static FloatBuffer orthographicProjectionMatrix = BufferTools.reserveData(16);
+	
+	
 	//private boolean mouseEnabled = true;
 
 	private final String TITLE = "Testing Effects, Shaders, and Moving Objects";
@@ -143,8 +172,22 @@ public class TestGraphics {
 		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
-
+	
+	private void setUpProjectionMatrices(){ //called in camera setup
+		//camera setup done before this is called
+		glGetFloat(GL_PROJECTION_MATRIX, perspectiveProjectionMatrix);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
+		glGetFloat(GL_PROJECTION_MATRIX, orthographicProjectionMatrix);
+		glLoadMatrix(perspectiveProjectionMatrix);
+		glMatrixMode(GL_MODELVIEW);
+	} 
+	
 	private void setUpTimer() {
 		lastFrame = getTime();
 	}
@@ -201,11 +244,12 @@ public class TestGraphics {
 
 	public TestGraphics() {
 		setUpDisplay();
+		setUpFonts();
 		setUpOpenGL();
 		setUpShaders();
 		setUpEntities();
 		setUpCamera();
-
+		
 		// Render buffers set up in setUpEntities()
 
 		setUpTimer();
@@ -238,6 +282,7 @@ public class TestGraphics {
 				.setPosition(0f, 0f, 0f).setFieldOfView(FOV).build();
 		camera.applyOptimalStates();
 		camera.applyPerspectiveMatrix();
+		setUpProjectionMatrices();
 	}
 
 	private void quit() {
@@ -386,24 +431,27 @@ public class TestGraphics {
 		glDisableClientState(GL_COLOR_ARRAY);
 		// End of VBO render code
 
-		// Immediate mode for points n lines
-		/*
-		 * glBegin(GL_POINTS); Point p = new Point(0, 0, 0); for (Renderable o :
-		 * toRender) { if(o.getClass() == p.getClass()) o.render(); } glEnd();
-		 * glBegin(GL_LINES); Line l = new Line(new Point(0, 0, 0) , new
-		 * Point(0, 0, 0)); for (Renderable o : toRender) { if(o.getClass() ==
-		 * l.getClass()) o.render();
-		 * 
-		 * } glEnd();
-		 */
-
-		// Reed.... What teh crap does this do XD
-
+		//Text rendering
+		glMatrixMode(GL_PROJECTION);
+		glLoadMatrix(orthographicProjectionMatrix);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+		//glDisable(GL_LIGHTING); //yaknow just in case
+		font.drawString(10, 10, "Camera: [x=" + formatter.format(camera.x()) +
+				" y=" + formatter.format(camera.y()) + " z=" + formatter.format(camera.z()) + "]");
+		//glEnable(GL_LIGHTING);
+		glPopMatrix();
+		glMatrixMode(GL_PROJECTION);
+		glLoadMatrix(perspectiveProjectionMatrix);
+		glMatrixMode(GL_MODELVIEW);
+		
+		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		// //glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+		//this is... important?
 
 		// Errors?
 		// int error = glGetError();
