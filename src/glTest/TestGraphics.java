@@ -224,7 +224,7 @@ public class TestGraphics {
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
-	final float CLOSE_RENDER_LIM = 0.001f;
+	final float CLOSE_RENDER_LIM = 0.1f;
 	final float FAR_RENDER_LIM = 6000;
 
 	final float POINTS_XDISTR = 23000f;
@@ -295,7 +295,7 @@ public class TestGraphics {
 				.setAspectRatio(
 						ASPECT_RATIO)
 				.setRotation(0f, 0f, 0f)
-				.setPosition(0f, 0f, 0f).setFieldOfView(FOV).build();
+				.setPosition(0f, 0f, -6000f).setFieldOfView(FOV).build();
 		camera.applyOptimalStates();
 		camera.applyPerspectiveMatrix();
 		setUpProjectionMatrices();
