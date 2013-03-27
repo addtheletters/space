@@ -15,7 +15,7 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	}
 	
 	public void update(int delta, List<Entity> entities) {
-		trail.add(owner.position);
+		trail.add(new Vector3f(owner.position));
 		//System.out.println(trail.size());
 	}
 
