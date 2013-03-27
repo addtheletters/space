@@ -106,10 +106,10 @@ public class EntityTest {
 
 	final float STAR_FEILD_SIZE = 5000;
 	final float NUM_STARS = 1000;
-	final float NUM_TRAILERS = 10;
-	final float TRAILER_SPEED = 3;
-	final float TRAIL_FADE = 0.01f;
-	final int TRAIL_LENGTH = 100;
+	final float NUM_TRAILERS = 40;
+	final float TRAILER_SPEED = 6;
+	final float TRAIL_FADE = 0.005f;
+	final int TRAIL_LENGTH = 200;
 	final float NUM_FACERS = 0;
 
 	final float FOV = 45f;
@@ -176,7 +176,7 @@ public class EntityTest {
 					- STAR_FEILD_SIZE / 2,
 					(float) (Math.random() * STAR_FEILD_SIZE) - STAR_FEILD_SIZE
 							/ 2, (float) (Math.random() * STAR_FEILD_SIZE)
-							- STAR_FEILD_SIZE / 2, (float)(Math.random()-1) * TRAILER_SPEED, (float)(Math.random()-1) * TRAILER_SPEED, (float)(Math.random()-1) * TRAILER_SPEED);
+							- STAR_FEILD_SIZE / 2, (float)(Math.random()-.5) * TRAILER_SPEED, (float)(Math.random()-.5) * TRAILER_SPEED, (float)(Math.random()-.5) * TRAILER_SPEED);
 		}
 		for(int i = 0; i < NUM_FACERS; i++){
 			addFacer(1, 1, 1, new Vector3f(), new Vector3f());

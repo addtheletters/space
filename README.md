@@ -3,9 +3,16 @@ space
 
 A space game / engine / thing. Will likely include gravity, collisions, and other stuff.
 
+Added: Hopefully correct collisions? Need to extend to make it work with ships and direction facings.
+Prolly gonna need some complicated trig -_-
+
+
 TODO:
--Fix the PointTrailRenderComponent so it leaves a trail Someone mind explaining to me why it doesn't work the way I have it right now?
 -Make updates for components utilize delta
+
+Current EntityTest functionality:
+-Draws a starfeild
+-Draws a bunch of movers that leave fading trails
 
 Current TestGraphics functionality:
 -Test3D's random points/lines
