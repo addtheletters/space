@@ -29,7 +29,7 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	@Override
 	public void render() {
 		glBegin(GL_POINTS);
-			glVertex3f(owner.position.x, owner.position.y, owner.position.z);
+			//glVertex3f(owner.position.x, owner.position.y, owner.position.z);
 			for(int i = 0; i < trail.size(); i++){
 				glVertex3f(trail.get(i).x, trail.get(i).y, trail.get(i).z);
 			}

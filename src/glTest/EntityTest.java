@@ -103,13 +103,14 @@ public class EntityTest {
 	// Made obsolete by new VBO render code.
 
 	final float STAR_FEILD_SIZE = 500000;
-	final float NUM_STARS = 1000;
-	final float NUM_TRAILERS = 10;
+	final float NUM_STARS = 0;
+	final float NUM_TRAILERS = 10000;
 	final float TRAILER_SPEED = 100;
+	final float NUM_FACERS = 0;
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
-	final float CLOSE_RENDER_LIM = 0.01f;
+	final float CLOSE_RENDER_LIM = 0.1f;
 	final float FAR_RENDER_LIM = 100000;
 
 	// for vertex buffer objects
@@ -173,6 +174,9 @@ public class EntityTest {
 							/ 2, (float) (Math.random() * STAR_FEILD_SIZE)
 							- STAR_FEILD_SIZE / 2, (float)(Math.random()-1) * TRAILER_SPEED, (float)(Math.random()-1) * TRAILER_SPEED, (float)(Math.random()-1) * TRAILER_SPEED);
 		}
+		for(int i = 0; i < NUM_FACERS; i++){
+			addFacer(1, 1, 1, new Vector3f(), new Vector3f());
+		}
 	}
 
 	private void addPoint(float x, float y, float z) {
@@ -183,8 +187,15 @@ public class EntityTest {
 	}
 	private void addMover(float x, float y, float z, float dx, float dy, float dz) {
 		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointRenderComponent()); //PointTrailRenderComponent doesn't work :O
+		temp.addComponent(new PointTrailRenderComponent()); //PointTrailRenderComponent doesn't work :O
 		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
+		temp.position = new Vector3f(x, y, z);
+		entities.add(temp);
+	}
+	private void addFacer(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing){
+		Entity temp = new Entity("defaultfacer");
+		temp.addComponent(new FacingComponent(dirFacing));
+		temp.addComponent(new MovementComponent(dirMoving));
 		temp.position = new Vector3f(x, y, z);
 		entities.add(temp);
 	}

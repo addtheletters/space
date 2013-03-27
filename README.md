@@ -3,25 +3,9 @@ space
 
 A space game / engine / thing. Will likely include gravity, collisions, and other stuff.
 
-Also, I need a much more descriptive README, such as
-
-TODO, Release Notes, Version History
-
-Umm... It's not really even a game yet so I'll hold off on version numbers for now...
-Anyways...
-
-*Text overlay in TestGraphics displays odd blocks instead of actual characters.
-*Someone find a fix! Use the powah of the internet XD
-
--added slick2d library
--removed slick_util because of conflicts with slick
-
-Entity update now needs delta and all other entities in the area
-Todo: Make update actually use delta
-
-Current EntityTest functionality:
--Draws a feild of stars, as entities with PointRenderComponents
--Draws a few wanderers, moving in one random direction
+TODO:
+-Fix the PointTrailRenderComponent so it leaves a trail Someone mind explaining to me why it doesn't work the way I have it right now?
+-Make updates for components utilize delta
 
 Current TestGraphics functionality:
 -Test3D's random points/lines
@@ -73,6 +57,10 @@ While I'm thinking about it... Mechanics!
 -Lasers would prolly be best for close combat knife-fighting or taking down missiles and fighters.
 -Then again, I plan on making missiles pretty fast. AI targeting would prolly be worth investing in ;)
 -Ablative armor: works well against lasers. Maybe not so much vs cannons.
+-DEWs: Particle beams? Sheilding might work with them differently to lasers.
+-Plasma weapons? Prolly would work kinda like mass accelerators, or maybe be more heat-based for damage. 
+-EMPs? Bombs?
+-"C-fractional bombardment" with gravity manipulation >:)
 -Different missile payloads
 -Different missile thrusters (and ship thrusters? Maybe if you have the know-how you can repurpose thrusters for different things)
 -Different weapon mounts

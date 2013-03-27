@@ -1,10 +1,15 @@
 package atl.space.entities;
 
+import static org.lwjgl.opengl.GL11.GL_LINES;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glVertex3f;
+
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-public class FacingComponent extends Component {
+public class FacingComponent extends RenderableComponent {
 	public Vector3f facing;
 	public FacingComponent(){
 		id = "facing";
@@ -36,6 +41,13 @@ public class FacingComponent extends Component {
 		FacingComponent fc = new FacingComponent(this);
 		fc.update(delta, entities);
 		return fc;
+	}
+	@Override
+	public void render() {
+		glBegin(GL_LINES);
+		glVertex3f(owner.position.x, owner.position.y, owner.position.z);
+		glVertex3f(owner.position.x + facing.x, owner.position.y + facing.y, owner.position.z + facing.z);
+		glEnd();
 	}
 	
 	
