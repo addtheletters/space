@@ -103,9 +103,9 @@ public class EntityTest {
 	// Made obsolete by new VBO render code.
 
 	final float STAR_FEILD_SIZE = 5000;
-	final float NUM_STARS = 0;
-	final float NUM_TRAILERS = 100;
-	final float TRAILER_SPEED = 10;
+	final float NUM_STARS = 1000;
+	final float NUM_TRAILERS = 10;
+	final float TRAILER_SPEED = 3;
 	final float NUM_FACERS = 0;
 
 	final float FOV = 45f;
@@ -118,7 +118,7 @@ public class EntityTest {
 	final int VERTEX_DIM = 3; // 3 dimensions
 	final int COLOR_DIM = 3; // no alpha, or it would be 4
 
-	final float camAccel = 0.1f;
+	final float camAccel = 0.07f;
 	float zspeed = 0.0f;
 	float xspeed = 0.0f;
 	float yspeed = 0.0f;
@@ -187,7 +187,7 @@ public class EntityTest {
 	}
 	private void addMover(float x, float y, float z, float dx, float dy, float dz) {
 		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointTrailRenderComponent()); //PointTrailRenderComponent doesn't work :O
+		temp.addComponent(new PointTrailRenderComponent(100, .1f)); //PointTrailRenderComponent doesn't work :O
 		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
 		temp.position = new Vector3f(x, y, z);
 		entities.add(temp);

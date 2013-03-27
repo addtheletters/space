@@ -2,20 +2,29 @@ package atl.space.entities;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
 public class PointTrailRenderComponent extends RenderableComponent {
-	public ArrayList<Vector3f> trail;
+	public LinkedList<Vector3f> trail;
+	public int trailsize = 0;
+	public float trailfade = 0f;
 	
 	public PointTrailRenderComponent(){
-		trail = new ArrayList<Vector3f>();
+		trail = new LinkedList<Vector3f>();
+	}
+	public PointTrailRenderComponent(int ts, float tf){
+		trail = new LinkedList<Vector3f>();
+		trailsize = ts;
+		trailfade = tf;
 	}
 	
 	public void update(int delta, List<Entity> entities) {
-		trail.add(new Vector3f(owner.position));
+		trail.addFirst(new Vector3f(owner.position));
 		//System.out.println(trail.size());
 	}
 
@@ -29,16 +38,26 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	@Override
 	public void render() {
 		glBegin(GL_POINTS);
+			float alpha = 1f;
 			glVertex3f(owner.position.x, owner.position.y, owner.position.z);
 			//System.out.println("Pos: " + owner.position.x+ " " + owner.position.y+ " " + owner.position.z);
-			//glVertex3f(owner.position.x + 1000, owner.position.y + 1000, owner.position.z+ 1000);
-			//glColor3f(1, 1, 1);
-			for(int i = 0; i < trail.size(); i++){
-				glVertex3f((float)trail.get(i).x, (float)trail.get(i).y, (float)trail.get(i).z);
+			cleanUpList();
+			Iterator<Vector3f> it = trail.iterator();
+			while(it.hasNext()){
+				Vector3f current = it.next();
+				glColor4f(1, 1, 1, alpha);
+				glVertex3f((float)current.x, (float)current.y, (float)current.z);
 				//System.out.println(trail.get(i).x+" "+trail.get(i).y+" "+trail.get(i).z);
+				alpha -= trailfade;
 			}
 		glEnd();
 		
 		//doesn't work for some reason
+	}
+	
+	public void cleanUpList(){
+		while (trail.size() > trailsize) {
+			 trail.removeLast();
+		}
 	}
 }
