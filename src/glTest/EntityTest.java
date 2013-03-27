@@ -82,6 +82,8 @@ public class EntityTest {
 		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	private void setUpTimer() {
@@ -106,6 +108,8 @@ public class EntityTest {
 	final float NUM_STARS = 1000;
 	final float NUM_TRAILERS = 10;
 	final float TRAILER_SPEED = 3;
+	final float TRAIL_FADE = 0.01f;
+	final int TRAIL_LENGTH = 100;
 	final float NUM_FACERS = 0;
 
 	final float FOV = 45f;
@@ -187,7 +191,7 @@ public class EntityTest {
 	}
 	private void addMover(float x, float y, float z, float dx, float dy, float dz) {
 		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointTrailRenderComponent(100, .1f)); //PointTrailRenderComponent doesn't work :O
+		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE)); //PointTrailRenderComponent doesn't work :O
 		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
 		temp.position = new Vector3f(x, y, z);
 		entities.add(temp);

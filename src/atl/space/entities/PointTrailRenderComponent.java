@@ -49,7 +49,9 @@ public class PointTrailRenderComponent extends RenderableComponent {
 				glVertex3f((float)current.x, (float)current.y, (float)current.z);
 				//System.out.println(trail.get(i).x+" "+trail.get(i).y+" "+trail.get(i).z);
 				alpha -= trailfade;
+				//System.out.println(alpha);
 			}
+			glColor4f(1, 1, 1, 1);
 		glEnd();
 		
 		//doesn't work for some reason
