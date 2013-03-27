@@ -102,23 +102,23 @@ public class EntityTest {
 	// public ArrayList<Renderable> toRender;
 	// Made obsolete by new VBO render code.
 
-	final float STAR_FEILD_SIZE = 500000;
+	final float STAR_FEILD_SIZE = 5000;
 	final float NUM_STARS = 0;
-	final float NUM_TRAILERS = 10000;
-	final float TRAILER_SPEED = 100;
+	final float NUM_TRAILERS = 100;
+	final float TRAILER_SPEED = 10;
 	final float NUM_FACERS = 0;
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.1f;
-	final float FAR_RENDER_LIM = 100000;
+	final float FAR_RENDER_LIM = 10000;
 
 	// for vertex buffer objects
 
 	final int VERTEX_DIM = 3; // 3 dimensions
 	final int COLOR_DIM = 3; // no alpha, or it would be 4
 
-	final float camAccel = 1f;
+	final float camAccel = 0.1f;
 	float zspeed = 0.0f;
 	float xspeed = 0.0f;
 	float yspeed = 0.0f;

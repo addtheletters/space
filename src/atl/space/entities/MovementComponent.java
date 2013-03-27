@@ -15,7 +15,7 @@ public class MovementComponent extends Component {
 		speed = s;
 	}
 	public void update(int delta, List<Entity> entities) {
-		Vector3f.add(owner.getPosition(), speed, owner.position);
+		Vector3f.add(owner.position, speed, owner.position);
 	}
 
 	public Component getStepped(int delta, List<Entity> entities) {
