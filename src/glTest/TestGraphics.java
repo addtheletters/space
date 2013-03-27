@@ -176,7 +176,7 @@ public class TestGraphics {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 	}
-	private void alternateOpenGLSetup(){
+	/*private void alternateOpenGLSetup(){
 		glShadeModel(GL_SMOOTH);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_LIGHTING);
@@ -190,7 +190,7 @@ public class TestGraphics {
         glCullFace(GL_BACK);
         glEnable(GL_COLOR_MATERIAL);
         glColorMaterial(GL_FRONT, GL_DIFFUSE);
-	}
+	}*/
 	
 	private void setUpProjectionMatrices(){ //called in camera setup
 		//camera setup done before this is called
@@ -484,7 +484,7 @@ public class TestGraphics {
 		
 		//using Camera
 		
-        camera.processKeyboard(16f, 50);
+        camera.processKeyboard(16f, 50f);
         if (Mouse.isButtonDown(0)) {
             Mouse.setGrabbed(true);
         } else if (Mouse.isButtonDown(1)) {

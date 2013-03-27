@@ -1,6 +1,7 @@
 package utility;
 
 import org.lwjgl.input.Keyboard;
+//import org.lwjgl.input.Mouse;
 
 //Not complete.
 
@@ -10,7 +11,16 @@ public class FlyCamera extends EulerCamera {
 		super();
 	}
 	
-	 public void processKeyboard(float delta, float speed) {
+	public void processKeyboard(float delta, float speed){
+		if(Keyboard.isKeyDown(Keyboard.KEY_E)){
+			processSlave(delta, speed * 100);
+		}
+		else{
+			processSlave(delta, speed);
+		}
+	}
+
+	 public void processSlave(float delta, float speed) {
 	        if (delta <= 0) {
 	            throw new IllegalArgumentException("delta " + delta + " is 0 or is smaller than 0");
 	        }
