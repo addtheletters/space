@@ -11,6 +11,7 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 public class FacingComponent extends RenderableComponent {
+	static final float renderLength = 100;
 	public Vector3f facing;
 	public FacingComponent(){
 		id = "facing";
@@ -49,7 +50,7 @@ public class FacingComponent extends RenderableComponent {
 		glColor4f(0, 1, 1, 1);
 		glVertex3f(owner.position.x, owner.position.y, owner.position.z);
 		glColor4f(1, 0, 0, 1);
-		glVertex3f(owner.position.x + facing.x*100, owner.position.y + facing.y*100, owner.position.z + facing.z*100);
+		glVertex3f(owner.position.x + facing.x*renderLength, owner.position.y + facing.y*renderLength, owner.position.z + facing.z*renderLength);
 		glColor4f(1, 1, 1, 1);
 		glEnd();
 	}

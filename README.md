@@ -15,6 +15,8 @@ TODO:
 Current EntityTest functionality:
 -Draws a starfeild
 -Draws a bunch of movers that leave fading trails
+-Draws a bunch of things that face the red
+-Draws a bunch of things that accelerate, some of which accelerate in the direction they face
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

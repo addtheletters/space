@@ -106,7 +106,7 @@ public class EntityTest {
 
 	final float STAR_FEILD_SIZE = 5000;
 	final int NUM_STARS = 1000;
-	final int NUM_TRAILERS = 40;
+	final int NUM_TRAILERS = 10;
 	final float TRAILER_SPEED = 6;
 	final float TRAIL_FADE = 0.005f;
 	final int TRAIL_LENGTH = 200;
@@ -175,7 +175,12 @@ public class EntityTest {
 			addFacer(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory());
 		}
 		for(int i = 0; i < NUM_ACCELERATORS; i++){
+			if(Math.random() < .5){
 			addAccelerator(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory(), randAcceleration());
+			}
+			else{
+				addStraightAccelerator(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory());
+			}
 		}
 	}
 	private float numInFeild(){
@@ -202,6 +207,13 @@ public class EntityTest {
 	}
 	private void addAccelerator(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing, Vector3f accel){
 		Entity temp =EntityBuilder.accelerator(new Vector3f(x, y, z), dirMoving, dirFacing, accel);
+		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE));
+		entities.add(temp);
+	}
+	private void addStraightAccelerator(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing){
+		Vector3f tempa = new Vector3f(dirFacing);
+		tempa.scale(ACCELERATION);
+		Entity temp =EntityBuilder.accelerator(new Vector3f(x, y, z), dirMoving, dirFacing, tempa);
 		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE));
 		entities.add(temp);
 	}
