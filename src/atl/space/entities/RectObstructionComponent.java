@@ -60,8 +60,7 @@ public class RectObstructionComponent extends ObstructionComponent {
 
 	@Override
 	public boolean isTouching(Entity e) {
-		// TODO Auto-generated method stub
-
+		// TODO Make this work XD
 		return false;
 	}
 

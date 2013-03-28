@@ -6,9 +6,11 @@ A space game / engine / thing. Will likely include gravity, collisions, and othe
 Added: Hopefully correct collisions? Need to extend to make it work with ships and direction facings.
 Prolly gonna need some complicated trig -_-
 
+-getOGLPos in TestGraphics.java doesn't work. Help. 
 
 TODO:
 -Make updates for components utilize delta
+-Make getOGLPos work to get the right 3d space position for the mouse
 
 Current EntityTest functionality:
 -Draws a starfeild

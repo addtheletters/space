@@ -41,7 +41,7 @@ public class EntityTest {
 
 	// frame independent movement speed using delta
 	private long lastFrame;
-
+	
 	private double zpos;
 	private double xpos;
 	private double ypos;

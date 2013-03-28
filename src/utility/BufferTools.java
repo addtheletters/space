@@ -35,7 +35,9 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 
 public class BufferTools {
 
@@ -126,8 +128,18 @@ public class BufferTools {
      *
      * @return an empty FloatBuffer with a set amount of elements
      */
-    public static FloatBuffer reserveData(int amountOfElements) {
+    public static FloatBuffer reserveDataf(int amountOfElements) {
         return BufferUtils.createFloatBuffer(amountOfElements);
+    }
+    
+    public static DoubleBuffer reserveDatad(int amountOfElements){
+    	return BufferUtils.createDoubleBuffer(amountOfElements);
+    }
+    public static IntBuffer reserveDatai(int amountOfElements){
+    	return BufferUtils.createIntBuffer(amountOfElements);
+    }
+    public static ByteBuffer reserveDatab(int amountOfElements){
+    	return BufferUtils.createByteBuffer(amountOfElements);
     }
 
     /**

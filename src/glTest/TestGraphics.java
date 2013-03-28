@@ -10,12 +10,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.text.DecimalFormat;
 import java.util.*;
 import utility.*;
 
 import org.lwjgl.opengl.*;
+import org.lwjgl.util.vector.Vector3f;
 //import org.lwjgl.util.Color;
 import org.lwjgl.*;
 import org.lwjgl.input.Keyboard;
@@ -34,40 +37,42 @@ import glTest.Line;
 
 //WASD or arrow keys to move on XZ
 //Click to use mouse, right click to stop using mouse
-	//Use mouse to look
+//Use mouse to look
 
 public class TestGraphics {
 
 	// basic 3d
 	private static Camera camera;
-	
-	//2d text overlay
+
+	// 2d text overlay
 	private static UnicodeFont font;
 	private static DecimalFormat formatter = new DecimalFormat("0.00");
-	
+
 	@SuppressWarnings("unchecked")
-	private void setUpFonts(){
-		java.awt.Font awtFont = new java.awt.Font("Arial", java.awt.Font.BOLD, 18); 
+	private void setUpFonts() {
+		java.awt.Font awtFont = new java.awt.Font("Arial", java.awt.Font.BOLD,
+				18);
 		font = new UnicodeFont(awtFont);
 		font.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
 		font.addAsciiGlyphs();
-		try{
+		try {
 			font.loadGlyphs();
-		}catch(SlickException e){
+		} catch (SlickException e) {
 			e.printStackTrace();
 			quit();
 		}
-		
+
 	}
-	
-	//storing projection matrices
-	//orthographic for text
-	//perspective for camera
-	private static FloatBuffer perspectiveProjectionMatrix = BufferTools.reserveData(16);
-	private static FloatBuffer orthographicProjectionMatrix = BufferTools.reserveData(16);
-	
-	
-	//private boolean mouseEnabled = true;
+
+	// storing projection matrices
+	// orthographic for text
+	// perspective for camera
+	private static FloatBuffer perspectiveProjectionMatrix = BufferTools
+			.reserveDataf(16);
+	private static FloatBuffer orthographicProjectionMatrix = BufferTools
+			.reserveDataf(16);
+
+	// private boolean mouseEnabled = true;
 
 	private final String TITLE = "Testing Effects, Shaders, and Moving Objects";
 
@@ -75,9 +80,7 @@ public class TestGraphics {
 	private long lastFrame;
 	int delta;
 	/*
-	private double zpos;
-	private double xpos;
-	private double ypos;
+	 * private double zpos; private double xpos; private double ypos;
 	 */
 	// Shader variables
 	int shaderProgram;
@@ -174,26 +177,22 @@ public class TestGraphics {
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
+
 	}
-	/*private void alternateOpenGLSetup(){
-		glShadeModel(GL_SMOOTH);
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_LIGHTING);
-        glEnable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glEnable(GL_LIGHT0);
-        glLightModel(GL_LIGHT_MODEL_AMBIENT, BufferTools.asFlippedFloatBuffer(new float[]{0.05f, 0.05f, 0.05f, 1f}));
-        glLight(GL_LIGHT0, GL_POSITION, BufferTools.asFlippedFloatBuffer(new float[]{0, 0, 0, 1}));
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_BACK);
-        glEnable(GL_COLOR_MATERIAL);
-        glColorMaterial(GL_FRONT, GL_DIFFUSE);
-	}*/
-	
-	private void setUpProjectionMatrices(){ //called in camera setup
-		//camera setup done before this is called
+
+	/*
+	 * private void alternateOpenGLSetup(){ glShadeModel(GL_SMOOTH);
+	 * glEnable(GL_DEPTH_TEST); glEnable(GL_LIGHTING); glEnable(GL_TEXTURE_2D);
+	 * glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	 * glEnable(GL_LIGHT0); glLightModel(GL_LIGHT_MODEL_AMBIENT,
+	 * BufferTools.asFlippedFloatBuffer(new float[]{0.05f, 0.05f, 0.05f, 1f}));
+	 * glLight(GL_LIGHT0, GL_POSITION, BufferTools.asFlippedFloatBuffer(new
+	 * float[]{0, 0, 0, 1})); glEnable(GL_CULL_FACE); glCullFace(GL_BACK);
+	 * glEnable(GL_COLOR_MATERIAL); glColorMaterial(GL_FRONT, GL_DIFFUSE); }
+	 */
+
+	private void setUpProjectionMatrices() { // called in camera setup
+		// camera setup done before this is called
 		glGetFloat(GL_PROJECTION_MATRIX, perspectiveProjectionMatrix);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -201,8 +200,8 @@ public class TestGraphics {
 		glGetFloat(GL_PROJECTION_MATRIX, orthographicProjectionMatrix);
 		glLoadMatrix(perspectiveProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
-	} 
-	
+	}
+
 	private void setUpTimer() {
 		lastFrame = getTime();
 	}
@@ -250,9 +249,9 @@ public class TestGraphics {
 	float quadY = 100;
 	float quadWidth = 100;
 	float quadHeight = 100;
-	
-	//double delta;
-	
+
+	// double delta;
+
 	FloatBuffer pointVertexData;
 	FloatBuffer lineVertexData;
 	FloatBuffer lineColorData;
@@ -261,11 +260,11 @@ public class TestGraphics {
 		setUpDisplay();
 		setUpFonts();
 		setUpOpenGL();
-		//alternateOpenGLSetup();
+		// alternateOpenGLSetup();
 		setUpShaders();
 		setUpEntities();
 		setUpCamera();
-		
+
 		// Render buffers set up in setUpEntities()
 
 		setUpTimer();
@@ -273,14 +272,14 @@ public class TestGraphics {
 		while (!Display.isCloseRequested()) {
 			// loop
 			delta = getDelta();
-			//System.out.println(delta);
-			
+			// System.out.println(delta);
+
 			tick(delta);
 			input();
 			render();
-			//zpos += zspeed * delta;
-			//xpos += xspeed * delta;
-			//ypos += yspeed * delta;
+			// zpos += zspeed * delta;
+			// xpos += xspeed * delta;
+			// ypos += yspeed * delta;
 			// System.out.println(getDelta());
 
 			Display.update();
@@ -291,11 +290,9 @@ public class TestGraphics {
 	}
 
 	private void setUpCamera() {
-		camera = new FlyCamera.Builder()
-				.setAspectRatio(
-						ASPECT_RATIO)
-				.setRotation(0f, 0f, 0f)
-				.setPosition(0f, 0f, -6000f).setFieldOfView(FOV).build();
+		camera = new FlyCamera.Builder().setAspectRatio(ASPECT_RATIO)
+				.setRotation(0f, 0f, 0f).setPosition(0f, 0f, -6000f)
+				.setFieldOfView(FOV).build();
 		camera.applyOptimalStates();
 		camera.applyPerspectiveMatrix();
 		setUpProjectionMatrices();
@@ -389,7 +386,7 @@ public class TestGraphics {
 
 	private void tick(double delta) {
 		for (Tickable o : toUpdate) {
-			o.step((int)delta);
+			o.step((int) delta);
 		}
 		interactions();
 	}
@@ -399,21 +396,21 @@ public class TestGraphics {
 	}
 
 	private void render() {
-		//camera?
+		// camera?
 		// draw
-        
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
+
 		glLoadIdentity();
-        camera.applyTranslations();
-		
+		camera.applyTranslations();
+
 		glMatrixMode(GL_PROJECTION);
 		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
 
-		/*glLoadIdentity();
-		glTranslated(xpos, ypos, zpos);
-		*/
+		/*
+		 * glLoadIdentity(); glTranslated(xpos, ypos, zpos);
+		 */
 
 		// Shaders!
 		glUseProgram(shaderProgram);
@@ -447,53 +444,60 @@ public class TestGraphics {
 		glDisableClientState(GL_COLOR_ARRAY);
 		// End of VBO render code
 
-		//Text rendering
+		// Text rendering
 		glUseProgram(0);
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrix(orthographicProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glLoadIdentity();
-		//glDisable(GL_LIGHTING); //yaknow just in case
-		font.drawString(10, 10, "Camera: [x=" + formatter.format(camera.x()) +
-				" y=" + formatter.format(camera.y()) + " z=" + formatter.format(camera.z()) + "]");
-		//glRectd(10, 300, 20, 350);
-		//glEnable(GL_LIGHTING);
+		// glDisable(GL_LIGHTING); //yaknow just in case
+		font.drawString(
+				10,
+				10,
+				"Camera: [x=" + formatter.format(camera.x()) + " y="
+						+ formatter.format(camera.y()) + " z="
+						+ formatter.format(camera.z()) + "]");
+		// glRectd(10, 300, 20, 350);
+		// glEnable(GL_LIGHTING);
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glLoadMatrix(perspectiveProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
-		
-		
+
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		//this is... important?
+		// this is... important?
 
 		// Errors?
 		int error = glGetError();
 		if (error != GL_NO_ERROR) {
-		 System.out.println(gluGetString(error));
-		 }
+			System.out.println(gluGetString(error));
+		}
 	}
 
 	private void input() {
 		// check for input
 		// Sample mouse and key usage
+
+		// using Camera
+		if(Keyboard.isKeyDown(Keyboard.KEY_Q)){
+			System.out.println(getOGLPos(Mouse.getX(), Mouse.getY()));
+			System.out.println("Hey!");
+		}
 		
-		//using Camera
-		
-        camera.processKeyboard(16f, 50f);
-        if (Mouse.isButtonDown(0)) {
-            Mouse.setGrabbed(true);
-        } else if (Mouse.isButtonDown(1)) {
-            Mouse.setGrabbed(false);
-        }
-        if(Mouse.isGrabbed()){
-        	camera.processMouse(0.5f, 80, -80);
-        }
-		
+		camera.processKeyboard(16f, 50f);
+		if (Mouse.isButtonDown(0)) {
+			Mouse.setGrabbed(true);
+		} else if (Mouse.isButtonDown(1)) {
+			Mouse.setGrabbed(false);
+		}
+		if (Mouse.isGrabbed()) {
+			camera.processMouse(0.5f, 80, -80);
+		}
+
 		// Camera-less, old code
 		/*
 		 * if (mouseEnabled) { int mouseX = Mouse.getX();// - WIDTH / 2; int
@@ -513,15 +517,40 @@ public class TestGraphics {
 		 * (Keyboard.isKeyDown(Keyboard.KEY_R)) { //mouseEnabled = false;
 		 * //glLoadIdentity(); zpos = 0; xpos = 0; ypos = 0; }
 		 */
-         if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) { quit(); } 
-        /*if
-		 * (Keyboard.isKeyDown(Keyboard.KEY_F)) { zspeed += camAccel; } if
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+			quit();
+		}
+		/*
+		 * if (Keyboard.isKeyDown(Keyboard.KEY_F)) { zspeed += camAccel; } if
 		 * (Keyboard.isKeyDown(Keyboard.KEY_V)) { zspeed -= camAccel; } if
 		 * (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) { xspeed += camAccel; } if
 		 * (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) { xspeed -= camAccel; } if
 		 * (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) { yspeed += camAccel; } if
 		 * (Keyboard.isKeyDown(Keyboard.KEY_UP)) { yspeed -= camAccel; }
 		 */
+	}
+
+	public Vector3f getOGLPos(int x, int y) {
+		// TODO MAke this work
+		IntBuffer viewport = BufferTools.reserveDatai(4);
+		FloatBuffer modelview = BufferTools.reserveDataf(16);
+		FloatBuffer projection = BufferTools.reserveDataf(16);
+		float winX, winY;
+		ByteBuffer winZ = BufferTools.reserveDatab(1);
+		FloatBuffer pos = BufferTools.reserveDataf(3);
+
+		glGetFloat(GL_MODELVIEW_MATRIX, modelview);
+		glGetFloat(GL_PROJECTION_MATRIX, projection);
+		glGetInteger(GL_VIEWPORT, viewport);
+
+		winX = (float) x;
+		winY = (float) viewport.get(3) - (float) y;
+		glReadPixels(x, (int) winY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, winZ);
+
+		gluUnProject(winX, winY, winZ.asFloatBuffer().get(0), modelview,
+				projection, viewport, pos);
+
+		return new Vector3f(pos.get(0), pos.get(1), pos.get(2));
 	}
 
 	public static void main(String[] args) {
