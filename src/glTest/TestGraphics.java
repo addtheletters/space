@@ -39,6 +39,8 @@ import glTest.Line;
 //Click to use mouse, right click to stop using mouse
 //Use mouse to look
 
+//Q should display the world coords of where the mouse is pointing
+
 public class TestGraphics {
 
 	// basic 3d

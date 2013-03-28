@@ -19,11 +19,24 @@ public class Entity {
 		v.scale(length);
 	}
 	
+	
 	public Entity(String id) {
 		//System.out.println("Instantiate!");
 		this.id = id;
 		components = new ArrayList<Component>();
 		position = new Vector3f(0, 0, 0);
+	}
+	
+	public Entity(String ID, Vector3f pos){
+		id = ID;
+		position = pos;
+	}
+	
+	public Entity(Entity e) {
+		//System.out.println("Instantiate!");
+		this.id = e.id;
+		components = new ArrayList<Component>(e.components);
+		position = new Vector3f(e.position);
 	}
 
 	public Entity(String id, Vector3f position, ArrayList<Component> cs) {

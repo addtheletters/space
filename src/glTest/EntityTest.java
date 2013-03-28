@@ -172,7 +172,7 @@ public class EntityTest {
 							- STAR_FEILD_SIZE / 2);
 		}
 		for (int i = 0; i < NUM_TRAILERS; i++) {
-			addMover((float) (Math.random() * STAR_FEILD_SIZE)
+			addTrailer((float) (Math.random() * STAR_FEILD_SIZE)
 					- STAR_FEILD_SIZE / 2,
 					(float) (Math.random() * STAR_FEILD_SIZE) - STAR_FEILD_SIZE
 							/ 2, (float) (Math.random() * STAR_FEILD_SIZE)
@@ -184,24 +184,13 @@ public class EntityTest {
 	}
 
 	private void addPoint(float x, float y, float z) {
-		Entity temp = new Entity("defaultpoint");
-		temp.addComponent(new PointRenderComponent());
-		temp.position = new Vector3f(x, y, z);
-		entities.add(temp);
+		entities.add(EntityBuilder.point(x, y, z));
 	}
-	private void addMover(float x, float y, float z, float dx, float dy, float dz) {
-		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE)); //PointTrailRenderComponent doesn't work :O
-		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
-		temp.position = new Vector3f(x, y, z);
-		entities.add(temp);
+	private void addTrailer(float x, float y, float z, float dx, float dy, float dz) {
+		entities.add(EntityBuilder.trailer(new Vector3f(x, y, z), new Vector3f(dx, dy, dz), TRAIL_LENGTH, TRAIL_FADE));
 	}
 	private void addFacer(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing){
-		Entity temp = new Entity("defaultfacer");
-		temp.addComponent(new FacingComponent(dirFacing));
-		temp.addComponent(new MovementComponent(dirMoving));
-		temp.position = new Vector3f(x, y, z);
-		entities.add(temp);
+		entities.add(EntityBuilder.facer(new Vector3f(x, y, z), dirMoving, dirFacing));
 	}
 
 	private void tick(double delta) {
