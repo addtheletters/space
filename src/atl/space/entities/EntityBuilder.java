@@ -19,7 +19,7 @@ public class EntityBuilder {
 	}
 	public static Entity trailer(Vector3f pos, Vector3f speed, int traillength, float trailfade) {
 		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointTrailRenderComponent(traillength, trailfade)); //PointTrailRenderComponent doesn't work :O
+		temp.addComponent(new PointTrailRenderComponent(traillength, trailfade));
 		temp.addComponent(new MovementComponent(new Vector3f(speed)));
 		temp.position = new Vector3f(pos);
 		return temp;
@@ -34,6 +34,14 @@ public class EntityBuilder {
 	public static Entity emitter(Vector3f pos, Entity emission){
 		Entity temp = new Entity("defaultemitter");
 		temp.addComponent(new EmissionComponent(emission));
+		temp.position = new Vector3f(pos);
+		return temp;
+	}
+	public static Entity accelerator(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration){
+		Entity temp = new Entity("defaultaccelerator");
+		temp.addComponent(new FacingComponent(dirFacing));
+		temp.addComponent(new MovementComponent(dirMoving));
+		temp.addComponent(new AccelComponent(acceleration));
 		temp.position = new Vector3f(pos);
 		return temp;
 	}

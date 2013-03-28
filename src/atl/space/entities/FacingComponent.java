@@ -2,6 +2,7 @@ package atl.space.entities;
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 
@@ -45,8 +46,11 @@ public class FacingComponent extends RenderableComponent {
 	@Override
 	public void render() {
 		glBegin(GL_LINES);
+		glColor4f(0, 1, 1, 1);
 		glVertex3f(owner.position.x, owner.position.y, owner.position.z);
-		glVertex3f(owner.position.x + facing.x, owner.position.y + facing.y, owner.position.z + facing.z);
+		glColor4f(1, 0, 0, 1);
+		glVertex3f(owner.position.x + facing.x*100, owner.position.y + facing.y*100, owner.position.z + facing.z*100);
+		glColor4f(1, 1, 1, 1);
 		glEnd();
 	}
 	
