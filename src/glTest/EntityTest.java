@@ -37,7 +37,7 @@ import org.lwjgl.input.Mouse;
 
 /*Cyan-red indicates the direction it's facing
 Blue-green represents a turning vector
-Magenta-green is a secondary acceleration vector
+Magenta-green is the acceleration vector
 Acceleration is based off of primary thrust in the direction it's facing added to the secondary vector*/
 
 public class EntityTest {

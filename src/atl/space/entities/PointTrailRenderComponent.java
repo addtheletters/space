@@ -37,7 +37,7 @@ public class PointTrailRenderComponent extends RenderableComponent {
 
 	@Override
 	public void render() {
-		glBegin(GL_POINTS);
+		glBegin(GL_LINE_STRIP);
 			float alpha = 1f;
 			glVertex3f(owner.position.x, owner.position.y, owner.position.z);
 			//System.out.println("Pos: " + owner.position.x+ " " + owner.position.y+ " " + owner.position.z);
