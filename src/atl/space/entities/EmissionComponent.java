@@ -6,6 +6,7 @@ public class EmissionComponent extends Component implements Triggerable {
 	public Entity emission = new Entity("defaultEmission", owner.position);
 	
 	public EmissionComponent(Entity emission){
+		id = "emission";
 		this.emission = emission;
 	}
 	public EmissionComponent(EmissionComponent ec){

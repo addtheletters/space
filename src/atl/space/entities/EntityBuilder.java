@@ -45,5 +45,23 @@ public class EntityBuilder {
 		temp.position = new Vector3f(pos);
 		return temp;
 	}
+	public static Entity turner(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f turn, float turnrate){
+		Entity temp = new Entity("defaultturner");
+		temp.addComponent(new FacingComponent(dirFacing));
+		temp.addComponent(new MovementComponent(dirMoving));
+		temp.addComponent(new RTurningComponent(turn, turnrate));
+		temp.position = new Vector3f(pos);
+		return temp;
+	}
+	public static Entity dumbAuto(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration, Vector3f turn){
+		Entity temp = new Entity("dumbAuto");
+		temp.addComponent(new FacingComponent(dirFacing));
+		temp.addComponent(new MovementComponent(dirMoving));
+		temp.addComponent(new AccelComponent(acceleration));
+		temp.addComponent(new TurningComponent(turn));
+		temp.position = new Vector3f(pos);
+		return temp;
+	}
+	
 	
 }

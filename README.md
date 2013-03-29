@@ -17,6 +17,7 @@ Current EntityTest functionality:
 -Draws a bunch of movers that leave fading trails
 -Draws a bunch of things that face the red
 -Draws a bunch of things that accelerate, some of which accelerate in the direction they face
+-Draws a bunch of things that accelerate and turn to face in a specific direction without changing trajectory
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

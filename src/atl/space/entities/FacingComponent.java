@@ -11,7 +11,7 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 public class FacingComponent extends RenderableComponent {
-	static final float renderLength = 100;
+	public static final float renderLength = 100;
 	public Vector3f facing;
 	public FacingComponent(){
 		id = "facing";
@@ -19,12 +19,12 @@ public class FacingComponent extends RenderableComponent {
 	}
 	public FacingComponent(Vector3f f){
 		id = "facing";
-		facing = f;
+		facing = new Vector3f(f);
 		facing.normalise();
 	}
 	public FacingComponent(FacingComponent fc){
 		id = fc.id;
-		facing = fc.facing;
+		facing = new Vector3f(fc.facing);
 		facing.normalise();
 		//Entity.restrictLength(facing, 1); //does the same thing as facing.normalise()
 	}
