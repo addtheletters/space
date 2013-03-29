@@ -17,7 +17,13 @@ public class DAccelComponent extends AccelComponent {
 		accelSecondary = 0;
 		secondaryAccelVector = new Vector3f();
 	}
-
+	public DAccelComponent(Vector3f initAccel) {
+		super(initAccel);
+		accelForward = 0;
+		accelBack = 0;
+		accelSecondary = 0;
+		secondaryAccelVector = new Vector3f();
+	}
 	public DAccelComponent(float af, float ab, float as, Vector3f sav) {
 		accelForward = af;
 		accelBack = ab;
@@ -47,9 +53,15 @@ public class DAccelComponent extends AccelComponent {
 		return dac;
 	}
 	
+	public void setSecondaryAccelVector(Vector3f sav){
+		secondaryAccelVector = sav;
+	}
+	
 	public void calcNetAccel(){
 		checkAccel();
+		if(secondaryAccelVector.length() != 0){
 		Entity.restrictLength(secondaryAccelVector, accelSecondary);
+		}
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		Vector3f tempAccelV = new Vector3f(fc.facing);
 		tempAccelV.scale(accelForward - accelBack);

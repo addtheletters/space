@@ -62,6 +62,15 @@ public class EntityBuilder {
 		temp.position = new Vector3f(pos);
 		return temp;
 	}
+	public static Entity smartAuto(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration, float maxAccelF, float maxAccelB, float maxAccelS, Vector3f turn, float maxturn){
+		Entity temp = new Entity("smartAuto");
+		temp.addComponent(new FacingComponent(dirFacing));
+		temp.addComponent(new MovementComponent(dirMoving));
+		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
+		temp.addComponent(new RTurningComponent(turn, maxturn));
+		temp.position = new Vector3f(pos);
+		return temp;	
+	}
 	
 	
 }

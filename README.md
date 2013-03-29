@@ -3,14 +3,14 @@ space
 
 A space game / engine / thing. Will likely include gravity, collisions, and other stuff.
 
-Added: Hopefully correct collisions? Need to extend to make it work with ships and direction facings.
-Prolly gonna need some complicated trig -_-
+Added: Cool ship-like acceleration behavior testing in EntityTest, controls are written as comments near the top
 
 -getOGLPos in TestGraphics.java might work, confirm plox
 
 TODO:
 -Make updates for components utilize delta
 -Make getOGLPos work to get the right 3d space position for the mouse
+-Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
 
 Current EntityTest functionality:
 -Draws a starfeild
@@ -18,6 +18,7 @@ Current EntityTest functionality:
 -Draws a bunch of things that face the red
 -Draws a bunch of things that accelerate, some of which accelerate in the direction they face
 -Draws a bunch of things that accelerate and turn to face in a specific direction without changing trajectory
+-Draws a bunch of controllable accelerator things with lots of options :D
 
 Current TestGraphics functionality:
 -Test3D's random points/lines

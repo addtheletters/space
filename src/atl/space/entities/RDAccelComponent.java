@@ -2,6 +2,8 @@ package atl.space.entities;
 
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 
 public class RDAccelComponent extends DAccelComponent {
 	public float maxAccelForward;
@@ -16,6 +18,12 @@ public class RDAccelComponent extends DAccelComponent {
 	}
 
 	public RDAccelComponent(float maf, float mab, float mas) {
+		super();
+		maxAccelForward = maf;
+		maxAccelBack = mab;
+		maxAccelSecondary = mas;
+	}
+	public RDAccelComponent(Vector3f acc, float maf, float mab, float mas) {
 		super();
 		maxAccelForward = maf;
 		maxAccelBack = mab;

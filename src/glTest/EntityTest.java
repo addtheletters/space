@@ -23,13 +23,17 @@ import org.lwjgl.input.Mouse;
 
 //F and V for z-axis movement
 //Arrow keys for X and Y movement
+//1 and 2 to turn on/off (random) secondary thrust on autos
+//W and S to turn on/off fwd/backward thrust on autos
+//3 and 4 to turn on/off (random) turning for autos
+//5 to stop all acceleration for autos
 //E to enable mouse, D to disable mouse
 //With mouse enabled:
 //Right click / Hold space to drag XY view
 //Right click or Hold Space + Scroll wheel for zoom / z axis movement
 //Click / spin scroll wheel to keep same XY movement and shift along Z
-//S to stop all camera movement
-//R to reset camera position to "center"
+//Space to stop all camera movement
+//Enter/Return to reset camera position to "center"
 
 public class EntityTest {
 
@@ -111,11 +115,19 @@ public class EntityTest {
 	final float TRAIL_FADE = 0.005f;
 	final int TRAIL_LENGTH = 200;
 	final int NUM_FACERS = 0;
-	final int NUM_ACCELERATORS = 10;
-	final int NUM_DUMB_AUTO = 10;
-	final float TURNLIM = 0.002f; //how fast the turning is, tho it's still randomized
-	final float ACCELERATION = 0.1f;
+	final int NUM_ACCELERATORS = 0;
+	final int NUM_DUMB_AUTO = 0;
+	final int NUM_SMART_AUTO = 30;
+	final float TURNLIM = 0.003f; //how fast the turning is, tho it's still randomized
+	final float ACCELERATION = 0.04f;
 
+	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, ACCELERATION};
+	boolean smartAccelFwd = false;
+	boolean smartTurn = false;
+	boolean smartAccelBack = false;
+	boolean smartAccelSec = false;
+	boolean smartStopAccel = false;
+	
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.1f;
@@ -153,7 +165,9 @@ public class EntityTest {
 			xpos += xspeed * delta;
 			ypos += yspeed * delta;
 			// System.out.println(getDelta());
-
+			
+			smartStopAccel = false;
+			
 			Display.update();
 			Display.sync(60);
 		}
@@ -182,6 +196,9 @@ public class EntityTest {
 		}
 		for(int i = 0; i < NUM_DUMB_AUTO; i++){
 			addDumbAuto(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory(), randAcceleration(), randTurn());
+		}
+		for(int i = 0; i < NUM_SMART_AUTO; i++){
+			addSmartAuto(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory(), new Vector3f(0,0,0), maxAccel[0], maxAccel[1], maxAccel[2], randTurn());
 		}
 	}
 	private float numInFeild(){
@@ -217,7 +234,15 @@ public class EntityTest {
 		Entity temp = EntityBuilder.dumbAuto(new Vector3f(x, y, z), dirMoving, dirFacing, tempa, tempt);
 		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE));
 		entities.add(temp);
-		System.out.println(dirFacing + " " + tempt);
+		//System.out.println(dirFacing + " " + tempt);
+	}
+	private void addSmartAuto(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing, Vector3f accel, float maf, float mab, float mas, Vector3f turn){
+		//TODO this
+		Vector3f tempa = new Vector3f(accel);
+		tempa.scale(ACCELERATION);
+		Entity temp = EntityBuilder.smartAuto(new Vector3f(x, y, z), dirMoving, dirFacing, tempa, maf, mab, mas, turn, 0);
+		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE));
+		entities.add(temp);
 	}
 	/*private void addAccelerator(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing, Vector3f accel){
 		Entity temp =EntityBuilder.accelerator(new Vector3f(x, y, z), dirMoving, dirFacing, accel);
@@ -226,7 +251,7 @@ public class EntityTest {
 	}*/
 	private void addStraightAccelerator(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing){
 		Vector3f tempa = new Vector3f(dirFacing);
-		tempa.scale(ACCELERATION);
+		tempa.scale(ACCELERATION /10);
 		Entity temp =EntityBuilder.accelerator(new Vector3f(x, y, z), dirMoving, dirFacing, tempa);
 		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE));
 		entities.add(temp);
@@ -235,6 +260,47 @@ public class EntityTest {
 	private void tick(double delta) {
 		for (Entity e : entities) {
 			e.update((int) delta, entities);
+			if(e.id == "smartAuto"){
+				DAccelComponent dac = (DAccelComponent)e.getComponent("accel");
+				if(smartAccelFwd){
+					dac.accelForward = maxAccel[0];
+				}
+				else{
+					dac.accelForward = 0;
+				}
+				if(smartAccelBack){
+					dac.accelBack = maxAccel[1];
+				}
+				else{
+					dac.accelBack = 0;
+				}
+				if(smartAccelSec){
+					if(dac.secondaryAccelVector.length() == 0){
+						dac.setSecondaryAccelVector(randAcceleration());
+					}
+					dac.accelSecondary = maxAccel[2];
+				}
+				else{
+					dac.accelSecondary = 0;
+				}
+				RTurningComponent rtc = (RTurningComponent)e.getComponent("turning");
+				if(smartTurn){
+					if(rtc.turn.length() == 0){
+						rtc.turn = randTurn();
+					}
+					Entity.restrictLength(rtc.turn, TURNLIM);
+				}
+				else{
+					rtc.turn = new Vector3f(0, 0, 0);
+				}
+				if(smartStopAccel){
+					dac.accel = new Vector3f(0,0,0);
+					smartAccelFwd = false;
+					smartAccelBack = false;
+					smartAccelSec = false;
+				}
+				
+			}
 		}
 		interactions();
 	}
@@ -296,21 +362,37 @@ public class EntityTest {
 			}
 
 		}
-
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){
+			smartAccelFwd = true;
+			smartAccelBack = false;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+			smartAccelFwd = false;
+			smartAccelBack = true;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_1)){
+			smartAccelSec = true;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_2)){
+			smartAccelSec = false;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_3)){
+			smartTurn = true;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_4)){
+			smartTurn = false;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_5)){
+			smartStopAccel = true;
+		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
 			mouseEnabled = true;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			mouseEnabled = false;
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			// mouseEnabled = true;
-			// zpos = 0;
-			zspeed = 0;
-			xspeed = 0;
-			yspeed = 0;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
 			// mouseEnabled = false;
 			// glLoadIdentity();
 			zpos = 0;
@@ -342,7 +424,6 @@ public class EntityTest {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new EntityTest();
 
 	}

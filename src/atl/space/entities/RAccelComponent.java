@@ -17,6 +17,11 @@ public class RAccelComponent extends AccelComponent {
 		maxAccel = ma;
 		Entity.restrictLength(accel, maxAccel);
 	}
+	public RAccelComponent(Vector3f av) {
+		super(av);
+		maxAccel = Float.MAX_VALUE;
+		Entity.restrictLength(accel, maxAccel);
+	}
 	
 	public RAccelComponent(RAccelComponent rac){
 		super(rac);
