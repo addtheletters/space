@@ -35,6 +35,11 @@ import org.lwjgl.input.Mouse;
 //Space to stop all camera movement
 //Enter/Return to reset camera position to "center"
 
+/*Cyan-red indicates the direction it's facing
+Blue-green represents a turning vector
+Magenta-green is a secondary acceleration vector
+Acceleration is based off of primary thrust in the direction it's facing added to the secondary vector*/
+
 public class EntityTest {
 
 	// basic 3d
