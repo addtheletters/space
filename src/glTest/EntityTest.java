@@ -107,12 +107,12 @@ public class EntityTest {
 	final float STAR_FEILD_SIZE = 5000;
 	final int NUM_STARS = 1000;
 	final int NUM_TRAILERS = 10;
-	final float TRAILER_SPEED = 6;
+	final float TRAILER_SPEED = 3;
 	final float TRAIL_FADE = 0.005f;
 	final int TRAIL_LENGTH = 200;
 	final int NUM_FACERS = 0;
 	final int NUM_ACCELERATORS = 40;
-	final float ACCELERATION = 0.01f;
+	final float ACCELERATION = 0.005f;
 
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;

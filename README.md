@@ -6,7 +6,7 @@ A space game / engine / thing. Will likely include gravity, collisions, and othe
 Added: Hopefully correct collisions? Need to extend to make it work with ships and direction facings.
 Prolly gonna need some complicated trig -_-
 
--getOGLPos in TestGraphics.java doesn't work. Help. 
+-getOGLPos in TestGraphics.java might work, confirm plox
 
 TODO:
 -Make updates for components utilize delta

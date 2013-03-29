@@ -486,8 +486,9 @@ public class TestGraphics {
 
 		// using Camera
 		if(Keyboard.isKeyDown(Keyboard.KEY_Q)){
+			System.out.println(Mouse.getX()+" "+ Mouse.getY());
 			System.out.println(getOGLPos(Mouse.getX(), Mouse.getY()));
-			System.out.println("Hey!");
+			//System.out.println("Hey!");
 		}
 		
 		camera.processKeyboard(16f, 50f);
@@ -534,11 +535,13 @@ public class TestGraphics {
 
 	public Vector3f getOGLPos(int x, int y) {
 		// TODO MAke this work
-		IntBuffer viewport = BufferTools.reserveDatai(4);
+		glLoadIdentity();
+		camera.applyTranslations();
+		IntBuffer viewport = BufferTools.reserveDatai(16);
 		FloatBuffer modelview = BufferTools.reserveDataf(16);
 		FloatBuffer projection = BufferTools.reserveDataf(16);
 		float winX, winY;
-		ByteBuffer winZ = BufferTools.reserveDatab(1);
+		ByteBuffer winZ = BufferTools.reserveDatab(4);
 		FloatBuffer pos = BufferTools.reserveDataf(3);
 
 		glGetFloat(GL_MODELVIEW_MATRIX, modelview);
@@ -551,7 +554,7 @@ public class TestGraphics {
 
 		gluUnProject(winX, winY, winZ.asFloatBuffer().get(0), modelview,
 				projection, viewport, pos);
-
+		
 		return new Vector3f(pos.get(0), pos.get(1), pos.get(2));
 	}
 
