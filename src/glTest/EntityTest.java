@@ -27,6 +27,7 @@ import org.lwjgl.input.Mouse;
 //W and S to turn on/off fwd/backward thrust on autos
 //3 and 4 to turn on/off (random) turning for autos
 //5 to stop all acceleration for autos
+//6 to freeze all autos
 //E to enable mouse, D to disable mouse
 //With mouse enabled:
 //Right click / Hold space to drag XY view
@@ -132,6 +133,7 @@ public class EntityTest {
 	boolean smartAccelBack = false;
 	boolean smartAccelSec = false;
 	boolean smartStopAccel = false;
+	boolean smartStop = false;
 	
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
@@ -158,23 +160,29 @@ public class EntityTest {
 
 		setUpEntities();
 		setUpTimer();
-
+		
+		
+		
 		while (!Display.isCloseRequested()) {
 			// loop
+			
 			double delta = getDelta();
 			// System.out.println(delta);
-			tick(delta);
+			//tick(delta);
 			input();
 			render();
+			tick(delta);
 			zpos += zspeed * delta;
 			xpos += xspeed * delta;
 			ypos += yspeed * delta;
 			// System.out.println(getDelta());
 			
-			smartStopAccel = false;
 			
 			Display.update();
 			Display.sync(60);
+			
+			smartStopAccel = false;
+			smartStop = false;
 		}
 
 		quit();
@@ -242,7 +250,6 @@ public class EntityTest {
 		//System.out.println(dirFacing + " " + tempt);
 	}
 	private void addSmartAuto(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing, Vector3f accel, float maf, float mab, float mas, Vector3f turn){
-		//TODO this
 		Vector3f tempa = new Vector3f(accel);
 		tempa.scale(ACCELERATION);
 		Entity temp = EntityBuilder.smartAuto(new Vector3f(x, y, z), dirMoving, dirFacing, tempa, maf, mab, mas, turn, 0);
@@ -303,6 +310,18 @@ public class EntityTest {
 					smartAccelFwd = false;
 					smartAccelBack = false;
 					smartAccelSec = false;
+					//smartStopAccel = false;
+					//System.out.println(dac.accel);
+				}
+				if(smartStop){
+					MovementComponent mc = (MovementComponent)e.getComponent("movement");
+					mc.speed = new Vector3f(0,0,0);
+					dac.accel = new Vector3f(0,0,0);
+					smartAccelFwd = false;
+					smartAccelBack = false;
+					smartAccelSec = false;
+					//smartStop = false;
+					//System.out.println(mc.speed);
 				}
 				
 			}
@@ -390,6 +409,9 @@ public class EntityTest {
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_5)){
 			smartStopAccel = true;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_6)){
+			smartStop = true;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
 			mouseEnabled = true;
