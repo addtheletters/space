@@ -317,6 +317,8 @@ public class EntityTest {
 					MovementComponent mc = (MovementComponent)e.getComponent("movement");
 					mc.speed = new Vector3f(0,0,0);
 					dac.accel = new Vector3f(0,0,0);
+					rtc.turn = new Vector3f(0,0,0);
+					smartTurn = false;
 					smartAccelFwd = false;
 					smartAccelBack = false;
 					smartAccelSec = false;
