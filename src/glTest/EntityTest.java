@@ -125,9 +125,9 @@ public class EntityTest {
 	final int NUM_DUMB_AUTO = 0;
 	final int NUM_SMART_AUTO = 30;
 	final float TURNLIM = 0.003f; //how fast the turning is, tho it's still randomized
-	final float ACCELERATION = 0.04f;
+	final float ACCELERATION = 0.02f;
 
-	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, ACCELERATION};
+	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, (float) (ACCELERATION / 1.3)};
 	boolean smartAccelFwd = false;
 	boolean smartTurn = false;
 	boolean smartAccelBack = false;

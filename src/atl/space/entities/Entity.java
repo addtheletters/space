@@ -81,9 +81,29 @@ public class Entity {
 	public Vector3f getPosition() {
 		return position;
 	}
+	
+	public float getDistance(Vector3f target){
+		Vector3f temp = new Vector3f();
+		Vector3f.sub(position, target, temp);
+		return temp.length();
+	}
 
 	public String getId() {
 		return id;
+	}
+	
+	public Entity getNearest(List<Entity> entities){
+		Entity nearest = entities.get(0);
+		float longestdistance = getDistance(nearest.position);
+		//Vector3f temp = new Vector3f();
+		for(Entity e : entities){
+			float dist = getDistance(e.position);
+			if(dist < longestdistance){
+				nearest = e;
+				longestdistance = dist;
+			}
+		}
+		return nearest;
 	}
 
 	public void setPosition(Vector3f position) {

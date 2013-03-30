@@ -1,5 +1,7 @@
 package atl.space.entities;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public class EntityBuilder {
@@ -70,6 +72,20 @@ public class EntityBuilder {
 		temp.addComponent(new RTurningComponent(turn, maxturn));
 		temp.position = new Vector3f(pos);
 		return temp;	
+	}
+	
+	public static Entity getNearest(Entity origin, List<Entity> entities){
+		Entity nearest = entities.get(0);
+		float longestdistance = origin.getDistance(nearest.position);
+		//Vector3f temp = new Vector3f();
+		for(Entity e : entities){
+			float dist = origin.getDistance(e.position);
+			if(dist < longestdistance){
+				nearest = e;
+				longestdistance = dist;
+			}
+		}
+		return nearest;
 	}
 	
 	

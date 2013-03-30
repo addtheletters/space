@@ -12,6 +12,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class TurningComponent extends RenderableComponent { //don't use this, use restricted version
 	public Vector3f turn;
+	
 	public static final float renderLength = 50;
 	public TurningComponent(){
 		id = "turning";
