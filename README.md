@@ -107,3 +107,7 @@ While I'm thinking about it... Mechanics!
 
 
 Whew. Just needed to dump some of that out of my head. If anyone has any ideas feel free to add them. Or implement them as classes XD
+
+
+----UPDATE----
+Hey, so what are the thoughts about multiplayer? -Zach
