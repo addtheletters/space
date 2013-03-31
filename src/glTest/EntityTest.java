@@ -41,13 +41,20 @@ Blue-green represents a turning vector
 Magenta-green is the acceleration vector
 Acceleration is based off of primary thrust in the direction it's facing added to the secondary vector*/
 
+/**
+ * 
+ * @author addtheletters
+ * @version 0.0.1
+ *
+ */
 public class EntityTest {
-
-	// basic 3d
-
-	private boolean mouseEnabled = true;
-
+	
+	//Static Constants (Or at least it should be imo)
+	
 	private final String TITLE = "Entities!";
+
+	//List of dynamic variables used to calculate where the camera is
+	private boolean mouseEnabled = true;
 
 	// frame independent movement speed using delta
 	private long lastFrame;
@@ -59,7 +66,14 @@ public class EntityTest {
 	private long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
-
+	
+	/**
+	*Calculates how long since the last frame draw
+	*
+	*@return time since last frame
+	*@category helper method
+	*/
+	
 	private int getDelta() {
 		long currentTime = getTime();
 		int delta = (int) (currentTime - lastFrame);
@@ -67,8 +81,10 @@ public class EntityTest {
 		return delta;
 	}
 
-	// end delta calcs
-
+	/**
+	 * Creates the display for the viewing box
+	 * @category helper method
+	 */
 	private void setUpDisplay() {
 		// initialization for Display
 		try {
@@ -83,6 +99,11 @@ public class EntityTest {
 		}
 	}
 
+	/**
+	 * Sets up a blank OpenGL window
+	 * @category helper method
+	 * 
+	 */
 	private void setUpOpenGL() {
 		// initialization for openGl
 
@@ -373,6 +394,7 @@ public class EntityTest {
 			int mouseX = Mouse.getX();// - WIDTH / 2;
 			int mouseY = Mouse.getY();// - HEIGHT / 2;
 			if (Mouse.isButtonDown(0)) {
+				//System.out.println("registered mouse down");
 				quadX = 2 * mouseX - quadWidth / 2;
 				quadY = 2 * mouseY - quadHeight / 2;
 			}
