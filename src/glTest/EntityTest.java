@@ -52,6 +52,9 @@ public class EntityTest {
 	//Static Constants (Or at least it should be imo)
 	
 	private final String TITLE = "Entities!";
+	
+	public static final int WIDTH = 640;
+	public static final int HEIGHT = 480;
 
 	//List of dynamic variables used to calculate where the camera is
 	private boolean mouseEnabled = true;
@@ -62,80 +65,16 @@ public class EntityTest {
 	private double zpos;
 	private double xpos;
 	private double ypos;
-
-	private long getTime() {
-		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
-	}
 	
-	/**
-	*Calculates how long since the last frame draw
-	*
-	*@return time since last frame
-	*@category helper method
-	*/
-	
-	private int getDelta() {
-		long currentTime = getTime();
-		int delta = (int) (currentTime - lastFrame);
-		lastFrame = currentTime;
-		return delta;
-	}
-
-	/**
-	 * Creates the display for the viewing box
-	 * @category helper method
-	 */
-	private void setUpDisplay() {
-		// initialization for Display
-		try {
-			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-			Display.setTitle(TITLE);
-			Display.setVSyncEnabled(true);
-			Display.create();
-		} catch (LWJGLException e) {
-			e.printStackTrace();
-			Display.destroy();
-			System.exit(0);
-		}
-	}
-
-	/**
-	 * Sets up a blank OpenGL window
-	 * @category helper method
-	 * 
-	 */
-	private void setUpOpenGL() {
-		// initialization for openGl
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		// glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
-		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
-		glMatrixMode(GL_MODELVIEW);
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
-
-	private void setUpTimer() {
-		lastFrame = getTime();
-	}
-
-	private void setUpEntities() {
-		entities = new ArrayList<Entity>();
-
-		addEntities();
-	}
-
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
 
 	// all objects that need updating
 	public ArrayList<Entity> entities;
 	// public ArrayList<Renderable> toRender;
 	// Made obsolete by new VBO render code.
+	
+	//Data representing the field
 
-	final float STAR_FEILD_SIZE = 5000;
+	final float STAR_FEILD_SIZE = 5000; 
 	final int NUM_STARS = 1000;
 	final int NUM_TRAILERS = 10;
 	final float TRAILER_SPEED = 3;
@@ -175,6 +114,98 @@ public class EntityTest {
 	float quadWidth = 100;
 	float quadHeight = 100;
 
+
+	
+	/**
+	 * Returns the current time in ms
+	 * 
+	 * @return system time in milliseconds
+	 * @category helper method
+	 */
+	private long getTime() {
+		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	}
+	
+	/**
+	*Calculates how long since the last frame draw
+	*
+	*@return time since last frame
+	*@category helper method
+	*/
+	
+	private int getDelta() {
+		long currentTime = getTime();
+		int delta = (int) (currentTime - lastFrame);
+		lastFrame = currentTime;
+		return delta;
+	}
+
+	/**
+	 * Creates the display for the viewing box
+	 * @category setup
+	 */
+	private void setUpDisplay() {
+		// initialization for Display
+		try {
+			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+			Display.setTitle(TITLE);
+			Display.setVSyncEnabled(true);
+			Display.create();
+		} catch (LWJGLException e) {
+			e.printStackTrace();
+			Display.destroy();
+			System.exit(0);
+		}
+	}
+
+	/**
+	 * Sets up a blank OpenGL window
+	 * @category setup
+	 * 
+	 */
+	private void setUpOpenGL() {
+		// initialization for openGl
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		// glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
+		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
+		glMatrixMode(GL_MODELVIEW);
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+
+	/**
+	 * Initializes the timer
+	 * 
+	 * @category setup
+	 */
+	private void setUpTimer() {
+		lastFrame = getTime();
+	}
+	
+	/**
+	 * Creates an empty list of entities and fills it
+	 * 
+	 * @category setup
+	 */
+	private void setUpEntities() {
+		entities = new ArrayList<Entity>();
+
+		addEntities();
+	}
+
+	
+	/**
+	 * Calls all the @setup methods and enters the main loop
+	 * 
+	 * Uses time-independent rendering and calculates the change 
+	 * in location as a function of of the change in time and 
+	 * the acceleration/speed
+	 * 
+	 */
+	
 	public EntityTest() {
 		setUpDisplay();
 		setUpOpenGL();
@@ -209,12 +240,20 @@ public class EntityTest {
 		quit();
 	}
 
+	/**
+	 * Yeah...
+	 * @Destroys THE WORLD!!!!!
+	 * 
+	 */
 	private void quit() {
 
 		Display.destroy();
 		System.exit(0);
 	}
 
+	/**
+	 * Basically creates NUM_STARS stars, NUM_TRAILERS trailers, etc for points, trailers, facers, accelerators, dumb auto (wat...), and smart auto (2 x wat...)
+	 */
 	private void addEntities() {
 		for (int i = 0; i < NUM_STARS; i++) {
 			addPoint(numInFeild(), numInFeild(), numInFeild());
@@ -235,6 +274,11 @@ public class EntityTest {
 			addSmartAuto(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory(), new Vector3f(0,0,0), maxAccel[0], maxAccel[1], maxAccel[2], randTurn());
 		}
 	}
+	
+	/**
+	 * Creates a random number that fits w/i STAR_FEILD_SIZE
+	 * @return randum number w/i STAR_FEILD_SIZE
+	 */
 	private float numInFeild(){
 		return (float) (Math.random() * STAR_FEILD_SIZE)
 				- STAR_FEILD_SIZE / 2;
