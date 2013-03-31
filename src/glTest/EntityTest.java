@@ -334,6 +334,14 @@ public class EntityTest {
 		entities.add(temp);
 	}
 	
+	
+	/**
+	 * Calculates the new location of each of the entities in `entities` 
+	 * 
+	 * More importantly, it calculates the new location of the camera
+	 * 
+	 * @param delta
+	 */
 	private void tick(double delta) {
 		for (Entity e : entities) {
 			e.update((int) delta, entities);
@@ -399,6 +407,13 @@ public class EntityTest {
 	private void interactions() { // how objects react to each other
 
 	}
+	
+	/**
+	 * Updates the canvas according to the new matrix and projection
+	 * 
+	 * @exciting no
+	 * 
+	 */
 
 	private void render() {
 		// draw
@@ -429,7 +444,11 @@ public class EntityTest {
 			System.out.println(gluGetString(error));
 		}
 	}
-
+/**
+ * Checks the input of both the keyboard and mouse for ceartain actions
+ * 
+ * @recommend replace all the if statements with switch statements
+ */
 	private void input() {
 		// check for input
 		// Sample mouse and key usage
