@@ -74,7 +74,7 @@ public class EntityTest {
 	
 	//Data representing the field
 
-	final float STAR_FEILD_SIZE = 5000; 
+	final float STAR_FIELD_SIZE = 5000; 
 	final int NUM_STARS = 1000;
 	final int NUM_TRAILERS = 10;
 	final float TRAILER_SPEED = 3;
@@ -276,12 +276,12 @@ public class EntityTest {
 	}
 	
 	/**
-	 * Creates a random number that fits w/i STAR_FEILD_SIZE
-	 * @return randum number w/i STAR_FEILD_SIZE
+	 * Creates a random number that fits w/i STAR_FIELD_SIZE
+	 * @return randum number w/i STAR_FIELD_SIZE
 	 */
 	private float numInFeild(){
-		return (float) (Math.random() * STAR_FEILD_SIZE)
-				- STAR_FEILD_SIZE / 2;
+		return (float) (Math.random() * STAR_FIELD_SIZE)
+				- STAR_FIELD_SIZE / 2;
 	}
 	private Vector3f randTrajectory(){
 		return new Vector3f((float)(Math.random()-.5) * TRAILER_SPEED, (float)(Math.random()-.5) * TRAILER_SPEED, (float)(Math.random()-.5) * TRAILER_SPEED);
