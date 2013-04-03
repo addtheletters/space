@@ -50,14 +50,19 @@ public class TurnControlComponent extends Component implements Triggerable {
 		// Update owner's TurningComponent
 		if (turningToTarget) {
 			FacingComponent fc = (FacingComponent) owner.getComponent("facing");
+			
 			if (true) { // not facing the target
 				TurningComponent tc = (TurningComponent) owner
 						.getComponent("turning");
 				if (!hardTurn) {
 					tc.turn = getSoftTurn();
 				} else {
-					tc.turn = getHardTurn();
+					tc.turn = getHardTurn(fc.facing);
 				}
+			}
+			else{ //it has successfully turned to face the target
+				//System.out.println("Turn complete!");
+				quitTurn();
 			}
 		}
 	}
@@ -66,16 +71,16 @@ public class TurnControlComponent extends Component implements Triggerable {
 		target = trgt;
 	}
 
-	public Vector3f getHardTurn() {
-
+	public Vector3f getHardTurn(Vector3f facing) {
 		// TODO: make this work
 		return null;
 	}
 
 	public Vector3f getSoftTurn() {
-
-		// TODO: make this work
-		return null;
+		Vector3f temp = new Vector3f();
+		Vector3f.sub(target, owner.position ,temp);
+		// TODO: make sure this works
+		return temp;
 	}
 
 	@Override
