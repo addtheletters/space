@@ -9,6 +9,7 @@ Added: Cool ship-like acceleration behavior testing in EntityTest, controls are 
 -getOGLPos in TestGraphics.java might work, confirm plox
 
 TODO:
+-Test projectiles, missiles, TurnControl
 -Make updates for components utilize delta
 -Make getOGLPos work to get the right 3d space position for the mouse
 -Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
