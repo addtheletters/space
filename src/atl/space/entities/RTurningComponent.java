@@ -17,9 +17,10 @@ public class RTurningComponent extends TurningComponent {
 	}
 	public void update(int delta, List<Entity> entities) {
 		Entity.restrictLength(turn, turnAbility);
-		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
+		super.update(delta, entities);
+		/*FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		Vector3f.add(fc.facing, turn, fc.facing);
-		Entity.restrictLength(fc.facing, 1);
+		Entity.restrictLength(fc.facing, 1);*/
 	}
 	public Component getStepped(int delta, List<Entity> entities) {
 		RTurningComponent rtc = new RTurningComponent(turn, turnAbility);

@@ -4,6 +4,9 @@ import java.util.List;
 
 public class EmissionComponent extends Component implements Triggerable {
 	public Entity emission = new Entity("defaultEmission", owner.position);
+	public EmissionComponent(){
+		id = "emission";
+	}
 	
 	public EmissionComponent(Entity emission){
 		id = "emission";

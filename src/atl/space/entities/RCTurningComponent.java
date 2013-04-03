@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
+//Prolly gonna scrap this for a management component called TurnControlComponent
+
 public class RCTurningComponent extends RTurningComponent {
 	private boolean turningToTarget = false;
 	private Vector3f target;
@@ -11,6 +13,9 @@ public class RCTurningComponent extends RTurningComponent {
 	public void initiate180(){
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		fc.facing.negate(target); //not sure if this will work or throw null pointers
+		turningToTarget = true;
+	}
+	public void initiateTurn(){
 		turningToTarget = true;
 	}
 	
