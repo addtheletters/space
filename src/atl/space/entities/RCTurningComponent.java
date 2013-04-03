@@ -5,25 +5,25 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 public class RCTurningComponent extends RTurningComponent {
-	private boolean turning180 = false;
+	private boolean turningToTarget = false;
 	private Vector3f target;
 	
 	public void initiate180(){
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		fc.facing.negate(target); //not sure if this will work or throw null pointers
-		turning180 = true;
+		turningToTarget = true;
 	}
 	
-	public void quit180(){
-		turning180 = false;
+	public void quitTurn(){
+		turningToTarget = false;
 	}
 	
 	public void update(int delta, List<Entity> entities) {
-		if(turning180 = false){
+		if(!turningToTarget){
 			super.update(delta, entities);
 		}
 		else{
-			//TODO: make it do a 180
+			//TODO: make it turn
 			//turn at strongestPossibleTurn until facing directly opposite to forwardStorage
 			Entity.restrictLength(turn, turnAbility);
 			FacingComponent fc = (FacingComponent)owner.getComponent("facing");
