@@ -14,6 +14,10 @@ public class MovementComponent extends Component {
 		id = "movement";
 		speed = s;
 	}
+	public MovementComponent(MovementComponent mc){
+		id = mc.id;
+		speed = new Vector3f(mc.speed);
+	}
 	public void update(int delta, List<Entity> entities) {
 		Vector3f.add(owner.position, speed, owner.position);
 	}

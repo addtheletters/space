@@ -16,8 +16,8 @@ public class Entity {
 	
 	public static void restrictLength(Vector3f v, float length){
 		if(v.length() != 0){
-			v.normalise();
-			v.scale(length);
+			//v.normalise();
+			v.scale(length / v.length());
 		}
 	}
 	

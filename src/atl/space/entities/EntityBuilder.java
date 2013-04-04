@@ -14,7 +14,7 @@ public class EntityBuilder {
 	}
 	public static Entity mover(float x, float y, float z, float dx, float dy, float dz) {
 		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointRenderComponent()); //PointTrailRenderComponent doesn't work :O
+		temp.addComponent(new PointRenderComponent());
 		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
 		temp.position = new Vector3f(x, y, z);
 		return temp;

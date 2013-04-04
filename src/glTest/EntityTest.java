@@ -88,10 +88,12 @@ public class EntityTest {
 	final int NUM_ACCELERATORS = 0;
 	final int NUM_DUMB_AUTO = 0;
 	final int NUM_SMART_AUTO = 30;
-	final float TURNLIM = 0.003f; //how fast the turning is, tho it's still randomized
+	final float TURNLIM = 0.01f; //how fast the turning is, tho it's still randomized
 	final float ACCELERATION = 0.02f;
 
 	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, (float) (ACCELERATION / 1.3)};
+	//primary, reverse, secondary
+	
 	boolean smartAccelFwd = false;
 	boolean smartTurn = false;
 	boolean smartAccelBack = false;
@@ -239,6 +241,7 @@ public class EntityTest {
 			
 			smartStopAccel = false;
 			smartStop = false;
+			//smartTurn = false;
 		}
 
 		quit();
@@ -321,7 +324,7 @@ public class EntityTest {
 	private void addSmartAuto(float x, float y, float z, Vector3f dirMoving, Vector3f dirFacing, Vector3f accel, float maf, float mab, float mas, Vector3f turn){
 		Vector3f tempa = new Vector3f(accel);
 		tempa.scale(ACCELERATION);
-		Entity temp = EntityBuilder.smartAuto(new Vector3f(x, y, z), dirMoving, dirFacing, tempa, maf, mab, mas, turn, 0);
+		Entity temp = EntityBuilder.smartAuto(new Vector3f(x, y, z), dirMoving, dirFacing, tempa, maf, mab, mas, turn, TURNLIM);
 		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH, TRAIL_FADE));
 		entities.add(temp);
 	}
@@ -374,14 +377,24 @@ public class EntityTest {
 				}
 				RTurningComponent rtc = (RTurningComponent)e.getComponent("turning");
 				if(smartTurn){
+					//System.out.println("start: " + rtc.turn.length());
+					
 					if(rtc.turn.length() == 0){
 						rtc.turn = randTurn();
 					}
+					//smartTurn = false;
 					Entity.restrictLength(rtc.turn, TURNLIM);
+					//System.out.println("One: " + rtc.turn.length());
 				}
 				else{
 					rtc.turn = new Vector3f(0, 0, 0);
+					//System.out.println("hey");
 				}
+				//System.out.println(rtc.turn.length());
+				//else{
+					//System.out.println("Hey");
+					
+				//}
 				if(smartStopAccel){
 					dac.accel = new Vector3f(0,0,0);
 					smartAccelFwd = false;
@@ -405,6 +418,7 @@ public class EntityTest {
 				
 			}
 		}
+		
 		interactions();
 	}
 	

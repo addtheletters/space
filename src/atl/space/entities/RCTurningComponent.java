@@ -4,25 +4,31 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
+//Prolly gonna scrap this for a management component called TurnControlComponent
+
 public class RCTurningComponent extends RTurningComponent {
-	private Vector3f forwardStorage;
-	private boolean turning180 = false;
+	private boolean turningToTarget = false;
+	private Vector3f target;
 	
 	public void initiate180(){
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
-		forwardStorage = fc.facing;
-		turning180 = true;
+		fc.facing.negate(target); //not sure if this will work or throw null pointers
+		turningToTarget = true;
+	}
+	public void initiateTurn(){
+		turningToTarget = true;
 	}
 	
-	public void quit180(){
-		turning180 = false;
+	public void quitTurn(){
+		turningToTarget = false;
 	}
+	
 	public void update(int delta, List<Entity> entities) {
-		if(turning180 = false){
+		if(!turningToTarget){
 			super.update(delta, entities);
 		}
 		else{
-			//TODO: make it do a 180
+			//TODO: make it turn
 			//turn at strongestPossibleTurn until facing directly opposite to forwardStorage
 			Entity.restrictLength(turn, turnAbility);
 			FacingComponent fc = (FacingComponent)owner.getComponent("facing");
@@ -30,7 +36,12 @@ public class RCTurningComponent extends RTurningComponent {
 			Entity.restrictLength(fc.facing, 1);	
 		}
 	}
+	public void setTarget(Vector3f trgt){
+		target = trgt;
+	}
+	
 	public Vector3f getStrongTurn(){
+		
 		//TODO: make this work
 		return null;
 	}
