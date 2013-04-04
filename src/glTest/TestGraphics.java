@@ -475,6 +475,11 @@ public class TestGraphics {
 
 		// Errors?
 		int error = glGetError();
+		
+		font.drawString(
+				100,
+				100,
+				"Ello");
 		if (error != GL_NO_ERROR) {
 			System.out.println(gluGetString(error));
 		}

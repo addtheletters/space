@@ -66,6 +66,10 @@ public class EntityTest {
 	private double xpos;
 	private double ypos;
 	
+	private double zrot;
+	private double xrot;
+	private double yrot;
+	
 
 	// all objects that need updating
 	public ArrayList<Entity> entities;
@@ -425,6 +429,8 @@ public class EntityTest {
 
 		glLoadIdentity();
 		glTranslated(xpos, ypos, zpos);
+		//glRotated()
+		//glTranslated(10000,100000,100000);
 		//
 		// System.out.println("Hi!");
 		for (Entity e : entities) {
