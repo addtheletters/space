@@ -46,12 +46,11 @@ public class TurnControlComponent extends Component implements Triggerable {
 	}
 
 	public void update(int delta, List<Entity> entities) {
-		// TODO
-		// Update owner's TurningComponent
 		if (turningToTarget) {
 			FacingComponent fc = (FacingComponent) owner.getComponent("facing");
-			
-			if (true) { // not facing the target
+			Vector3f normTarget = new Vector3f(target);
+			normTarget.normalise();
+			if (!Entity.isSame(fc.facing, normTarget)) { //Make sure it works.
 				TurningComponent tc = (TurningComponent) owner
 						.getComponent("turning");
 				if (!hardTurn) {
@@ -72,8 +71,14 @@ public class TurnControlComponent extends Component implements Triggerable {
 	}
 
 	public Vector3f getHardTurn(Vector3f facing) {
-		// TODO: make this work
-		return null;
+		// TODO: make sure this works
+		//Cross the dir and a vector from position to target
+		//Cross new vector with dir
+		Vector3f temp = new Vector3f();
+		Vector3f.sub(target, facing, temp); //get a vector representing target in relation to pos
+		Vector3f.cross(facing, temp, temp);
+		Vector3f.cross(facing, temp, temp);
+		return temp;
 	}
 
 	public Vector3f getSoftTurn() {
@@ -82,10 +87,19 @@ public class TurnControlComponent extends Component implements Triggerable {
 		// TODO: make sure this works
 		return temp;
 	}
-
+	
+	/*public Vector3f getTurn(float angle){
+		 * Gets a turn at angle to the facing vector.
+		 * Example: hardTurn is always 90 deg to facing
+		 * softTurn's angle can vary depending on the target and the facing vector 
+	}
+	*/
+	
 	@Override
 	public Component getStepped(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
+		//I'm not exactly sure why I have these. Not currently using them for anything and any
+		//possible uses could prolly be done faster with some simple math.
+		//I don't really want to delete all of them though in case I need them later...
 		return null;
 	}
 

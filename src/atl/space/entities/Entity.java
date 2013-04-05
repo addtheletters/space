@@ -21,6 +21,15 @@ public class Entity {
 		}
 	}
 	
+	public static boolean isSame(Vector3f a, Vector3f b){
+		if(a.getX() == b.getX() && a.getY() == b.getY() && a.getZ() == b.getZ()){
+			//TODO make sure this works
+			//may need to alter this so there's rounding, so vectors that are like .001 off count as the same
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public Entity(String id) {
 		//System.out.println("Instantiate!");

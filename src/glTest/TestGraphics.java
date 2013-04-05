@@ -449,7 +449,8 @@ public class TestGraphics {
 		// Text rendering
 		glUseProgram(0);
 		glMatrixMode(GL_PROJECTION);
-		glLoadMatrix(orthographicProjectionMatrix);
+		glPushMatrix();
+		glLoadMatrix(orthographicProjectionMatrix);	
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glLoadIdentity();
@@ -464,7 +465,8 @@ public class TestGraphics {
 		// glEnable(GL_LIGHTING);
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
-		glLoadMatrix(perspectiveProjectionMatrix);
+		glPopMatrix();
+		//glLoadMatrix(perspectiveProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
 
 		glMatrixMode(GL_PROJECTION);
