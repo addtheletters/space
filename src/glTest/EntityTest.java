@@ -443,7 +443,7 @@ public class EntityTest {
 
 		glLoadIdentity();
 		glTranslated(xpos, ypos, zpos);
-		//glRotated()
+		//glRotated(25.,25.,25.,25.);
 		//glTranslated(10000,100000,100000);
 		//
 		// System.out.println("Hi!");
