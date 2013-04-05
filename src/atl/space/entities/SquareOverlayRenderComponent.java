@@ -14,7 +14,8 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 		size = 10;
 	}
 	public SquareOverlayRenderComponent(Color color, float size){
-		//TODO make the orthomatrix work right
+		//TODO make the orthomatrix work right with how render works
+		//Figure out the best way of doing these XD
 		super();
 		setOrthoProjMatrix(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
 		this.color = color;
