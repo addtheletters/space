@@ -66,9 +66,11 @@ public class EntityTest {
 	private double xpos;
 	private double ypos;
 	
-	private double zrot;
-	private double xrot;
-	private double yrot;
+	
+	//If we end up doing rotation, might as well just use utility.Camera
+	//private double zrot;
+	//private double xrot;
+	//private double yrot;
 	
 
 	// all objects that need updating
@@ -501,6 +503,14 @@ public class EntityTest {
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)){
 			smartAccelFwd = false;
 			smartAccelBack = true;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_Q)){
+			Vector3f temp = new Vector3f((float)xpos, (float)ypos, (float)zpos);
+			for(Entity e: entities){
+					Vector3f.sub(e.position, temp, temp);
+					System.out.println(temp);
+			}
+			
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_1)){
 			smartAccelSec = true;
