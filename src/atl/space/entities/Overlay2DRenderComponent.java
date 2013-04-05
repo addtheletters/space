@@ -21,7 +21,7 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 		glPushMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, 1, 1, 0, 1, -1); //default.
+		glOrtho(-1, 1, -1, 1, 1, -1); //default.
 		glGetFloat(GL_PROJECTION_MATRIX, orthographicProjectionMatrix);
 		//glLoadMatrix(perspectiveProjectionMatrix);
 		glPopMatrix();
@@ -33,6 +33,20 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	
 	public void setOrthoProjMatrix(FloatBuffer orthoProjMatrix){
 		orthographicProjectionMatrix = orthoProjMatrix;
+	}
+	
+	public static FloatBuffer createOrthoMatrix(float left, float right, float bottom, float top, 
+			float near, float far){
+		FloatBuffer orthoProjMatrix = BufferTools
+				.reserveDataf(16);
+		glPushMatrix();
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(left, right, bottom, top, near, far);
+		glGetFloat(GL_PROJECTION_MATRIX, orthoProjMatrix);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		return orthoProjMatrix;
 	}
 	
 	@Override

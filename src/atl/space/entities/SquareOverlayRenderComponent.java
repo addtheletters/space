@@ -1,8 +1,9 @@
 package atl.space.entities;
 
-import java.nio.FloatBuffer;
 import static org.lwjgl.opengl.GL11.*;
+
 import org.lwjgl.util.Color;
+
 
 public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 	private Color color;
@@ -12,9 +13,10 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 		color = new Color();
 		size = 10;
 	}
-	public SquareOverlayRenderComponent(FloatBuffer orthoProjMatrix, Color color, float size){
-		//TODO make it not need an orthoprojmatrix
-		super(orthoProjMatrix);
+	public SquareOverlayRenderComponent(Color color, float size){
+		//TODO make the orthomatrix work right
+		super();
+		setOrthoProjMatrix(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
 		this.color = color;
 		this.size = size;
 	}
