@@ -264,11 +264,11 @@ public class EntityTest {
 	 * Basically creates NUM_STARS stars, NUM_TRAILERS trailers, etc for points, trailers, facers, accelerators, dumb auto (wat...), and smart auto (2 x wat...)
 	 */
 	private void addEntities() {
-		for (int i = 0; i < NUM_TRAILERS; i++) {
-			addTrailer(numInFeild(), numInFeild(), numInFeild(), randTrajectory());		
-		}
 		for (int i = 0; i < NUM_STARS; i++) {
 			addPoint(numInFeild(), numInFeild(), numInFeild());
+		}
+		for (int i = 0; i < NUM_TRAILERS; i++) {
+			addTrailer(numInFeild(), numInFeild(), numInFeild(), randTrajectory());		
 		}
 		for(int i = 0; i < NUM_FACERS; i++){
 			addFacer(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory());
