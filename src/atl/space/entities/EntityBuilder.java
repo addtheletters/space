@@ -2,6 +2,7 @@ package atl.space.entities;
 
 import java.util.List;
 
+import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 
 public class EntityBuilder {
@@ -70,6 +71,7 @@ public class EntityBuilder {
 		temp.addComponent(new MovementComponent(dirMoving));
 		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(turn, maxturn));
+		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 255, 255), 10));
 		temp.position = new Vector3f(pos);
 		return temp;	
 	}
