@@ -16,16 +16,7 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	
 	public Overlay2DRenderComponent(){
 		//do camera setup before this
-		//glMatrixMode(GL_MODELVIEW);
-		//should be in modelview mode
-		glPushMatrix();
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(-1, 1, -1, 1, 1, -1); //default.
-		glGetFloat(GL_PROJECTION_MATRIX, orthographicProjectionMatrix);
-		//glLoadMatrix(perspectiveProjectionMatrix);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
+		setOrthoProjMatrix(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
 	}
 	public Overlay2DRenderComponent(FloatBuffer orthoProjMatrix){
 		setOrthoProjMatrix(orthoProjMatrix);

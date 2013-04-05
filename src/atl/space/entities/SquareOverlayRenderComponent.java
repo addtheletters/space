@@ -27,7 +27,14 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 		
 		glColor4f(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f);
 		glBegin(GL_LINE_STRIP);
-			//TODO make this draw right
+		//TODO make this draw right
+		//translatedx = screen representation of owner.position.x
+		//translatedy = screen representation of owner.position.y
+		//glVertex2f(translatedx - size/2, translatedy - size/2);
+		//glVertex2f(translatedx - size/2, translatedy + size/2);
+		//glVertex2f(translatedx + size/2, translatedy + size/2);
+		//glVertex2f(translatedx + size/2, translatedy - size/2);
+		//glVertex2f(translatedx - size/2, translatedy - size/2);
 		glEnd();
 		backTo3D();
 	}
