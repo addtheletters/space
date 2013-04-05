@@ -509,6 +509,7 @@ public class EntityTest {
 			Entity e = entities.get(0);
 			//for(Entity e: entities){
 			Vector3f.sub(e.position, temp, temp);
+			System.out.println(e.position);
 			System.out.println(temp);
 			//}
 			
