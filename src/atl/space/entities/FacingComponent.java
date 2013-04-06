@@ -46,6 +46,7 @@ public class FacingComponent extends RenderableComponent {
 	}
 	@Override
 	public void render() {
+		
 		glBegin(GL_LINES);
 		glColor4f(0, 1, 1, 1);
 		glVertex3f(owner.position.x, owner.position.y, owner.position.z);
