@@ -1,8 +1,10 @@
 package atl.space.entities;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.util.glu.GLU.gluProject;
 
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.List;
 
 import utility.BufferTools;
@@ -43,6 +45,22 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	@Override
 	public void render() {
 		//implementations of render will use setUp2d and backTo3d
+	}
+	
+	public FloatBuffer getWinPos(){
+		FloatBuffer winpos = BufferTools.reserveDataf(3);
+
+		IntBuffer viewport = BufferTools.reserveDatai(16);
+		FloatBuffer modelview = BufferTools.reserveDataf(16);
+		FloatBuffer projection = BufferTools.reserveDataf(16);
+
+		glGetFloat(GL_MODELVIEW_MATRIX, modelview);
+		glGetFloat(GL_PROJECTION_MATRIX, projection);
+		glGetInteger(GL_VIEWPORT, viewport);
+
+		gluProject(owner.position.x, owner.position.y, owner.position.z,
+				modelview, projection, viewport, winpos);
+		return winpos;
 	}
 	
 	public void setUp2D(){ //args for the orthographic matrix?

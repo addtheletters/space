@@ -71,7 +71,8 @@ public class EntityBuilder {
 		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(turn, maxturn));
 		//this will not be here permanently
-		temp.addComponent(new SquareOverlayRenderComponent(glTest.EntityTest.randomColor(255), 10));
+		temp.addComponent(new EquiTriangleOverlayRenderComponent(glTest.EntityTest.randomColor(255), 20));
+		
 		temp.position = new Vector3f(pos);
 		return temp;	
 	}
