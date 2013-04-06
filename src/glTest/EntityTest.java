@@ -508,9 +508,30 @@ public class EntityTest {
 			Vector3f temp = new Vector3f((float)xpos, (float)ypos, (float)zpos);
 			Entity e = entities.get(0);
 			//for(Entity e: entities){
-			Vector3f.sub(e.position, temp, temp);
-			System.out.println(e.position);
-			System.out.println(temp);
+			//Vector3f.sub(e.position, temp, temp);
+			double nx = - xpos + e.position.x;
+			double ny = - ypos + e.position.y;
+			double nz = - zpos + e.position.z;
+			
+			//double pitch = Math.tan(ny/nz);
+			//double yaw = Math.tan(nz/nx);
+			
+			double p = Math.sqrt(nx*nx+ny*ny+nz*nz);
+			double S = Math.sqrt(nx*nx+ny*ny);
+			double phi = Math.acos(nz/p);
+			double theta;
+			if (0 <= nx) {
+				theta = Math.asin(ny/S);
+			} else {
+				theta = Math.PI - Math.asin(ny/S);
+			}
+			
+		
+		
+			
+			System.out.println("( "+nx+" , "+ny+" , "+nz+" )");
+			System.out.println("( "+p+" , "+phi*180/Math.PI+" , "+theta*180/Math.PI+" )");
+			//System.out.println(temp);
 			//}
 			
 		}
