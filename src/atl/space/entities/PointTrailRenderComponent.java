@@ -19,9 +19,11 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	public float trailfade = 0f;
 	
 	public PointTrailRenderComponent(){
+		id = "trailrender";
 		trail = new LinkedList<Vector3f>();
 	}
 	public PointTrailRenderComponent(int ts, float tf){
+		id = "trailrender";
 		trail = new LinkedList<Vector3f>();
 		trailsize = ts;
 		trailfade = tf;

@@ -68,10 +68,11 @@ public class TurnControlComponent extends Component implements Triggerable {
 
 	public void setTarget(Vector3f trgt) {
 		target = trgt;
+		//System.out.println("target set to " + trgt);
 	}
 
 	public Vector3f getHardTurn(Vector3f facing) {
-		// TODO: make sure this works
+		// TODO: make this work
 		//Cross the dir and a vector from position to target
 		//Cross new vector with dir
 		Vector3f temp = new Vector3f();
@@ -84,7 +85,6 @@ public class TurnControlComponent extends Component implements Triggerable {
 	public Vector3f getSoftTurn() {
 		Vector3f temp = new Vector3f();
 		Vector3f.sub(target, owner.position ,temp);
-		// TODO: make sure this works
 		return temp;
 	}
 	

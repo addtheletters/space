@@ -78,9 +78,9 @@ public class EntityTest {
 	public ArrayList<Entity> entities;
 	// public ArrayList<Renderable> toRender;
 	// Made obsolete by new VBO render code.
-	
+	Entity protag;
 	//Data representing the field
-
+	
 	final float STAR_FIELD_SIZE = 5000; 
 	final int NUM_STARS = 1000;
 	final int NUM_TRAILERS = 10;
@@ -103,6 +103,7 @@ public class EntityTest {
 	boolean smartAccelSec = false;
 	boolean smartStopAccel = false;
 	boolean smartStop = false;
+	boolean launchMissile = false;
 	
 	final float FOV = 45f;
 	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
@@ -283,6 +284,7 @@ public class EntityTest {
 		for(int i = 0; i < NUM_SMART_AUTO; i++){
 			addSmartAuto(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory(), new Vector3f(0,0,0), maxAccel[0], maxAccel[1], maxAccel[2], randTurn());
 		}
+		addProtagonist();
 	}
 	
 	/**
@@ -306,6 +308,10 @@ public class EntityTest {
 	public static Color randomColor(int alpha){
 		//alpha is from 0 to 255
 		return new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255), alpha);
+	}
+	private void addProtagonist(){
+		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(), maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM);
+		entities.add(protag);
 	}
 	
 	private void addPoint(float x, float y, float z) {
@@ -360,7 +366,12 @@ public class EntityTest {
 	private void tick(double delta) {
 		for (Entity e : entities) {
 			e.update((int) delta, entities);
-			if(e.id == "smartAuto"){
+			//int x = 0;
+			if(e.id == "missile"){
+				//x++;
+				//System.out.println(x);
+			}
+			if(e.id == "protagonist"){
 				DAccelComponent dac = (DAccelComponent)e.getComponent("accel");
 				if(smartAccelFwd){
 					dac.accelForward = maxAccel[0];
@@ -423,7 +434,6 @@ public class EntityTest {
 					//smartStop = false;
 					//System.out.println(mc.speed);
 				}
-				
 			}
 		}
 		
@@ -431,7 +441,13 @@ public class EntityTest {
 	}
 	
 	private void interactions() { // how objects react to each other
-
+		if(launchMissile){
+			//System.out.println(e.getComponent("movement"));
+			FTLauncherComponent ftlc = (FTLauncherComponent)protag.getComponent("emission");
+			ftlc.setTarget(protag.getNearestTarget(entities).position);
+			ftlc.trigger(entities);
+			launchMissile = false;
+		}
 	}
 	
 	/**
@@ -519,6 +535,10 @@ public class EntityTest {
 			//}
 			
 		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_M)){
+			launchMissile = true;
+		}
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_1)){
 			smartAccelSec = true;
 		}

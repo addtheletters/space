@@ -2,6 +2,7 @@ package atl.space.entities;
 
 import java.util.List;
 
+import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 
 public class EntityBuilder {
@@ -77,7 +78,43 @@ public class EntityBuilder {
 		return temp;	
 	}
 	
+	public static Entity protagonist(Vector3f pos, Vector3f dirFacing, float maxAccelF, float maxAccelB, float maxAccelS, float maxturn){
+		Entity temp = new Entity("protagonist");
+		temp.addComponent(new FacingComponent(dirFacing));
+		temp.addComponent(new MovementComponent());
+		temp.addComponent(new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, maxAccelS));
+		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
+		temp.addComponent(new PointTrailRenderComponent(100, 0.005f));
+		temp.addComponent(new FTLauncherComponent(missile(.01f, 0f, .01f), dirFacing, 1));
+		//this will not be here permanently
+		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
+		
+		temp.position = new Vector3f(pos);
+		return temp;	
+	}
+	
+	public static Entity missile(float maxAccelF, float maxAccelB, float maxturn){
+		Entity temp = new Entity("missile");
+		temp.addComponent(new FacingComponent());
+		temp.addComponent(new MovementComponent());
+		RDAccelComponent rdac = new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, 0);
+		rdac.accelForward = maxAccelF;
+		temp.addComponent(rdac);
+		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
+		temp.addComponent(new PointTrailRenderComponent(200, 0.005f));
+		TTurnControlComponent ttcc = new TTurnControlComponent();
+		//ttcc.hardTurn = true;
+		temp.addComponent(ttcc);
+		//this will not be here permanently
+		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 100, 100), 10));
+		//System.out.println("Set up missile");
+		return temp;
+	}
+	
 	public static Entity getNearest(Entity origin, List<Entity> entities){
+		if(entities.size() == 1){
+			return null;
+		}
 		Entity nearest = entities.get(0);
 		float longestdistance = origin.getDistance(nearest.position);
 		//Vector3f temp = new Vector3f();

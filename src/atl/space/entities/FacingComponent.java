@@ -35,7 +35,9 @@ public class FacingComponent extends RenderableComponent {
 	}*/
 	
 	public void update(int delta, List<Entity> entities) {
+		if(facing.length() != 0){
 		facing.normalise();
+		}
 	}
 
 	@Override

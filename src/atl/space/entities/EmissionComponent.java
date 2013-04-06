@@ -3,9 +3,10 @@ package atl.space.entities;
 import java.util.List;
 
 public class EmissionComponent extends Component implements Triggerable {
-	public Entity emission = new Entity("defaultEmission", owner.position);
+	public Entity emission;
 	public EmissionComponent(){
 		id = "emission";
+		emission = new Entity("defaultEmission");
 	}
 	
 	public EmissionComponent(Entity emission){
@@ -13,7 +14,7 @@ public class EmissionComponent extends Component implements Triggerable {
 		this.emission = emission;
 	}
 	public EmissionComponent(EmissionComponent ec){
-		id = ec.id;
+		id = "emission";
 		emission = ec.emission;
 	}
 	@Override

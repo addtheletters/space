@@ -76,6 +76,7 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	}
 	public void backTo3D(){ //args for the projection matrix?
 		//assumes in modelview matrix mode
+		glColor4f(1,1,1,1);
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
