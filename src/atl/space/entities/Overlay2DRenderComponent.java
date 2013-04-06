@@ -49,11 +49,11 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 		//glUseProgram(0);
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
-		glLoadIdentity();
+		//glLoadIdentity();
 		glLoadMatrix(orthographicProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
-		//glLoadIdentity();
+		glLoadIdentity();
 		//draw
 	}
 	public void backTo3D(){ //args for the projection matrix?

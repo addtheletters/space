@@ -11,6 +11,7 @@ import static org.lwjgl.util.glu.GLU.*; //gluPerspective
 import java.util.*;
 
 import org.lwjgl.opengl.*;
+import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 //import org.lwjgl.util.Color;
 import org.lwjgl.*;
@@ -300,6 +301,11 @@ public class EntityTest {
 	}
 	private Vector3f randTurn(){
 		return new Vector3f((float)(Math.random()-.5) * TURNLIM, (float)(Math.random()-.5) * TURNLIM, (float)(Math.random()-.5) * TURNLIM);
+	}
+	
+	public static Color randomColor(int alpha){
+		//alpha is from 0 to 255
+		return new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255), alpha);
 	}
 	
 	private void addPoint(float x, float y, float z) {

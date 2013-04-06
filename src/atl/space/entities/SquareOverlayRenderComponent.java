@@ -17,7 +17,7 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 	
 	private static float WIDTH = 640;
 	private static float HEIGHT = 480;
-	private static float ASPECTRATIO = (float)(WIDTH/HEIGHT);
+	//private static float ASPECTRATIO = (float)(WIDTH/HEIGHT);
 	
 	public SquareOverlayRenderComponent(){
 		super();
@@ -56,9 +56,9 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 		//glTranslatef(winpos.get(0), winpos.get(1), winpos.get(2));
 		
 		
-		System.out.println(owner.position);
+		//System.out.println(owner.position);
 		//System.out.println(winpos.get(0) + " " + winpos.get(1) +" "+ winpos.get(2) );
-		System.out.println("X: " + windowX + " Y: " + windowY);
+		//System.out.println("X: " + windowX + " Y: " + windowY);
 		
 		glColor4f(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f);
 		glBegin(GL_LINE_STRIP);
