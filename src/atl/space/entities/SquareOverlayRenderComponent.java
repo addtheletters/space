@@ -48,10 +48,13 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 		
 		gluProject(owner.position.x, owner.position.y, owner.position.z, modelview, projection, viewport, winpos);
 		
-		setUp2D();
-		//glTranslatef(winpos.get(0), winpos.get(1), winpos.get(2));
 		float windowX = winpos.get(0);
 		float windowY = winpos.get(1);
+		
+		if(winpos.get(2) > 0 && winpos.get(2)<1){
+		setUp2D();
+		//glTranslatef(winpos.get(0), winpos.get(1), winpos.get(2));
+		
 		
 		System.out.println(owner.position);
 		//System.out.println(winpos.get(0) + " " + winpos.get(1) +" "+ winpos.get(2) );
@@ -75,6 +78,7 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 		//glVertex2f(translatedx - size/2, translatedy - size/2);
 		glEnd();
 		backTo3D();
+		}
 	}
 	
 }
