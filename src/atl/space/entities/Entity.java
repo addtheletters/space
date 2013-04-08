@@ -1,7 +1,7 @@
 package atl.space.entities;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
@@ -70,7 +70,9 @@ public class Entity {
 	}
 
 	public Component getComponent(String id) {
+		
 		for (Component comp : components) {
+			//System.out.println(comp.getId());
 			if (comp.getId().equalsIgnoreCase(id))
 				return comp;
 		}
@@ -107,7 +109,20 @@ public class Entity {
 		//Vector3f temp = new Vector3f();
 		for(Entity e : entities){
 			float dist = getDistance(e.position);
-			if(dist < longestdistance){
+			if(dist < longestdistance && this != e){
+				nearest = e;
+				longestdistance = dist;
+			}
+		}
+		return nearest;
+	}
+	public Entity getNearestTarget(List<Entity> entities){
+		Entity nearest = entities.get(0);
+		float longestdistance = getDistance(nearest.position);
+		//Vector3f temp = new Vector3f();
+		for(Entity e : entities){
+			float dist = getDistance(e.position);
+			if(dist < longestdistance && this != e && e.id != "missile"){
 				nearest = e;
 				longestdistance = dist;
 			}

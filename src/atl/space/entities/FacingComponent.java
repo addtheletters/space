@@ -35,7 +35,9 @@ public class FacingComponent extends RenderableComponent {
 	}*/
 	
 	public void update(int delta, List<Entity> entities) {
+		if(facing.length() != 0){
 		facing.normalise();
+		}
 	}
 
 	@Override
@@ -46,6 +48,7 @@ public class FacingComponent extends RenderableComponent {
 	}
 	@Override
 	public void render() {
+		
 		glBegin(GL_LINES);
 		glColor4f(0, 1, 1, 1);
 		glVertex3f(owner.position.x, owner.position.y, owner.position.z);

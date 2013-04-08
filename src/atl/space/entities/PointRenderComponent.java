@@ -1,9 +1,12 @@
 package atl.space.entities;
 
-import static org.lwjgl.opengl.GL11.*;
-//import org.lwjgl.util.vector.Vector3f;
+import static org.lwjgl.opengl.GL11.GL_POINTS;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glVertex3f;
 
 import java.util.List;
+//import org.lwjgl.util.vector.Vector3f;
 
 public class PointRenderComponent extends RenderableComponent {
 	

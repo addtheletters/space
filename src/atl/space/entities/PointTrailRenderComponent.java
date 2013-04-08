@@ -1,13 +1,17 @@
 package atl.space.entities;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_LINE_STRIP;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glColor4f;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glVertex3f;
 
-//import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
+//import java.util.ArrayList;
 
 public class PointTrailRenderComponent extends RenderableComponent {
 	public LinkedList<Vector3f> trail;
@@ -15,9 +19,11 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	public float trailfade = 0f;
 	
 	public PointTrailRenderComponent(){
+		id = "trailrender";
 		trail = new LinkedList<Vector3f>();
 	}
 	public PointTrailRenderComponent(int ts, float tf){
+		id = "trailrender";
 		trail = new LinkedList<Vector3f>();
 		trailsize = ts;
 		trailfade = tf;
