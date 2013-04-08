@@ -106,7 +106,7 @@ public class EntityTest {
 	boolean launchMissile = false;
 	
 	final float FOV = 45f;
-	final float ASPECT_RATIO = (float) WIDTH / HEIGHT;
+	final public static float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.1f;
 	final float FAR_RENDER_LIM = 10000;
 

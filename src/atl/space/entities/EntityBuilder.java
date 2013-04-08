@@ -72,7 +72,7 @@ public class EntityBuilder {
 		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(turn, maxturn));
 		//this will not be here permanently
-		temp.addComponent(new EquiTriangleOverlayRenderComponent(glTest.EntityTest.randomColor(255), 20));
+		temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255)));
 		
 		temp.position = new Vector3f(pos);
 		return temp;	
@@ -106,7 +106,7 @@ public class EntityBuilder {
 		//ttcc.hardTurn = true;
 		temp.addComponent(ttcc);
 		//this will not be here permanently
-		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 100, 100), 10));
+		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 100, 100),10));
 		//System.out.println("Set up missile");
 		return temp;
 	}
