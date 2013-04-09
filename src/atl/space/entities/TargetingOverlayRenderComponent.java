@@ -52,7 +52,7 @@ public class TargetingOverlayRenderComponent extends EquiTriangleOverlayRenderCo
 			if ( Math.abs( (int)(mouseX-windowX) ) < size && Math.abs( (int)(mouseY-windowY) ) < size) {
 				if (Mouse.isButtonDown(0)) {
 					shouldRender = true;
-					renderImage("lena.jpg","JPG",0,0);
+					renderImage("res/lena.jpg","JPG",0,0);
 					//renderBox(windowX,windowY);
 				}
 				renderHighlight(windowX, windowY);
@@ -61,7 +61,7 @@ public class TargetingOverlayRenderComponent extends EquiTriangleOverlayRenderCo
 			}
 			
 			if (shouldRender) {
-				renderImage("lena.jpg","JPG",0,0);
+				renderImage("res/lena.jpg","JPG",0,0);
 			}
 			
 			backTo3D();
