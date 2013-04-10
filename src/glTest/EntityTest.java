@@ -183,6 +183,9 @@ public class EntityTest {
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
+		glEnable(GL_TEXTURE_2D);
+		//glEnable(GL_DONT_CARE);
+		//System.out.println(GL_DONT_CARE);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 

@@ -72,7 +72,8 @@ public class EntityBuilder {
 		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(turn, maxturn));
 		//this will not be here permanently
-		temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255)));
+		//temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255)));
+		temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255), "res/lena.jpg", "JPG"));
 		
 		temp.position = new Vector3f(pos);
 		return temp;	
