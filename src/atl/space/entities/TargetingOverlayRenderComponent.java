@@ -1,10 +1,5 @@
 package atl.space.entities;
 
-import static org.lwjgl.opengl.GL11.GL_LINE_STRIP;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glColor4f;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -17,6 +12,7 @@ import java.nio.FloatBuffer;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Color;
+//import org.newdawn.slick.*;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
@@ -25,6 +21,8 @@ public class TargetingOverlayRenderComponent extends
 
 	private Color color;
 	private int size;
+	
+	//boolean renderImage;
 
 	private Texture texture = null;
 
@@ -61,8 +59,12 @@ public class TargetingOverlayRenderComponent extends
 			throws FileNotFoundException, IOException {
 		texture = TextureLoader.getTexture(format, new FileInputStream(
 				new File(uri)));
+		//org.newdawn.slick.Color.white.bind();
+		texture.release();
+		//glColor4f(1, 1, 1, 1);
 	}
 
+	
 	public void render() {
 
 		FloatBuffer winpos = getWinPos();
@@ -150,10 +152,13 @@ public class TargetingOverlayRenderComponent extends
 	}
 
 	public void renderImage(int x, int y) {
-
-		glBegin(GL_QUADS);
-
+		
+		org.newdawn.slick.Color.white.bind();
 		texture.bind();
+		//System.out.println(texture.hasAlpha());
+		
+		//glColor4f(1,1,1,1);
+		glBegin(GL_QUADS);
 
 		glTexCoord2f(1, 1);
 		glVertex2f(000, 000);
@@ -163,10 +168,10 @@ public class TargetingOverlayRenderComponent extends
 		glVertex2f(200, 200);
 		glTexCoord2f(1, 0);
 		glVertex2f(000, 200);
-
+		
 		glEnd();
 
-		texture.release();
+		//texture.release();
 	}
 
 	public void renderImage(String uri, String format, int x, int y) {
@@ -198,7 +203,7 @@ public class TargetingOverlayRenderComponent extends
 
 		glEnd();
 
-		texture.release();
+		//texture.release();
 	}
 
 }
