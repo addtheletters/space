@@ -119,7 +119,38 @@ public class TargetingOverlayRenderComponent extends EquiTriangleOverlayRenderCo
 		
 		glEnd();
 	}
+	
 	public void renderImage(String uri, String format, int x, int y) {
+		try {
+			if (texture==null) {
+				texture = TextureLoader.getTexture(format, new FileInputStream(new File(uri)));
+			} else {
+				//System.out.println(texture);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			Display.destroy();
+			System.exit(1);
+		} catch (IOException e) {
+			e.printStackTrace();
+			Display.destroy();
+			System.exit(1);
+		}
+		renderImage(uri, format, x, y, texture.getImageWidth(), texture.getImageHeight());
+	}
+	
+	/**
+	 * Draws an image in 2d on the canvas
+	 * 
+	 * @param uri - file uri (absolute or general {but prefer general})
+	 * @param format file format ("PNG","JPG","BMP","GIF") - basically any bitmap image
+	 * @param x - x coord of top left (I think)
+	 * @param y - y coord of top left
+	 * @param width - width (omit to assume image default width)
+	 * @param height - height (omit to assume image default height)
+	 */
+	
+	public void renderImage(String uri, String format, int x, int y, int width, int height) {
 		
 		try {
 			if (texture==null) {
