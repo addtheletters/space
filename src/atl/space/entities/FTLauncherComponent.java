@@ -20,6 +20,7 @@ public class FTLauncherComponent extends FLauncherComponent {
 		Vector3f netVel = new Vector3f();
 		Vector3f.add(((MovementComponent)owner.getComponent("movement")).speed, expulsionSpeed, netVel);
 		Entity temp = new Entity(emission);
+		temp.position = new Vector3f(owner.position);
 		if(!temp.hasComponent("movement")){
 			temp.addComponent(new MovementComponent(netVel));
 		}

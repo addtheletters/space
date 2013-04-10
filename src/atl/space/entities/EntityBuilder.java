@@ -100,7 +100,7 @@ public class EntityBuilder {
 		RDAccelComponent rdac = new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, 0);
 		rdac.accelForward = maxAccelF;
 		temp.addComponent(rdac);
-		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
+		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn * 100));
 		temp.addComponent(new PointTrailRenderComponent(200, 0.005f));
 		TTurnControlComponent ttcc = new TTurnControlComponent();
 		//ttcc.hardTurn = true;

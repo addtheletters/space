@@ -8,11 +8,11 @@ import static org.lwjgl.opengl.GL11.glEnd;
 
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
-import glTest.EntityTest;
+//import glTest.EntityTest;
 
 import java.nio.FloatBuffer;
 
-import org.lwjgl.input.Mouse;
+//import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Color;
 
 
@@ -49,8 +49,8 @@ public class EquiTriangleOverlayRenderComponent extends
 		float windowX = winpos.get(0);
 		float windowY = winpos.get(1);
 		
-		float mouseX = Mouse.getX();
-		float mouseY = Mouse.getY();
+	//	float mouseX = Mouse.getX();
+	//	float mouseY = Mouse.getY();
 
 		if (winpos.get(2) > 0 && winpos.get(2) < 1) {
 			setUp2D();

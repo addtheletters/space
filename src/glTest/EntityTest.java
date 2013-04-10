@@ -527,7 +527,7 @@ public class EntityTest {
 			smartAccelBack = true;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_Q)){
-			Vector3f temp = new Vector3f((float)xpos, (float)ypos, (float)zpos);
+			//Vector3f temp = new Vector3f((float)xpos, (float)ypos, (float)zpos);
 			Entity e = entities.get(0);
 			//for(Entity e: entities){
 			//Vector3f.sub(e.position, temp, temp);

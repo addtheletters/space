@@ -77,7 +77,6 @@ public class TargetingOverlayRenderComponent extends EquiTriangleOverlayRenderCo
 		glColor4f(color.getRed() / 255.0f, color.getGreen() / 255.0f,
 				color.getBlue() / 255.0f, color.getAlpha() / 255.0f);
 		glBegin(GL_LINE_STRIP);
-		//TODO make this draw triangles
 		
 		glVertex2f(windowX - size/2,  (float)(windowY - (size/2) / Math.sqrt(3)));
 		glVertex2f(windowX, (float)(windowY + (Math.sqrt(3)/2)*(size) - ((size/2) / Math.sqrt(3))));
@@ -90,10 +89,7 @@ public class TargetingOverlayRenderComponent extends EquiTriangleOverlayRenderCo
 	public void renderHighlight(float windowX, float windowY) {
 		glColor4f(255.0f, 0.0f, 0.0f, 255.0f);
 
-		glBegin(GL_LINE_STRIP);
-		//TODO make this draw triangles
-		
-		
+		glBegin(GL_LINE_STRIP);		
 		
 		glVertex2f((float)(windowX - size/2),  (float)(windowY - (size/2)));
 		glVertex2f((float)(windowX - size/2),  (float)(windowY + (size/2)));
@@ -106,9 +102,7 @@ public class TargetingOverlayRenderComponent extends EquiTriangleOverlayRenderCo
 	public void renderBox(float windowX, float windowY) {
 		glColor4f(255.0f, 0.0f, 0.0f, 255.0f);
 
-		glBegin(GL_LINE_STRIP);
-		//TODO make this draw triangles
-		
+		glBegin(GL_LINE_STRIP);		
 		
 		
 		glVertex2f((float)(windowX - size/2),  (float)(windowY - (size/2)));

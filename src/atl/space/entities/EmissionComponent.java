@@ -2,6 +2,8 @@ package atl.space.entities;
 
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 public class EmissionComponent extends Component implements Triggerable {
 	public Entity emission;
 	public EmissionComponent(){
@@ -20,6 +22,7 @@ public class EmissionComponent extends Component implements Triggerable {
 	@Override
 	public void trigger(List<Entity> entities) {
 		Entity temp = new Entity(emission);
+		temp.position = new Vector3f(owner.position);
 		entities.add(temp);
 	}
 
