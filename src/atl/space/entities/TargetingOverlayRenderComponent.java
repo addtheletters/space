@@ -173,7 +173,14 @@ public class TargetingOverlayRenderComponent extends
 
 		//texture.release();
 	}
-
+	/**
+	 * Defunct
+	 * 
+	 * @param uri
+	 * @param format
+	 * @param x
+	 * @param y
+	 */
 	public void renderImage(String uri, String format, int x, int y) {
 
 		try {
