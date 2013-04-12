@@ -19,10 +19,11 @@ public abstract class Component implements Cloneable{
     	this.owner = owner;
     }
     
-    public Component clone(){
-    	System.err.println("Not implemented");
-    	return null;
-    }
+    //public Component clone(){
+    //	System.err.println("Not implemented");
+    //	return null;
+    //}
+    public abstract Component clone();
     
     public abstract void update(int delta, List<Entity> entities);
     

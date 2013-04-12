@@ -22,13 +22,20 @@ public class PointTrailRenderComponent extends RenderableComponent {
 		id = "trailrender";
 		trail = new LinkedList<Vector3f>();
 	}
+	public PointTrailRenderComponent(PointTrailRenderComponent ptrc) {
+		this.trail = ptrc.trail;
+		this.trailsize = ptrc.trailsize;
+		this.trailfade = ptrc.trailfade;
+	}
 	public PointTrailRenderComponent(int ts, float tf){
 		id = "trailrender";
 		trail = new LinkedList<Vector3f>();
 		trailsize = ts;
 		trailfade = tf;
 	}
-	
+	public Component clone() {
+		return new PointTrailRenderComponent(this);
+	}
 	public void update(int delta, List<Entity> entities) {
 		trail.addFirst(new Vector3f(owner.position));
 		//System.out.println(trail.size());
