@@ -10,10 +10,15 @@ import java.util.List;
 public class InfoRenderComponent extends RenderableComponent {
 	//Will display an info box with statistics next to it's entity
 	
-	public InfoRenderComponent(){
+	public InfoRenderComponent() {
 		id = "inforender";
 	}
-	
+	public InfoRenderComponent(InfoRenderComponent irc) {
+		//TODO: Do stuff
+	}
+	public Component clone() {
+		return new InfoRenderComponent(this);
+	}
 	@Override
 	public void render() {
 		// TODO Hmm. How do I do this...
