@@ -23,7 +23,7 @@ public class AccelComponent extends RenderableComponent { //don't use this, use 
 	}
 	public AccelComponent(AccelComponent ac){
 		id = ac.getId();
-		accel = ac.accel;
+		accel = new Vector3f(ac.accel);
 	}
 	
 	public Component clone(){
