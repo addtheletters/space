@@ -18,6 +18,10 @@ public class FLauncherComponent extends LauncherComponent {
 		Entity.restrictLength(expulsionSpeed, speed);
 	}
 	
+	public Component clone(){
+		return new FLauncherComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		TurningComponent tc = (TurningComponent)owner.getComponent("turning");
 		float lengthy = expulsionSpeed.length();

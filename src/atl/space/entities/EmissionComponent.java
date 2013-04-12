@@ -20,7 +20,7 @@ public class EmissionComponent extends Component implements Triggerable {
 		emission = ec.emission;
 	}
 	
-	public EmissionComponent clone() {
+	public Component clone() {
 		return new EmissionComponent(this);
 	}
 	@Override

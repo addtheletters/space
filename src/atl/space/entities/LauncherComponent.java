@@ -24,6 +24,10 @@ public class LauncherComponent extends MEmissionComponent {
 		expulsionSpeed = expspeed;
 	}
 	
+	public Component clone(){
+		return new LauncherComponent(this);
+	}
+	
 	@Override
 	public void trigger(List<Entity> entities) {
 		Vector3f netVel = new Vector3f();
