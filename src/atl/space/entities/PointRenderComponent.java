@@ -9,6 +9,16 @@ import java.util.List;
 //import org.lwjgl.util.vector.Vector3f;
 
 public class PointRenderComponent extends RenderableComponent {
+	public PointRenderComponent(){
+		super();
+	}
+	public PointRenderComponent(PointRenderComponent prc){
+		super();
+	}
+	
+	public Component clone(){
+		return new PointRenderComponent(this);
+	}
 	
 	public void update(int delta, List<Entity> entities) {
 		//do nothing

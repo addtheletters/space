@@ -22,6 +22,16 @@ public class TurningComponent extends RenderableComponent { //don't use this, us
 		id = "turning";
 		turn = new Vector3f(t);
 	}
+	
+	public TurningComponent(TurningComponent tc){
+		id = tc.getId();
+		turn = new Vector3f(tc.turn);
+	}
+	
+	public Component clone(){
+		return new TurningComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
 		Vector3f.add(fc.facing, turn, fc.facing);

@@ -15,6 +15,16 @@ public class RTurningComponent extends TurningComponent {
 		turnAbility = ta;
 		Entity.restrictLength(turn, turnAbility);
 	}
+	public RTurningComponent(RTurningComponent rtc){
+		super(rtc.turn);
+		turnAbility = rtc.turnAbility;
+		Entity.restrictLength(turn, turnAbility);
+	}
+	
+	public Component clone(){
+		return new RTurningComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		Entity.restrictLength(turn, turnAbility);
 		super.update(delta, entities);

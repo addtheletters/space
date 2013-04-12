@@ -34,6 +34,10 @@ public class FacingComponent extends RenderableComponent {
 		}
 	}*/
 	
+	public Component clone(){
+		return new FacingComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		if(facing.length() != 0){
 		facing.normalise();

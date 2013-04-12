@@ -41,6 +41,10 @@ public class DAccelComponent extends AccelComponent {
 		calcNetAccel();
 	}
 
+	public Component clone(){
+		return new DAccelComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		//Modify acceleration vector
 		calcNetAccel();

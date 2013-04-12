@@ -37,6 +37,10 @@ public class RDAccelComponent extends DAccelComponent {
 		maxAccelBack = rdac.maxAccelBack;
 		maxAccelSecondary = rdac.maxAccelSecondary;
 	}
+	
+	public Component clone(){
+		return new RDAccelComponent(this);
+	}
 
 	public void update(int delta, List<Entity> entities) {
 		checkMaxes();

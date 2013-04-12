@@ -18,6 +18,11 @@ public class MovementComponent extends Component {
 		id = mc.id;
 		speed = new Vector3f(mc.speed);
 	}
+	
+	public Component clone(){
+		return new MovementComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		Vector3f.add(owner.position, speed, owner.position);
 	}

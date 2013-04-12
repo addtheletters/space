@@ -26,6 +26,10 @@ public class AccelComponent extends RenderableComponent { //don't use this, use 
 		accel = ac.accel;
 	}
 	
+	public Component clone(){
+		return new AccelComponent(this);
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		MovementComponent mc = (MovementComponent)owner.getComponent("movement");
 		Vector3f.add(mc.speed, accel, mc.speed);

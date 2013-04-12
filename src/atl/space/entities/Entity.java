@@ -47,7 +47,11 @@ public class Entity {
 	public Entity(Entity e) {
 		//System.out.println("Instantiate!");
 		this.id = e.id;
-		components = new ArrayList<Component>(e.components);
+		components = new ArrayList<Component>();//(e.components);
+		for(Component c : e.components){
+			components.add((Component)c.clone());
+			//components.add( (Component)(c.clone()));
+		}
 		position = new Vector3f(e.position);
 	}
 
