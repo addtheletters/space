@@ -15,7 +15,18 @@ public class RectObstructionComponent extends ObstructionComponent {
 		ySize = 0;
 		zSize = 0;
 	}
-
+	
+	public RectObstructionComponent(RectObstructionComponent roc){
+		this.id = roc.id;
+		xSize = roc.xSize;
+		ySize = roc.ySize;
+		zSize = roc.zSize;
+	}
+	
+	public Component clone(){
+		return new RectObstructionComponent(this);
+	}
+	
 	@Override
 	public boolean hasCollided(Entity e, int delta, List<Entity> entities) {
 		Coord minX, maxX, minY, maxY, minZ, maxZ;
