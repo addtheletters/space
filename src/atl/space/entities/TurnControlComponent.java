@@ -29,7 +29,11 @@ public class TurnControlComponent extends Component implements Triggerable {
 		turningToTarget = tcc.turningToTarget;
 		hardTurn = tcc.hardTurn;
 	}
-
+	
+	public Component clone(){
+		return new TurnControlComponent(this);
+	}
+	
 	public void initiate180() {
 		FacingComponent fc = (FacingComponent) owner.getComponent("facing");
 		fc.facing.negate(target); // not sure if this will work or throw null
