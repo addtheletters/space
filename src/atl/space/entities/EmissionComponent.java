@@ -19,6 +19,10 @@ public class EmissionComponent extends Component implements Triggerable {
 		id = "emission";
 		emission = ec.emission;
 	}
+	
+	public EmissionComponent clone() {
+		return new EmissionComponent(this);
+	}
 	@Override
 	public void trigger(List<Entity> entities) {
 		Entity temp = new Entity(emission);

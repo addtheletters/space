@@ -42,6 +42,13 @@ public class EquiTriangleOverlayRenderComponent extends
 		this.color = color;
 		this.size = size;
 	}
+	
+	public EquiTriangleOverlayRenderComponent(EquiTriangleOverlayRenderComponent etorc) {
+		super(etorc);
+		this.color = etorc.color;
+		this.size = etorc.size;
+		//this.super.orth
+	}
 
 	public void render() {
 		FloatBuffer winpos = getWinPos();

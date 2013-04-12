@@ -27,7 +27,9 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	public void setOrthoProjMatrix(FloatBuffer orthoProjMatrix){
 		orthographicProjectionMatrix = orthoProjMatrix;
 	}
-	
+	public Overlay2DRenderComponent(Overlay2DRenderComponent orc) {
+		this.orthographicProjectionMatrix = orc.orthographicProjectionMatrix;
+	}
 	public static FloatBuffer createOrthoMatrix(float left, float right, float bottom, float top, 
 			float near, float far){
 		FloatBuffer orthoProjMatrix = BufferTools
