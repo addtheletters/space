@@ -30,6 +30,7 @@ public class Entity {
 		return false;
 	}
 	
+	//TODO: Check constructors to make sure they make new entities with new components with new vectors
 	
 	public Entity(String id) {
 		//System.out.println("Instantiate!");
@@ -53,7 +54,7 @@ public class Entity {
 	public Entity(String id, Vector3f position, ArrayList<Component> cs) {
 		this.id = id;
 		this.position = position;
-		components = cs;
+		components = new ArrayList<Component>(cs);
 		// addComponents(cs);
 	}
 

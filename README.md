@@ -3,10 +3,9 @@ space
 
 A space game / engine / thing. Will likely include gravity, collisions, and other stuff.
 
-Wiki has mechanics info: https://github.com/addtheletters/space/wiki
-Added: Cool ship-like acceleration behavior testing in EntityTest, controls are written as comments near the top
+Missiles aren't working. Issues with constructors or something?
 
--getOGLPos in TestGraphics.java might work, confirm plox
+Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
 TODO:
 -Test projectiles, missiles, TurnControl
