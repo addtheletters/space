@@ -17,6 +17,10 @@ public class MEmissionComponent extends EmissionComponent {
 		super(mec);
 	}
 	
+	public Component clone(){
+		return new MEmissionComponent(this);
+	}
+	
 	@Override
 	public void trigger(List<Entity> entities) {
 		Entity temp = new Entity(emission);
