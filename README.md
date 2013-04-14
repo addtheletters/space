@@ -7,6 +7,12 @@ Missiles aren't working. Issues with constructors or something?
 -Make all components have constructor with (themselves)arg and
 -add a clone() method
 
+Gonna start working on information mechanics.
+-Data sources
+-Data aggregators collecting data from sources
+-AI or interface uses data from aggregators to display.
+-Hacking may alter aggregated information, alter incoming info from sources, or alter how it is displayed
+
 
 Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
