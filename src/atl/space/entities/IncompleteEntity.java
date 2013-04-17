@@ -1,8 +1,16 @@
 package atl.space.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IncompleteEntity extends Entity {
 	
 	//Not sure if this is needed, we'll see.
+	
+	//For things we're actually rendering, but not the actual data of the "real" entity it represents
+	ArrayList<Component> concreteComponents = null;
+	//For example. This could have an overlay2drendercomponent that displays an "anomaly" symbol
+	//if all the data we have is a thermal or electromagnetic disturbance
 	
 	public IncompleteEntity(Entity e) {
 		super(e);
@@ -13,7 +21,37 @@ public class IncompleteEntity extends Entity {
 		for (Component component : components) {
 			//get relevant information
 		}
-		//render based on relevant information
+		//Update concretes based on relevant information
+		//Maybe does some more stuff like extra rendering
+		for (Component component : concreteComponents) {
+			if (component.isRenderable()) {
+				RenderableComponent rc = (RenderableComponent) component;
+				rc.render();
+			}
+		}
 	}
+	
+	public void addConcreteComponent(Component component) {
+		component.setOwnerEntity(this);
+		concreteComponents.add(component);
+	}
+	
+	public Component getConcreteComponent(String componentID){
+		for (Component comp : concreteComponents) {
+			if (comp.getId().equalsIgnoreCase(id))
+				return comp;
+		}
+		return null;
+	}
+	
+	public List<Component> getConcreteComponents(){
+		return concreteComponents;
+	}
+	
+	public void update(int delta, List<Entity> entities) {
+		//do nothing?
+		//Overrides Entity's update
+	}
+	
 
 }
