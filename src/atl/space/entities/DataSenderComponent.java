@@ -3,6 +3,7 @@ package atl.space.entities;
 import java.util.List;
 
 public class DataSenderComponent extends Component{
+	//this might wanna be abstract actually
 	
 	//sends data
 	//Not sure in what form.
@@ -22,10 +23,16 @@ public class DataSenderComponent extends Component{
 		id = dsc.getId();
 	}
 	
+	/*
+	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<COMPONENT> getData(List<Entity> entitiesInTheWorld){
+	 * 	
+	 * 
+	 * }
+	*/
 	@Override
 	public Component clone() {
-		// TODO Auto-generated method stub
-		return null;
+		Component temp = new DataSenderComponent(this);
+		return temp;
 	}
 
 	@Override

@@ -8,7 +8,7 @@ public class IncompleteEntity extends Entity {
 	//Not sure if this is needed, we'll see.
 	
 	//For things we're actually rendering, but not the actual data of the "real" entity it represents
-	ArrayList<Component> concreteComponents = null;
+	ArrayList<Component> concreteComponents = null; //ArrayList<RenderableComponent>?
 	//For example. This could have an overlay2drendercomponent that displays an "anomaly" symbol
 	//if all the data we have is a thermal or electromagnetic disturbance
 	
