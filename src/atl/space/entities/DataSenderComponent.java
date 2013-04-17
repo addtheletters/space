@@ -12,7 +12,7 @@ public class DataSenderComponent extends Component{
 	//But if it's a list of entities, it would give the positions of
 	//the entities and not really need any numbers for distances
 	//I feel like maybe an extension for Entity would be in order,
-	//like an IncompleteEntity, which can have indefinite components to account for sensors
+	//like an DataEntity, which can have indefinite components to account for sensors
 	//not being 100% accurate or not providing every little bit of info about an object
 	
 	//Scanners
