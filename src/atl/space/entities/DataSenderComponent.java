@@ -25,7 +25,7 @@ public class DataSenderComponent extends Component{
 	
 	/*
 	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<COMPONENT> getData(List<Entity> entitiesInTheWorld){
-	 * 	
+	 *	//HEY GUY! HEY!	
 	 * 
 	 * }
 	*/
