@@ -3,7 +3,7 @@ package atl.space.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncompleteEntity extends Entity {
+public class DataEntity extends Entity {
 	
 	//Not sure if this is needed, we'll see.
 	
@@ -12,12 +12,13 @@ public class IncompleteEntity extends Entity {
 	//For example. This could have an overlay2drendercomponent that displays an "anomaly" symbol
 	//if all the data we have is a thermal or electromagnetic disturbance
 	
-	public IncompleteEntity(Entity e) {
+	public DataEntity(Entity e) {
 		super(e);
 	}
 	
 	public void render(){
 		//Get info from components and draw something that makes sense
+		
 		for (Component component : components) {
 			//get relevant information
 		}
