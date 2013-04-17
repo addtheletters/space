@@ -23,6 +23,9 @@ public abstract class Component implements Cloneable{
     //	System.err.println("Not implemented");
     //	return null;
     //}
+    
+    //public abstract SOMEKINDOFDATA getRelevantData();
+    
     public abstract Component clone();
     
     public abstract void update(int delta, List<Entity> entities);

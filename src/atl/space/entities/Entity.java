@@ -11,7 +11,7 @@ public class Entity {
 	public Vector3f position;
 
 	ArrayList<Component> components = null;
-	//renderable components in this list
+	//components in this list
 	
 	
 	public static void restrictLength(Vector3f v, float length){
