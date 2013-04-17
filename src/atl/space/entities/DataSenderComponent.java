@@ -7,7 +7,11 @@ public class DataSenderComponent extends Component{
 	
 	//sends data
 	//Not sure in what form.
-	//A list of entities perhaps. I feel like maybe an extension for Entity would be in order,
+	//A list of entities perhaps. 
+	//Or maybe one of those maps n stuff Zach was talking about.
+	//But if it's a list of entities, it would give the positions of
+	//the entities and not really need any numbers for distances
+	//I feel like maybe an extension for Entity would be in order,
 	//like an IncompleteEntity, which can have indefinite components to account for sensors
 	//not being 100% accurate or not providing every little bit of info about an object
 	
