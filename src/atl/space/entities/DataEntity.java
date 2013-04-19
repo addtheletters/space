@@ -15,8 +15,13 @@ public class DataEntity extends Entity {
 	//For example. This could have an overlay2drendercomponent that displays an "anomaly" symbol
 	//if all the data we have is a thermal or electromagnetic disturbance
 	
+	
 	public DataEntity(Entity e) {
 		super(e);
+	}
+	public DataEntity(DataEntity e){
+		super(e);
+		concreteComponents = cloneComponentList(e.concreteComponents);
 	}
 	
 	public void render(){

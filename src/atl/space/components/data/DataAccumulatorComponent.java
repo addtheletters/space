@@ -28,9 +28,9 @@ public class DataAccumulatorComponent extends Component {
 	 */
 	
 	
-	public Component clone() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataAccumulatorComponent clone() {
+		DataAccumulatorComponent temp = new DataAccumulatorComponent(this);
+		return temp;
 	}
 
 	@Override

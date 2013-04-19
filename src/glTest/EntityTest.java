@@ -480,6 +480,8 @@ public class EntityTest {
 		//glTranslated(10000,100000,100000);
 		//
 		// System.out.println("Hi!");
+		
+		
 		for (Entity e : entities) {
 			e.render();
 			// System.out.println(e.getPosition().x);

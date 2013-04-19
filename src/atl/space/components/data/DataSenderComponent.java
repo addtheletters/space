@@ -60,8 +60,8 @@ public class DataSenderComponent extends Component implements Enableable{
 	}
 	
 	@Override
-	public Component clone() {
-		Component temp = new DataSenderComponent(this);
+	public DataSenderComponent clone() {
+		DataSenderComponent temp = new DataSenderComponent(this);
 		return temp;
 	}
 

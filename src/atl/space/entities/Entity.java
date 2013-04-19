@@ -33,6 +33,15 @@ public class Entity {
 		return false;
 	}
 	
+	public static ArrayList<Component> cloneComponentList(ArrayList<Component> toClone){
+		ArrayList<Component> temp = new ArrayList<Component>();
+		for(Component c : toClone){
+			temp.add(c.clone());
+		}
+		return temp;
+		
+	}
+	
 	//TODO: Check constructors to make sure they make new entities with new components with new vectors
 	
 	public Entity(String id) {
@@ -50,11 +59,7 @@ public class Entity {
 	public Entity(Entity e) {
 		//System.out.println("Instantiate!");
 		this.id = e.id;
-		components = new ArrayList<Component>();//(e.components);
-		for(Component c : e.components){
-			components.add((Component)c.clone());
-			//components.add( (Component)(c.clone()));
-		}
+		components = cloneComponentList(e.components);
 		position = new Vector3f(e.position);
 	}
 
