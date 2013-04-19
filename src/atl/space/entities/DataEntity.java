@@ -19,9 +19,9 @@ public class DataEntity extends Entity {
 	public void render(){
 		//Get info from components and draw something that makes sense
 		
-		for (Component component : components) {
+		//for (Component component : components) {
 			//get relevant information
-		}
+		//}
 		//Update concretes based on relevant information
 		//Maybe does some more stuff like extra rendering
 		for (Component component : concreteComponents) {

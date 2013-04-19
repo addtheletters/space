@@ -2,7 +2,7 @@ package atl.space.entities;
 
 import java.util.List;
 
-public class DataSenderComponent extends Component{
+public class DataSenderComponent extends Component implements Triggerable{
 	//this might wanna be abstract actually
 	
 	//sends data
@@ -19,6 +19,7 @@ public class DataSenderComponent extends Component{
 	//Sensors
 	//Communications
 	
+	private boolean enabled;
 	
 	public DataSenderComponent(){
 		id = "datasender";
@@ -30,9 +31,30 @@ public class DataSenderComponent extends Component{
 	/*
 	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<IncompleteEntity> getData(List<Entity> entitiesInTheWorld){
 	 *	//HEY GUY! HEY!	
+	 *		if(!enabled){
+	 *			System.err.println("Tried to access non-enabled data sender");
+	 *		}
 	 * 
 	 * }
 	*/
+	
+	
+	public boolean isEnabled(){
+		return enabled;
+	}
+	
+	public void setEnabled(boolean b){
+		enabled = b;
+	}
+	
+	public void disable(){
+		enabled = false;
+	}
+	
+	public void enable(){
+		enabled = true;
+	}
+	
 	@Override
 	public Component clone() {
 		Component temp = new DataSenderComponent(this);
@@ -49,6 +71,10 @@ public class DataSenderComponent extends Component{
 	public Component getStepped(int delta, List<Entity> entities) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void trigger(List<Entity> entities) {
+		enabled = true;
 	}
 	
 	//Data
