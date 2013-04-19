@@ -5,8 +5,8 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
+import atl.space.components.Triggerable;
 import atl.space.entities.Entity;
-import atl.space.entities.Triggerable;
 
 public class EmissionComponent extends Component implements Triggerable {
 	public Entity emission;

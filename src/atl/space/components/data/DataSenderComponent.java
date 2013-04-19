@@ -3,10 +3,10 @@ package atl.space.components.data;
 import java.util.List;
 
 import atl.space.components.Component;
+import atl.space.components.Enableable;
 import atl.space.entities.Entity;
-import atl.space.entities.Triggerable;
 
-public class DataSenderComponent extends Component implements Triggerable{
+public class DataSenderComponent extends Component implements Enableable{
 	//this might wanna be abstract actually
 	
 	//sends data
