@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import atl.space.components.Component;
+import atl.space.components.render.RenderableComponent;
+
 public class Entity {
 
 	public String id;

@@ -3,6 +3,9 @@ package atl.space.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import atl.space.components.Component;
+import atl.space.components.render.RenderableComponent;
+
 public class DataEntity extends Entity {
 	
 	//Not sure if this is needed, we'll see.

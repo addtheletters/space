@@ -1,5 +1,10 @@
 package glTest;
 
+import atl.space.components.MovementComponent;
+import atl.space.components.accel.DAccelComponent;
+import atl.space.components.emission.FTLauncherComponent;
+import atl.space.components.render.PointTrailRenderComponent;
+import atl.space.components.turn.RTurningComponent;
 import atl.space.entities.*;
 
 import static org.lwjgl.opengl.GL11.*;
