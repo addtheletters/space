@@ -3,6 +3,14 @@ space
 
 A space game / engine / thing. Will likely include gravity, collisions, and other stuff.
 
+Heat Systems Planning:
+-Joules of heat
+-Sinks can suck up a certain # of joules
+-Radiators and hulls of certain sorts release heat at a certain joules/tick
+-Heat release means detectable
+-More heat release means more detectable
+-Temperature?
+
 
 Missiles aren't working. Issues with constructors or something?
 -Make all components have constructor with (themselves)arg and
