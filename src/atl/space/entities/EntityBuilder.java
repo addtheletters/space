@@ -14,10 +14,10 @@ import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 import atl.space.components.render.PointRenderComponent;
 import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.components.render.SquareOverlayRenderComponent;
+import atl.space.components.render.TargetingOverlayRenderComponent;
 import atl.space.components.turn.FacingComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.components.turn.TTurnControlComponent;
-import atl.space.components.turn.TargetingOverlayRenderComponent;
 import atl.space.components.turn.TurningComponent;
 
 public class EntityBuilder {

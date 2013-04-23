@@ -1,4 +1,4 @@
-package atl.space.components.turn;
+package atl.space.components.render;
 
 
 import static org.lwjgl.opengl.GL11.*;
@@ -16,7 +16,6 @@ import org.lwjgl.util.Color;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
-import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 
 public class TargetingOverlayRenderComponent extends
 		EquiTriangleOverlayRenderComponent {
