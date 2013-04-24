@@ -93,6 +93,19 @@ public class Entity {
 		return null;
 	}
 
+	public List<Component> getComponents(String id){
+		List<Component> comps = new ArrayList<Component>();
+		for (Component comp : components) {
+			if (comp.getId().equalsIgnoreCase(id))
+				comps.add(comp);
+		}
+		return comps;
+	}
+	
+	public List<Component> getComponents(){
+		return components;
+	}
+	
 	public boolean hasComponent(String id) {
 		for (Component comp : components) {
 			if (comp.getId().equalsIgnoreCase(id))

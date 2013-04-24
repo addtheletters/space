@@ -103,7 +103,13 @@ public class HeatComponent extends Component implements HeatContainer {
 
 	@Override
 	public void update(int delta, List<Entity> entities) {
-		//do nothing?
+		//for all components
+		//if they generate heat
+		//add their heat
+		//if they disperse heat
+		//disperse their heat
+		//if they suck heat
+		//calculate all the things
 	}
 
 	@Override
