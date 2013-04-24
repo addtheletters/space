@@ -6,6 +6,8 @@ A space game / engine / thing. Will likely include gravity, collisions, and othe
 Heat Systems Planning:
 -Joules of heat
 -Sinks can suck up a certain # of joules
+-Temp determined as joules/degree kelvin
+-Heat capacity: Degree at which boolean overCapacity becomes true
 -Radiators and hulls of certain sorts release heat at a certain joules/tick
 -Heat release means detectable
 -More heat release means more detectable
