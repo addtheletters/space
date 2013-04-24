@@ -34,11 +34,12 @@ public class HeatComponent extends Component implements HeatContainer {
 	@Override
 	public void setHeat(double heat) {
 		this.heat = heat;
+		ensurePositiveHeat();
 	}
 
 	@Override
 	public void setTemperature(double degrees) {
-		this.heat = degrees / degreesPerHeat;
+		setHeat( degrees / degreesPerHeat);
 	}
 	
 	@Override
@@ -53,17 +54,17 @@ public class HeatComponent extends Component implements HeatContainer {
 	
 	@Override
 	public void addHeat(double heat) {
-		this.heat += heat;
+		setHeat(this.heat + heat);
 	}
 
 	@Override
 	public void addTemperature(double degrees) {
-		this.heat += degrees / degreesPerHeat;
+		setHeat(this.heat +( degrees / degreesPerHeat));
 	}
 	
 	@Override
 	public void addCapacity(double degrees){
-		temperatureCapacity += degrees;
+		setCapacity(temperatureCapacity + degrees);
 	}
 	
 	public double getCapacity(){
@@ -118,6 +119,16 @@ public class HeatComponent extends Component implements HeatContainer {
 		temp.update(delta, entities);
 		return temp;
 	}
-	
 
+	@Override
+	public void transferHeat(double heat, HeatContainer target) {
+		addHeat(-1 * heat);
+		target.addHeat(heat);
+	}
+	
+	public void ensurePositiveHeat(){
+		if(heat < 0){
+			heat = 0;
+		}
+	}
 }

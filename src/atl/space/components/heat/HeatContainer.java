@@ -11,10 +11,12 @@ public interface HeatContainer {
 	public void addHeat(double heat);
 	public void addTemperature(double degrees);
 	public void addCapacity(double degrees);
+	public void transferHeat(double heat, HeatContainer target);
 	public double getHeat();
 	public double getTemperature();
 	public double getCapacity();
 	public boolean overCapacity();
 	public boolean overPercentCapacity(double percentCapacity);
 	public boolean overDistanceCapacity(double degrees);
+	//public void ensurePositiveHeat();
 }
