@@ -1,6 +1,9 @@
 package atl.space.components.heat;
 
 public interface HeatContainer {
+	//heat represents some measure of energy. Maybe joules or something.
+	//temperature represents an average of energy in the object, like degrees kelvin.
+	
 	public void setHeat(double heat);
 	public void setTemperature(double degrees);
 	public void setCapacity(double degrees);
