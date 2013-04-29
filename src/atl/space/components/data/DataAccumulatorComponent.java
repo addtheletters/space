@@ -14,8 +14,12 @@ public class DataAccumulatorComponent extends Component {
 		id = dac.getId();
 	}
 	
-	
 	/*
+	 * Perhaps find out the information provided by all the data senders
+	 * and build full entities with the component data?
+	 */
+	
+	/* 
 	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<DataEntity> collectData(List<Entity> entities){
 	 * 		SOMETYPEOFDATA<DataEntity> accum = new SOMETYPEOFDATA<DataEntity>();
 	 * 		for(Component c : owner.components){

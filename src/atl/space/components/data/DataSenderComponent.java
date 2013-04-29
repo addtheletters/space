@@ -33,12 +33,11 @@ public class DataSenderComponent extends Component implements Enableable{
 	}
 	
 	/*
-	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<IncompleteEntity> getData(List<Entity> entitiesInTheWorld){
+	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<DataEntity> getData(List<Entity> entitiesInTheWorld){
 	 *	//HEY GUY! HEY!	
 	 *		if(!enabled){
 	 *			System.err.println("Tried to access non-enabled data sender");
 	 *		}
-	 * 
 	 * }
 	*/
 	
@@ -67,13 +66,12 @@ public class DataSenderComponent extends Component implements Enableable{
 
 	@Override
 	public void update(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
-		
+		// TODO do nothing? depends on how accumulators and such are implemented
 	}
 
 	@Override
 	public Component getStepped(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
+		// TODO Maybe implement this, maybe not
 		return null;
 	}
 	@Override

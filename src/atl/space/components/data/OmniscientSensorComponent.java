@@ -18,7 +18,7 @@ public class OmniscientSensorComponent extends DataSenderComponent {
 	
 	
 	/*
-	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<IncompleteEntity> getData(List<Entity> entitiesInTheWorld){
+	 * public SOMETYPEOFDATAMAYBEANARRAYLIST<DataEntity> getData(List<Entity> entitiesInTheWorld){
 	 *		if(!enabled){
 	 *			System.err.println("Tried to access non-enabled data sender");
 	 *		}
