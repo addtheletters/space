@@ -5,6 +5,7 @@ A space game / engine / thing. Will likely include gravity, collisions, and othe
 
 Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
+Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 
 TODO:
 -Test projectiles, missiles, TurnControl
