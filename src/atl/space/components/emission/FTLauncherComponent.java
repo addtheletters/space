@@ -38,6 +38,10 @@ public class FTLauncherComponent extends FacingLauncherComponent {
 				expulsionSpeed, netVel);
 		Entity temp = buildEmission();
 		temp.position = new Vector3f(owner.position);
+		
+		//now that we have buildEmission we can just modify that rather than adding
+		//all this crap down here in trigger
+		
 		if (!temp.hasComponent("movement")) {
 			temp.addComponent(new MovementComponent(netVel));
 		} else {
