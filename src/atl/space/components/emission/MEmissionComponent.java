@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.components.Component;
 import atl.space.components.MovementComponent;
 import atl.space.entities.Entity;
 

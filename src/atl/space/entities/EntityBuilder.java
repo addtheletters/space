@@ -8,7 +8,6 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.MovementComponent;
 import atl.space.components.accel.AccelComponent;
 import atl.space.components.accel.RDAccelComponent;
-import atl.space.components.emission.EmissionComponent;
 import atl.space.components.emission.FTLauncherComponent;
 import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 import atl.space.components.render.PointRenderComponent;
