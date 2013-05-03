@@ -7,6 +7,8 @@ Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
 Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 
+Currrent Objective: Create data systems. Any advice is welcome :P
+
 TODO:
 -Test projectiles, missiles, TurnControl
 -Make updates for components utilize delta time
