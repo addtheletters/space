@@ -9,6 +9,9 @@ public abstract class Component implements Cloneable{
     protected String id;
     protected Entity owner;
     
+    public Component(String id) {
+    	this.id = id;
+    }
     
     public String getId()
     {
@@ -31,8 +34,6 @@ public abstract class Component implements Cloneable{
     public abstract Component clone();
     
     public abstract void update(int delta, List<Entity> entities);
-    
-    public abstract Component getStepped(int delta, List<Entity> entities);
     
     public boolean isRenderable(){
     	return false;

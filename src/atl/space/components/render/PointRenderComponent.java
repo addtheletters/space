@@ -13,10 +13,10 @@ import atl.space.entities.Entity;
 
 public class PointRenderComponent extends RenderableComponent {
 	public PointRenderComponent(){
-		super();
+		super("pointrendercomponent");
 	}
 	public PointRenderComponent(PointRenderComponent prc){
-		super();
+		this();
 	}
 	
 	public Component clone(){
@@ -25,13 +25,6 @@ public class PointRenderComponent extends RenderableComponent {
 	
 	public void update(int delta, List<Entity> entities) {
 		//do nothing
-	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		PointRenderComponent prc = new PointRenderComponent();
-		prc.update(delta, entities);
-		return prc;
 	}
 
 	@Override

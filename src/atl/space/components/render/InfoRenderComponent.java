@@ -14,10 +14,10 @@ public class InfoRenderComponent extends RenderableComponent {
 	//Will display an info box with statistics next to it's entity
 	
 	public InfoRenderComponent() {
-		id = "inforender";
+		super("inforender");
 	}
 	public InfoRenderComponent(InfoRenderComponent irc) {
-		//TODO: Do stuff
+		this();
 	}
 	public Component clone() {
 		return new InfoRenderComponent(this);
@@ -35,11 +35,4 @@ public class InfoRenderComponent extends RenderableComponent {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

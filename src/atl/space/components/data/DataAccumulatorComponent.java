@@ -8,10 +8,10 @@ import atl.space.entities.Entity;
 public class DataAccumulatorComponent extends Component {
 
 	public DataAccumulatorComponent(){
-		id = "dataaccumulator";
+		super("dataaccumulator");
 	}
 	public DataAccumulatorComponent(DataAccumulatorComponent dac){
-		id = dac.getId();
+		super(dac.getId());
 	}
 	
 	/*
@@ -42,11 +42,4 @@ public class DataAccumulatorComponent extends Component {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

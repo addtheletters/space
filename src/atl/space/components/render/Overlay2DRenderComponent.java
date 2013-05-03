@@ -21,9 +21,10 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	
 	public Overlay2DRenderComponent(){
 		//do camera setup before this
-		setOrthoProjMatrix(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
+		this(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
 	}
 	public Overlay2DRenderComponent(FloatBuffer orthoProjMatrix){
+		super("overlay2drendercomponent");
 		setOrthoProjMatrix(orthoProjMatrix);
 	}
 	
@@ -31,6 +32,7 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 		orthographicProjectionMatrix = orthoProjMatrix;
 	}
 	public Overlay2DRenderComponent(Overlay2DRenderComponent orc) {
+		super(orc.getId());
 		this.orthographicProjectionMatrix = orc.orthographicProjectionMatrix;
 	}
 	public Component clone() {
@@ -96,12 +98,4 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	public void update(int delta, List<Entity> entities) {
 		//do nothing? may need to do stuff in subclasses
 	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		//short answer: no.
-		// I don't even know.
-		return null;
-	}
-
 }

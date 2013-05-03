@@ -18,16 +18,15 @@ public class FacingComponent extends RenderableComponent {
 	public static final float renderLength = 100;
 	public Vector3f facing;
 	public FacingComponent(){
-		id = "facing";
-		facing = new Vector3f(0, 0, 0);
+		this(new Vector3f(0, 1, 0));
 	}
 	public FacingComponent(Vector3f f){
-		id = "facing";
+		super("facing");
 		facing = new Vector3f(f);
 		facing.normalise();
 	}
 	public FacingComponent(FacingComponent fc){
-		id = fc.id;
+		super(fc.id);
 		facing = new Vector3f(fc.facing);
 		facing.normalise();
 		//Entity.restrictLength(facing, 1); //does the same thing as facing.normalise()
@@ -46,13 +45,6 @@ public class FacingComponent extends RenderableComponent {
 		if(facing.length() != 0){
 		facing.normalise();
 		}
-	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		FacingComponent fc = new FacingComponent(this);
-		fc.update(delta, entities);
-		return fc;
 	}
 	@Override
 	public void render() {

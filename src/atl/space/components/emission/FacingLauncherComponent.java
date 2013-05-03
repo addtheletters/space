@@ -8,22 +8,22 @@ import atl.space.components.Component;
 import atl.space.components.turn.TurningComponent;
 import atl.space.entities.Entity;
 
-public class FLauncherComponent extends LauncherComponent {
+public class FacingLauncherComponent extends LauncherComponent {
 	//works with things that have TurningComponents
-	public FLauncherComponent(FLauncherComponent flc){
+	public FacingLauncherComponent(FacingLauncherComponent flc){
 		super(flc);
 	}
-	public FLauncherComponent(Entity emission, Vector3f expspeed){
-		super(emission, expspeed);
+	public FacingLauncherComponent(Vector3f expspeed){
+		super(expspeed);
 	}
-	public FLauncherComponent(Entity emission, Vector3f expdir, float speed){
-		super(emission);
+	public FacingLauncherComponent(Entity emission, Vector3f expdir, float speed){
+		super();
 		expulsionSpeed = new Vector3f(expdir);
 		Entity.restrictLength(expulsionSpeed, speed);
 	}
 	
 	public Component clone(){
-		return new FLauncherComponent(this);
+		return new FacingLauncherComponent(this);
 	}
 	
 	public void update(int delta, List<Entity> entities) {

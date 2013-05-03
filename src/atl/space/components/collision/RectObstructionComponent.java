@@ -13,14 +13,14 @@ public class RectObstructionComponent extends ObstructionComponent {
 	
 
 	public RectObstructionComponent() {
-		id = "obstruction";
+		super("obstruction");
 		xSize = 0;
 		ySize = 0;
 		zSize = 0;
 	}
 	
 	public RectObstructionComponent(RectObstructionComponent roc){
-		this.id = roc.id;
+		super(roc.id);
 		xSize = roc.xSize;
 		ySize = roc.ySize;
 		zSize = roc.zSize;
@@ -82,14 +82,7 @@ public class RectObstructionComponent extends ObstructionComponent {
 	public void update(int delta, List<Entity> entities) {
 		// do nothing?
 	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		RectObstructionComponent roc = new RectObstructionComponent();
-		roc.update(delta, entities);
-		return roc;
-	}
-
+	
 	protected class Coord {
 		public double value;
 		public double obsSize;

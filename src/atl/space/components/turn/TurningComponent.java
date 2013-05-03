@@ -19,16 +19,15 @@ public class TurningComponent extends RenderableComponent { //don't use this, us
 	
 	public static final float renderLength = 50;
 	public TurningComponent(){
-		id = "turning";
-		turn = new Vector3f(0, 0, 0);
+		this(new Vector3f());
 	}
 	public TurningComponent(Vector3f t){
-		id = "turning";
+		super("turning");
 		turn = new Vector3f(t);
 	}
 	
 	public TurningComponent(TurningComponent tc){
-		id = tc.getId();
+		super(tc.getId());
 		turn = new Vector3f(tc.turn);
 	}
 	

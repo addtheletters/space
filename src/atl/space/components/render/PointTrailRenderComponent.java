@@ -22,16 +22,18 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	public float trailfade = 0f;
 	
 	public PointTrailRenderComponent(){
-		id = "trailrender";
-		trail = new LinkedList<Vector3f>();
+		//TODO:Make these more reasonable?
+		this(1, 0);
 	}
 	public PointTrailRenderComponent(PointTrailRenderComponent ptrc) {
+		super(ptrc.id);
 		this.trail = ptrc.trail;
 		this.trailsize = ptrc.trailsize;
 		this.trailfade = ptrc.trailfade;
 	}
+	
 	public PointTrailRenderComponent(int ts, float tf){
-		id = "trailrender";
+		super("trailrender");
 		trail = new LinkedList<Vector3f>();
 		trailsize = ts;
 		trailfade = tf;
@@ -42,13 +44,6 @@ public class PointTrailRenderComponent extends RenderableComponent {
 	public void update(int delta, List<Entity> entities) {
 		trail.addFirst(new Vector3f(owner.position));
 		//System.out.println(trail.size());
-	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		PointTrailRenderComponent prc = new PointTrailRenderComponent();
-		prc.update(delta, entities);
-		return prc;
 	}
 
 	@Override

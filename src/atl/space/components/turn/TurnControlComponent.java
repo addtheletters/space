@@ -18,17 +18,16 @@ public class TurnControlComponent extends Component implements Triggerable {
 	public Vector3f target;
 
 	public TurnControlComponent() {
-		id = "turncontrol";
-		this.target = new Vector3f();
+		this(new Vector3f());
 	}
 
 	public TurnControlComponent(Vector3f target) {
-		id = "turncontrol";
+		super("turncontrol");
 		this.target = target;
 	}
 
 	public TurnControlComponent(TurnControlComponent tcc) {
-		id = tcc.id;
+		super(tcc.id);
 		this.target = new Vector3f(tcc.target);
 		turningToTarget = tcc.turningToTarget;
 		hardTurn = tcc.hardTurn;
@@ -102,15 +101,6 @@ public class TurnControlComponent extends Component implements Triggerable {
 		 * softTurn's angle can vary depending on the target and the facing vector 
 	}
 	*/
-	
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		//I'm not exactly sure why I have these. Not currently using them for anything and any
-		//possible uses could prolly be done faster with some simple math.
-		//I don't really want to delete all of them though in case I need them later...
-		return null;
-	}
-
 	@Override
 	public void trigger(List<Entity> entities) {
 		initiateTurn();

@@ -19,15 +19,14 @@ public class AccelComponent extends RenderableComponent { //don't use this, use 
 	public Vector3f accel;
 	private static float renderLength = 1000;
 	public AccelComponent(){
-		id = "accel";
-		accel = new Vector3f(0, 0, 0);
+		this(new Vector3f(0, 0, 0));
 	}
 	public AccelComponent(Vector3f a){
-		id = "accel";
+		super("accel");
 		accel = a;
 	}
 	public AccelComponent(AccelComponent ac){
-		id = ac.getId();
+		super(ac.getId());
 		accel = new Vector3f(ac.accel);
 	}
 	

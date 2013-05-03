@@ -50,10 +50,12 @@ public class EntityBuilder {
 		return temp;
 	}
 	public static Entity emitter(Vector3f pos, Entity emission){
-		Entity temp = new Entity("defaultemitter");
-		temp.addComponent(new EmissionComponent(emission));
-		temp.position = new Vector3f(pos);
-		return temp;
+		throw new IllegalArgumentException("Not implemented");
+		//TODO: needs fixin
+		//Entity temp = new Entity("defaultemitter");
+		//temp.addComponent(new EmissionComponent(emission));
+		//temp.position = new Vector3f(pos);
+		//return temp;
 	}
 	public static Entity accelerator(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration){
 		Entity temp = new Entity("defaultaccelerator");

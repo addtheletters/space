@@ -9,7 +9,7 @@ import atl.space.components.MovementComponent;
 import atl.space.components.turn.TurnControlComponent;
 import atl.space.entities.Entity;
 
-public class FTLauncherComponent extends FLauncherComponent {
+public class FTLauncherComponent extends FacingLauncherComponent {
 	public Vector3f target;
 
 	// Needs the emission to have a TurnControlComponent
@@ -36,7 +36,7 @@ public class FTLauncherComponent extends FLauncherComponent {
 		Vector3f.add(
 				((MovementComponent) owner.getComponent("movement")).speed,
 				expulsionSpeed, netVel);
-		Entity temp = new Entity(emission);
+		Entity temp = buildEmission();
 		temp.position = new Vector3f(owner.position);
 		if (!temp.hasComponent("movement")) {
 			temp.addComponent(new MovementComponent(netVel));

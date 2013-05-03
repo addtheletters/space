@@ -12,20 +12,18 @@ public class HeatComponent extends Component implements HeatContainer {
 	private double temperatureCapacity;
 	
 	public HeatComponent(){
-		id = "heat";
-		heat = 0;
-		degreesPerHeat = 1;
-		temperatureCapacity = 100;
+		this(0, 1, 100);
 	}
 	
 	public HeatComponent(double heat, double degreesPerHeat, double temperatureCapacity){
+		super("heat");
 		this.heat = heat;
 		this.degreesPerHeat = degreesPerHeat;
 		this.temperatureCapacity = temperatureCapacity;
 	}
 	
 	public HeatComponent(HeatComponent hc){
-		id = hc.getId();
+		super(hc.getId());
 		this.heat = hc.getHeat();
 		this.degreesPerHeat = hc.degreesPerHeat;
 		this.temperatureCapacity = hc.getCapacity();
@@ -112,14 +110,7 @@ public class HeatComponent extends Component implements HeatContainer {
 		//if they suck heat
 		//calculate all the things
 	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		HeatComponent temp = clone();
-		temp.update(delta, entities);
-		return temp;
-	}
-
+	
 	@Override
 	public void transferHeat(double heat, HeatContainer target) {
 		addHeat(-1 * heat);

@@ -8,42 +8,29 @@ import atl.space.components.Component;
 import atl.space.components.Triggerable;
 import atl.space.entities.Entity;
 
-public class EmissionComponent extends Component implements Triggerable {
-	public Entity emission;
-	public EmissionComponent(){
-		id = "emission";
-		emission = new Entity("defaultEmission");
+public abstract class EmissionComponent extends Component implements Triggerable {
+	public EmissionComponent(String id){
+		super(id);
 	}
 	
-	public EmissionComponent(Entity emission){
-		id = "emission";
-		this.emission = emission;
-	}
 	public EmissionComponent(EmissionComponent ec){
-		id = "emission";
-		emission = ec.emission;
+		super(ec.id);
 	}
 	
-	public Component clone() {
-		return new EmissionComponent(this);
-	}
 	@Override
 	public void trigger(List<Entity> entities) {
-		Entity temp = new Entity(emission);
-		temp.position = new Vector3f(owner.position);
-		entities.add(temp);
+		if (canEmit()) { 
+			Entity temp = buildEmission();
+			temp.position = new Vector3f(owner.position);
+			entities.add(temp);
+		}
 	}
+	
+	protected abstract Entity buildEmission();
+	protected abstract boolean canEmit();
 
 	@Override
 	public void update(int delta, List<Entity> entities) {
 		//do nothing
 	}
-
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		EmissionComponent ec = new EmissionComponent(this);
-		ec.update(delta, entities);
-		return ec;
-	}
-
 }

@@ -9,16 +9,14 @@ import atl.space.entities.Entity;
 public class MovementComponent extends Component {
 	public Vector3f speed;
 	public MovementComponent(){
-		id = "movement";
-		speed = new Vector3f(0, 0, 0);
+		this(new Vector3f(0, 0, 0));
 	}
 	public MovementComponent(Vector3f s){
-		id = "movement";
+		super("movement");
 		speed = s;
 	}
 	public MovementComponent(MovementComponent mc){
-		id = mc.id;
-		speed = new Vector3f(mc.speed);
+		this(new Vector3f(mc.speed));
 	}
 	
 	public Component clone(){

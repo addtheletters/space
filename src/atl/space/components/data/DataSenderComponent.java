@@ -26,10 +26,10 @@ public class DataSenderComponent extends Component implements Enableable{
 	private boolean enabled;
 	
 	public DataSenderComponent(){
-		id = "datasender";
+		super("datasender");
 	}
 	public DataSenderComponent(DataSenderComponent dsc){
-		id = dsc.getId();
+		super(dsc.getId());
 	}
 	
 	/*
@@ -69,11 +69,6 @@ public class DataSenderComponent extends Component implements Enableable{
 		// TODO do nothing? depends on how accumulators and such are implemented
 	}
 
-	@Override
-	public Component getStepped(int delta, List<Entity> entities) {
-		// TODO Maybe implement this, maybe not
-		return null;
-	}
 	@Override
 	public void trigger(List<Entity> entities) {
 		enabled = true;
