@@ -1,6 +1,7 @@
 package atl.space.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -13,8 +14,11 @@ public class Entity {
 	public String id;
 	public Vector3f position;
 
+	/**
+	 * List of all components
+	 */
 	ArrayList<Component> components = null;
-	//components in this list
+	HashMap<String, Component> componentHash = null;
 	
 	
 	public static void restrictLength(Vector3f v, float length){
@@ -45,35 +49,32 @@ public class Entity {
 	//TODO: Check constructors to make sure they make new entities with new components with new vectors
 	
 	public Entity(String id) {
-		//System.out.println("Instantiate!");
-		this.id = id;
-		components = new ArrayList<Component>();
-		position = new Vector3f(0, 0, 0);
+		this(id, new Vector3f(0, 0, 0));
 	}
 	
-	public Entity(String ID, Vector3f pos){
-		id = ID;
+	public Entity(String id, Vector3f pos){
+		this.id = id;
 		position = pos;
+		componentHash = new HashMap<String, Component>();
+		components = new ArrayList<Component>();
 	}
 	
 	public Entity(Entity e) {
-		//System.out.println("Instantiate!");
-		this.id = e.id;
-		components = cloneComponentList(e.components);
-		position = new Vector3f(e.position);
+		this(e.id, new Vector3f(e.position));
 	}
 
 	public Entity(String id, Vector3f position, ArrayList<Component> cs) {
-		this.id = id;
-		this.position = position;
-		components = new ArrayList<Component>(cs);
-		// addComponents(cs);
+		this(id, position);
+		addComponents(cs);
 	}
 
 	public void addComponent(Component component) {
+		if (componentHash.containsKey(component.getId().toLowerCase())) {
+			throw new IllegalArgumentException("Component with name: " + component.getId() + " has already been added to entity " + this.id);
+		}
 		component.setOwnerEntity(this);
 		components.add(component);
-		//System.out.println("Add!");
+		componentHash.put(component.getId().toLowerCase(), component);
 	}
 
 	public void addComponents(List<Component> cs) {
@@ -83,14 +84,7 @@ public class Entity {
 	}
 
 	public Component getComponent(String id) {
-		
-		for (Component comp : components) {
-			//System.out.println(comp.getId());
-			if (comp.getId().equalsIgnoreCase(id))
-				return comp;
-		}
-
-		return null;
+		return componentHash.get(id.toLowerCase());
 	}
 
 	public List<Component> getComponents(String id){
@@ -107,12 +101,7 @@ public class Entity {
 	}
 	
 	public boolean hasComponent(String id) {
-		for (Component comp : components) {
-			if (comp.getId().equalsIgnoreCase(id))
-				return true;
-		}
-
-		return false;
+		return componentHash.containsKey(id.toLowerCase());
 	}
 
 	public Vector3f getPosition() {
@@ -142,6 +131,7 @@ public class Entity {
 		}
 		return nearest;
 	}
+	
 	public Entity getNearestTarget(List<Entity> entities){
 		Entity nearest = entities.get(0);
 		float longestdistance = getDistance(nearest.position);
