@@ -1,4 +1,8 @@
+#Personal stuff
 .classpath
 .project
 .prefs
+#Vim files
+*.swp
+#We don't need the build files
 bin/*
