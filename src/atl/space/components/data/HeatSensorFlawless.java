@@ -2,6 +2,10 @@ package atl.space.components.data;
 //--require('HEAT')
 //--awwww. Syntax errors!?!!?!? freakin lua bleargh
 
+
+/*
+ * deprecated, replacement in progress in atl.space.data
+ */
 public class HeatSensorFlawless extends DataSenderComponent { //haha flawless haha ***SYNTAX ERROR***
 	//...these comments will probably confuse a lot of people ah well
 	

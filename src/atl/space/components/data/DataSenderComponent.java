@@ -6,6 +6,10 @@ import atl.space.components.Component;
 import atl.space.components.Enableable;
 import atl.space.entities.Entity;
 
+
+/*
+ * deprecated, replacement in progress in atl.space.data
+ */
 public class DataSenderComponent extends Component implements Enableable{
 	//this might wanna be abstract actually
 	

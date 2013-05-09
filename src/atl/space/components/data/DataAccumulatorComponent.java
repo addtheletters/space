@@ -5,6 +5,9 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
+/*
+ * deprecated, replacement in progress in atl.space.data
+ */
 public class DataAccumulatorComponent extends Component {
 
 	public DataAccumulatorComponent(){

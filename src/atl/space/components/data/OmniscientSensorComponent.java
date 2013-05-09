@@ -1,6 +1,9 @@
 package atl.space.components.data;
 
 
+/*
+ * deprecated, replacement in progress in atl.space.data
+ */
 public class OmniscientSensorComponent extends DataSenderComponent {
 	
 	public OmniscientSensorComponent(){

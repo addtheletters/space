@@ -8,7 +8,7 @@ public abstract class Data {
 	//I could go for realism and have the data be in the form of a bytearray or something.
 	//Seems like it'd be simpler to have various kinds of return and just have the processor
 	//handle them differently based on the identifier.
-	public abstract Object getData();
+	public Object data;
 	//public abstract boolean isLocationData();
 	//public abstract boolean isEntityData();
 	//public abstract boolean isBasicData();
