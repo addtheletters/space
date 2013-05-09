@@ -9,6 +9,10 @@ public abstract class Data {
 	//Seems like it'd be simpler to have various kinds of return and just have the processor
 	//handle them differently based on the identifier.
 	public Object data;
+	
+	/*
+	 * I guess we can keeps da boolean craps...
+	 */
 	//public abstract boolean isLocationData();
 	//public abstract boolean isEntityData();
 	//public abstract boolean isBasicData();
@@ -17,6 +21,7 @@ public abstract class Data {
 	/*
 	 * replace the boolean craps?
 	 */
+	
 	public String identifier(){
 		return "UNIDENTIFIED";
 	}
