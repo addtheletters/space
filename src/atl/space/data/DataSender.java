@@ -2,9 +2,9 @@ package atl.space.data;
 
 public interface DataSender{
 	
-	public void enable();
-	public void disable();
-	public boolean enabled();
+	public void enableData();
+	public void disableData();
+	public boolean dataEnabled();
 	
 	public Data getData();
 	
