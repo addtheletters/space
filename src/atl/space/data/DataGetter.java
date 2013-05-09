@@ -15,4 +15,9 @@ public interface DataGetter{
 	
 	public String identifier();
 	
+	//DATACEPTION
+	//There's data
+	//in a data
+	//in a data...
+	
 }

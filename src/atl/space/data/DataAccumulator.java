@@ -33,7 +33,8 @@ public abstract class DataAccumulator {
 		getters.add(dgtr);
 	}
 	
-	//I feel the need to build a world class now -_-
+	
+	//I feel (the need)#cross the urge to build a world class now -_-
 	//Prolly need various processors too for these. A "user drawing/render processor," "AI processor," etc
 	
 }
