@@ -11,6 +11,7 @@ import atl.space.entities.Entity;
 public abstract class DataAccumulator {
 	
 	private static final boolean DEBUG = true;
+	
 	private ArrayList<DataGetter> getters;
 	
 	public Collection<Data> accumulate(List<Entity> worldEntities){
@@ -33,5 +34,6 @@ public abstract class DataAccumulator {
 	}
 	
 	//I feel the need to build a world class now -_-
+	//Prolly need various processors too for these. A "user drawing/render processor," "AI processor," etc
 	
 }
