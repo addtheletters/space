@@ -1,6 +1,6 @@
 package atl.space.data;
 
-public interface DataSender{
+public interface DataGetter{
 	
 	public void enableData();
 	public void disableData();
