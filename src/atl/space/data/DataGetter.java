@@ -13,4 +13,6 @@ public interface DataGetter{
 	
 	public Collection<Data> getData(List<Entity> worldEntities); //collections? pretty sure that's as abstract as I can go
 	
+	public String identifier();
+	
 }
