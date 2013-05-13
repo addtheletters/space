@@ -1,6 +1,6 @@
 package atl.space.data;
 
-public abstract class Data {
+public abstract class Data<T> {
 	/*	
 	 * 	I still don't really know if this is how I want to do this. Help?
 	 */
@@ -8,22 +8,18 @@ public abstract class Data {
 	//I could go for realism and have the data be in the form of a bytearray or something.
 	//Seems like it'd be simpler to have various kinds of return and just have the processor
 	//handle them differently based on the identifier.
-	public Object data;
+	public T data;
+	private String id;
 	
-	/*
-	 * I guess we can keeps da boolean craps...
-	 */
-	//public abstract boolean isLocationData();
-	//public abstract boolean isEntityData();
-	//public abstract boolean isBasicData();
-	//public abstract boolean isCommData();
+	public Data (T data, String id) {
+		this.data = data;
+		this.id = id;
+	}
 	
-	/*
-	 * replace the boolean craps?
-	 */
+	public abstract DataType getType();
 	
-	public String identifier(){
-		return "UNIDENTIFIED";
+	public String getIdentifier(){
+		return id;
 	}
 	
 
