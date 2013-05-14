@@ -14,11 +14,20 @@ public abstract class AbstractMap{
     return getValue(location.getX(), location.getY(), location.getZ());
   }
   
+  
+  /*
+  * Uses data in background to obtain a value for the coords. Maybe also uses vitalPoints?
+  */
   public abstract Object getValue(int x, int y, int z);
   
   public void addVitalPoint(Vector3f location, Object value){
     vitalPoints.put(location, value);
+    adjustBackground();
   }
   
+  /*
+  * Uses vitalPoints data to alter the background.
+  */
+  public abstract void adjustBackground(); 
   
 }
