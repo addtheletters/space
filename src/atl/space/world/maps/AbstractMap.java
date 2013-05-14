@@ -10,6 +10,8 @@ public abstract class AbstractMap{
   Map<Vector3f, Object> vitalPoints;
   Object[][][] background;
   
+  //Constructor based on entities?
+  
   public Object getValue(Vector3f location){
     return getValue(location.getX(), location.getY(), location.getZ());
   }
