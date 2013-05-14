@@ -9,6 +9,16 @@ public abstract class AbstractMap{
                                                                 //or guess what the heat is(for an observer)
   Map<Vector3f, Object> vitalPoints;
   Object[][][] background;
-
-
+  
+  public Object getValue(Vector3f location){
+    return getValue(location.getX(), location.getY(), location.getZ());
+  }
+  
+  public abstract Object getValue(int x, int y, int z);
+  
+  public void addVitalPoint(Vector3f location, Object value){
+    vitalPoints.put(location, value);
+  }
+  
+  
 }
