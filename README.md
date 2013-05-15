@@ -19,11 +19,11 @@ TODO:
 
 
 Current EntityTest functionality:
--Draws a starfeild
--Draws a bunch of movers that leave fading trails
--Draws a bunch of controllable accelerator things with lots of options, with overlays
--Attempted missile launching, semi-working
--Attempted 'unit selection', semi-working
+- Draws a starfeild
+- Draws a bunch of movers that leave fading trails
+- Draws a bunch of controllable accelerator things with lots of options, with overlays
+- Attempted missile launching, semi-working
+- Attempted 'unit selection', semi-working
 
 
 
