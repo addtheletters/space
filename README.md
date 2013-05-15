@@ -10,12 +10,12 @@ Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
-
-- [ ] Test projectiles, missiles, TurnControl
-- [ ] Make updates for components utilize delta time
-- [ ] Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
-- [ ] Information mechanics, data sources, etc (see wiki)
-- [ ] Heat mapping, EM source mapping, figuring that out (see wiki/dev-diary)
+_Apparently... this doesn't use GFM. So well crap._
+- Test projectiles, missiles, TurnControl
+- Make updates for components utilize delta time
+- Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
+- Information mechanics, data sources, etc (see wiki)
+- Heat mapping, EM source mapping, figuring that out (see wiki/dev-diary)
 
 
 Current EntityTest functionality:
