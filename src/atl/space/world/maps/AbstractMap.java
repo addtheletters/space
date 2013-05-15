@@ -20,7 +20,7 @@ public abstract class AbstractMap{
   /*
   * Uses data in background to obtain a value for the coords. Maybe also uses vitalPoints?
   */
-  public abstract Object getValue(int x, int y, int z);
+  public abstract Object getValue(double x, double y, double z);
   
   public void addVitalPoint(Vector3f location, Object value){
     vitalPoints.put(location, value);
