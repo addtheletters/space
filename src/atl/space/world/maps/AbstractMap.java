@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.lwjgl.util.vector.Vector3f;
 
+
 public abstract class AbstractMap<T>{
   //Not exactly sure how to do this
   //Basically we want it set up to be able to track some sort of data for every point in space.
@@ -33,5 +34,6 @@ public abstract class AbstractMap<T>{
   * Uses vitalPoints data to alter the background.
   */
   public abstract void adjustBackground(); 
+  
   
 }

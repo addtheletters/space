@@ -1,14 +1,16 @@
 package atl.space.world.maps;
 
+import java.util.Iterator;
 import java.util.List;
+
+import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.entities.Entity;
 
 public class NumericalAverageMap extends AbstractMap<Integer> {
 	public NumericalAverageMap(List<Entity> entities) {
-
+		//Not done
 	}
-
 	@Override
 	public Integer getValue(double x, double y, double z) {
 		// TODO Auto-generated method stub
@@ -17,8 +19,21 @@ public class NumericalAverageMap extends AbstractMap<Integer> {
 
 	@Override
 	public void adjustBackground() {
-		// TODO Auto-generated method stub
-		//You guys stop!
+		Iterator<Vector3f> vitalIt = vitalPoints.keySet().iterator();
+		while(vitalIt.hasNext()){
+			Vector3f loc = vitalIt.next();
+			int val = vitalPoints.get(loc);
+			
+			//Not done
+		}
+		
+		
+		//for(int x = 0; x < background.length; x++){
+		//	for(int y = 0; y < background[0].length; y++){
+		//		for(int z = 0; z < background[0][0].length; z++){
+		//		}
+		//	}
+		//}
 	}
 
 }
