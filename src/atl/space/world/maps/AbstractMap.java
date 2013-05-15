@@ -1,5 +1,7 @@
 package atl.space.world.maps;
 
+import java.util.Map;
+
 import org.lwjgl.util.vector.Vector3f;
 
 public abstract class AbstractMap<T>{
