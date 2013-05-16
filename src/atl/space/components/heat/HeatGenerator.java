@@ -2,8 +2,18 @@ package atl.space.components.heat;
 
 
 public interface HeatGenerator{
-	public double getHeatToAdd();
-
+	public double heatToAdd();
+	
+	/*
+	 * Sink represents where it'll put the heat. It could be itself.
+	 */
+	public HeatContainer getSink();
+	
+	/*
+	 * Make the heat, stick it somewhere
+	 */
+	public void generateHeat();
+	
 }
 
 //not sure if I really need this actually

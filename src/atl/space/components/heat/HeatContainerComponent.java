@@ -5,24 +5,24 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
-public class HeatComponent extends Component implements HeatContainer {
+public class HeatContainerComponent extends Component implements HeatContainer {
 	
 	private double heat;
 	private double degreesPerHeat;
 	private double temperatureCapacity;
 	
-	public HeatComponent(){
+	public HeatContainerComponent(){
 		this(0, 1, 100);
 	}
 	
-	public HeatComponent(double heat, double degreesPerHeat, double temperatureCapacity){
-		super("heat");
+	public HeatContainerComponent(double heat, double degreesPerHeat, double temperatureCapacity){
+		super("heatcontainer");
 		this.heat = heat;
 		this.degreesPerHeat = degreesPerHeat;
 		this.temperatureCapacity = temperatureCapacity;
 	}
 	
-	public HeatComponent(HeatComponent hc){
+	public HeatContainerComponent(HeatContainerComponent hc){
 		super(hc.getId());
 		this.heat = hc.getHeat();
 		this.degreesPerHeat = hc.degreesPerHeat;
@@ -95,8 +95,8 @@ public class HeatComponent extends Component implements HeatContainer {
 	}
 
 	@Override
-	public HeatComponent clone() {
-		HeatComponent temp = new HeatComponent(this);
+	public HeatContainerComponent clone() {
+		HeatContainerComponent temp = new HeatContainerComponent(this);
 		return temp;
 	}
 
