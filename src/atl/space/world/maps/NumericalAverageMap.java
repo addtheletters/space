@@ -7,6 +7,9 @@ import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.entities.Entity;
 
+/*
+ * deprecated. Unlikely to be used
+ */
 public class NumericalAverageMap extends AbstractMap<Integer> {
 	public NumericalAverageMap(List<Entity> entities) {
 		//Not done
