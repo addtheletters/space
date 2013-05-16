@@ -109,6 +109,8 @@ public class HeatContainerComponent extends Component implements HeatContainer {
 		//disperse their heat
 		//if they suck heat
 		//calculate all the things
+		
+		//We prolly need some kinda HeatSystemElement class/interface or something to make these parts work right together.
 	}
 	
 	@Override

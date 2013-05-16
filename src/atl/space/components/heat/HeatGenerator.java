@@ -8,6 +8,8 @@ public interface HeatGenerator{
 	 * Sink represents where it'll put the heat. It could be itself.
 	 */
 	public HeatContainer getSink();
+	public void setSink(HeatContainer sink);
+	
 	
 	/*
 	 * Make the heat, stick it somewhere

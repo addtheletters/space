@@ -21,6 +21,11 @@ public abstract class HeatGeneratorComponent extends Component implements HeatGe
 	public HeatContainer getSink() {
 		return sinkReference;
 	}
+	
+	@Override
+	public void setSink(HeatContainer sink){
+		sinkReference = sink;
+	}
 
 	@Override
 	public void generateHeat() {
