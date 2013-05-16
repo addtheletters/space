@@ -9,6 +9,7 @@ public interface HeatContainer {
 	public void setCapacity(double degrees);
 	public void setDegreesPerHeat(double degrees);
 	public void addHeat(double heat);
+	public void loseHeat(double heat);
 	public void addTemperature(double degrees);
 	public void addCapacity(double degrees);
 	public void transferHeat(double heat, HeatContainer target);

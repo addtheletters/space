@@ -113,7 +113,7 @@ public class HeatComponent extends Component implements HeatContainer {
 	
 	@Override
 	public void transferHeat(double heat, HeatContainer target) {
-		addHeat(-1 * heat);
+		loseHeat(heat);
 		target.addHeat(heat);
 	}
 	
@@ -121,5 +121,10 @@ public class HeatComponent extends Component implements HeatContainer {
 		if(heat < 0){
 			heat = 0;
 		}
+	}
+
+	@Override
+	public void loseHeat(double heat) {
+		addHeat(-1 * heat);
 	}
 }
