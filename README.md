@@ -15,7 +15,7 @@ _Apparently... this doesn't use GFM. So well crap._
 - Make updates for components utilize delta time
 - Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
 - Information mechanics, data sources, etc (see wiki)
-- Heat mapping, EM source mapping, figuring that out (see wiki/dev-diary)
+- Heat systems, EM systems, other gravitation / energy systems
 
 
 Current EntityTest functionality:
