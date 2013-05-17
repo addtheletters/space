@@ -106,6 +106,9 @@ public abstract class HeatContainerComponent extends Component implements HeatCo
 	
 	@Override
 	public void transferHeat(double heat, HeatContainer target) {
+		if(!possibleTransferTargets().contains(target)){
+			System.out.println("Target not viable! Forcing transfer anyways...");
+		}
 		loseHeat(heat);
 		target.addHeat(heat);
 	}
