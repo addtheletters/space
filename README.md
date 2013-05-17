@@ -10,7 +10,7 @@ Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
-_Apparently... this doesn't use GFM. So well crap._
+_ookay. It does use GFM, just it doesn't support the checkboxes cuz git pushing. Carry on!_
 - Test projectiles, missiles, TurnControl
 - Make updates for components utilize delta time
 - Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
