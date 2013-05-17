@@ -16,7 +16,11 @@ public abstract class HeatHull extends HeatContainerComponent implements HeatRel
 	//The above means heat loss is caluclated as follows from the temp of the object:
 	//Heat loss = ((Temperature)^(4 - (4*heatDifferenceCompensation))) * heatDispersionFactor 
 	
-	private double heatDispersionFactor;		//determines how much heat is lost based on it's temperature
+	
+	//determines how much heat is lost
+	//May be representative of surface area or material type or both...
+	//I may even want to split them. Hmm.
+	private double heatDispersionFactor;		
 	
 	/*
 	 * causes less emissions difference between higher/lower temperatures. Dunno how. Spaaaace MAAAAGICCCCC
