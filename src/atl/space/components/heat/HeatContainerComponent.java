@@ -1,11 +1,12 @@
 package atl.space.components.heat;
 
+import java.util.Collection;
 import java.util.List;
 
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
-public class HeatContainerComponent extends Component implements HeatContainer {
+public abstract class HeatContainerComponent extends Component implements HeatContainer {
 	
 	private double heat;
 	private double degreesPerHeat;
@@ -95,23 +96,13 @@ public class HeatContainerComponent extends Component implements HeatContainer {
 	}
 
 	@Override
-	public HeatContainerComponent clone() {
-		HeatContainerComponent temp = new HeatContainerComponent(this);
-		return temp;
-	}
+	public abstract HeatContainerComponent clone();
 
 	@Override
-	public void update(int delta, List<Entity> entities) {
-		//for all components
-		//if they generate heat
-		//add their heat
-		//if they disperse heat
-		//disperse their heat
-		//if they suck heat
-		//calculate all the things
-		
-		//We prolly need some kinda HeatSystemElement class/interface or something to make these parts work right together.
-	}
+	public abstract void update(int delta, List<Entity> entities);
+	
+	@Override
+	public abstract Collection<HeatContainer> possibleTransferTargets();
 	
 	@Override
 	public void transferHeat(double heat, HeatContainer target) {

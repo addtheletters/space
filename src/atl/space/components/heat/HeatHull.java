@@ -1,6 +1,6 @@
 package atl.space.components.heat;
 
-public class HeatHull extends HeatContainerComponent implements HeatReleaser{
+public abstract class HeatHull extends HeatContainerComponent implements HeatReleaser{
 	
 	//Something like the hull of a ship. Has heat, releases a certain amount of it every tick as IR waves.
 	//Does NOT model internal heatsinks or generators.

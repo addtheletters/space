@@ -1,5 +1,7 @@
 package atl.space.components.heat;
 
+import java.util.Collection;
+
 public interface HeatContainer {
 	//heat represents some measure of energy. Maybe joules or something.
 	//temperature represents an average of energy in the object, like degrees kelvin.
@@ -13,6 +15,7 @@ public interface HeatContainer {
 	public void addTemperature(double degrees);
 	public void addCapacity(double degrees);
 	public void transferHeat(double heat, HeatContainer target);
+	public Collection<HeatContainer> possibleTransferTargets();
 	public double getHeat();
 	public double getTemperature();
 	public double getCapacity();
