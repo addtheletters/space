@@ -9,10 +9,10 @@ public abstract class HeatVent implements HeatReleaser{
   private double releaseAmount;
   private HeatContainerComponent ventingReference;
 
-	public HeatHull(){
+	public HeatVent(){
 		this(1, null);
 	}
-	public HeatHull(double releaseAmount, HeatContainerComponent thingToVent){
+	public HeatVent(double releaseAmount, HeatContainerComponent thingToVent){
 		this.releaseAmount = releaseAmount;
     this.ventingReference = thingToVent;
 	}
