@@ -61,7 +61,7 @@ public abstract class HeatHull extends HeatContainerComponent implements HeatRel
 
 	@Override
 	public void releaseHeat() {
-		releaseHeat(0);
+		releaseHeat(1);
 	}
 	
 	
