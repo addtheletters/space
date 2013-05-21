@@ -4,6 +4,5 @@ public interface GravPullable{
   
   public double getGravMass();
   public void applyPull();
-  public void applyPull(double modifier);
-  
+  //modifiers will actually modify what getGravMass returns, not factoring applyPull
 }
