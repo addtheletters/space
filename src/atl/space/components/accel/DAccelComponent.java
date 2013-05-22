@@ -9,6 +9,8 @@ import atl.space.components.turn.FacingComponent;
 import atl.space.entities.Entity;
 
 public class DAccelComponent extends AccelComponent {
+	//Used to model something like spacecraft engines. D represents directional.
+	
 	public float accelForward;
 	public float accelBack;
 	public float accelSecondary;

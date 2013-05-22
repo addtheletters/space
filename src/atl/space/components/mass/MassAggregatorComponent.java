@@ -18,9 +18,10 @@ public class MassAggregatorComponent extends Component {
 		super("massaggregator");
 	}
 	
+	//TODO make clone work
 	
 	public double getAggregateMass(){
-		//TODO stuff!
+
 		List<Component> massGivers = new ArrayList<Component>(owner.getComponents()); 
 		//oh crap. I think components need to have more information tags.
 		//We'll see what we can do without them for now.
