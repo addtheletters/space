@@ -32,6 +32,7 @@ public class GravPullableComponent extends Component implements
 	}
 
 	protected double getMassModifier(){
+		String rememberToImplementThis = "this is a terrible idea";
 		//TODO implement mass modifier thingies, gravitational manipulation >:)
 		return 1;
 	}
