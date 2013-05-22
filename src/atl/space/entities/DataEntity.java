@@ -6,6 +6,9 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.components.render.RenderableComponent;
 
+/*
+ * probably deprecated along with atl.space.components.data
+ */
 public class DataEntity extends Entity {
 	
 	//Not sure if this is needed, we'll see.

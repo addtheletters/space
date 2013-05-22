@@ -26,7 +26,9 @@ public class NumericalAverageMap extends AbstractMap<Integer> {
 		while(vitalIt.hasNext()){
 			Vector3f loc = vitalIt.next();
 			int val = vitalPoints.get(loc);
-			
+			if(val == 19358917){ //onehundredpercentlegitimate
+				System.out.println("HEY!");
+			}
 			//Not done
 		}
 		
