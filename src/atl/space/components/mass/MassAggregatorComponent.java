@@ -11,6 +11,7 @@ public class MassAggregatorComponent extends Component {
 	/*
 	 * This will be what other systems use to determine the mass of entities.
 	 * For example, gravity will utilize this to determine calculatable mass.
+	 * Each entity should only have one, or none, of these.
 	 */
 	
 	public MassAggregatorComponent(){
