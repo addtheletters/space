@@ -59,13 +59,24 @@ public class GravPullableComponent extends Component implements
 		Vector3f dir = new Vector3f();
 		Vector3f.sub(e.position, owner.position, dir);
 		
+		double distance = dir.length();
+		
 		Component gravpuller = e.getComponent("gravpuller");
-		double pullforce = ((GravPuller)gravpuller).getPullForce();
+		
+		/*
+		 * http://answers.yahoo.com/question/index?qid=20080117230400AAe7Cyq
+		 * heh totally legitimate research meh
+		 * 
+		 * Assuming getPullForce accounts for the gravitational constant
+		 */
+		double pullforce = (((GravPuller)gravpuller).getPullForce() * getGravMass()) / Math.pow(distance, 2); //make this formula work
 		
 		Entity.restrictLength(dir, (float)pullforce);
 		
 		return dir;
 	}
+	
+	
 
 	@Override
 	public Component clone() {
