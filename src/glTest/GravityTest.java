@@ -89,9 +89,12 @@ public class GravityTest {
 	final int NUM_FACERS = 0;
 	final int NUM_ACCELERATORS = 0;
 	final int NUM_DUMB_AUTO = 0;
-	final int NUM_SMART_AUTO = 10;
+	final int NUM_SMART_AUTO = 0;
 	final float TURNLIM = 0.01f; //how fast the turning is, tho it's still randomized
 	final float ACCELERATION = 0.02f;
+	
+	final int NUM_GRAVPULLERS = 3;
+	final int NUM_SIMPLEGRAVPULLABLES = 30;
 
 	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, (float) (ACCELERATION / 1.3)};
 	//primary, reverse, secondary
@@ -287,8 +290,25 @@ public class GravityTest {
 		for(int i = 0; i < NUM_SMART_AUTO; i++){
 			addSmartAuto(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0, 0, 0), randTrajectory(), new Vector3f(0,0,0), maxAccel[0], maxAccel[1], maxAccel[2], randTurn());
 		}
+		for(int i = 0; i < NUM_GRAVPULLERS; i++){
+			addGravityPuller(numInFeild(), numInFeild(), numInFeild(), genPullForce());
+		}
+		for(int i = 0; i < NUM_SIMPLEGRAVPULLABLES; i++){
+			addSimpleGravityPullable(numInFeild(), numInFeild(), numInFeild(), genRandMass());
+		}
 		addProtagonist();
 	}
+	
+	private double genPullForce(){
+		//TODO return semi-random force for gravity pullers
+		return 5;
+	}
+	
+	private double genRandMass(){
+		//TODO return random mass for simple grav pullables
+		return 1;
+	}
+	
 	
 	/**
 	 * Creates a random number that fits w/i STAR_FIELD_SIZE

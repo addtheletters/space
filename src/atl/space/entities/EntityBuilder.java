@@ -137,6 +137,7 @@ public class EntityBuilder {
 		Entity temp = new Entity("gravpullable");
 		 
 		temp.addComponent(new BasicMassiveComponent(mass));
+		//TODO add other needed components
 		//has a medium orange-ish triangle over it
 		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 150, 30), 20));
 		
@@ -159,6 +160,10 @@ public class EntityBuilder {
 			}
 		}
 		return nearest;
+	}
+	
+	public static void addSimpleGravityPullableTraitTo(Entity toGain, double mass){
+		//TODO this
 	}
 	
 	
