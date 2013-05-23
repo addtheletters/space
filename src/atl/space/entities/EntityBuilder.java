@@ -128,6 +128,29 @@ public class EntityBuilder {
 		return temp;
 	}
 	
+	public static Entity gravityPuller(Vector3f pos, double pullForce){
+		Entity temp = new Entity("gravpuller");
+		
+		
+		//has a big pink square over it
+		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
+		
+		return temp;
+		//TODO this
+	}
+	
+	public static Entity simpleGravityPullable(Vector3f pos, double mass){
+		Entity temp = new Entity("gravpullable");
+		 
+		
+		//has a medium orange-ish triangle over it
+		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 150, 30), 20));
+		
+		return temp;
+		//TODO this
+	}
+	
+	
 	public static Entity getNearest(Entity origin, List<Entity> entities){
 		if(entities.size() == 1){
 			return null;
