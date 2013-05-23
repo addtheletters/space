@@ -9,6 +9,7 @@ import atl.space.components.MovementComponent;
 import atl.space.components.accel.AccelComponent;
 import atl.space.components.accel.RDAccelComponent;
 import atl.space.components.emission.FTLauncherComponent;
+import atl.space.components.gravity.BasicGravPullerComponent;
 import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 import atl.space.components.render.PointRenderComponent;
 import atl.space.components.render.PointTrailRenderComponent;
@@ -35,17 +36,15 @@ public class EntityBuilder {
 		return temp;
 	}
 	public static Entity trailer(Vector3f pos, Vector3f speed, int traillength, float trailfade) {
-		Entity temp = new Entity("defaultmover");
+		Entity temp = new Entity("defaultmover", pos);
 		temp.addComponent(new PointTrailRenderComponent(traillength, trailfade));
 		temp.addComponent(new MovementComponent(new Vector3f(speed)));
-		temp.position = new Vector3f(pos);
 		return temp;
 	}
 	public static Entity facer(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing){
-		Entity temp = new Entity("defaultfacer");
+		Entity temp = new Entity("defaultfacer", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
-		temp.position = new Vector3f(pos);
 		return temp;
 	}
 	public static Entity emitter(Vector3f pos, Entity emission){
@@ -57,32 +56,29 @@ public class EntityBuilder {
 		//return temp;
 	}
 	public static Entity accelerator(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration){
-		Entity temp = new Entity("defaultaccelerator");
+		Entity temp = new Entity("defaultaccelerator", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
 		temp.addComponent(new AccelComponent(acceleration));
-		temp.position = new Vector3f(pos);
 		return temp;
 	}
 	public static Entity turner(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f turn, float turnrate){
-		Entity temp = new Entity("defaultturner");
+		Entity temp = new Entity("defaultturner", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
 		temp.addComponent(new RTurningComponent(turn, turnrate));
-		temp.position = new Vector3f(pos);
 		return temp;
 	}
 	public static Entity dumbAuto(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration, Vector3f turn){
-		Entity temp = new Entity("dumbAuto");
+		Entity temp = new Entity("dumbAuto", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
 		temp.addComponent(new AccelComponent(acceleration));
 		temp.addComponent(new TurningComponent(turn));
-		temp.position = new Vector3f(pos);
 		return temp;
 	}
 	public static Entity smartAuto(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f acceleration, float maxAccelF, float maxAccelB, float maxAccelS, Vector3f turn, float maxturn){
-		Entity temp = new Entity("smartAuto");
+		Entity temp = new Entity("smartAuto", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
 		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
@@ -91,12 +87,11 @@ public class EntityBuilder {
 		//temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255)));
 		temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255), "res/lena.jpg", "JPG"));
 		
-		temp.position = new Vector3f(pos);
 		return temp;	
 	}
 	
 	public static Entity protagonist(Vector3f pos, Vector3f dirFacing, float maxAccelF, float maxAccelB, float maxAccelS, float maxturn){
-		Entity temp = new Entity("protagonist");
+		Entity temp = new Entity("protagonist", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent());
 		temp.addComponent(new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, maxAccelS));
@@ -106,7 +101,6 @@ public class EntityBuilder {
 		//this will not be here permanently
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
 		
-		temp.position = new Vector3f(pos);
 		return temp;	
 	}
 	
@@ -129,9 +123,9 @@ public class EntityBuilder {
 	}
 	
 	public static Entity gravityPuller(Vector3f pos, double pullForce){
-		Entity temp = new Entity("gravpuller");
+		Entity temp = new Entity("gravpuller", pos);
 		
-		
+		temp.addComponent(new BasicGravPullerComponent(pullForce));
 		//has a big pink square over it
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
 		
