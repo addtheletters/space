@@ -25,6 +25,8 @@ import atl.space.components.turn.TurningComponent;
 
 public class EntityBuilder {
 	
+	private static final boolean DEBUG = true;
+	
 	public static Entity point(float x, float y, float z) {
 		Entity temp = new Entity("defaultpoint");
 		temp.addComponent(new PointRenderComponent());
@@ -130,18 +132,28 @@ public class EntityBuilder {
 		
 		temp.addComponent(new BasicGravPullerComponent(pullForce));
 		//has a big pink square over it
+		temp.addComponent(new PointRenderComponent());
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
+		
+		if(DEBUG){
+			System.out.println("Making GravPuller");
+		}
 		
 		return temp;
 	}
 	
 	public static Entity simpleGravityPullable(Vector3f pos, double mass){
 		Entity temp = new Entity("gravpullable");
-		 
+		addBasicAccelerationTraitTo(temp);
 		addSimpleGravityPullableTraitTo(temp, mass);
 		
 		//has a medium orange-ish triangle over it
+		temp.addComponent(new PointTrailRenderComponent());
 		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 150, 30), 20));
+		
+		if(DEBUG){
+			System.out.println("Making SimpleGravPullable");
+		}
 		
 		return temp;
 	}
@@ -162,6 +174,11 @@ public class EntityBuilder {
 			}
 		}
 		return nearest;
+	}
+	
+	public static void addBasicAccelerationTraitTo(Entity toGain){
+		toGain.addComponent(new MovementComponent());
+		toGain.addComponent(new AccelComponent());
 	}
 	
 	public static void addSimpleGravityPullableTraitTo(Entity toGain, double mass){

@@ -25,14 +25,15 @@ public class GravPullableComponent extends Component implements
 		super("gravpullable");
 	}
 
-	//TODO cloning
+	public GravPullableComponent(GravPullableComponent gpc){
+		super(gpc.getId());
+	}
 	
 	public double getGravMass() {
 		return getBaseGravMass() * getMassModifier();
 	}
 
 	protected double getMassModifier(){
-		String rememberToImplementThis = "this is a terrible idea";
 		//TODO implement mass modifier thingies, gravitational manipulation >:)
 		return 1;
 	}
@@ -81,8 +82,7 @@ public class GravPullableComponent extends Component implements
 
 	@Override
 	public Component clone() {
-		// TODO Do this
-		return null;
+		return new GravPullableComponent(this);
 	}
 
 	@Override

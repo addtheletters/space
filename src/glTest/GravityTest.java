@@ -51,7 +51,7 @@ public class GravityTest {
 	
 	//Static Constants (Or at least it should be imo)
 	
-	private final String TITLE = "Entities!";
+	private final String TITLE = "GRAVITY!";
 	
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 480;
@@ -83,7 +83,7 @@ public class GravityTest {
 	final float STAR_FIELD_SIZE = 5000; 
 	final int NUM_STARS = 1000;
 	final int NUM_TRAILERS = 10;
-	final float TRAILER_SPEED = 3;
+	final float TRAILER_SPEED = 0;
 	final float TRAIL_FADE = 0.005f;
 	final int TRAIL_LENGTH = 200;
 	final int NUM_FACERS = 0;
@@ -94,7 +94,7 @@ public class GravityTest {
 	final float ACCELERATION = 0.02f;
 	
 	final int NUM_GRAVPULLERS = 3;
-	final int NUM_SIMPLEGRAVPULLABLES = 30;
+	final int NUM_SIMPLEGRAVPULLABLES = 20;
 
 	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, (float) (ACCELERATION / 1.3)};
 	//primary, reverse, secondary
@@ -650,7 +650,7 @@ public class GravityTest {
 	}
 
 	public static void main(String[] args) {
-		new EntityTest();
+		new GravityTest();
 
 	}
 
