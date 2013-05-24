@@ -148,7 +148,7 @@ public class EntityBuilder {
 		addSimpleGravityPullableTraitTo(temp, mass);
 		
 		//has a medium orange-ish triangle over it
-		temp.addComponent(new PointTrailRenderComponent());
+		temp.addComponent(new PointTrailRenderComponent(200, 0.005f));
 		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 150, 30), 20));
 		
 		if(DEBUG){
