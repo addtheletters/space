@@ -18,7 +18,9 @@ public class MassAggregatorComponent extends Component {
 		super("massaggregator");
 	}
 	
-	//TODO make clone work
+	public MassAggregatorComponent(MassAggregatorComponent mac){
+		super(mac.getId());
+	}
 	
 	public double getAggregateMass(){
 
@@ -38,8 +40,7 @@ public class MassAggregatorComponent extends Component {
 	
 	@Override
 	public Component clone() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MassAggregatorComponent(this);
 	}
 
 	@Override
