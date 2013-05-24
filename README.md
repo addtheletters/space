@@ -8,6 +8,7 @@ Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 
 Currenter Objective: Fix gravity. See GravityTest.java
+
 Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
