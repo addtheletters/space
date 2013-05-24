@@ -10,7 +10,9 @@ import atl.space.components.accel.AccelComponent;
 import atl.space.components.accel.RDAccelComponent;
 import atl.space.components.emission.FTLauncherComponent;
 import atl.space.components.gravity.BasicGravPullerComponent;
+import atl.space.components.gravity.GravPullableComponent;
 import atl.space.components.mass.BasicMassiveComponent;
+import atl.space.components.mass.MassAggregatorComponent;
 import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 import atl.space.components.render.PointRenderComponent;
 import atl.space.components.render.PointTrailRenderComponent;
@@ -136,8 +138,8 @@ public class EntityBuilder {
 	public static Entity simpleGravityPullable(Vector3f pos, double mass){
 		Entity temp = new Entity("gravpullable");
 		 
-		temp.addComponent(new BasicMassiveComponent(mass));
-		//TODO add other needed components
+		addSimpleGravityPullableTraitTo(temp, mass);
+		
 		//has a medium orange-ish triangle over it
 		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 150, 30), 20));
 		
@@ -163,7 +165,10 @@ public class EntityBuilder {
 	}
 	
 	public static void addSimpleGravityPullableTraitTo(Entity toGain, double mass){
-		//TODO this
+		toGain.addComponent(new BasicMassiveComponent(mass));
+		toGain.addComponent(new MassAggregatorComponent());
+		toGain.addComponent(new GravPullableComponent());
+
 	}
 	
 	
