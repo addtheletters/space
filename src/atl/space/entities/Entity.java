@@ -108,6 +108,10 @@ public class Entity {
 		return position;
 	}
 	
+	public float getDistance(Entity target){
+		return getDistance(target.getPosition());
+	}
+	
 	public float getDistance(Vector3f target){
 		Vector3f temp = new Vector3f();
 		Vector3f.sub(position, target, temp);
@@ -120,10 +124,10 @@ public class Entity {
 	
 	public Entity getNearest(List<Entity> entities){
 		Entity nearest = entities.get(0);
-		float longestdistance = getDistance(nearest.position);
+		float longestdistance = getDistance(nearest.getPosition());
 		//Vector3f temp = new Vector3f();
 		for(Entity e : entities){
-			float dist = getDistance(e.position);
+			float dist = getDistance(e.getPosition());
 			if(dist < longestdistance && this != e){
 				nearest = e;
 				longestdistance = dist;
@@ -134,10 +138,10 @@ public class Entity {
 	
 	public Entity getNearestTarget(List<Entity> entities){
 		Entity nearest = entities.get(0);
-		float longestdistance = getDistance(nearest.position);
+		float longestdistance = getDistance(nearest.getPosition());
 		//Vector3f temp = new Vector3f();
 		for(Entity e : entities){
-			float dist = getDistance(e.position);
+			float dist = getDistance(e.getPosition());
 			if(dist < longestdistance && this != e && e.id != "missile"){
 				nearest = e;
 				longestdistance = dist;

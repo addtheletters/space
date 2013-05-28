@@ -78,6 +78,7 @@ public class GravPullableComponent extends Component implements
 			Entity.restrictLength(dir, (float)pullforce);
 		}
 		else{
+			if(DEBUG) System.out.println("Entity out of pull area, no gravitational effect");
 			//if it is not in the pullable area, make the length of the addition 0
 			Entity.restrictLength(dir, 0f);
 		}
