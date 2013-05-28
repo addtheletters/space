@@ -143,7 +143,7 @@ public class EntityBuilder {
 	}
 	
 	public static Entity simpleGravityPullable(Vector3f pos, double mass){
-		Entity temp = new Entity("gravpullable");
+		Entity temp = new Entity("gravpullable", pos);
 		addBasicAccelerationTraitTo(temp);
 		addSimpleGravityPullableTraitTo(temp, mass);
 		
