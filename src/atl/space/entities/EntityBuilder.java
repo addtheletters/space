@@ -10,6 +10,7 @@ import atl.space.components.accel.AccelComponent;
 import atl.space.components.accel.RDAccelComponent;
 import atl.space.components.emission.FTLauncherComponent;
 import atl.space.components.gravity.BasicGravPullerComponent;
+import atl.space.components.gravity.BasicGravPuller_MinMaxRange;
 import atl.space.components.gravity.GravPullableComponent;
 import atl.space.components.mass.BasicMassiveComponent;
 import atl.space.components.mass.MassAggregatorComponent;
@@ -137,6 +138,20 @@ public class EntityBuilder {
 		
 		if(DEBUG){
 			System.out.println("Making GravPuller");
+		}
+		
+		return temp;
+	}
+	
+	public static Entity rangedGravityPuller(Vector3f pos, double pullForce, double maxDist, double minDist){
+		//TODO this
+		Entity temp = new Entity("gravpuller", pos);
+		temp.addComponent(new BasicGravPuller_MinMaxRange(pullForce, maxDist, minDist));
+		temp.addComponent(new PointRenderComponent());
+		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
+		
+		if(DEBUG){
+			System.out.println("Making Ranged GravPuller");
 		}
 		
 		return temp;
