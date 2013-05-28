@@ -41,6 +41,10 @@ import glTest.Line;
 
 //Q should display the world coords of where the mouse is pointing
 
+
+/*
+ * Testing camera, drawing 2d text, and shaders
+ */
 public class TestGraphics {
 
 	// basic 3d
@@ -76,7 +80,7 @@ public class TestGraphics {
 
 	// private boolean mouseEnabled = true;
 
-	private final String TITLE = "Testing Effects, Shaders, and Moving Objects";
+	private final String TITLE = "Testing Effects, Shaders, and Cameras";
 
 	// frame independent movement speed using delta
 	private long lastFrame;

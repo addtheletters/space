@@ -5,8 +5,10 @@ import org.lwjgl.input.Keyboard;
 
 //Not complete.
 
+
 public class FlyCamera extends EulerCamera {
 
+	
 	public FlyCamera() {
 		super();
 	}
@@ -25,12 +27,12 @@ public class FlyCamera extends EulerCamera {
 	            throw new IllegalArgumentException("delta " + delta + " is 0 or is smaller than 0");
 	        }
 
-	        boolean keyUp = Keyboard.isKeyDown(Keyboard.KEY_UP) || Keyboard.isKeyDown(Keyboard.KEY_W);
-	        boolean keyDown = Keyboard.isKeyDown(Keyboard.KEY_DOWN) || Keyboard.isKeyDown(Keyboard.KEY_S);
-	        boolean keyLeft = Keyboard.isKeyDown(Keyboard.KEY_LEFT) || Keyboard.isKeyDown(Keyboard.KEY_A);
-	        boolean keyRight = Keyboard.isKeyDown(Keyboard.KEY_RIGHT) || Keyboard.isKeyDown(Keyboard.KEY_D);
-	        boolean flyUp = Keyboard.isKeyDown(Keyboard.KEY_SPACE);
-	        boolean flyDown = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT);
+	        boolean keyUp = Keyboard.isKeyDown(Keyboard.KEY_UP);
+	        boolean keyDown = Keyboard.isKeyDown(Keyboard.KEY_DOWN);
+	        boolean keyLeft = Keyboard.isKeyDown(Keyboard.KEY_LEFT);
+	        boolean keyRight = Keyboard.isKeyDown(Keyboard.KEY_RIGHT);
+	        boolean flyUp = Keyboard.isKeyDown(Keyboard.KEY_DIVIDE);
+	        boolean flyDown = Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
 
 	        if (keyUp && keyRight && !keyLeft && !keyDown) {
 	            moveFromLook(speed * delta * 0.003f, 0, -speed * delta * 0.003f);
