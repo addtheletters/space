@@ -7,18 +7,22 @@ Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
 Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 
-Currenter Objective: Fix gravity. See GravityTest.java
-
 Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
 _ookay. It does use GFM, just it doesn't support the checkboxes cuz git pushing. Carry on!_
+- Make gravity not fling objects when they approach pullers
 - Test projectiles, missiles, TurnControl
 - Make updates for components utilize delta time
 - Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
 - Information mechanics, data sources, etc (see wiki)
 - Heat systems, EM systems, other gravitation / energy systems
 
+Current GravityTest functionality:
+- Draws a starfeild
+- Draws a bunch of gravity-pullable objects, with orange triangle overlays
+- Draws a bunch of stationary gravity pullers, with pink square overlays
+- Also has carried over protagonist + other entities from EntityTest
 
 Current EntityTest functionality:
 - Draws a starfeild
