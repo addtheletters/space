@@ -40,4 +40,9 @@ public class BasicGravPullerComponent extends Component implements GravPuller{
 		//do nothing
 	}
 
+	@Override
+	public boolean hasWithinPullableArea(Entity target) {
+		return true; //basic ones just pull errything
+	}
+
 }

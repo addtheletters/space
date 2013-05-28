@@ -93,7 +93,7 @@ public class GravityTest {
 	final float TURNLIM = 0.01f; //how fast the turning is, tho it's still randomized
 	final float ACCELERATION = 0.02f;
 	
-	final int NUM_GRAVPULLERS = 5;
+	final int NUM_GRAVPULLERS = 5;  	
 	final int NUM_SIMPLEGRAVPULLABLES = 20;
 
 	final float[] maxAccel = new float[]{ACCELERATION, ACCELERATION / 2, (float) (ACCELERATION / 1.3)};

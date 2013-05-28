@@ -11,6 +11,8 @@ import atl.space.entities.Entity;
 
 public class GravPullableComponent extends Component implements
 		GravPullable {
+	
+	private static final boolean DEBUG = true;
 
 	public double getBaseGravMass() {
 		Component massAgg = owner.getComponent("massaggregator");
@@ -57,24 +59,28 @@ public class GravPullableComponent extends Component implements
 	/*
 	 * precondition: e has a GravPuller component
 	 */
-	protected Vector3f getPullForce(Entity e){
+	protected Vector3f getPullForce(Entity puller){
 		Vector3f dir = new Vector3f();
-		Vector3f.sub(e.position, owner.position, dir);
+		Vector3f.sub(puller.position, owner.position, dir);
 		
 		double distance = dir.length();
 		
-		Component gravpuller = e.getComponent("gravpuller");
+		Component gravpuller = puller.getComponent("gravpuller");
 		
+		if(((GravPuller)gravpuller).hasWithinPullableArea(owner)){
 		/*
 		 * http://answers.yahoo.com/question/index?qid=20080117230400AAe7Cyq
 		 * heh totally legitimate research meh
 		 * 
 		 * Assuming getPullForce accounts for the gravitational constant
 		 */
-		double pullforce = (((GravPuller)gravpuller).getPullForce() * getGravMass()) / Math.pow(distance, 2); //make this formula work
-		
-		Entity.restrictLength(dir, (float)pullforce);
-		
+			double pullforce = (((GravPuller)gravpuller).getPullForce() * getGravMass()) / Math.pow(distance, 2); //make this formula work
+			Entity.restrictLength(dir, (float)pullforce);
+		}
+		else{
+			//if it is not in the pullable area, make the length of the addition 0
+			Entity.restrictLength(dir, 0f);
+		}
 		return dir;
 	}
 	
