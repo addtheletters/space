@@ -1,5 +1,6 @@
 package atl.space.components.engine;
 
+
 public class PrimaryEngineComponent extends AbstractEngineComponent {
 	
 	protected float thrust;
@@ -23,7 +24,7 @@ public class PrimaryEngineComponent extends AbstractEngineComponent {
 	}
 	
 	@Override
-	public void applyThrust() {
+	public void applyThrust(){
 		// TODO Auto-generated method stub
 
 	}
