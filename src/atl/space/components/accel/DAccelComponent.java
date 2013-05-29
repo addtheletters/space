@@ -8,9 +8,13 @@ import atl.space.components.Component;
 import atl.space.components.turn.FacingComponent;
 import atl.space.entities.Entity;
 
+/*
+ * deprecated. Replacement in progress at atl.space.components.engine
+ */
 public class DAccelComponent extends AccelComponent {
 	//Used to model something like spacecraft engines. D represents directional.
-	
+	//OK, so now that gravity is implemented, this won't work right in combination. Need new engine components that
+	//add to acceleration to replace these directional acceleration components.
 	public float accelForward;
 	public float accelBack;
 	public float accelSecondary;

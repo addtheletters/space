@@ -7,7 +7,9 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
-
+/*
+ * deprecated. replacement in progress at atl.space.components.engine
+ */
 public class RDAccelComponent extends DAccelComponent {
 	//RD represents Restricted Directional. A better model of spaceship engines:
 	//they have a max acceleration for each direction.
