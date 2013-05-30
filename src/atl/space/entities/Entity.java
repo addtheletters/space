@@ -68,21 +68,41 @@ public class Entity {
 		addComponents(cs);
 	}
 
-	public void addComponent(Component component) {
-		if (componentHash.containsKey(component.getId().toLowerCase())) {
-			throw new IllegalArgumentException("Component with name: " + component.getId() + " has already been added to entity " + this.id);
+	public void addComponent(Component component) throws PrerequisiteNotFoundException{
+		List<String> neededComponentIDs = checkPrerequisites(component);
+		if(neededComponentIDs == null){
+			
+			if (componentHash.containsKey(component.getId().toLowerCase())) {
+				throw new IllegalArgumentException("Component with name: " + component.getId() + " has already been added to entity " + this.id);
+			}
+			component.setOwnerEntity(this);
+			components.add(component);
+			componentHash.put(component.getId().toLowerCase(), component);
+		
 		}
-		component.setOwnerEntity(this);
-		components.add(component);
-		componentHash.put(component.getId().toLowerCase(), component);
+		else{
+			throw new PrerequisiteNotFoundException(neededComponentIDs);
+		}
 	}
-
+	
 	public void addComponents(List<Component> cs) {
 		for (Component c : cs) {
 			addComponent(c);
 		}
 	}
-
+	
+	public List<String> checkPrerequisites(Component toAdd){
+		//TODO mess with this 
+		//return of null means prerequisites are satisfied.
+		//return of a list means prerequisite(s) are missing.
+		List<String> prIDs = toAdd.getPrerequisiteIDs();
+		Set<String> existingIDs = componentHash.keyset();
+		prIDs.removeAll(existingIDs);
+		if(prIDs.length() == 0) return null;
+		return prIDs;
+	}
+	
+	
 	public Component getComponent(String id) {
 		return componentHash.get(id.toLowerCase());
 	}
