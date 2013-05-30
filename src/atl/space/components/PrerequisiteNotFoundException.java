@@ -4,8 +4,8 @@ package atl.space.components;
 public class PrerequisiteNotFoundException extends Exception {
 	private String componentID;
 	
-	public PrerequisiteNotFoundException(String id){
-		super("No component of ID: [" + id + "] found");
+	public PrerequisiteNotFoundException(List<String> id){
+		super("No component(s) with ID(s): <" + id + "> found");
 		this.componentID = id;
 	}
 	
