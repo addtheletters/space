@@ -24,6 +24,10 @@ public abstract class Component implements Cloneable{
     	this.owner = owner;
     }
     
+    public List<String> getPrerequisiteIDs(){
+    	return null;
+    }
+    
     //public Component clone(){
     //	System.err.println("Not implemented");
     //	return null;
