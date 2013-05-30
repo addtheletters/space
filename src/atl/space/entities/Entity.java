@@ -3,10 +3,12 @@ package atl.space.entities;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
+import atl.space.components.PrerequisiteNotFoundException;
 import atl.space.components.render.RenderableComponent;
 
 public class Entity {
@@ -67,8 +69,16 @@ public class Entity {
 		this(id, position);
 		addComponents(cs);
 	}
-
-	public void addComponent(Component component) throws PrerequisiteNotFoundException{
+	
+	public void addComponent(Component component){
+		try {
+			addComponent_Unhandled(component);
+		} catch (PrerequisiteNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void addComponent_Unhandled(Component component) throws PrerequisiteNotFoundException{
 		List<String> neededComponentIDs = checkPrerequisites(component);
 		if(neededComponentIDs == null){
 			
@@ -87,7 +97,7 @@ public class Entity {
 	
 	public void addComponents(List<Component> cs) {
 		for (Component c : cs) {
-			addComponent(c);
+				addComponent(c);
 		}
 	}
 	
@@ -96,9 +106,9 @@ public class Entity {
 		//return of null means prerequisites are satisfied.
 		//return of a list means prerequisite(s) are missing.
 		List<String> prIDs = toAdd.getPrerequisiteIDs();
-		Set<String> existingIDs = componentHash.keyset();
+		Set<String> existingIDs = componentHash.keySet();
 		prIDs.removeAll(existingIDs);
-		if(prIDs.length() == 0) return null;
+		if(prIDs.size() == 0) return null;
 		return prIDs;
 	}
 	

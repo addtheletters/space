@@ -1,15 +1,17 @@
 package atl.space.components;
 
+import java.util.List;
+
 @SuppressWarnings("serial")
 public class PrerequisiteNotFoundException extends Exception {
-	private String componentID;
+	private List<String> componentIDs;
 	
-	public PrerequisiteNotFoundException(List<String> id){
-		super("No component(s) with ID(s): <" + id + "> found");
-		this.componentID = id;
+	public PrerequisiteNotFoundException(List<String> ids){
+		super("No component(s) with ID(s): <" + ids + "> found");
+		this.componentIDs = ids;
 	}
 	
-	public String getComponentID(){
-		return componentID;
+	public List<String> getComponentIDs(){
+		return componentIDs;
 	}
 }

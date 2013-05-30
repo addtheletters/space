@@ -25,6 +25,7 @@ public class PrimaryEngineComponent extends AbstractEngineComponent {
 	
 	@Override
 	public void applyThrust(){
+		//prerequisite: facing component, acceleration component
 		// TODO Auto-generated method stub
 
 	}
