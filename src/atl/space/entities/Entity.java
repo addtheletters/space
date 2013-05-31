@@ -106,7 +106,9 @@ public class Entity {
 		//return of null means prerequisites are satisfied.
 		//return of a list means prerequisite(s) are missing.
 		List<String> prIDs = toAdd.getPrerequisiteIDs();
+		if(prIDs == null) return null;
 		Set<String> existingIDs = componentHash.keySet();
+		
 		prIDs.removeAll(existingIDs);
 		if(prIDs.size() == 0) return null;
 		return prIDs;
