@@ -129,6 +129,12 @@ public class EntityBuilder {
 	}
 	
 	public static Entity gravityPuller(Vector3f pos, double pullForce){
+		
+		
+		if(DEBUG){
+			System.out.println("Making GravPuller");
+		}
+		
 		Entity temp = new Entity("gravpuller", pos);
 		
 		temp.addComponent(new BasicGravPullerComponent(pullForce));
@@ -136,28 +142,33 @@ public class EntityBuilder {
 		temp.addComponent(new PointRenderComponent());
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
 		
-		if(DEBUG){
-			System.out.println("Making GravPuller");
-		}
+		
 		
 		return temp;
 	}
 	
 	public static Entity rangedGravityPuller(Vector3f pos, double pullForce, double maxDist, double minDist){
-		//TODO this
-		Entity temp = new Entity("gravpuller", pos);
-		temp.addComponent(new BasicGravPuller_MinMaxRange(pullForce, maxDist, minDist));
-		temp.addComponent(new PointRenderComponent());
-		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
 		
 		if(DEBUG){
 			System.out.println("Making Ranged GravPuller");
 		}
 		
+		Entity temp = new Entity("gravpuller", pos);
+		temp.addComponent(new BasicGravPuller_MinMaxRange(pullForce, maxDist, minDist));
+		temp.addComponent(new PointRenderComponent());
+		temp.addComponent(new SquareOverlayRenderComponent(new Color(255, 100, 100), 30));
+		
+		
+		
 		return temp;
 	}
 	
 	public static Entity simpleGravityPullable(Vector3f pos, double mass){
+		
+		if(DEBUG){
+			System.out.println("Making SimpleGravPullable");
+		}
+		
 		Entity temp = new Entity("gravpullable", pos);
 		addBasicAccelerationTraitTo(temp);
 		addSimpleGravityPullableTraitTo(temp, mass);
@@ -166,9 +177,7 @@ public class EntityBuilder {
 		temp.addComponent(new PointTrailRenderComponent(200, 0.005f));
 		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 150, 30), 20));
 		
-		if(DEBUG){
-			System.out.println("Making SimpleGravPullable");
-		}
+		
 		
 		return temp;
 	}
@@ -197,8 +206,8 @@ public class EntityBuilder {
 	}
 	
 	public static void addSimpleGravityPullableTraitTo(Entity toGain, double mass){
-		toGain.addComponent(new BasicMassiveComponent(mass));
 		toGain.addComponent(new MassAggregatorComponent());
+		toGain.addComponent(new BasicMassiveComponent(mass));
 		toGain.addComponent(new GravPullableComponent());
 
 	}

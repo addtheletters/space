@@ -12,7 +12,9 @@ import atl.space.components.PrerequisiteNotFoundException;
 import atl.space.components.render.RenderableComponent;
 
 public class Entity {
-
+	
+	private static boolean DEBUG = true;
+	
 	public String id;
 	public Vector3f position;
 
@@ -109,7 +111,16 @@ public class Entity {
 		if(prIDs == null) return null;
 		Set<String> existingIDs = componentHash.keySet();
 		
+		if(DEBUG) System.out.println("DEBUG: Checking for: " + prIDs);
+		if(DEBUG) System.out.println("DEBUG: Already existing: " + existingIDs);
+		
 		prIDs.removeAll(existingIDs);
+		
+		if(DEBUG) {
+			if(prIDs.size() > 0) System.out.println("DEBUG: Still Missing: " + prIDs);
+			else System.out.println("DEBUG: No prerequisites missing for " + toAdd);
+		}
+		
 		if(prIDs.size() == 0) return null;
 		return prIDs;
 	}

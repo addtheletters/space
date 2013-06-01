@@ -612,11 +612,11 @@ public class GravityTest {
 
 		}
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_Q)) {
 			smartAccelFwd = true;
 			smartAccelBack = false;
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
 			smartAccelFwd = false;
 			smartAccelBack = true;
 		}
@@ -667,12 +667,12 @@ public class GravityTest {
 		if (Keyboard.isKeyDown(Keyboard.KEY_6)) {
 			smartStop = true;
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
 			mouseEnabled = true;
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			mouseEnabled = false;
-		}
+		//if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+		//	mouseEnabled = false;
+		//}
 		if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
 			//return camera to center
 			camera.setPosition(0, 0, 0);

@@ -1,6 +1,5 @@
 package atl.space.components.gravity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
@@ -25,12 +24,6 @@ public class BasicGravPullerComponent extends Component implements GravPuller{
 		super(bgpc.getId());
 		basicPullForce = bgpc.getPullForce();
 	}
-	
-	public List<String> getPrerequisiteIDs(){
-    	ArrayList<String> prids = new ArrayList<String>(1);
-		prids.add("accel");
-    	return prids;
-    }
 	
 	public double getPullForce(){
 		return basicPullForce;
