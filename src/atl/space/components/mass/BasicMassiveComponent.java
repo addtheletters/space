@@ -1,5 +1,6 @@
 package atl.space.components.mass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
@@ -25,7 +26,13 @@ public class BasicMassiveComponent extends Component implements Massive {
 		super(bmc.getId());
 		mass = bmc.getMass();
 	}
-
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("massaggregator");
+    	return prids;
+    }
+	
 	public double getMass() {
 		return mass;
 	}

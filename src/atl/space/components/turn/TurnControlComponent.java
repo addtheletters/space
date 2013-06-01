@@ -1,5 +1,6 @@
 package atl.space.components.turn;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -32,6 +33,13 @@ public class TurnControlComponent extends Component implements Triggerable {
 		turningToTarget = tcc.turningToTarget;
 		hardTurn = tcc.hardTurn;
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("turning");
+		prids.add("facing");
+    	return prids;
+    }
 	
 	public Component clone(){
 		return new TurnControlComponent(this);

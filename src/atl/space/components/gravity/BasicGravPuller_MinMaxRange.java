@@ -17,7 +17,8 @@ public class BasicGravPuller_MinMaxRange extends BasicGravPullerComponent {
 	public BasicGravPuller_MinMaxRange() {
 		this(1, Double.MAX_VALUE, 0);
 	}
-
+	
+	
 	private double maxRange;
 	private double minRange;
 

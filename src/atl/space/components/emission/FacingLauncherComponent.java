@@ -1,5 +1,6 @@
 package atl.space.components.emission;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -21,6 +22,12 @@ public class FacingLauncherComponent extends LauncherComponent {
 		expulsionSpeed = new Vector3f(expdir);
 		Entity.restrictLength(expulsionSpeed, speed);
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("turning");
+    	return prids;
+    }
 	
 	public Component clone(){
 		return new FacingLauncherComponent(this);

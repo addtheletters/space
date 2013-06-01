@@ -1,5 +1,6 @@
 package atl.space.components.engine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
@@ -11,6 +12,11 @@ public abstract class AbstractEngineComponent extends Component {
 		super("engine");
 	}
 	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("accel");
+    	return prids;
+    }
 	
 	public abstract void applyThrust();
 	

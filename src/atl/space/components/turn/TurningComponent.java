@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -30,6 +31,12 @@ public class TurningComponent extends RenderableComponent { //don't use this, us
 		super(tc.getId());
 		turn = new Vector3f(tc.turn);
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("facing");
+    	return prids;
+    }
 	
 	public Component clone(){
 		return new TurningComponent(this);

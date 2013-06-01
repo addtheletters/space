@@ -1,5 +1,6 @@
 package atl.space.components.gravity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -13,7 +14,7 @@ public class GravPullableComponent extends Component implements
 		GravPullable {
 	
 	private static final boolean DEBUG = true;
-
+	
 	public double getBaseGravMass() {
 		Component massAgg = owner.getComponent("massaggregator");
 		return ((MassAggregatorComponent) massAgg).getAggregateMass();
@@ -30,6 +31,12 @@ public class GravPullableComponent extends Component implements
 	public GravPullableComponent(GravPullableComponent gpc){
 		super(gpc.getId());
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("massaggregator");
+    	return prids;
+    }
 	
 	public double getGravMass() {
 		return getBaseGravMass() * getMassModifier();

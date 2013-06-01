@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -29,6 +30,12 @@ public class AccelComponent extends RenderableComponent { //don't use this, use 
 		super(ac.getId());
 		accel = new Vector3f(ac.accel);
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("movement");
+    	return prids;
+    }
 	
 	public Component clone(){
 		return new AccelComponent(this);

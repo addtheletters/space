@@ -1,5 +1,6 @@
 package atl.space.components.emission;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -11,7 +12,7 @@ import atl.space.entities.Entity;
 
 public class FTLauncherComponent extends FacingLauncherComponent {
 	public Vector3f target;
-
+	//Sets the emission to track the target.
 	// Needs the emission to have a TurnControlComponent
 	public FTLauncherComponent(Entity emission, Vector3f dir, float speed) {
 		super(emission, dir, speed);
@@ -22,6 +23,13 @@ public class FTLauncherComponent extends FacingLauncherComponent {
 	public FTLauncherComponent(FTLauncherComponent ftlc){
 		super(ftlc);
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(2);
+		prids.add("turning");
+		prids.add("movement");
+    	return prids;
+    }
 	
 	public Component clone(){
 		return new FTLauncherComponent(this);
@@ -41,6 +49,7 @@ public class FTLauncherComponent extends FacingLauncherComponent {
 		
 		//now that we have buildEmission we can just modify that rather than adding
 		//all this crap down here in trigger
+		//TODO actually fix this
 		
 		if (!temp.hasComponent("movement")) {
 			temp.addComponent(new MovementComponent(netVel));

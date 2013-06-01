@@ -1,5 +1,6 @@
 package atl.space.components.emission;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -17,6 +18,12 @@ public abstract class MEmissionComponent extends EmissionComponent {
 	public MEmissionComponent(MEmissionComponent mec){
 		super(mec);
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("movement");
+    	return prids;
+    }
 	
 	@Override
 	public void trigger(List<Entity> entities) {

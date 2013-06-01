@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,6 +39,13 @@ public class PointTrailRenderComponent extends RenderableComponent {
 		trailsize = ts;
 		trailfade = tf;
 	}
+	
+	public List<String> getPrerequisiteIDs(){
+    	ArrayList<String> prids = new ArrayList<String>(1);
+		prids.add("movement");
+    	return prids;
+    }
+	
 	public Component clone() {
 		return new PointTrailRenderComponent(this);
 	}
