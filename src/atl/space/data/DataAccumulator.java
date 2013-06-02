@@ -19,7 +19,7 @@ public abstract class DataAccumulator {
 		Iterator<DataGetter> it = getters.iterator();
 		while(it.hasNext()){
 			DataGetter tempGetter = it.next();
-			if(tempGetter.dataEnabled()){
+			if(tempGetter.isEnabled()){
 				tempData.addAll(tempGetter.getData(worldEntities));
 			}
 			if(DEBUG){
