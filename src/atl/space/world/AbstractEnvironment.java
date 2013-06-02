@@ -6,7 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.entities.Entity;
 
-
+//I have no idea if I actually need this. I don't yet, so meh, not gonna finish it until I do
 public abstract class AbstractEnvironment{
   private List<Entity> entities; //TODO: Turn this into a map maybe of position to entity so getEntity() is easier?
   //or maybe add a map too.
