@@ -11,12 +11,12 @@ Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
 _ookay. It does use GFM, just it doesn't support the checkboxes cuz git pushing. Carry on!_
-- Make gravity not fling objects when they approach pullers
-- Test projectiles, missiles, TurnControl
+- Finish data systems
+- Finish heat systems
+- EM / Light systems
+- Make collisions work
+- Add damage systems
 - Make updates for components utilize delta time
-- Make collisions work with ships and direction facings. Prolly gonna need some complicated trig -_-
-- Information mechanics, data sources, etc (see wiki)
-- Heat systems, EM systems, other gravitation / energy systems
 
 Current GravityTest functionality:
 - Draws a starfeild
