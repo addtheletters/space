@@ -1,0 +1,5 @@
+Some musings on damage systems.
+
+-Collisions will trigger damage of type (something). DamageType enumerator? 
+
+-Based on damage type and damage value, the healthProcessor component will calculate damage to systems, etc
