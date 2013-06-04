@@ -41,7 +41,7 @@ public class Entity {
 		return false;
 	}
 	
-	public static ArrayList<Component> cloneComponentList(ArrayList<Component> toClone){
+	public static ArrayList<Component> cloneComponentList(List<Component> toClone){
 		ArrayList<Component> temp = new ArrayList<Component>();
 		for(Component c : toClone){
 			temp.add(c.clone());
@@ -66,6 +66,8 @@ public class Entity {
 	
 	public Entity(Entity e) {
 		this(e.id, new Vector3f(e.position));
+		this.addComponents(cloneComponentList(e.getComponents()));
+		//TODO components?!?! Make sure this works
 	}
 
 	public Entity(String id, Vector3f position, ArrayList<Component> cs) {
