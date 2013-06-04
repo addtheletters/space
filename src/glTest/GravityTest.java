@@ -525,8 +525,9 @@ public class GravityTest {
 		if (launchMissile) {
 			// System.out.println(e.getComponent("movement"));
 			FTLauncherComponent ftlc = (FTLauncherComponent) protag
-					.getComponent("emission");
-			ftlc.setTarget(protag.getNearestTarget(entities).position);
+					.getComponent("launcher");
+			if(DEBUG) System.out.println(ftlc);
+			ftlc.setTarget(protag.getNearestTarget(entities).getPosition());
 			ftlc.trigger(entities);
 			launchMissile = false;
 		}

@@ -45,7 +45,7 @@ public class FTLauncherComponent extends FacingLauncherComponent {
 				((MovementComponent) owner.getComponent("movement")).speed,
 				expulsionSpeed, netVel);
 		Entity temp = buildEmission();
-		temp.position = new Vector3f(owner.position);
+		temp.position = new Vector3f(owner.getPosition());
 		
 		//now that we have buildEmission we can just modify that rather than adding
 		//all this crap down here in trigger

@@ -173,10 +173,10 @@ public class EntityBuilder {
 			return null;
 		}
 		Entity nearest = entities.get(0);
-		float longestdistance = origin.getDistance(nearest.position);
+		float longestdistance = origin.getDistance(nearest.getPosition());
 		//Vector3f temp = new Vector3f();
 		for(Entity e : entities){
-			float dist = origin.getDistance(e.position);
+			float dist = origin.getDistance(e.getPosition());
 			if(dist < longestdistance){
 				nearest = e;
 				longestdistance = dist;

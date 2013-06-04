@@ -187,11 +187,12 @@ public class Entity {
 		//Vector3f temp = new Vector3f();
 		for(Entity e : entities){
 			float dist = getDistance(e.getPosition());
-			if(dist < longestdistance && this != e && e.id != "missile"){
+			if(dist < longestdistance && this != e && e.getId() != "missile"){
 				nearest = e;
 				longestdistance = dist;
 			}
 		}
+		if(DEBUG) System.out.println("DEBUG: " + nearest);
 		return nearest;
 	}
 
@@ -216,11 +217,13 @@ public class Entity {
 			}
 		}
 	}
-
 	public Entity getStepped(int delta, List<Entity> entities) {
 		Entity stepped = new Entity(id, position, components);
 		stepped.update(delta, entities);
 		return stepped;
+	}
+	public String toString(){
+		return "{"+ this.getId() + " at " + this.getPosition() + " with " + this.getComponents().size() + " components}";
 	}
 
 }
