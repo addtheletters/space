@@ -61,6 +61,7 @@ public class Entity {
 		position = pos;
 		componentHash = new HashMap<String, Component>();
 		components = new ArrayList<Component>();
+		if(DEBUG) System.out.println("Making Entity of ID: " + id +" at " + pos);
 	}
 	
 	public Entity(Entity e) {
@@ -76,7 +77,7 @@ public class Entity {
 		try {
 			addComponent_Unhandled(component);
 		} catch (PrerequisiteNotFoundException e) {
-			System.out.println(e.getMessage());
+			System.out.println("[WARN] "+e.getMessage());
 		}
 	}
 	
@@ -85,7 +86,7 @@ public class Entity {
 		if(neededComponentIDs == null){
 			
 			if (componentHash.containsKey(component.getId().toLowerCase())) {
-				throw new IllegalArgumentException("Component with name: " + component.getId() + " has already been added to entity " + this.id);
+				throw new IllegalArgumentException("[WARN] Component with name: " + component.getId() + " has already been added to entity " + this.id);
 			}
 			component.setOwnerEntity(this);
 			components.add(component);

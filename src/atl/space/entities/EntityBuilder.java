@@ -29,22 +29,20 @@ public class EntityBuilder {
 	private static final boolean DEBUG = true;
 	
 	public static Entity point(float x, float y, float z) {
-		Entity temp = new Entity("defaultpoint");
+		Entity temp = new Entity("defaultpoint", new Vector3f(x, y, z));
 		temp.addComponent(new PointRenderComponent());
-		temp.position = new Vector3f(x, y, z);
 		return temp;
 	}
 	public static Entity mover(float x, float y, float z, float dx, float dy, float dz) {
-		Entity temp = new Entity("defaultmover");
-		temp.addComponent(new PointRenderComponent());
+		Entity temp = new Entity("defaultmover", new Vector3f(x, y, z));
 		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
-		temp.position = new Vector3f(x, y, z);
+		temp.addComponent(new PointRenderComponent());
 		return temp;
 	}
 	public static Entity trailer(Vector3f pos, Vector3f speed, int traillength, float trailfade) {
-		Entity temp = new Entity("defaultmover", pos);
-		temp.addComponent(new PointTrailRenderComponent(traillength, trailfade));
+		Entity temp = new Entity("defaulttrailer", pos);
 		temp.addComponent(new MovementComponent(new Vector3f(speed)));
+		temp.addComponent(new PointTrailRenderComponent(traillength, trailfade));
 		return temp;
 	}
 	public static Entity facer(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing){
@@ -130,11 +128,6 @@ public class EntityBuilder {
 	
 	public static Entity gravityPuller(Vector3f pos, double pullForce){
 		
-		
-		if(DEBUG){
-			System.out.println("Making GravPuller");
-		}
-		
 		Entity temp = new Entity("gravpuller", pos);
 		
 		temp.addComponent(new BasicGravPullerComponent(pullForce));
@@ -149,10 +142,6 @@ public class EntityBuilder {
 	
 	public static Entity rangedGravityPuller(Vector3f pos, double pullForce, double maxDist, double minDist){
 		
-		if(DEBUG){
-			System.out.println("Making Ranged GravPuller");
-		}
-		
 		Entity temp = new Entity("gravpuller", pos);
 		temp.addComponent(new BasicGravPuller_MinMaxRange(pullForce, maxDist, minDist));
 		temp.addComponent(new PointRenderComponent());
@@ -164,10 +153,6 @@ public class EntityBuilder {
 	}
 	
 	public static Entity simpleGravityPullable(Vector3f pos, double mass){
-		
-		if(DEBUG){
-			System.out.println("Making SimpleGravPullable");
-		}
 		
 		Entity temp = new Entity("gravpullable", pos);
 		addBasicAccelerationTraitTo(temp);

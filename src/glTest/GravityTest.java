@@ -46,7 +46,8 @@ import utility.FlyCamera;
 public class GravityTest {
 
 	// Static Constants (Or at least it should be imo)
-
+	
+	private static final boolean DEBUG = true;
 	private final String TITLE = "GRAVITY!";
 
 	public static final int WIDTH = 640;
@@ -269,7 +270,7 @@ public class GravityTest {
 	 * 
 	 */
 	private void quit() {
-
+		if(DEBUG) System.out.println("Stopping...");
 		Display.destroy();
 		System.exit(0);
 	}
