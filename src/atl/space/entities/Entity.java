@@ -65,12 +65,11 @@ public class Entity {
 	}
 	
 	public Entity(Entity e) {
-		this(e.id, new Vector3f(e.position));
-		this.addComponents(cloneComponentList(e.getComponents()));
+		this(e.id, new Vector3f(e.position), cloneComponentList(e.getComponents()));
 		//TODO components?!?! Make sure this works
 	}
 
-	public Entity(String id, Vector3f position, ArrayList<Component> cs) {
+	public Entity(String id, Vector3f position, List<Component> cs) {
 		this(id, position);
 		addComponents(cs);
 	}
