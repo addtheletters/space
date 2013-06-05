@@ -61,21 +61,11 @@ public class GravityTest {
 
 	private Camera camera;
 
-	/*
-	 * old cam position stuff private double zpos; private double xpos; private
-	 * double ypos;
-	 */
-
-	// If we end up doing rotation, might as well just use utility.Camera
-	// private double zrot;
-	// private double xrot;
-	// private double yrot;
 
 	// all objects that need updating
 	public ArrayList<Entity> entities;
-	// public ArrayList<Renderable> toRender;
-	// Made obsolete by new VBO render code.
 	Entity protag;
+	
 	// Data representing the field
 
 	final float STAR_FIELD_SIZE = 5000;
@@ -552,13 +542,9 @@ public class GravityTest {
 		glMatrixMode(GL_MODELVIEW);
 
 		glLoadIdentity();
+		
 		// glTranslated(xpos, ypos, zpos);
 		camera.applyTranslations();
-
-		// glRotated(25.,25.,25.,25.);
-		// glTranslated(10000,100000,100000);
-		//
-		// System.out.println("Hi!");
 
 		for (Entity e : entities) {
 			e.render();
@@ -597,24 +583,6 @@ public class GravityTest {
 			if (Mouse.isGrabbed()) {
 				camera.processMouse(0.5f, 85, -85);
 			}
-			/*int mouseX = Mouse.getX();// - WIDTH / 2;
-			int mouseY = Mouse.getY();// - HEIGHT / 2;
-			if (Mouse.isButtonDown(0)) {
-				// System.out.println("registered mouse down");
-				quadX = 2 * mouseX - quadWidth / 2;
-				quadY = 2 * mouseY - quadHeight / 2;
-			}
-			if (Mouse.isButtonDown(1) || Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-				if (mouseX > 0 && mouseY < HEIGHT - 1) {
-					xspeed = Mouse.getDX();
-					yspeed = Mouse.getDY();
-					zspeed = Mouse.getDWheel();
-				}
-			}
-			if (Mouse.isButtonDown(2)) {
-				zspeed = Mouse.getDWheel();
-			}*/
-
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_Q)) {
@@ -625,31 +593,6 @@ public class GravityTest {
 			smartAccelFwd = false;
 			smartAccelBack = true;
 		}
-		/*
-		 * if(Keyboard.isKeyDown(Keyboard.KEY_Q)){ //Vector3f temp = new
-		 * Vector3f((float)xpos, (float)ypos, (float)zpos); Entity e =
-		 * entities.get(0); //for(Entity e: entities){
-		 * //Vector3f.sub(e.position, temp, temp); double nx = - xpos +
-		 * e.position.x; double ny = - ypos + e.position.y; double nz = - zpos +
-		 * e.position.z;
-		 * 
-		 * //double pitch = Math.tan(ny/nz); //double yaw = Math.tan(nz/nx);
-		 * 
-		 * double p = Math.sqrt(nx*nx+ny*ny+nz*nz); double S =
-		 * Math.sqrt(nx*nx+ny*ny); double phi = Math.acos(nz/p); double theta;
-		 * if (0 <= nx) { theta = Math.asin(ny/S); } else { theta = Math.PI -
-		 * Math.asin(ny/S); }
-		 * 
-		 * 
-		 * 
-		 * 
-		 * System.out.println("( "+nx+" , "+ny+" , "+nz+" )");
-		 * System.out.println
-		 * ("( "+p+" , "+phi*180/Math.PI+" , "+theta*180/Math.PI+" )");
-		 * //System.out.println(temp); //}
-		 * 
-		 * }
-		 */
 		if (Keyboard.isKeyDown(Keyboard.KEY_M)) {
 			launchMissile = true;
 		}
@@ -675,43 +618,14 @@ public class GravityTest {
 		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
 			mouseEnabled = true;
 		}
-		//if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-		//	mouseEnabled = false;
-		//}
 		if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
 			//return camera to center
 			camera.setPosition(0, 0, 0);
 			camera.setRotation(0, 0, 0);
-			
-			// mouseEnabled = false;
-			// glLoadIdentity();
-			// zpos = 0;
-			// xpos = 0;
-			// ypos = 0;
-
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			quit();
 		}
-		/*
-		if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
-			zspeed += camAccel;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_V)) {
-			zspeed -= camAccel;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			xspeed += camAccel;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			xspeed -= camAccel;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			yspeed += camAccel;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			yspeed -= camAccel;
-		}*/
 
 	}
 
