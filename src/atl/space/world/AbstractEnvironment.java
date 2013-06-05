@@ -17,6 +17,14 @@ public abstract class AbstractEnvironment{
 	 //TODO: Make this work.
 	  return null; 
   }
+  public void addEntity(Entity e){
+	  entities.add(e);
+  }
+  public void removeEntity(Entity e){
+	  //entities.KEEL
+	  entities.remove(e); //erm maybe this isn't the most useful... ah well
+  }
+  
   public void update(int delta){
 	  for(Entity e : entities){
 		  e.update(delta, entities); //TODO: Change update(int, list<Entity>) to update(int, Environment)
