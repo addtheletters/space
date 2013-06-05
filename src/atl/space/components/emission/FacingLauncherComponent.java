@@ -5,11 +5,10 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.components.Component;
 import atl.space.components.turn.TurningComponent;
 import atl.space.entities.Entity;
 
-public class FacingLauncherComponent extends LauncherComponent {
+public abstract class FacingLauncherComponent extends LauncherComponent {
 	//works with things that have TurningComponents
 	public FacingLauncherComponent(FacingLauncherComponent flc){
 		super(flc);
@@ -29,9 +28,9 @@ public class FacingLauncherComponent extends LauncherComponent {
     	return prids;
     }
 	
-	public Component clone(){
+	/*public Component clone(){
 		return new FacingLauncherComponent(this);
-	}
+	}*/
 	
 	public void update(int delta, List<Entity> entities) {
 		TurningComponent tc = (TurningComponent)owner.getComponent("turning");

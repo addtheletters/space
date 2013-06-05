@@ -11,6 +11,8 @@ import atl.space.entities.Entity;
 public abstract class MEmissionComponent extends EmissionComponent {
 	//Creates emissions with the same movement as the owner
 	
+	protected static final boolean DEBUG = true;
+	
 	public MEmissionComponent(String id){
 		super(id);
 	}
@@ -26,29 +28,15 @@ public abstract class MEmissionComponent extends EmissionComponent {
     }
 	
 	@Override
-	public void trigger(List<Entity> entities) {
-		Entity temp = buildEmission();
-		temp.position = new Vector3f(owner.position);
+	protected void applyEffect(Entity temp) {
 		if(!temp.hasComponent("movement")){
+			if(DEBUG) System.out.println("DEBUG: No movement component detected, adding...");
 			temp.addComponent(new MovementComponent((MovementComponent)owner.getComponent("movement")));
 		}
 		else{
 			MovementComponent mc = (MovementComponent)temp.getComponent("movement");
 			mc.speed = new Vector3f(((MovementComponent)owner.getComponent("movement")).speed);
 		}
-		entities.add(temp);
-	}
-
-	@Override
-	protected Entity buildEmission() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected boolean canEmit() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 }

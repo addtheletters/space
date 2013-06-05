@@ -101,7 +101,8 @@ public class EntityBuilder {
 		temp.addComponent(new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
 		temp.addComponent(new PointTrailRenderComponent(100, 0.005f));
-		temp.addComponent(new FTLauncherComponent(missile(.01f, 0f, .01f), dirFacing, 1));
+		//temp.addComponent(new FTLauncherComponent(missile(.01f, 0f, .01f), dirFacing, 1));
+		//TODO this is being worked on
 		//this will not be here permanently
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
 		

@@ -22,12 +22,14 @@ public abstract class EmissionComponent extends Component implements Triggerable
 		if (canEmit()) { 
 			Entity temp = buildEmission();
 			temp.position = new Vector3f(owner.position);
+			applyEffect(temp);
 			entities.add(temp);
 		}
 	}
 	
 	protected abstract Entity buildEmission();
 	protected abstract boolean canEmit();
+	protected abstract void applyEffect(Entity temp);
 
 	@Override
 	public void update(int delta, List<Entity> entities) {
