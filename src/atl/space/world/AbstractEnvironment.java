@@ -22,5 +22,9 @@ public abstract class AbstractEnvironment{
 		  e.update(delta, entities); //TODO: Change update(int, list<Entity>) to update(int, Environment)
 	  }
   }
+  public boolean outsideBounds(Vector3f point){
+	  return outsideBounds(point.getX(), point.getY(), point.getZ());
+  }
+  public abstract boolean outsideBounds(float x, float y, float z);
   
 }
