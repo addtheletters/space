@@ -87,7 +87,7 @@ public class TurnControlComponent extends Component implements Triggerable {
 	}
 
 	public Vector3f getHardTurn(Vector3f facing) {
-		// TODO: make this work
+		// TODO: make this work. It doesn't :( Vector math anyone? halp?
 		//Cross the dir and a vector from position to target
 		//Cross new vector with dir
 		Vector3f temp = new Vector3f();
