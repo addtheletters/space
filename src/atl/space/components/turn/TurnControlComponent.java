@@ -90,10 +90,11 @@ public class TurnControlComponent extends Component implements Triggerable {
 		// TODO: make this work. It doesn't :( Vector math anyone? halp?
 		//Cross the dir and a vector from position to target
 		//Cross new vector with dir
+		Vector3f relativeTarget = new Vector3f();
+		Vector3f.sub(target, owner.getPosition(), relativeTarget); //get a vector representing target in relation to pos
 		Vector3f temp = new Vector3f();
-		Vector3f.sub(target, facing, temp); //get a vector representing target in relation to pos
-		Vector3f.cross(facing, temp, temp);
-		Vector3f.cross(facing, temp, temp);
+		Vector3f.cross(facing, relativeTarget, temp);
+		Vector3f.cross(temp, facing, temp);
 		return temp;
 	}
 

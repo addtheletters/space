@@ -120,7 +120,8 @@ public class EntityBuilder {
 		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn * 100));
 		temp.addComponent(new PointTrailRenderComponent(200, 0.005f));
 		TTurnControlComponent ttcc = new TTurnControlComponent();
-		ttcc.hardTurn = true;
+		//ttcc.hardTurn = true;
+		
 		temp.addComponent(ttcc);
 		//this will not be here permanently
 		temp.addComponent(new EquiTriangleOverlayRenderComponent(new Color(255, 100, 100),10));
