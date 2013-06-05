@@ -8,7 +8,6 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.MovementComponent;
 import atl.space.components.accel.AccelComponent;
 import atl.space.components.accel.RDAccelComponent;
-import atl.space.components.emission.FTLauncherComponent;
 import atl.space.components.emission.MissileLauncherTestComponent;
 import atl.space.components.gravity.BasicGravPullerComponent;
 import atl.space.components.gravity.BasicGravPuller_MinMaxRange;
@@ -27,7 +26,7 @@ import atl.space.components.turn.TurningComponent;
 
 public class EntityBuilder {
 	
-	private static final boolean DEBUG = true;
+	//private static final boolean DEBUG = true;
 	
 	public static Entity point(float x, float y, float z) {
 		Entity temp = new Entity("defaultpoint", new Vector3f(x, y, z));
