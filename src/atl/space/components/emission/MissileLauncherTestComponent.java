@@ -4,18 +4,26 @@ import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
 import atl.space.entities.Entity;
+import atl.space.entities.EntityBuilder;
 
 public class MissileLauncherTestComponent extends FTLauncherComponent {
+	
 	
 	public MissileLauncherTestComponent(Vector3f dir,
 			float speed) {
 		super(dir, speed);
 	}
+	public MissileLauncherTestComponent(MissileLauncherTestComponent mltc){
+		super(mltc);
+	}
 
 	@Override
 	protected Entity buildEmission() {
-		//TODO this
-		return null;
+		return buildMissile(.01f, 0f, .01f);
+	}
+	
+	private Entity buildMissile(float maxAccelF, float maxAccelB, float maxturn){
+		return EntityBuilder.missile(maxAccelF, maxAccelB, maxturn);
 	}
 
 	@Override
@@ -25,8 +33,7 @@ public class MissileLauncherTestComponent extends FTLauncherComponent {
 
 	@Override
 	public Component clone() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MissileLauncherTestComponent(this);
 	}
 	
 }
