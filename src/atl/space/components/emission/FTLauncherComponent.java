@@ -13,8 +13,8 @@ public abstract class FTLauncherComponent extends FacingLauncherComponent {
 	public Vector3f target;
 	//Sets the emission to track the target.
 	// Needs the emission to have a TurnControlComponent
-	public FTLauncherComponent(Entity emission, Vector3f dir, float speed) {
-		super(emission, dir, speed);
+	public FTLauncherComponent(Vector3f dir, float speed) {
+		super(dir, speed);
 		// id = "emission";
 		// System.out.println("set up FTLauncherComponent");
 	}

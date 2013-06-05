@@ -10,13 +10,18 @@ import atl.space.entities.Entity;
 
 public abstract class FacingLauncherComponent extends LauncherComponent {
 	//works with things that have TurningComponents
+	public FacingLauncherComponent(){
+		this(null , 1);
+		if(DEBUG) System.out.println("DEBUG: Creating FacingLauncher with null expulsion speed");
+	}
+	
 	public FacingLauncherComponent(FacingLauncherComponent flc){
 		super(flc);
 	}
 	public FacingLauncherComponent(Vector3f expspeed){
 		super(expspeed);
 	}
-	public FacingLauncherComponent(Entity emission, Vector3f expdir, float speed){
+	public FacingLauncherComponent(Vector3f expdir, float speed){
 		super();
 		expulsionSpeed = new Vector3f(expdir);
 		Entity.restrictLength(expulsionSpeed, speed);

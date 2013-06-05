@@ -14,7 +14,7 @@ public abstract class EmissionComponent extends Component implements Triggerable
 	}
 	
 	public EmissionComponent(EmissionComponent ec){
-		super(ec.id);
+		super(ec.getId());
 	}
 	
 	@Override

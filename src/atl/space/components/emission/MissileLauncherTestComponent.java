@@ -7,9 +7,9 @@ import atl.space.entities.Entity;
 
 public class MissileLauncherTestComponent extends FTLauncherComponent {
 	
-	public MissileLauncherTestComponent(Entity emission, Vector3f dir,
+	public MissileLauncherTestComponent(Vector3f dir,
 			float speed) {
-		super(emission, dir, speed);
+		super(dir, speed);
 	}
 
 	@Override
