@@ -9,6 +9,7 @@ import atl.space.components.MovementComponent;
 import atl.space.components.accel.AccelComponent;
 import atl.space.components.accel.RDAccelComponent;
 import atl.space.components.emission.FTLauncherComponent;
+import atl.space.components.emission.MissileLauncherTestComponent;
 import atl.space.components.gravity.BasicGravPullerComponent;
 import atl.space.components.gravity.BasicGravPuller_MinMaxRange;
 import atl.space.components.gravity.GravPullableComponent;
@@ -101,6 +102,7 @@ public class EntityBuilder {
 		temp.addComponent(new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
 		temp.addComponent(new PointTrailRenderComponent(100, 0.005f));
+		temp.addComponent(new MissileLauncherTestComponent(dirFacing, 1));
 		//temp.addComponent(new FTLauncherComponent(missile(.01f, 0f, .01f), dirFacing, 1));
 		//TODO this is being worked on
 		//this will not be here permanently

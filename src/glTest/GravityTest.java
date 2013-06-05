@@ -413,7 +413,6 @@ public class GravityTest {
 	private void addGravityPuller(float x, float y, float z, double pullForce) {
 		entities.add(EntityBuilder.rangedGravityPuller(new Vector3f(x, y, z),
 				pullForce, Double.MAX_VALUE, 100)); //pullers will not pull things that are less than __ units away
-		//TODO tweak this
 	}
 
 	private void addSimpleGravityPullable(float x, float y, float z, double mass) {
@@ -521,15 +520,19 @@ public class GravityTest {
 		interactions();
 	}
 
+	private boolean missileLaunched = false;
+	
 	private void interactions() { // how objects react to each other
-		if (launchMissile) {
+		if (launchMissile && !missileLaunched) {
 			// System.out.println(e.getComponent("movement"));
 			FTLauncherComponent ftlc = (FTLauncherComponent) protag
 					.getComponent("launcher");
 			if(DEBUG) System.out.println(ftlc);
 			ftlc.setTarget(protag.getNearestTarget(entities).getPosition());
 			ftlc.trigger(entities);
+			missileLaunched = true;
 			launchMissile = false;
+			//Only one missile plz!
 		}
 	}
 
