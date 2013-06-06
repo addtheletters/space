@@ -400,7 +400,7 @@ public class GravityTest {
 
 	private void addGravityPuller(float x, float y, float z, double pullForce) {
 		entities.add(EntityBuilder.rangedGravityPuller(new Vector3f(x, y, z),
-				pullForce, Double.MAX_VALUE, 100)); //pullers will not pull things that are less than __ units away
+				pullForce, Double.MAX_VALUE, 20)); //pullers will not pull things that are less than __ units away
 	}
 
 	private void addSimpleGravityPullable(float x, float y, float z, double mass) {
