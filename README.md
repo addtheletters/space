@@ -11,6 +11,9 @@ Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
 _ookay. It does use GFM, just it doesn't support the checkboxes cuz git pushing. Carry on!_
+- Fix acceleration / engine systems so gravity and engines work right
+- Alter / add to component ID system to make them easier to get
+- Fix 'strong' turning
 - Finish data systems
 - Finish heat systems
 - EM / Light systems
