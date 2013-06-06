@@ -15,7 +15,7 @@ public class NetAccelComponent extends Component {
 	 * and actually applies their acceleration effect.
 	 */
 	
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	
 	public NetAccelComponent(){
 		super("accel");
@@ -40,7 +40,7 @@ public class NetAccelComponent extends Component {
 		for(Component c : accelGivers){
 			if(c instanceof AccelProvider){
 				Vector3f toAdd = ((AccelProvider)c).getAccel(delta, entities);
-				//if(DEBUG) System.out.println("DEBUG: Adding " + toAdd + " to net accel");
+				if(DEBUG) System.out.println("DEBUG: Adding " + toAdd + " to net accel");
 				Vector3f.add(netAccel, toAdd, netAccel);
 			}
 		}
