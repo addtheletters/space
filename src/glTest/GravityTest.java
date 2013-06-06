@@ -1,7 +1,5 @@
 package glTest;
 
-import atl.space.components.MovementComponent;
-import atl.space.components.accel.DAccelComponent;
 import atl.space.components.emission.FTLauncherComponent;
 import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.components.turn.RTurningComponent;
@@ -309,12 +307,12 @@ public class GravityTest {
 
 	private double genPullForce() {
 		// TODO return semi-random force for gravity pullers
-		return 20;
+		return 100;
 	}
 
 	private double genRandMass() {
 		// TODO return random mass for simple grav pullables
-		return 5;
+		return 30;
 	}
 
 	/**
@@ -444,7 +442,9 @@ public class GravityTest {
 				// System.out.println(x);
 			}
 			if (e.id == "protagonist") {
-				DAccelComponent dac = (DAccelComponent) e.getComponent("accel");
+				//Replacement for daccel components in progress
+				
+				/*DAccelComponent dac = (DAccelComponent) e.getComponent("accel");
 				if (smartAccelFwd) {
 					dac.accelForward = maxAccel[0];
 				} else {
@@ -463,6 +463,7 @@ public class GravityTest {
 				} else {
 					dac.accelSecondary = 0;
 				}
+				*/
 				RTurningComponent rtc = (RTurningComponent) e
 						.getComponent("turning");
 				if (smartTurn) {
@@ -483,7 +484,7 @@ public class GravityTest {
 				// System.out.println("Hey");
 
 				// }
-				if (smartStopAccel) {
+				/*if (smartStopAccel) {
 					dac.accel = new Vector3f(0, 0, 0);
 					smartAccelFwd = false;
 					smartAccelBack = false;
@@ -504,6 +505,7 @@ public class GravityTest {
 					// smartStop = false;
 					// System.out.println(mc.speed);
 				}
+				*/
 			}
 		}
 

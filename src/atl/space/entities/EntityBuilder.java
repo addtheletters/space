@@ -6,7 +6,8 @@ import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.MovementComponent;
-import atl.space.components.accel.AccelComponent;
+import atl.space.components.accel.BasicAccelComponent;
+import atl.space.components.accel.NetAccelComponent;
 import atl.space.components.accel.RDAccelComponent;
 import atl.space.components.emission.MissileLauncherTestComponent;
 import atl.space.components.gravity.BasicGravPullerComponent;
@@ -36,12 +37,14 @@ public class EntityBuilder {
 	public static Entity mover(float x, float y, float z, float dx, float dy, float dz) {
 		Entity temp = new Entity("defaultmover", new Vector3f(x, y, z));
 		temp.addComponent(new MovementComponent(new Vector3f(dx, dy, dz)));
+		temp.addComponent(new NetAccelComponent());
 		temp.addComponent(new PointRenderComponent());
 		return temp;
 	}
 	public static Entity trailer(Vector3f pos, Vector3f speed, int traillength, float trailfade) {
 		Entity temp = new Entity("defaulttrailer", pos);
 		temp.addComponent(new MovementComponent(new Vector3f(speed)));
+		temp.addComponent(new NetAccelComponent());
 		temp.addComponent(new PointTrailRenderComponent(traillength, trailfade));
 		return temp;
 	}
@@ -63,13 +66,15 @@ public class EntityBuilder {
 		Entity temp = new Entity("defaultaccelerator", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
-		temp.addComponent(new AccelComponent(acceleration));
+		temp.addComponent(new NetAccelComponent());
+		temp.addComponent(new BasicAccelComponent(acceleration));
 		return temp;
 	}
 	public static Entity turner(Vector3f pos, Vector3f dirMoving, Vector3f dirFacing, Vector3f turn, float turnrate){
 		Entity temp = new Entity("defaultturner", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
+		temp.addComponent(new NetAccelComponent());
 		temp.addComponent(new RTurningComponent(turn, turnrate));
 		return temp;
 	}
@@ -77,7 +82,8 @@ public class EntityBuilder {
 		Entity temp = new Entity("dumbAuto", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
-		temp.addComponent(new AccelComponent(acceleration));
+		temp.addComponent(new NetAccelComponent());
+		temp.addComponent(new BasicAccelComponent(acceleration));
 		temp.addComponent(new TurningComponent(turn));
 		return temp;
 	}
@@ -85,6 +91,7 @@ public class EntityBuilder {
 		Entity temp = new Entity("smartAuto", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent(dirMoving));
+		temp.addComponent(new NetAccelComponent());
 		temp.addComponent(new RDAccelComponent(acceleration, maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(turn, maxturn));
 		//this will not be here permanently
@@ -98,6 +105,7 @@ public class EntityBuilder {
 		Entity temp = new Entity("protagonist", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent());
+		temp.addComponent(new NetAccelComponent());
 		temp.addComponent(new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
 		temp.addComponent(new PointTrailRenderComponent(100, 0.005f));
@@ -114,6 +122,7 @@ public class EntityBuilder {
 		Entity temp = new Entity("missile");
 		temp.addComponent(new FacingComponent());
 		temp.addComponent(new MovementComponent());
+		temp.addComponent(new NetAccelComponent());
 		RDAccelComponent rdac = new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, 0);
 		rdac.accelForward = maxAccelF;
 		temp.addComponent(rdac);
@@ -190,7 +199,8 @@ public class EntityBuilder {
 	
 	public static void addBasicAccelerationTraitTo(Entity toGain){
 		toGain.addComponent(new MovementComponent());
-		toGain.addComponent(new AccelComponent());
+		toGain.addComponent(new NetAccelComponent());
+		toGain.addComponent(new BasicAccelComponent());
 	}
 	
 	public static void addSimpleGravityPullableTraitTo(Entity toGain, double mass){

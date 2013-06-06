@@ -12,46 +12,48 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
-import atl.space.components.MovementComponent;
 import atl.space.components.render.RenderableComponent;
 import atl.space.entities.Entity;
 
-public class AccelComponent extends RenderableComponent { //don't use this, use restricted version
+public class BasicAccelComponent extends RenderableComponent implements AccelProvider{
+
+	private static final boolean RENDER = true;
+	
 	public Vector3f accel;
 	private static float renderLength = 1000;
-	public AccelComponent(){
+	public BasicAccelComponent(){
 		this(new Vector3f(0, 0, 0));
 	}
-	public AccelComponent(Vector3f a){
-		super("accel");
+	public BasicAccelComponent(Vector3f a){
+		super("basicaccel");
 		accel = a;
 	}
-	public AccelComponent(AccelComponent ac){
+	public BasicAccelComponent(BasicAccelComponent ac){
 		super(ac.getId());
 		accel = new Vector3f(ac.accel);
 	}
 	
 	public List<String> getPrerequisiteIDs(){
     	ArrayList<String> prids = new ArrayList<String>(1);
-		prids.add("movement");
+		prids.add("accel");
     	return prids;
     }
 	
 	public Component clone(){
-		return new AccelComponent(this);
+		return new BasicAccelComponent(this);
 	}
 	
 	public void update(int delta, List<Entity> entities) {
-		MovementComponent mc = (MovementComponent)owner.getComponent("movement");
-		Vector3f.add(mc.speed, accel, mc.speed);
+		//do nothing?
 	}
 	public Component getStepped(int delta, List<Entity> entities) {
-		AccelComponent ac = new AccelComponent(this);
+		BasicAccelComponent ac = new BasicAccelComponent(this);
 		ac.update(delta, entities);
 		return ac;
 	}
 	@Override
 	public void render() {
+		if(RENDER){
 		glBegin(GL_LINES);
 		glColor4f(1, 0, 1, 1);
 		glVertex3f(owner.position.x, owner.position.y, owner.position.z);
@@ -59,6 +61,11 @@ public class AccelComponent extends RenderableComponent { //don't use this, use 
 		glVertex3f(owner.position.x + accel.x*renderLength, owner.position.y + accel.y*renderLength, owner.position.z + accel.z*renderLength);
 		glColor4f(1, 1, 1, 1);
 		glEnd();
+		}
+	}
+	@Override
+	public Vector3f getAccel(int delta, List<Entity> entities) {
+		return accel;
 	}
 
 }

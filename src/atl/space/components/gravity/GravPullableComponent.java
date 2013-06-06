@@ -6,7 +6,6 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
-import atl.space.components.accel.AccelComponent;
 import atl.space.components.mass.MassAggregatorComponent;
 import atl.space.entities.Entity;
 
@@ -48,10 +47,9 @@ public class GravPullableComponent extends Component implements
 	}
 	
 	
-	public void applyPull(int delta, List<Entity> entities) {
+	public Vector3f getNetPull(int delta, List<Entity> entities) {
 		//TODO delta
 		Vector3f netPull = new Vector3f();
-		AccelComponent ac = (AccelComponent)owner.getComponent("accel");
 		for(Entity e : entities){
 			if(e.hasComponent("gravpuller")){
 				Vector3f.add(netPull, getPullForce(e), netPull);
@@ -59,8 +57,7 @@ public class GravPullableComponent extends Component implements
 				//TODO fix it if it doesn't 
 			}
 		}
-		
-		Vector3f.add(ac.accel, netPull, ac.accel);
+		return netPull;
 	}
 	
 	/*
@@ -101,6 +98,11 @@ public class GravPullableComponent extends Component implements
 
 	@Override
 	public void update(int delta, List<Entity> entities) {
-		applyPull(delta, entities);
+		//applyPull(delta, entities);
+	}
+
+	@Override
+	public Vector3f getAccel(int delta, List<Entity> entities) {
+		return getNetPull(delta, entities);
 	}
 }

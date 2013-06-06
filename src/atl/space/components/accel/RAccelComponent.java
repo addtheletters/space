@@ -7,7 +7,11 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
-public class RAccelComponent extends AccelComponent {
+public class RAccelComponent extends BasicAccelComponent {
+	/*
+	 * Likely going to be deprecated soon. Replacement in progress with atl.space.components.engine and NetAccelComponent
+	 */
+	
 	public float maxAccel;
 
 	public RAccelComponent() {
