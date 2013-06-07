@@ -1,7 +1,6 @@
 package atl.space.components.render;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.glColor4f;
 
 import java.awt.Font;
 import java.nio.FloatBuffer;
