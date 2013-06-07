@@ -29,13 +29,11 @@ public class EquiTriangleOverlayRenderComponent extends
 	// private static float ASPECTRATIO = (float)(WIDTH/HEIGHT);
 
 	public EquiTriangleOverlayRenderComponent() {
-		super();
-		color = new Color();
-		size = 0;
+		this(new Color(), 0f);
 	}
 
 	public EquiTriangleOverlayRenderComponent(Color color, float size) {
-		super();
+		super("equitrianglerender");
 		// setOrthoProjMatrix(createOrthoMatrix(-ASPECTRATIO * HEIGHT/2,
 		// ASPECTRATIO * HEIGHT/2, -1 * HEIGHT/2, 1 * HEIGHT/2, 1,-1));
 		setOrthoProjMatrix(createOrthoMatrix(0, WIDTH, 0, HEIGHT, 1, -1));

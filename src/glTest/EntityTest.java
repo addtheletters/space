@@ -319,7 +319,7 @@ public class EntityTest {
 		return new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255), alpha);
 	}
 	private void addProtagonist(){
-		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(), maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM);
+		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(), maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, null);
 		entities.add(protag);
 	}
 	

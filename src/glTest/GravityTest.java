@@ -307,7 +307,7 @@ public class GravityTest {
 
 	private double genPullForce() {
 		// TODO return semi-random force for gravity pullers
-		return 100;
+		return 300;
 	}
 
 	private double genRandMass() {
@@ -350,7 +350,7 @@ public class GravityTest {
 
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
-				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM);
+				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
 		entities.add(protag);
 	}
 
@@ -399,8 +399,8 @@ public class GravityTest {
 	}
 
 	private void addGravityPuller(float x, float y, float z, double pullForce) {
-		entities.add(EntityBuilder.rangedGravityPuller(new Vector3f(x, y, z),
-				pullForce, Double.MAX_VALUE, 0)); //pullers will not pull things that are less than __ units away
+		entities.add(EntityBuilder.gravityPuller(new Vector3f(x, y, z),
+				pullForce));
 	}
 
 	private void addSimpleGravityPullable(float x, float y, float z, double mass) {

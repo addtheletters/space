@@ -2,10 +2,10 @@ package atl.space.components.gravity;
 
 import java.util.List;
 
-import atl.space.components.Component;
+import atl.space.components.render.RenderableComponent;
 import atl.space.entities.Entity;
 
-public class BasicGravPullerComponent extends Component implements GravPuller{
+public class BasicGravPullerComponent extends RenderableComponent implements GravPuller{
 	
 	//As it is right now,
 	//each entity that pulls should only
@@ -43,6 +43,11 @@ public class BasicGravPullerComponent extends Component implements GravPuller{
 	@Override
 	public boolean hasWithinPullableArea(Entity target) {
 		return true; //basic ones just pull errything
+	}
+
+	@Override
+	public void render() {
+		//TODO something?
 	}
 
 }

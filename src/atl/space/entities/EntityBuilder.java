@@ -5,6 +5,8 @@ import java.util.List;
 import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 
+import utility.Camera;
+
 import atl.space.components.MovementComponent;
 import atl.space.components.accel.BasicAccelComponent;
 import atl.space.components.accel.NetAccelComponent;
@@ -15,6 +17,7 @@ import atl.space.components.gravity.BasicGravPuller_MinMaxRange;
 import atl.space.components.gravity.GravPullableComponent;
 import atl.space.components.mass.BasicMassiveComponent;
 import atl.space.components.mass.MassAggregatorComponent;
+import atl.space.components.render.DistanceDisplayComponent;
 import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 import atl.space.components.render.PointRenderComponent;
 import atl.space.components.render.PointTrailRenderComponent;
@@ -101,7 +104,7 @@ public class EntityBuilder {
 		return temp;	
 	}
 	
-	public static Entity protagonist(Vector3f pos, Vector3f dirFacing, float maxAccelF, float maxAccelB, float maxAccelS, float maxturn){
+	public static Entity protagonist(Vector3f pos, Vector3f dirFacing, float maxAccelF, float maxAccelB, float maxAccelS, float maxturn, Camera view){
 		Entity temp = new Entity("protagonist", pos);
 		temp.addComponent(new FacingComponent(dirFacing));
 		temp.addComponent(new MovementComponent());
@@ -114,7 +117,7 @@ public class EntityBuilder {
 		//TODO this is being worked on
 		//this will not be here permanently
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
-		
+		//temp.addComponent(new DistanceDisplayComponent(view));
 		return temp;	
 	}
 	

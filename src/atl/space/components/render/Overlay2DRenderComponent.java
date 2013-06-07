@@ -23,6 +23,10 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 		//do camera setup before this
 		this(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
 	}
+	public Overlay2DRenderComponent(String id){
+		super(id);
+		setOrthoProjMatrix(createOrthoMatrix(-1, 1, -1, 1, 1, -1));
+	}
 	public Overlay2DRenderComponent(FloatBuffer orthoProjMatrix){
 		super("overlay2drendercomponent");
 		setOrthoProjMatrix(orthoProjMatrix);
@@ -31,6 +35,10 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	public void setOrthoProjMatrix(FloatBuffer orthoProjMatrix){
 		orthographicProjectionMatrix = orthoProjMatrix;
 	}
+	public FloatBuffer getOrthoProjMatrix(){
+		return orthographicProjectionMatrix;
+	}
+	
 	public Overlay2DRenderComponent(Overlay2DRenderComponent orc) {
 		super(orc.getId());
 		this.orthographicProjectionMatrix = orc.orthographicProjectionMatrix;
@@ -86,12 +94,13 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 	}
 	public void backTo3D(){ //args for the projection matrix?
 		//assumes in modelview matrix mode
-		glColor4f(1,1,1,1);
+		//glColor4f(1,1,1,1);
 		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
 		//glLoadMatrix(perspectiveProjectionMatrix);
 		glMatrixMode(GL_MODELVIEW);
+		
 	}
 
 	@Override
