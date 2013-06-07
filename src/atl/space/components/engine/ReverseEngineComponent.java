@@ -5,22 +5,23 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.Component;
 import atl.space.components.turn.FacingComponent;
 
+public class ReverseEngineComponent extends AbstractDirectionalEngineComponent {
 
-public class PrimaryEngineComponent extends AbstractDirectionalEngineComponent {
-
-	public PrimaryEngineComponent(PrimaryEngineComponent prc) {
-		super(prc);
+	public ReverseEngineComponent(ReverseEngineComponent rec) {
+		super(rec);
 	}
 
 	@Override
 	public Vector3f getThrustDirection() {
 		FacingComponent fc = (FacingComponent)owner.getComponent("facing");
-		return new Vector3f(fc.facing);
+		Vector3f temp = new Vector3f(fc.facing);
+		temp.negate();
+		return temp;
 	}
 
 	@Override
 	public Component clone() {
-		return new PrimaryEngineComponent(this);
+		return new ReverseEngineComponent(this);
 	}
 
 }

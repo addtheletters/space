@@ -3,10 +3,13 @@ package atl.space.components.engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import atl.space.components.Component;
+import atl.space.components.accel.AccelProvider;
 import atl.space.entities.Entity;
 
-public abstract class AbstractEngineComponent extends Component {
+public abstract class AbstractEngineComponent extends Component implements AccelProvider{
 	
 	public AbstractEngineComponent(){
 		super("engine");
@@ -18,12 +21,17 @@ public abstract class AbstractEngineComponent extends Component {
     	return prids;
     }
 	
-	public abstract void applyThrust();
+	public abstract Vector3f getThrust();
 	
-
+	public abstract void setThrustForce(float thrust);
+	
 	@Override
+	public Vector3f getAccel(int delta, List<Entity> entities) {
+		return getThrust();
+	}
+	
 	public void update(int delta, List<Entity> entities) {
-		applyThrust();
+		//do nothing
 	}
 
 }
