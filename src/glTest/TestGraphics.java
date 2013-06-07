@@ -459,6 +459,10 @@ public class TestGraphics {
 		glPushMatrix();
 		glLoadIdentity();
 		// glDisable(GL_LIGHTING); //yaknow just in case
+		
+		//TODO debug, figure out why this works when DistanceDisplayComponent doesn't
+		System.out.println(font.getFont());
+		
 		font.drawString(
 				10,
 				10,

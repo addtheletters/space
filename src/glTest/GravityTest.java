@@ -539,14 +539,14 @@ public class GravityTest {
 		// draw
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glMatrixMode(GL_PROJECTION);
-		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
-		glMatrixMode(GL_MODELVIEW);
-
 		glLoadIdentity();
 		
 		// glTranslated(xpos, ypos, zpos);
 		camera.applyTranslations();
+		
+		glMatrixMode(GL_PROJECTION);
+		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
+		glMatrixMode(GL_MODELVIEW);
 
 		for (Entity e : entities) {
 			e.render();
