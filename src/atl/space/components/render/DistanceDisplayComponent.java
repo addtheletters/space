@@ -78,15 +78,17 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	public void renderDistance(float windowX, float windowY) {
 		//glColor4f(1, 1, 1, 1);
 		//TODO make this work
-		if(DEBUG){
+		/*if(DEBUG){
 			System.out.println(font.getFont());
-		}
-		//glDisable(GL_TEXTURE_2D);
+		}*/
+		
 		font.drawString(
 				windowX,
 				windowY,
 				"What");
+		glDisable(GL_TEXTURE_2D);
 		//glEnable(GL_TEXTURE_2D);
+		
 	}
 	
 	

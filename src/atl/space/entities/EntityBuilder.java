@@ -117,7 +117,7 @@ public class EntityBuilder {
 		//TODO this is being worked on
 		//this will not be here permanently
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
-		//temp.addComponent(new DistanceDisplayComponent(view));
+		temp.addComponent(new DistanceDisplayComponent(view));
 		return temp;	
 	}
 	
