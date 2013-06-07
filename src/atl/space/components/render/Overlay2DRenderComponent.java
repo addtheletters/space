@@ -81,6 +81,8 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 		return winpos;
 	}
 	
+	
+	
 	public void setUp2D(){ //args for the orthographic matrix?
 		//glUseProgram(0);
 		glMatrixMode(GL_PROJECTION);
