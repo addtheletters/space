@@ -221,10 +221,11 @@ public class GravityTest {
 		setUpDisplay();
 		setUpOpenGL();
 
+		setUpCamera();
+		
 		setUpEntities();
 		setUpTimer();
 		
-		setUpCamera();
 		
 		while (!Display.isCloseRequested()) {
 			// loop
@@ -399,13 +400,17 @@ public class GravityTest {
 	}
 
 	private void addGravityPuller(float x, float y, float z, double pullForce) {
-		entities.add(EntityBuilder.gravityPuller(new Vector3f(x, y, z),
-				pullForce));
+		Entity temp = EntityBuilder.gravityPuller(new Vector3f(x, y, z),
+				pullForce);
+		EntityBuilder.addDistanceDisplayTraitTo(temp, camera);
+		entities.add(temp);
 	}
 
 	private void addSimpleGravityPullable(float x, float y, float z, double mass) {
-		entities.add(EntityBuilder.simpleGravityPullable(new Vector3f(x, y, z),
-				mass));
+		Entity temp = EntityBuilder.simpleGravityPullable(new Vector3f(x, y, z),
+				mass);
+		EntityBuilder.addDistanceDisplayTraitTo(temp, camera);
+		entities.add(temp);
 	}
 
 	/*

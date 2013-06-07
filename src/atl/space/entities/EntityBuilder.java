@@ -206,6 +206,10 @@ public class EntityBuilder {
 		toGain.addComponent(new BasicAccelComponent());
 	}
 	
+	public static void addDistanceDisplayTraitTo(Entity toGain, Camera view){
+		toGain.addComponent(new DistanceDisplayComponent(view));
+	}
+	
 	public static void addSimpleGravityPullableTraitTo(Entity toGain, double mass){
 		toGain.addComponent(new MassAggregatorComponent());
 		toGain.addComponent(new BasicMassiveComponent(mass));

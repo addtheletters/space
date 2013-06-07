@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 
+import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
@@ -16,7 +17,7 @@ import atl.space.components.Component;
 
 public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	
 	private static DecimalFormat formatter = new DecimalFormat("0.00");
 	private Camera view;
@@ -31,7 +32,7 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	
 	public DistanceDisplayComponent(Camera cam){
 		this(cam, new UnicodeFont(new Font("Arial", java.awt.Font.PLAIN,
-				100)));
+				10)));
 	}
 	
 	public DistanceDisplayComponent(Camera cam, UnicodeFont font){
@@ -39,6 +40,7 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 		setOrthoProjMatrix(createOrthoMatrix(0, WIDTH, HEIGHT, 0, 1, -1));
 		//jasgsfkjaghkjfhagkj height is backwards!?!?!?
 		this.view = cam;
+		if(DEBUG) System.out.println("DEBUG: DistanceDisplayComponent: " + view);
 		this.font = font;
 		setUpFonts();
 	}
@@ -73,15 +75,17 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	}
 	
 	public void renderDistance(float windowX, float windowY) {
-		//glColor4f(1, 1, 1, 1);
-		//TODO make this work
-		/*if(DEBUG){
-			System.out.println(font.getFont());
-		}*/
+		if(DEBUG) System.out.println("DEBUG: "+view);
+		Vector3f temp = new Vector3f(view.x(), view.y(), view.z());
+		if(DEBUG) System.out.println("Camera pos obtained: " + temp);
+		float distance = owner.getDistance(temp);
+		if(DEBUG) System.out.println("Distance get successful");
+		
 		font.drawString(
 				windowX,
 				windowY,
-				"What");
+				formatter.format(distance));
+		if(DEBUG) System.out.println("Distance print successful");
 		glDisable(GL_TEXTURE_2D);
 		//glEnable(GL_TEXTURE_2D);
 		
