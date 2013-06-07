@@ -1,5 +1,6 @@
 package atl.space.components.render;
 
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glColor4f;
 
 import java.awt.Font;
@@ -80,10 +81,12 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 		if(DEBUG){
 			System.out.println(font.getFont());
 		}
+		//glDisable(GL_TEXTURE_2D);
 		font.drawString(
 				windowX,
 				windowY,
 				"What");
+		//glEnable(GL_TEXTURE_2D);
 	}
 	
 	
