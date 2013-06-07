@@ -31,12 +31,12 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	
 	public DistanceDisplayComponent(Camera cam){
 		this(cam, new UnicodeFont(new Font("Arial", java.awt.Font.PLAIN,
-				18)));
+				100)));
 	}
 	
 	public DistanceDisplayComponent(Camera cam, UnicodeFont font){
 		super("distancedisplay");
-		setOrthoProjMatrix(createOrthoMatrix(0, WIDTH,0, HEIGHT, 1, -1));
+		setOrthoProjMatrix(createOrthoMatrix(0, WIDTH, HEIGHT, 0, 1, -1));
 		//jasgsfkjaghkjfhagkj height is backwards!?!?!?
 		this.view = cam;
 		this.font = font;
@@ -64,7 +64,7 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	public void render() {
 		FloatBuffer winpos = getWinPos();
 		float windowX = winpos.get(0);
-		float windowY = winpos.get(1);
+		float windowY = HEIGHT-winpos.get(1);
 		setUp2D();
 		if (winpos.get(2) > 0 && winpos.get(2) < 1) {			
 			renderDistance(windowX, windowY);	
