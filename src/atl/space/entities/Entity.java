@@ -86,6 +86,8 @@ public class Entity {
 		List<String> neededComponentIDs = checkPrerequisites(component);
 		if(neededComponentIDs == null){
 			
+			if(DEBUG) System.out.println("DEBUG: No prereqs needed for " + component);
+			
 			if (componentHash.containsKey(component.getId().toLowerCase())) {
 				throw new IllegalArgumentException("[WARN] Component with name: " + component.getId() + " has already been added to entity " + this.id);
 			}
