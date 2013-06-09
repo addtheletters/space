@@ -12,10 +12,10 @@ public abstract class DataAccumulator {
 	
 	private static final boolean DEBUG = true;
 	
-	private ArrayList<DataGetter> getters;
+	private List<DataGetter> getters;
 	
 	public Collection<Data> accumulate(List<Entity> worldEntities){
-		ArrayList<Data> tempData = new ArrayList<Data>();
+		List<Data> tempData = new ArrayList<Data>();
 		Iterator<DataGetter> it = getters.iterator();
 		while(it.hasNext()){
 			DataGetter tempGetter = it.next();
