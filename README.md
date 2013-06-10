@@ -30,7 +30,3 @@ Current GravityTest functionality:
 
 
 See wiki on GitHub for planned final game mechanics and other info.
-
-----UPDATE----
-Hey, so what are the thoughts about multiplayer? -Zach
-I'm not sure. It most definitley will not be turn-based so... we'll cross that bridge when we come to it. It'd be really nice if we could make it work though. -Ben
