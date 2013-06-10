@@ -30,8 +30,14 @@ public class RectObstructionComponent extends ObstructionComponent {
 		return new RectObstructionComponent(this);
 	}
 	
+	public boolean isInHitbox(Vector3f position){
+		return false;
+		//TODO implement?
+	}
+	
 	@Override
 	public boolean hasCollided(Entity e, int delta, List<Entity> entities) {
+		//TODO make this less stupid and use isInHitbox if possible
 		Coord minX, maxX, minY, maxY, minZ, maxZ;
 		Entity steppedThis = owner.getStepped(delta, entities);
 		Entity steppedOther = e.getStepped(delta, entities);
