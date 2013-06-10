@@ -31,13 +31,43 @@ public class RectObstructionComponent extends ObstructionComponent {
 	}
 	
 	public boolean isInHitbox(Vector3f position){
-		return false;
-		//TODO implement?
+		return isWithinSize(position.x, 1) && isWithinSize(position.y, 2) && isWithinSize(position.z, 3);
+		//TODO check if works?
+	}
+	
+	
+	//TODO replace owner.position with getCenter
+	protected Vector3f getCenter(){
+		return owner.position;
+	}
+	
+	/*
+	*	dim:
+	*	x = 1, y = 2, z = 3
+	*
+	*/
+	private boolean isWithinSize(float coord, int dim){
+		float tempRelative;
+		switch(dim){
+			case 1:
+				tempRelative = coord - getCenter().x;
+				return (tempRelative < xSize/2) && (tempRelative > -xSize/2);
+			case 2:
+				tempRelative = coord - getCenter().y;
+				return (tempRelative < ySize/2) && (tempRelative > -ySize/2);
+			case 3:
+				tempRelative = coord - getCenter().z;
+				return (tempRelative < zSize/2) && (tempRelative > -zSize/2); 
+			default:
+				return null;
+		}	
 	}
 	
 	@Override
 	public boolean hasCollided(Entity e, int delta, List<Entity> entities) {
 		//TODO make this less stupid and use isInHitbox if possible
+		//Take advantage of getLastPos and getNextPos or whatever from MovementComponent, if applicable
+		//basically everything here's gotta go. scrap getStepped, might not need coords either
 		Coord minX, maxX, minY, maxY, minZ, maxZ;
 		Entity steppedThis = owner.getStepped(delta, entities);
 		Entity steppedOther = e.getStepped(delta, entities);
@@ -80,7 +110,7 @@ public class RectObstructionComponent extends ObstructionComponent {
 
 	@Override
 	public boolean isTouching(Entity e) {
-		// TODO Make this work XD
+		// TODO Make this work XD Basically checks if hitboxes intersect, same thingish as hasCollided but static timeframe
 		return false;
 	}
 
