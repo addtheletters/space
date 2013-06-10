@@ -20,19 +20,13 @@ _ookay. It does use GFM, just it doesn't support the checkboxes cuz git pushing.
 - Add damage systems
 - Make updates for components utilize delta time
 
+Note: Files in glTest are entirely for testing and may represent various stages of development. Some may cease to work as coding proceeds.
+
 Current GravityTest functionality:
 - Draws a starfeild
 - Draws a bunch of gravity-pullable objects, with orange triangle overlays
 - Draws a bunch of stationary gravity pullers, with pink square overlays
-- Also has carried over protagonist + other entities from EntityTest
-
-Current EntityTest functionality:
-- Draws a starfeild
-- Draws a bunch of movers that leave fading trails
-- Draws a bunch of controllable accelerator things with lots of options, with overlays
-- Attempted missile launching, semi-working
-- Attempted 'unit selection', semi-working
-
+- Also has carried over protagonist + semiworking missile + other entities from EntityTest
 
 
 See wiki on GitHub for planned final game mechanics and other info.
