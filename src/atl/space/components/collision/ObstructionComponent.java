@@ -5,7 +5,7 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
-public abstract class ObstructionComponent extends Component {
+public abstract class ObstructionComponent extends Component implements HitBox{
 	public ObstructionComponent(String id) {
 		super(id);
 	}
