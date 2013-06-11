@@ -71,6 +71,9 @@ public class RectObstructionComponent extends ObstructionComponent {
 		//TODO make this less stupid and use isInHitbox if possible
 		//Take advantage of getLastPos and getNextPos or whatever from MovementComponent, if applicable
 		//basically everything here's gotta go. scrap getStepped, might not need coords either
+		
+		
+		
 		Coord minX, maxX, minY, maxY, minZ, maxZ;
 		Entity steppedThis = owner.getStepped(delta, entities);
 		Entity steppedOther = e.getStepped(delta, entities);
@@ -78,28 +81,31 @@ public class RectObstructionComponent extends ObstructionComponent {
 				.getComponent("obstruction");
 		RectObstructionComponent thisComp = (RectObstructionComponent) steppedThis
 				.getComponent("obstruction");
-
-		if (owner.position.x >= e.position.x) {
+		
+		Vector3f center = getCenter();
+		
+		if (center.getX() >= e.position.getX()) {
 			minX = new Coord(steppedOther.position.x, otherComp.xSize);
 			maxX = new Coord(steppedThis.position.x, thisComp.xSize);
 		} else {
 			maxX = new Coord(steppedOther.position.x, otherComp.xSize);
 			minX = new Coord(steppedThis.position.x, thisComp.xSize);
 		}
-		if (owner.position.y >= e.position.y) {
+		if (center.getY() >= e.position.getY()) {
 			minY = new Coord(steppedOther.position.y, otherComp.ySize);
 			maxY = new Coord(steppedThis.position.y, thisComp.ySize);
 		} else {
 			maxY = new Coord(steppedOther.position.y, otherComp.ySize);
 			minY = new Coord(steppedThis.position.y, thisComp.ySize);
 		}
-		if (owner.position.z >= e.position.z) {
+		if (center.getZ() >= e.position.getZ()) {
 			minZ = new Coord(steppedOther.position.z, otherComp.zSize);
 			maxZ = new Coord(steppedThis.position.z, thisComp.zSize);
 		} else {
 			maxZ = new Coord(steppedOther.position.z, otherComp.zSize);
 			minZ = new Coord(steppedThis.position.z, thisComp.zSize);
 		}
+		
 		if ((minX.value + minX.obsSize / 2 >= maxX.value - maxX.obsSize / 2)
 				&& (minY.value + minY.obsSize / 2 >= maxY.value - maxY.obsSize
 						/ 2)
@@ -113,7 +119,13 @@ public class RectObstructionComponent extends ObstructionComponent {
 
 	@Override
 	public boolean isTouching(Entity e) {
-		// TODO Make this work XD Basically checks if hitboxes intersect, same thingish as hasCollided but static timeframe
+		if(e.getComponent("obstruction") != null){
+			//TODO this
+		}
+		else{
+			return isInHitbox(e.getPosition());
+		}
+		
 		return false;
 	}
 
