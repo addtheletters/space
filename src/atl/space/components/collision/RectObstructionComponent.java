@@ -2,6 +2,8 @@ package atl.space.components.collision;
 
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
@@ -59,7 +61,8 @@ public class RectObstructionComponent extends ObstructionComponent {
 				tempRelative = coord - getCenter().z;
 				return (tempRelative < zSize/2) && (tempRelative > -zSize/2); 
 			default:
-				return null;
+				System.err.println(this + ": invalid dimension for size check");
+				return false;
 		}	
 	}
 	

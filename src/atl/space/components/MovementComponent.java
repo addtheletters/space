@@ -36,7 +36,7 @@ public class MovementComponent extends Component {
 	
 	public Vector3f getPrevPosition(){
 		Vector3f temp = new Vector3f(owner.position);
-		Vector3f.add(temp, Vector3f.negate(speed), temp);
+		Vector3f.add(temp, (Vector3f)speed.negate(), temp);
 		return temp;
 	}
 	public Vector3f getNextPosition(){
