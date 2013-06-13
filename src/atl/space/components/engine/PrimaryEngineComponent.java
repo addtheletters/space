@@ -8,6 +8,13 @@ import atl.space.components.turn.FacingComponent;
 
 public class PrimaryEngineComponent extends AbstractDirectionalEngineComponent {
 
+	public PrimaryEngineComponent(float thrust, float maxthrust){
+		super(thrust, maxthrust, "primaryengine");
+	}
+	public PrimaryEngineComponent(float maxThrust){
+		this(0, maxThrust);
+	}
+	
 	public PrimaryEngineComponent(PrimaryEngineComponent prc) {
 		super(prc);
 	}

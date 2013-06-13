@@ -13,7 +13,7 @@ public class AdjustableDirectionEngineComponent extends
 	protected Vector3f thrusterAim;
 	
 	public AdjustableDirectionEngineComponent(float thrust, float maxThrust, Vector3f thrustAim){
-		super(thrust, maxThrust);
+		super(thrust, maxThrust, "adjustabledirectionengine");
 		thrusterAim = thrustAim;
 	}
 	

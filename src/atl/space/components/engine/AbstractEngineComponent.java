@@ -14,6 +14,9 @@ public abstract class AbstractEngineComponent extends Component implements Accel
 	public AbstractEngineComponent(){
 		super("engine");
 	}
+	public AbstractEngineComponent(String id){
+		super(id);
+	}
 	
 	public List<String> getPrerequisiteIDs(){
     	ArrayList<String> prids = new ArrayList<String>(1);

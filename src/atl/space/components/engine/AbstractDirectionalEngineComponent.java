@@ -14,18 +14,14 @@ public abstract class AbstractDirectionalEngineComponent extends
 	protected float thrust;
 	protected float maxThrust;
 
-	public AbstractDirectionalEngineComponent(float thrust, float maxThrust) {
-		super();
+	public AbstractDirectionalEngineComponent(float thrust, float maxThrust, String id) {
+		super(id);
 		this.thrust = thrust;
 		this.maxThrust = maxThrust;
 	}
 
-	public AbstractDirectionalEngineComponent(float thrust) {
-		this(thrust, Float.MAX_VALUE);
-	}
-
 	public AbstractDirectionalEngineComponent() {
-		this(0);
+		this(0, Float.MAX_VALUE, "abstractengine");
 	}
 
 	public AbstractDirectionalEngineComponent(
@@ -69,6 +65,9 @@ public abstract class AbstractDirectionalEngineComponent extends
 	@Override
 	public void setThrustForce(float thrust) {
 		this.thrust = thrust;
+	}
+	public void setMaxThrustForce(float maxThrust){
+		this.maxThrust = maxThrust;
 	}
 
 }

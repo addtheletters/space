@@ -6,7 +6,14 @@ import atl.space.components.Component;
 import atl.space.components.turn.FacingComponent;
 
 public class ReverseEngineComponent extends AbstractDirectionalEngineComponent {
-
+	
+	public ReverseEngineComponent(float thrust, float maxthrust){
+		super(thrust, maxthrust, "reverseengine");
+	}
+	public ReverseEngineComponent(float maxThrust){
+		this(0, maxThrust);
+	}
+	
 	public ReverseEngineComponent(ReverseEngineComponent rec) {
 		super(rec);
 	}
