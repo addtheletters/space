@@ -3,6 +3,8 @@ package atl.space.components.engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
@@ -27,6 +29,18 @@ public class EngineControlComponent extends Component {
 	}
 	
 	//#thatsmorelikeit
+	
+	public void fullForwards(){
+		//TODO make this go
+	}
+	public void fullReverse(){
+		//TODO make THIS go
+	}
+	public void maneuver(Vector3f dir){
+		//TODO maneuvering thrusters going in dir
+	}
+	//more stuff?
+	//combine this with turning for a full motion control something?
 	
 	@Override
 	public Component clone() {
