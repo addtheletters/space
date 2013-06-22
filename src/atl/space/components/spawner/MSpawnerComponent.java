@@ -1,4 +1,4 @@
-package atl.space.components.emission;
+package atl.space.components.spawner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,16 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.MovementComponent;
 import atl.space.entities.Entity;
 
-public abstract class MEmissionComponent extends EmissionComponent {
+public abstract class MSpawnerComponent extends SpawnerComponent {
 	//Creates emissions with the same movement as the owner
 	
 	protected static final boolean DEBUG = true;
 	
-	public MEmissionComponent(String id){
+	public MSpawnerComponent(String id){
 		super(id);
 	}
 	
-	public MEmissionComponent(MEmissionComponent mec){
+	public MSpawnerComponent(MSpawnerComponent mec){
 		super(mec);
 	}
 	

@@ -1,4 +1,4 @@
-package atl.space.components.emission;
+package atl.space.components.spawner;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ import atl.space.components.Component;
 import atl.space.components.Triggerable;
 import atl.space.entities.Entity;
 
-public abstract class EmissionComponent extends Component implements Triggerable {
-	public EmissionComponent(String id){
+public abstract class SpawnerComponent extends Component implements Triggerable {
+	public SpawnerComponent(String id){
 		super(id);
 	}
 	
-	public EmissionComponent(EmissionComponent ec){
+	public SpawnerComponent(SpawnerComponent ec){
 		super(ec.getId());
 	}
 	

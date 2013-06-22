@@ -1,4 +1,4 @@
-package atl.space.components.emission;
+package atl.space.components.spawner;
 
 import java.util.ArrayList;
 import java.util.List;

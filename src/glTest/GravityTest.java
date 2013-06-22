@@ -1,7 +1,7 @@
 package glTest;
 
-import atl.space.components.emission.FTLauncherComponent;
 import atl.space.components.render.PointTrailRenderComponent;
+import atl.space.components.spawner.FTLauncherComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.entities.*;
 

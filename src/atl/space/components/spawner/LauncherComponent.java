@@ -1,4 +1,4 @@
-package atl.space.components.emission;
+package atl.space.components.spawner;
 
 
 import org.lwjgl.util.vector.Vector3f;
@@ -6,7 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.MovementComponent;
 import atl.space.entities.Entity;
 
-public abstract class LauncherComponent extends MEmissionComponent {
+public abstract class LauncherComponent extends MSpawnerComponent {
 	public Vector3f expulsionSpeed;
 	
 	public LauncherComponent(){

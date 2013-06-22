@@ -1,4 +1,4 @@
-package atl.space.components.emission;
+package atl.space.components.spawner;
 
 import org.lwjgl.util.vector.Vector3f;
 
