@@ -2,6 +2,8 @@ package atl.space.components.radiation;
 
 public class Emission {
 	private int wavelength;
+	//multiple wavelengths? huh... how 2 do
+	
 	private EmissionPattern pattern;
 	public int getWavelength() {
 		return wavelength;
