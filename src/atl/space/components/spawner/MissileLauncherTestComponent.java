@@ -1,5 +1,7 @@
 package atl.space.components.spawner;
 
+import java.util.List;
+
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
@@ -8,6 +10,7 @@ import atl.space.entities.EntityBuilder;
 
 public class MissileLauncherTestComponent extends FTLauncherComponent {
 	
+	private int tickTime;
 	
 	public MissileLauncherTestComponent(Vector3f dir,
 			float speed) {
@@ -28,12 +31,18 @@ public class MissileLauncherTestComponent extends FTLauncherComponent {
 
 	@Override
 	protected boolean canEmit() {
-		return true;
+		return tickTime == 0;
 	}
 
 	@Override
 	public Component clone() {
 		return new MissileLauncherTestComponent(this);
+	}
+	
+	@Override
+	public void update(int delta, List<Entity> entities) {
+		super.update(delta, entities);
+		tickTime --;
 	}
 	
 }
