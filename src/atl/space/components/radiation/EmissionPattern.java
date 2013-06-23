@@ -1,5 +1,5 @@
 package atl.space.components.radiation;
 
 public class EmissionPattern {
-	//dunno
+	//Noise, a transmission, scanning pattern, pulsing, etc?
 }
