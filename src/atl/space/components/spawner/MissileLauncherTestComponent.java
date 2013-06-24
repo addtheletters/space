@@ -11,15 +11,28 @@ import atl.space.entities.EntityBuilder;
 public class MissileLauncherTestComponent extends FTLauncherComponent {
 	
 	private int tickTime;
+	private int launchDelay;
+	private static final int DEFAULT_DELAY = 100;
 	
 	public MissileLauncherTestComponent(Vector3f dir,
-			float speed) {
+			float speed, int tickDelay) {
 		super(dir, speed);
+		launchDelay = tickDelay;
+	}
+	public MissileLauncherTestComponent(Vector3f dir, float speed){
+		this(dir, speed, DEFAULT_DELAY);
 	}
 	public MissileLauncherTestComponent(MissileLauncherTestComponent mltc){
 		super(mltc);
+		launchDelay = DEFAULT_DELAY;
 	}
-
+	
+	@Override
+	public void trigger(List<Entity> entities) {
+		super.trigger(entities);
+		tickTime = launchDelay;
+	}
+	
 	@Override
 	protected Entity buildEmission() {
 		return buildMissile(.01f, 0f, .01f);
@@ -42,7 +55,7 @@ public class MissileLauncherTestComponent extends FTLauncherComponent {
 	@Override
 	public void update(int delta, List<Entity> entities) {
 		super.update(delta, entities);
-		tickTime --;
+		if(tickTime > 0) tickTime --;
 	}
 	
 }
