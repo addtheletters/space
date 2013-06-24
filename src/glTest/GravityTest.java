@@ -517,17 +517,17 @@ public class GravityTest {
 		interactions();
 	}
 
-	private boolean missileLaunched = false;
+	//private boolean missileLaunched = false;
 	
 	private void interactions() { // how objects react to each other
-		if (launchMissile && !missileLaunched) {
+		if (launchMissile) {
 			// System.out.println(e.getComponent("movement"));
 			FTLauncherComponent ftlc = (FTLauncherComponent) protag
 					.getComponent("launcher");
 			if(DEBUG) System.out.println(ftlc);
 			ftlc.setTarget(protag.getNearestTarget(entities).getPosition());
 			ftlc.trigger(entities);
-			missileLaunched = true;
+			//missileLaunched = true;
 			launchMissile = false;
 			//Only one missile plz!
 		}

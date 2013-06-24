@@ -30,7 +30,7 @@ public class MissileLauncherTestComponent extends FTLauncherComponent {
 	@Override
 	public void trigger(List<Entity> entities) {
 		super.trigger(entities);
-		tickTime = launchDelay;
+		if(canEmit()) tickTime = launchDelay;
 	}
 	
 	@Override
