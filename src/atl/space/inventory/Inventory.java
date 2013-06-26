@@ -1,6 +1,8 @@
 package atl.space.inventory;
 
-import java.util.Collection;
+import java.util.List;
+
+import atl.space.inventory.items.Item;
 
 public interface Inventory {
 	public boolean isFull();
@@ -11,7 +13,7 @@ public interface Inventory {
 	public double getCapacityFilled();
 	public void addItem(Item item) throws InventoryException;
 	public void removeItem(Item item) throws InventoryException;
-	public Collection<Item> getItems();
+	public List<Item> getItems();
 	public boolean containsItem(Item item);
 	public Item getItem(String itemID) throws InventoryException;
 }

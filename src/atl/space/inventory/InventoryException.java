@@ -1,5 +1,7 @@
 package atl.space.inventory;
 
+import atl.space.inventory.items.Item;
+
 @SuppressWarnings("serial")
 public class InventoryException extends Exception {
 	private InventoryOperation op;

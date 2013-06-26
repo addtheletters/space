@@ -1,16 +1,17 @@
 package atl.space.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 
 import utility.Camera;
-
 import atl.space.components.MovementComponent;
 import atl.space.components.accel.BasicAccelComponent;
 import atl.space.components.accel.NetAccelComponent;
 import atl.space.components.accel.RDAccelComponent;
+import atl.space.components.cargo.CargoComponent;
 import atl.space.components.engine.AdjustableDirectionEngineComponent;
 import atl.space.components.engine.PrimaryEngineComponent;
 import atl.space.components.engine.ReverseEngineComponent;
@@ -30,6 +31,8 @@ import atl.space.components.turn.FacingComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.components.turn.TTurnControlComponent;
 import atl.space.components.turn.TurningComponent;
+import atl.space.inventory.items.Item;
+import atl.space.inventory.items.TestMissileAmmo;
 
 public class EntityBuilder {
 	
@@ -118,6 +121,7 @@ public class EntityBuilder {
 		//temp.addComponent(new RDAccelComponent(new Vector3f(), maxAccelF, maxAccelB, maxAccelS));
 		temp.addComponent(new RTurningComponent(new Vector3f(), maxturn));
 		temp.addComponent(new PointTrailRenderComponent(100, 0.005f));
+		temp.addComponent(new CargoComponent(createInventory(), Double.MAX_VALUE));
 		temp.addComponent(new MissileLauncherTestComponent(dirFacing, 1));
 		//temp.addComponent(new FTLauncherComponent(missile(.01f, 0f, .01f), dirFacing, 1));
 		//TODO this is being worked on
@@ -126,6 +130,15 @@ public class EntityBuilder {
 		temp.addComponent(new DistanceDisplayComponent(view));
 		return temp;	
 	}
+	
+	public static List<Item> createInventory(){
+		List<Item> temp = new ArrayList<Item>();
+		for(int i = 1; i <= 4; i++){
+			temp.add(new TestMissileAmmo());
+		}
+		return temp;
+	}
+	
 	
 	public static Entity missile(float maxAccelF, float maxAccelB, float maxturn){
 		Entity temp = new Entity("missile");
