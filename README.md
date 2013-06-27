@@ -10,9 +10,9 @@ Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
-_ookay. It does use GFM, just it doesn't support the checkboxes cuz git pushing. Carry on!_
-- Engines?
+- RPG mechanics
 - Fix 'strong' turning
+- Finish radiation / communications
 - Finish data systems
 - Finish heat systems
 - EM / Light systems
