@@ -1,6 +1,6 @@
 package atl.space.rpg;
 
-public abstract class BlatantTextOption implements Option {
+public class BlatantTextOption implements Option {
 	
 	private String longDescription;
 	private String breifDescription;

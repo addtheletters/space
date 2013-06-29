@@ -9,6 +9,18 @@ public abstract class Fork implements Event{
 		choices = options;
 	}
 	
+	public void addChoice(Option choice){
+		choices.add(choice);
+	}
+	
+	public void removeChoice(int index){
+		choices.remove(index);
+	}
+	
+	public void removeChoice(Option choice){
+		choices.remove(choice);
+	}
+	
 	public void choose(int index){
 		choices.get(index).applyConsequence();
 		applyUniversalConsequence();
