@@ -11,5 +11,6 @@ public class Emission {
 		this.wavelength = wavelength;
 	}
 	
+	//
 	
 }
