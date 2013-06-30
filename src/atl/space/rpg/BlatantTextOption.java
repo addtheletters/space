@@ -4,15 +4,21 @@ public class BlatantTextOption implements Option {
 	
 	private String longDescription;
 	private String breifDescription;
-
-	public BlatantTextOption(String breifDescr, String longDescr){
+	private int nextEvent;
+	
+	public BlatantTextOption(String breifDescr, String longDescr, int nextEvent){
 		this.longDescription = longDescr;
 		this.breifDescription = breifDescr;
+		this.nextEvent = nextEvent;
 	}
 	
 	@Override
 	public void applyConsequence() {
 		System.out.println(getLongDescription());
+	}
+	
+	public int getNextEventIndex(){
+		return nextEvent;
 	}
 	
 	@Override
