@@ -13,7 +13,11 @@ public abstract class BlatantTextFork extends Fork {
 	}
 	
 	public int requestChoice(){
-		return keyin.nextInt()-1;
+		int tempC = -1;
+		while(!(tempC >= 0 && tempC < choices.size())){
+			tempC = keyin.nextInt()-1;
+		}
+		return tempC;
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public class TestTextRPG {
 		start.addChoice(new BlatantTextOption("Open eyes",
 				"You open your eyes.", 1) {
 			public void applyConsequence() {
-				courage += 5;
+				courage += 3;
 				super.applyConsequence();
 			}
 		});
@@ -54,14 +54,14 @@ public class TestTextRPG {
 		stage1.addChoice(new BlatantTextOption("'Who are you?'",
 				"You ask the figure who they are.", 3) {
 			public void applyConsequence() {
-				courage += 3;
+				courage += 2;
 				super.applyConsequence();
 			}
 		});
 		stage1.addChoice(new BlatantTextOption("'Why am I here?'",
 				"You demand to know why you are there.", 3) {
 			public void applyConsequence() {
-				courage += 2;
+				courage += 1;
 				super.applyConsequence();
 			}
 		});
@@ -133,7 +133,7 @@ public class TestTextRPG {
 		ProgressionStage stage4 = new ProgressionStage(
 				"But the darkness fights back.") {
 			public void displayText() {
-				System.out.println("You courage is " + courage);
+				//System.out.println("You courage is " + courage + ".");
 				if (decisions[0] == 1) {
 					System.out
 							.println("How can you hope to fight the darkness if you are");

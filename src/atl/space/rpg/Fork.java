@@ -3,7 +3,7 @@ package atl.space.rpg;
 import java.util.List;
 
 public abstract class Fork implements Event{
-	List<Option> choices;
+	protected List<Option> choices;
 	
 	public Fork(List<Option> options){
 		choices = options;
