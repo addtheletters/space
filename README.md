@@ -10,15 +10,13 @@ Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 Currrent Objective: Create data systems. Any advice is welcome :P
 
 TODO:
-- RPG mechanics
-- Fix 'strong' turning
-- Finish radiation / communications
-- Finish data systems
-- Finish heat systems
-- EM / Light systems
-- Make collisions work
-- Add damage systems
-- Make updates for components utilize delta time
+- Fix 'strong' turning #priority low
+- Finish radiation / communications #priority high
+- Finish data systems #priority high
+- Finish heat systems #priority low
+- Make collisions work #priority high
+- Add damage systems #priority medium
+- Make updates for components utilize delta time #priority low
 
 Note: Files in glTest are entirely for testing and may represent various stages of development. Some may cease to work as coding proceeds.
 
