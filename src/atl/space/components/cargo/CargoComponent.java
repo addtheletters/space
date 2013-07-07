@@ -6,6 +6,7 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.components.mass.Massive;
 import atl.space.entities.Entity;
+import atl.space.inventory.BasicInventory;
 import atl.space.inventory.Inventory;
 import atl.space.inventory.InventoryException;
 import atl.space.inventory.InventoryException.InventoryOperation;
@@ -110,21 +111,14 @@ public class CargoComponent extends Component implements Massive, Inventory{
 
 	@Override
 	public Item getItem(String itemID) throws InventoryException{
-		Item tmp = getFromList(itemID, cargo);
+		Item tmp = BasicInventory.getFromList(itemID, cargo);
 		if(tmp == null){
 			throw new InventoryException(InventoryOperation.GET, itemID, this);
 		}
 		return tmp;
 	}
 	
-	public static Item getFromList(String itemID, List<Item> list){
-		Item tmp = null;
-		for(Item i : list){
-			if(itemID == i.getID()) tmp = i;
-			break;
-		}
-		return tmp;
-	}
+	
 
 	public double getCapacity() {
 		return capacity;

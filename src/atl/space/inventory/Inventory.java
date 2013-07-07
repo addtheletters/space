@@ -15,5 +15,6 @@ public interface Inventory {
 	public void removeItem(Item item) throws InventoryException;
 	public List<Item> getItems();
 	public boolean containsItem(Item item);
+	public boolean containsItem(String itemID) throws InventoryException;
 	public Item getItem(String itemID) throws InventoryException;
 }
