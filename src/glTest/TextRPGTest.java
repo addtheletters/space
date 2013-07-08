@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.*;
 import org.lwjgl.*;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 
 public class TextRPGTest {
+	
+	//I found this which may be useful: http://sourceforge.net/projects/nifty-gui/
 
 	private boolean mouseEnabled = true;
 
@@ -53,12 +54,6 @@ public class TextRPGTest {
 		lastFrame = getTime();
 	}
 
-	private void setUpEntities() {
-		toUpdate = new ArrayList<Tickable>();
-		toRender = new ArrayList<Renderable>();
-
-		addEntities();
-	}
 
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 480;
@@ -71,8 +66,8 @@ public class TextRPGTest {
 		setUpDisplay();
 		setUpOpenGL();
 
-		setUpEntities();
-
+		
+		
 		setUpTimer();
 
 		while (!Display.isCloseRequested()) {
@@ -92,9 +87,6 @@ public class TextRPGTest {
 		System.exit(0);
 	}
 
-	private void addEntities() {
-		
-	}
 
 	private void tick() {
 		for (Tickable o : toUpdate) {
@@ -145,3 +137,4 @@ public class TextRPGTest {
 	}
 
 }
+
