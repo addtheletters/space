@@ -31,6 +31,7 @@ import atl.space.components.turn.FacingComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.components.turn.TTurnControlComponent;
 import atl.space.components.turn.TurningComponent;
+import atl.space.data.DataBank;
 import atl.space.inventory.items.Item;
 import atl.space.inventory.items.TestMissileAmmo;
 
@@ -128,6 +129,7 @@ public class EntityBuilder {
 		//this will not be here permanently
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
 		temp.addComponent(new DistanceDisplayComponent(view));
+		temp.addComponent(new DataBank());
 		return temp;	
 	}
 	

@@ -10,6 +10,7 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.Component;
 import atl.space.components.PrerequisiteNotFoundException;
 import atl.space.components.render.RenderableComponent;
+import atl.space.data.DatumAggregator;
 
 public class Entity {
 	
@@ -22,8 +23,8 @@ public class Entity {
 	 * List of all components
 	 */
 	ArrayList<Component> components = null;
+	ArrayList<DatumAggregator> sensorSystems = null;
 	HashMap<String, Component> componentHash = null;
-	
 	
 	public static void restrictLength(Vector3f v, float length){
 		if(v.length() != 0){
@@ -73,6 +74,16 @@ public class Entity {
 		this(id, position);
 		addComponents(cs);
 	}
+	
+	public ArrayList<DatumAggregator> getSensorSystems() {
+		return sensorSystems;
+	}
+	
+	public void addSensor(DatumAggregator da) {
+		sensorSystems.add(da);
+		da.setOwnerEntity(this);
+	}
+	
 	
 	public void addComponent(Component component){
 		try {
