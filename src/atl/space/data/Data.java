@@ -1,6 +1,6 @@
 package atl.space.data;
 
-public abstract class Data<T> {
+public class Data<T> {
 	/*	
 	 * 	I still don't really know if this is how I want to do this. Help?
 	 */
@@ -16,7 +16,7 @@ public abstract class Data<T> {
 		this.id = id;
 	}
 	
-	public abstract DataType getType();
+	//public abstract DataType getType();
 	
 	public String getIdentifier(){
 		return id;

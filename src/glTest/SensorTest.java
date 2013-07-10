@@ -4,6 +4,7 @@ import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.components.spawner.FTLauncherComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.entities.*;
+import atl.space.sensor.RandomTestSensor;
 
 import static org.lwjgl.opengl.GL11.*;
 //import static org.lwjgl.opengl.GL30.*;
@@ -352,7 +353,7 @@ public class SensorTest {
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		protag.addSensor();
+		protag.addSensor(new RandomTestSensor());
 		entities.add(protag);
 	}
 

@@ -62,6 +62,7 @@ public class Entity {
 		position = pos;
 		componentHash = new HashMap<String, Component>();
 		components = new ArrayList<Component>();
+		sensorSystems = new ArrayList<DatumAggregator>();
 		if(DEBUG) System.out.println("Making Entity of ID: " + id +" at " + pos);
 	}
 	

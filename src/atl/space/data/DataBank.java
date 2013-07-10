@@ -12,11 +12,13 @@ public class DataBank extends Component {
 
 	public DataBank() {
 		super("DataBank");
+		dataList = new ArrayList<Data>();
 	}
 	
 	ArrayList<Data> dataList;
 	//TreeMap<DataType,ArrayList<Data>> hashedData;
 	public void accumulateData() {
+		System.out.println(owner.getSensorSystems());
 		for (DatumAggregator da: owner.getSensorSystems() ) {
 			dataList.add(da.getData());
 			//if (hashedData.get(da.getDataType())==null) {
@@ -39,6 +41,7 @@ public class DataBank extends Component {
 	public void update(int delta, List<Entity> entities) {
 		// TODO Auto-generated method stub
 		accumulateData();
+		System.out.println(dataList);
 	}
 
 }
