@@ -42,4 +42,5 @@ public abstract class Component implements Cloneable{
     public boolean isRenderable(){
     	return false;
     }
+
 }

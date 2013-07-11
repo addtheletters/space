@@ -353,7 +353,7 @@ public class SensorTest {
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		protag.addSensor(new RandomTestSensor());
+		protag.addComponent(new RandomTestSensor("rts"));
 		entities.add(protag);
 	}
 

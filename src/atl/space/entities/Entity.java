@@ -80,10 +80,10 @@ public class Entity {
 		return sensorSystems;
 	}
 	
-	public void addSensor(DatumAggregator da) {
-		sensorSystems.add(da);
-		da.setOwnerEntity(this);
-	}
+	//public void addSensor(DatumAggregator da) {
+	//	sensorSystems.add(da);
+	//	da.setOwnerEntity(this);
+	//}
 	
 	
 	public void addComponent(Component component){
@@ -100,13 +100,28 @@ public class Entity {
 			
 			if(DEBUG) System.out.println("DEBUG: No prereqs needed for " + component);
 			
-			if (componentHash.containsKey(component.getId().toLowerCase())) {
-				throw new IllegalArgumentException("[WARN] Component with name: " + component.getId() + " has already been added to entity " + this.id);
-			}
-			component.setOwnerEntity(this);
-			components.add(component);
-			componentHash.put(component.getId().toLowerCase(), component);
+			if (component instanceof DatumAggregator) {
+				if (sensorSystems.contains(component)) {
+					throw new IllegalArgumentException("[WARN] System with name: " + component.getId() + " has already been added to entity " + this.id);
+				}
+				if (componentHash.containsKey(component.getId().toLowerCase())) {
+					throw new IllegalArgumentException("[WARN] Component with name: " + component.getId() + " has already been added to entity " + this.id);
+				}
+				component.setOwnerEntity(this);
+				components.add(component);
+				componentHash.put(component.getId().toLowerCase(), component);
+				sensorSystems.add((DatumAggregator)component);
+			
+			} else {
+			
+				if (componentHash.containsKey(component.getId().toLowerCase())) {
+					throw new IllegalArgumentException("[WARN] Component with name: " + component.getId() + " has already been added to entity " + this.id);
+				}
+				component.setOwnerEntity(this);
+				components.add(component);
+				componentHash.put(component.getId().toLowerCase(), component);
 		
+			}
 		}
 		else{
 			throw new PrerequisiteNotFoundException(neededComponentIDs);
