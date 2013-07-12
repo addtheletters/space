@@ -23,7 +23,7 @@ public class Entity {
 	 * List of all components
 	 */
 	ArrayList<Component> components = null;
-	ArrayList<DatumAggregator> sensorSystems = null;
+	//ArrayList<DatumAggregator> sensorSystems = null;
 	HashMap<String, Component> componentHash = null;
 	
 	public static void restrictLength(Vector3f v, float length){
@@ -62,7 +62,7 @@ public class Entity {
 		position = pos;
 		componentHash = new HashMap<String, Component>();
 		components = new ArrayList<Component>();
-		sensorSystems = new ArrayList<DatumAggregator>();
+		//sensorSystems = new ArrayList<DatumAggregator>();
 		if(DEBUG) System.out.println("Making Entity of ID: " + id +" at " + pos);
 	}
 	
@@ -77,7 +77,14 @@ public class Entity {
 	}
 	
 	public ArrayList<DatumAggregator> getSensorSystems() {
-		return sensorSystems;
+		//return sensorSystems;
+		ArrayList<DatumAggregator> sensors = new ArrayList<DatumAggregator>();
+		for(Component c: components){
+			if(c instanceof DatumAggregator){
+				sensors.add((DatumAggregator) c);
+			}
+		}
+		return sensors;
 	}
 	
 	//public void addSensor(DatumAggregator da) {
@@ -100,7 +107,7 @@ public class Entity {
 			
 			if(DEBUG) System.out.println("DEBUG: No prereqs needed for " + component);
 			
-			if (component instanceof DatumAggregator) {
+			/*if (component instanceof DatumAggregator) {
 				if (sensorSystems.contains(component)) {
 					throw new IllegalArgumentException("[WARN] System with name: " + component.getId() + " has already been added to entity " + this.id);
 				}
@@ -112,7 +119,7 @@ public class Entity {
 				componentHash.put(component.getId().toLowerCase(), component);
 				sensorSystems.add((DatumAggregator)component);
 			
-			} else {
+			} else {*/
 			
 				if (componentHash.containsKey(component.getId().toLowerCase())) {
 					throw new IllegalArgumentException("[WARN] Component with name: " + component.getId() + " has already been added to entity " + this.id);
@@ -121,7 +128,7 @@ public class Entity {
 				components.add(component);
 				componentHash.put(component.getId().toLowerCase(), component);
 		
-			}
+			//}
 		}
 		else{
 			throw new PrerequisiteNotFoundException(neededComponentIDs);

@@ -6,6 +6,9 @@ import java.util.Collection;
 import atl.space.components.Enableable;
 import atl.space.entities.Entity;
 
+
+//Deprecated. Kinda replacement: DatumAggregator
+
 public interface DataGetter extends Enableable{
 	
 	

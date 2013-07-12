@@ -7,6 +7,7 @@ import java.util.List;
 
 import atl.space.entities.Entity;
 
+//deprecated. Kinda replacement: DataBank
 
 public abstract class DataAccumulator {
 	
