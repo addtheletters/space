@@ -15,6 +15,7 @@ TODO:
 - Finish data systems #priority high
 - Finish heat systems #priority low
 - Make collisions work #priority high
+	-Perhaps use something like JBullet to make it easier
 - Add damage systems #priority medium
 - Make updates for components utilize delta time #priority low
 

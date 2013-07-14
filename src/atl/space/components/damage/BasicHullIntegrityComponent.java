@@ -25,6 +25,10 @@ public class BasicHullIntegrityComponent extends Component {
 		integrity = bhic.getIntegrity();
 	}
 	
+	public void addIntegrity(double amount){
+		integrity += amount;
+	}
+	
 	@Override
 	public Component clone() {
 		return new BasicHullIntegrityComponent(this);

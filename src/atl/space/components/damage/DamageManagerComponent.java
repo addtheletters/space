@@ -12,6 +12,8 @@ public abstract class DamageManagerComponent extends Component {
 	//Different Damage Managers for every ship configuration, so damage can be distributed accordingly. 
 	//Various systems could be taken off line if targeted.
 	
+	private static final boolean DEBUG = true;
+	
 	public DamageManagerComponent(String id) {
 		super(id);
 	}
@@ -20,9 +22,16 @@ public abstract class DamageManagerComponent extends Component {
 		super(dmc.getId());
 	}
 
-	public abstract void takeDamage(double damage, DamageType type);
 	
-	public abstract void takeDamage(double damage, DamageType type, Component target);
+	//this will be overwritten, and super calls made to it
+	public void takeDamage(double damage, DamageType type){
+		if(DEBUG) System.out.println("DEBUG: Entity [" + owner + "] received " + damage + " damage of type " + type + ".");
+	}
+	
+	//possibly same here
+	public void takeDamage(double damage, DamageType type, Component target){
+		if(DEBUG) System.out.println("DEBUG: Entity [" + owner + "] received " + damage + " damage of type " + type + " to component [" + target + "].");
+	}
 	
 	@Override
 	public void update(int delta, List<Entity> entities) {
