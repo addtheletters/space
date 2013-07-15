@@ -29,7 +29,7 @@ public class BasicHullDamageManager extends DamageManagerComponent {
 	}
 
 	@Override
-	public void takeDamage(double damage, DamageType type, Component target) {
+	public void takeDamage(double damage, DamageType type, Damageable_c target) {
 		takeDamage(damage, type);
 	}
 
