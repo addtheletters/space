@@ -1,4 +1,4 @@
-package atl.space.sensor;
+package atl.space.components.data.sensor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,7 +4,7 @@ import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.components.spawner.FTLauncherComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.entities.*;
-import atl.space.sensor.RandomTestSensor;
+import atl.space.components.data.sensor.RandomTestSensor;
 
 import static org.lwjgl.opengl.GL11.*;
 //import static org.lwjgl.opengl.GL30.*;
