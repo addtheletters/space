@@ -6,9 +6,9 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
-public abstract class AbstractDatumExchangerComponent extends Component implements DatumAggregator{
+public class DatumExchangerComponent extends Component implements DatumAggregator{
 
-	public AbstractDatumExchangerComponent(String id) {
+	public DatumExchangerComponent(String id) {
 		super(id);
 	}
 
@@ -26,14 +26,21 @@ public abstract class AbstractDatumExchangerComponent extends Component implemen
 
 	@Override
 	public DataType getDataType() {
-		// TODO Auto-generated method stub
-		return null;
+		return DataType.LETS_SEE_HOW_YOU_HANDLE_THIS_SONIC;
 	}
 
 	@Override
 	public List<Data> getData() {
+		DataBank bank = (DataBank) owner.getComponent("databank");
+		return bank.getData();
+		
+		//getting it ALL. Subclasses may only get some specific, or transfer what is needed
+	}
+
+	@Override
+	public void update(int delta, List<Entity> entities) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }
