@@ -30,11 +30,6 @@ public class RandomTestSensor extends Component implements DatumAggregator {
 		return data;
 	}
 
-	@Override
-	public void setOwnerEntity(Entity e) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Component clone() {
