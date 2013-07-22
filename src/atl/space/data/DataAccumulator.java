@@ -15,6 +15,7 @@ public abstract class DataAccumulator {
 	
 	private List<DataGetter> getters;
 	
+	@SuppressWarnings("rawtypes")
 	public Collection<Data> accumulate(List<Entity> worldEntities){
 		List<Data> tempData = new ArrayList<Data>();
 		Iterator<DataGetter> it = getters.iterator();

@@ -2,12 +2,11 @@ package atl.space.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 import atl.space.components.Component;
-import atl.space.components.render.RenderableComponent;
 import atl.space.entities.Entity;
 
+@SuppressWarnings("rawtypes")
 public class DataBank extends Component {
 
 	public DataBank() {
@@ -15,6 +14,7 @@ public class DataBank extends Component {
 		dataList = new ArrayList<Data>();
 	}
 	
+
 	ArrayList<Data> dataList;
 	//TreeMap<DataType,ArrayList<Data>> hashedData;
 	public void accumulateData() {

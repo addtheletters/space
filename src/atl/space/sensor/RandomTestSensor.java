@@ -22,6 +22,7 @@ public class RandomTestSensor extends Component implements DatumAggregator {
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public List<Data> getData() {
 		List<Data> data = new ArrayList<Data>();
 		data.add(new Data<Integer>(1589, "idk either!"));

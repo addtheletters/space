@@ -6,6 +6,7 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.entities.Entity;
 
+@SuppressWarnings("rawtypes")
 public class DatumExchangerComponent extends Component implements DatumAggregator{
 
 	public DatumExchangerComponent(String id) {

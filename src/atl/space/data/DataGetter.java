@@ -9,6 +9,7 @@ import atl.space.entities.Entity;
 
 //Deprecated. Kinda replacement: DatumAggregator
 
+@SuppressWarnings("rawtypes")
 public interface DataGetter extends Enableable{
 	
 	
