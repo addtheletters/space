@@ -1,5 +1,6 @@
 package atl.space.sensor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
@@ -21,8 +22,11 @@ public class RandomTestSensor extends Component implements DatumAggregator {
 	}
 
 	@Override
-	public Data getData() {
-		return new Data<Integer>(4,"idk");
+	public List<Data> getData() {
+		List<Data> data = new ArrayList<Data>();
+		data.add(new Data<Integer>(1589, "idk either!"));
+		data.add(new Data<Integer>( (int)(Math.random() * 10), "IDK!"));
+		return data;
 	}
 
 	@Override

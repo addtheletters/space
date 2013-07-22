@@ -11,7 +11,7 @@ import atl.space.entities.Entity;
 public class DataBank extends Component {
 
 	public DataBank() {
-		super("DataBank");
+		super("databank"); // component IDs are lowercased for less confusion
 		dataList = new ArrayList<Data>();
 	}
 	
@@ -21,7 +21,12 @@ public class DataBank extends Component {
 		dataList = new ArrayList<Data>();
 		//System.out.println(owner.getSensorSystems());
 		for (DatumAggregator da: owner.getSensorSystems() ) {
-			dataList.add(da.getData());
+			//dataList.add(da.getData());
+			
+			//make this work so that aggregators can get multiple pieces of data at once?
+			
+			dataList.addAll(da.getData());
+			
 			//if (hashedData.get(da.getDataType())==null) {
 			//		tmp = new 
 			//}
