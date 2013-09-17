@@ -11,6 +11,7 @@ import atl.space.components.Component;
 import atl.space.components.PrerequisiteNotFoundException;
 import atl.space.components.render.RenderableComponent;
 import atl.space.data.DatumAggregator;
+import atl.space.world.Environment;
 
 public class Entity {
 	
@@ -18,6 +19,8 @@ public class Entity {
 	
 	public String id;
 	public Vector3f position;
+	
+	private Environment container = null;
 
 	/**
 	 * List of all components
@@ -258,6 +261,24 @@ public class Entity {
 		stepped.update(delta, entities);
 		return stepped;
 	}
+	
+	public void setContainerEnvironment(Environment world){
+		if(DEBUG){
+			if(world==null){
+				System.out.println("Attempting to add entity ("+this+") to null environment.");
+			}
+			if(container != null){
+				System.out.println("Moving entity ("+this+") out of (" + container + ") to (" + world);
+			}
+		}
+		container = world;
+	}
+	
+	public Environment getContainerEnvironment(){
+		//TODO this
+		return container;
+	}
+	
 	public String toString(){
 		return "{"+ this.getId() + " at " + this.getPosition() + " with " + this.getComponents().size() + " components}";
 	}

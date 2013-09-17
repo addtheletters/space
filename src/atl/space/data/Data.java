@@ -1,5 +1,10 @@
 package atl.space.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import atl.space.entities.Entity;
+
 public class Data<T> {
 	/*	
 	 * 	I still don't really know if this is how I want to do this. Help?
@@ -22,5 +27,14 @@ public class Data<T> {
 		return id;
 	}
 	
+	
+	@SuppressWarnings("rawtypes")
+	public static List<Data> convertEntitiesToData(List<Entity> entities){
+		List<Data> converted = new ArrayList<Data>();
+		for(int i = 0; i < entities.size(); i++){
+			converted.add(new Data<Entity>(entities.get(i), "ENTITY_FULL"));
+		}
+		return converted;
+	}
 
 }
