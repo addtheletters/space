@@ -18,6 +18,10 @@ public class OmniscientEntitySensor extends Component implements
 	public OmniscientEntitySensor(String id) {
 		super(id);
 	}
+	
+	public OmniscientEntitySensor(OmniscientEntitySensor oes){
+		super(oes.getId());
+	}
 
 	@Override
 	public DataType getDataType() {
@@ -32,14 +36,12 @@ public class OmniscientEntitySensor extends Component implements
 
 	@Override
 	public Component clone() {
-		// TODO Auto-generated method stub
-		return null;
+		return new OmniscientEntitySensor(this);
 	}
 
 	@Override
 	public void update(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
-
+		//Do nothing
 	}
 
 }

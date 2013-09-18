@@ -8,6 +8,8 @@ import atl.space.entities.Entity;
 
 public abstract class HeatContainerComponent extends Component implements HeatContainer {
 	
+	private static boolean DEBUG = true;
+	
 	private double heat;
 	private double degreesPerHeat;
 	private double temperatureCapacity;
@@ -107,7 +109,7 @@ public abstract class HeatContainerComponent extends Component implements HeatCo
 	@Override
 	public void transferHeat(double heat, HeatContainer target) {
 		if(!possibleTransferTargets().contains(target)){
-			System.out.println("Target not viable! Forcing transfer anyways...");
+			if(DEBUG) System.out.println("Target not viable! Forcing transfer anyways...");
 		}
 		loseHeat(heat);
 		target.addHeat(heat);

@@ -35,6 +35,7 @@ import utility.Camera;
 import utility.FlyCamera;
 import atl.space.components.data.DataBank;
 import atl.space.components.data.sensor.OmniscientEntitySensor;
+import atl.space.components.data.sensor.OmniscientRangedEntitySensor;
 import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.data.Data;
 import atl.space.entities.Entity;
@@ -61,7 +62,7 @@ public class SensorTest {
 	// Static Constants (Or at least it should be imo)
 
 	private static final boolean DEBUG = true;
-	private final String TITLE = "GRAVITY!";
+	private final String TITLE = "Sensors!";
 
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 480;
@@ -83,7 +84,7 @@ public class SensorTest {
 	// Data representing the field
 
 	final float STAR_FIELD_SIZE = 5000;
-	final int NUM_STARS = 100;
+	final int NUM_STARS = 1000;
 	final int NUM_TRAILERS = 10;
 	final float TRAILER_SPEED = 0;
 	final float TRAIL_FADE = 0.005f;
@@ -111,6 +112,9 @@ public class SensorTest {
 	boolean smartStop = false;
 	boolean launchMissile = false;
 	*/
+	
+	//boolean moveProtag = false;
+	
 	final float FOV = 45f;
 	final public static float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.1f;
@@ -372,7 +376,7 @@ public class SensorTest {
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
 		// protag.addComponent(new RandomTestSensor("rts"));
 		//EntityBuilder.addDataTraitTo(protag);
-		protag.addComponent(new OmniscientEntitySensor());
+		protag.addComponent(new OmniscientRangedEntitySensor(5000)); //TODO make this work
 		entities.add(protag);
 	}
 
@@ -464,7 +468,6 @@ public class SensorTest {
 		interactions();
 	}
 
-	// private boolean missileLaunched = false;
 
 	private void interactions() { // how objects react to each other
 		
@@ -501,9 +504,6 @@ public class SensorTest {
 		for (Entity e: toDisplay){
 			e.render();
 		}
-		
-		// TODO Adapt, make work for more kinds of sensors and limited data input
-		
 		
 		
 		glMatrixMode(GL_PROJECTION);
@@ -549,6 +549,7 @@ public class SensorTest {
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			quit();
 		}
+		
 
 	}
 

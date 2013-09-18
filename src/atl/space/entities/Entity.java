@@ -198,7 +198,7 @@ public class Entity {
 	
 	public float getDistance(Vector3f target){
 		Vector3f temp = new Vector3f();
-		Vector3f.sub(position, target, temp);
+		Vector3f.sub(target, getPosition(), temp);
 		return temp.length();
 	}
 
