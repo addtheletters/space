@@ -33,10 +33,10 @@ import org.lwjgl.util.vector.Vector3f;
 
 import utility.Camera;
 import utility.FlyCamera;
+import atl.space.components.data.DataBank;
 import atl.space.components.data.sensor.OmniscientEntitySensor;
 import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.data.Data;
-import atl.space.data.DataBank;
 import atl.space.entities.Entity;
 import atl.space.entities.EntityBuilder;
 import atl.space.world.Environment;

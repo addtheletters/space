@@ -1,6 +1,9 @@
-package atl.space.data;
+package atl.space.components.data;
 
 import java.util.List;
+
+import atl.space.data.Data;
+import atl.space.data.DataType;
 
 
 @SuppressWarnings("rawtypes")

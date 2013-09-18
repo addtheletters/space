@@ -9,8 +9,8 @@ import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
 import atl.space.components.PrerequisiteNotFoundException;
+import atl.space.components.data.DatumAggregator;
 import atl.space.components.render.RenderableComponent;
-import atl.space.data.DatumAggregator;
 import atl.space.world.Environment;
 
 public class Entity {

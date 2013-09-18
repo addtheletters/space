@@ -1,9 +1,10 @@
-package atl.space.data;
+package atl.space.components.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
+import atl.space.data.Data;
 import atl.space.entities.Entity;
 
 @SuppressWarnings("rawtypes")

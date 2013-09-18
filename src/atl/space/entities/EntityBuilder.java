@@ -31,7 +31,7 @@ import atl.space.components.turn.FacingComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.components.turn.TTurnControlComponent;
 import atl.space.components.turn.TurningComponent;
-import atl.space.data.DataBank;
+import atl.space.components.data.DataBank;
 import atl.space.inventory.items.Item;
 import atl.space.inventory.items.TestMissileAmmo;
 
