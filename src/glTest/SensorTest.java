@@ -502,7 +502,7 @@ public class SensorTest {
 			e.render();
 		}
 		
-		// TODO test, make work as intended
+		// TODO Adapt, make work for more kinds of sensors and limited data input
 		
 		
 		
