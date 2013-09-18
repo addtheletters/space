@@ -1,30 +1,46 @@
 package glTest;
 
-import atl.space.components.render.PointTrailRenderComponent;
-import atl.space.components.spawner.FTLauncherComponent;
-import atl.space.components.turn.RTurningComponent;
-import atl.space.entities.*;
-import atl.space.components.data.sensor.OmniscientEntitySensor;
-import static org.lwjgl.opengl.GL11.*;
-//import static org.lwjgl.opengl.GL30.*;
-//import static org.lwjgl.opengl.GL15.*; //Vertex Buffer Array Rendering n'stuff
-import static org.lwjgl.util.glu.GLU.*; //gluPerspective
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_NO_ERROR;
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBlendFunc;
+import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glGetError;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.util.glu.GLU.gluGetString;
+import static org.lwjgl.util.glu.GLU.gluPerspective;
 
-//import java.nio.FloatBuffer;
-import java.util.*;
+import java.util.List;
 
-import org.lwjgl.opengl.*;
-import org.lwjgl.util.Color;
-import org.lwjgl.util.vector.Vector3f;
-//import org.lwjgl.util.Color;
-import org.lwjgl.*;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.util.Color;
+import org.lwjgl.util.vector.Vector3f;
 
 import utility.Camera;
 import utility.FlyCamera;
+import atl.space.components.data.sensor.OmniscientEntitySensor;
+import atl.space.components.render.PointTrailRenderComponent;
+import atl.space.data.Data;
+import atl.space.data.DataBank;
+import atl.space.entities.Entity;
+import atl.space.entities.EntityBuilder;
+import atl.space.world.Environment;
 
-//import tk.sritwinkles.Point;
 
 //RK4 okay.
 
@@ -35,7 +51,6 @@ import utility.FlyCamera;
 //Click to lock mouse and look
 //Rightclick to unlock mouse
 
-
 /*Cyan-red indicates the direction it's facing
  Blue-green represents a turning vector
  Magenta-green is the acceleration vector
@@ -44,7 +59,7 @@ import utility.FlyCamera;
 public class SensorTest {
 
 	// Static Constants (Or at least it should be imo)
-	
+
 	private static final boolean DEBUG = true;
 	private final String TITLE = "GRAVITY!";
 
@@ -59,11 +74,12 @@ public class SensorTest {
 
 	private Camera camera;
 
-
 	// all objects that need updating
-	public ArrayList<Entity> entities;
+	// public ArrayList<Entity> entities;
+	public Environment entities;
+
 	Entity protag;
-	
+
 	// Data representing the field
 
 	final float STAR_FIELD_SIZE = 5000;
@@ -87,14 +103,14 @@ public class SensorTest {
 			(float) (ACCELERATION / 1.3) };
 	// primary, reverse, secondary
 
-	boolean smartAccelFwd = false;
+	/*boolean smartAccelFwd = false;
 	boolean smartTurn = false;
 	boolean smartAccelBack = false;
 	boolean smartAccelSec = false;
 	boolean smartStopAccel = false;
 	boolean smartStop = false;
 	boolean launchMissile = false;
-
+	*/
 	final float FOV = 45f;
 	final public static float ASPECT_RATIO = (float) WIDTH / HEIGHT;
 	final float CLOSE_RENDER_LIM = 0.1f;
@@ -106,9 +122,9 @@ public class SensorTest {
 	final int COLOR_DIM = 3; // no alpha, or it would be 4
 
 	final float camAccel = 50f;
-	//float zspeed = 0.0f;
-	//float xspeed = 0.0f;
-	//float yspeed = 0.0f;
+	// float zspeed = 0.0f;
+	// float xspeed = 0.0f;
+	// float yspeed = 0.0f;
 	float quadX = 100;
 	float quadY = 100;
 	float quadWidth = 100;
@@ -186,7 +202,7 @@ public class SensorTest {
 				.setFieldOfView(FOV).build();
 		camera.applyOptimalStates();
 		camera.applyPerspectiveMatrix();
-		//setUpProjectionMatrices();
+		// setUpProjectionMatrices();
 	}
 
 	/**
@@ -204,7 +220,7 @@ public class SensorTest {
 	 * @category setup
 	 */
 	private void setUpEntities() {
-		entities = new ArrayList<Entity>();
+		entities = new Environment();
 
 		addEntities();
 	}
@@ -222,11 +238,10 @@ public class SensorTest {
 		setUpOpenGL();
 
 		setUpCamera();
-		
+
 		setUpEntities();
 		setUpTimer();
-		
-		
+
 		while (!Display.isCloseRequested()) {
 			// loop
 
@@ -236,16 +251,16 @@ public class SensorTest {
 			input();
 			render();
 			tick(delta);
-			//zpos += zspeed * delta;
-			//xpos += xspeed * delta;
-			//ypos += yspeed * delta;
+			// zpos += zspeed * delta;
+			// xpos += xspeed * delta;
+			// ypos += yspeed * delta;
 			// System.out.println(getDelta());
 
 			Display.update();
 			Display.sync(60);
 
-			smartStopAccel = false;
-			smartStop = false;
+			//smartStopAccel = false;
+			//smartStop = false;
 			// smartTurn = false;
 		}
 
@@ -259,7 +274,8 @@ public class SensorTest {
 	 * 
 	 */
 	private void quit() {
-		if(DEBUG) System.out.println("Stopping...");
+		if (DEBUG)
+			System.out.println("Stopping...");
 		Display.destroy();
 		System.exit(0);
 	}
@@ -347,15 +363,17 @@ public class SensorTest {
 				(int) (Math.random() * 255), (int) (Math.random() * 255), alpha);
 	}
 
+	
+	/**
+	 * AAAAAAAAAAAAAAAAAAAAAAAAAAAAA RENDEERRRRR SEE DATA CLASS convertDataToEntities() and below render()
+	 */
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		//protag.addComponent(new RandomTestSensor("rts"));
-		EntityBuilder.addDataTraitTo(protag);
+		// protag.addComponent(new RandomTestSensor("rts"));
+		//EntityBuilder.addDataTraitTo(protag);
 		protag.addComponent(new OmniscientEntitySensor());
 		entities.add(protag);
-		
-		//TODO Integrate world with protagonist, renderview of data points
 	}
 
 	private void addPoint(float x, float y, float z) {
@@ -410,8 +428,8 @@ public class SensorTest {
 	}
 
 	private void addSimpleGravityPullable(float x, float y, float z, double mass) {
-		Entity temp = EntityBuilder.simpleGravityPullable(new Vector3f(x, y, z),
-				mass);
+		Entity temp = EntityBuilder.simpleGravityPullable(
+				new Vector3f(x, y, z), mass);
 		EntityBuilder.addDistanceDisplayTraitTo(temp, camera);
 		entities.add(temp);
 	}
@@ -442,98 +460,14 @@ public class SensorTest {
 	 * @param delta
 	 */
 	private void tick(double delta) {
-		for (Entity e : entities) {
-			e.update((int) delta, entities);
-			// int x = 0;
-			if (e.id == "missile") {
-				// x++;
-				// System.out.println(x);
-			}
-			if (e.id == "protagonist") {
-				//Replacement for daccel components in progress
-				
-				/*DAccelComponent dac = (DAccelComponent) e.getComponent("accel");
-				if (smartAccelFwd) {
-					dac.accelForward = maxAccel[0];
-				} else {
-					dac.accelForward = 0;
-				}
-				if (smartAccelBack) {
-					dac.accelBack = maxAccel[1];
-				} else {
-					dac.accelBack = 0;
-				}
-				if (smartAccelSec) {
-					if (dac.secondaryAccelVector.length() == 0) {
-						dac.setSecondaryAccelVector(randAcceleration());
-					}
-					dac.accelSecondary = maxAccel[2];
-				} else {
-					dac.accelSecondary = 0;
-				}
-				*/
-				RTurningComponent rtc = (RTurningComponent) e
-						.getComponent("turning");
-				if (smartTurn) {
-					// System.out.println("start: " + rtc.turn.length());
-
-					if (rtc.turn.length() == 0) {
-						rtc.turn = randTurn();
-					}
-					// smartTurn = false;
-					Entity.restrictLength(rtc.turn, TURNLIM);
-					// System.out.println("One: " + rtc.turn.length());
-				} else {
-					rtc.turn = new Vector3f(0, 0, 0);
-					// System.out.println("hey");
-				}
-				// System.out.println(rtc.turn.length());
-				// else{
-				// System.out.println("Hey");
-
-				// }
-				/*if (smartStopAccel) {
-					dac.accel = new Vector3f(0, 0, 0);
-					smartAccelFwd = false;
-					smartAccelBack = false;
-					smartAccelSec = false;
-					// smartStopAccel = false;
-					// System.out.println(dac.accel);
-				}
-				if (smartStop) {
-					MovementComponent mc = (MovementComponent) e
-							.getComponent("movement");
-					mc.speed = new Vector3f(0, 0, 0);
-					dac.accel = new Vector3f(0, 0, 0);
-					rtc.turn = new Vector3f(0, 0, 0);
-					smartTurn = false;
-					smartAccelFwd = false;
-					smartAccelBack = false;
-					smartAccelSec = false;
-					// smartStop = false;
-					// System.out.println(mc.speed);
-				}
-				*/
-			}
-		}
-
+		entities.updateWorld((int) delta);
 		interactions();
 	}
 
-	//private boolean missileLaunched = false;
-	
+	// private boolean missileLaunched = false;
+
 	private void interactions() { // how objects react to each other
-		if (launchMissile) {
-			// System.out.println(e.getComponent("movement"));
-			FTLauncherComponent ftlc = (FTLauncherComponent) protag
-					.getComponent("launcher");
-			if(DEBUG) System.out.println(ftlc);
-			ftlc.setTarget(protag.getNearestTarget(entities).getPosition());
-			ftlc.trigger(entities);
-			//missileLaunched = true;
-			launchMissile = false;
-			//Only one missile plz!
-		}
+		
 	}
 
 	/**
@@ -548,22 +482,29 @@ public class SensorTest {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glLoadIdentity();
-		
+
 		// glTranslated(xpos, ypos, zpos);
 		camera.applyTranslations();
-		
+
 		glMatrixMode(GL_PROJECTION);
 		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
-		
+
 		/*
-		for (Entity e : entities) {
+		 * for (Entity e : entities) { e.render(); } Old render, switching to
+		 * Data Translation Display system:
+		 */
+		
+		DataBank availableDisplayBank = (DataBank)protag.getComponent("databank");
+		List<Entity> toDisplay = Data.convertDataToEntities( availableDisplayBank.getData() );
+		
+		for (Entity e: toDisplay){
 			e.render();
 		}
-		* Old render, switching to Environment system:
-		*/
 		
-		//TODO Environment render
+		// TODO test, make work as intended
+		
+		
 		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -586,7 +527,7 @@ public class SensorTest {
 		// check for input
 		// Sample mouse and key usage
 		camera.processKeyboard(16f, camAccel);
-		
+
 		if (mouseEnabled) {
 			if (Mouse.isButtonDown(0)) {
 				Mouse.setGrabbed(true);
@@ -597,42 +538,11 @@ public class SensorTest {
 				camera.processMouse(0.5f, 85, -85);
 			}
 		}
-
-		if (Keyboard.isKeyDown(Keyboard.KEY_Q)) {
-			smartAccelFwd = true;
-			smartAccelBack = false;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
-			smartAccelFwd = false;
-			smartAccelBack = true;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_M)) {
-			launchMissile = true;
-		}
-
-		if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
-			smartAccelSec = true;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_2)) {
-			smartAccelSec = false;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_3)) {
-			smartTurn = true;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_4)) {
-			smartTurn = false;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_5)) {
-			smartStopAccel = true;
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_6)) {
-			smartStop = true;
-		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_N)) {
 			mouseEnabled = true;
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
-			//return camera to center
+			// return camera to center
 			camera.setPosition(0, 0, 0);
 			camera.setRotation(0, 0, 0);
 		}

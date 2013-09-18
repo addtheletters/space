@@ -129,7 +129,7 @@ public class EntityBuilder {
 		//this will not be here permanently
 		temp.addComponent(new SquareOverlayRenderComponent(new Color(0, 255, 255), 20));
 		temp.addComponent(new DistanceDisplayComponent(view));
-		temp.addComponent(new DataBank());
+		addDataTraitTo(temp);
 		return temp;	
 	}
 	

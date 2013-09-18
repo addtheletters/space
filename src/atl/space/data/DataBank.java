@@ -9,27 +9,17 @@ import atl.space.entities.Entity;
 @SuppressWarnings("rawtypes")
 public class DataBank extends Component {
 
+	ArrayList<Data> dataList;
+	
 	public DataBank() {
 		super("databank"); // component IDs are lowercased for less confusion
 		dataList = new ArrayList<Data>();
 	}
 	
-
-	ArrayList<Data> dataList;
-	//TreeMap<DataType,ArrayList<Data>> hashedData;
 	public void accumulateData() {
 		dataList = new ArrayList<Data>();
-		//System.out.println(owner.getSensorSystems());
 		for (DatumAggregator da: owner.getSensorSystems() ) {
-			//dataList.add(da.getData());
-			
-			//make this work so that aggregators can get multiple pieces of data at once?
-			
 			dataList.addAll(da.getData());
-			
-			//if (hashedData.get(da.getDataType())==null) {
-			//		tmp = new 
-			//}
 		}
 	}
 	
@@ -49,5 +39,6 @@ public class DataBank extends Component {
 		accumulateData();
 		//System.out.println(dataList);
 	}
+	
 
 }

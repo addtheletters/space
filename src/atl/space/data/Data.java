@@ -30,5 +30,14 @@ public class Data<T> {
 		}
 		return converted;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public static List<Entity> convertDataToEntities(List<Data> datapacks){
+		List<Entity> converted = new ArrayList<Entity>();
+		for(int i = 0; i < datapacks.size(); i++){
+			converted.add( (Entity)datapacks.get(i).data ); //TODO make this less breakable, though it may be as good as it can
+		}
+		return converted;
+	}
 
 }
