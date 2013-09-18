@@ -12,7 +12,7 @@ public class OmniscientEntitySensor extends Component implements
 		DatumAggregator {
 	
 	public OmniscientEntitySensor(){
-		super("OMNI(ENTITY_FULL)_SENSOR");
+		super("OMNI(ENTITY_FULL)_SENSOR"); //for debugging, mostly
 	}
 	
 	public OmniscientEntitySensor(String id) {
