@@ -10,7 +10,11 @@ import atl.space.entities.Entity;
 
 public class OmniscientEntitySensor extends Component implements
 		DatumAggregator {
-
+	
+	public OmniscientEntitySensor(){
+		super("OMNI(ENTITY_FULL)_SENSOR");
+	}
+	
 	public OmniscientEntitySensor(String id) {
 		super(id);
 	}

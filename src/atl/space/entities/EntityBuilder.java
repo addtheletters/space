@@ -235,7 +235,10 @@ public class EntityBuilder {
 		toGain.addComponent(new MassAggregatorComponent());
 		toGain.addComponent(new BasicMassiveComponent(mass));
 		toGain.addComponent(new GravPullableComponent());
-
+	}
+	
+	public static void addDataTraitTo(Entity toGain){
+		toGain.addComponent(new DataBank());
 	}
 	
 	

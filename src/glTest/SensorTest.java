@@ -4,8 +4,7 @@ import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.components.spawner.FTLauncherComponent;
 import atl.space.components.turn.RTurningComponent;
 import atl.space.entities.*;
-import atl.space.components.data.sensor.RandomTestSensor;
-
+import atl.space.components.data.sensor.OmniscientEntitySensor;
 import static org.lwjgl.opengl.GL11.*;
 //import static org.lwjgl.opengl.GL30.*;
 //import static org.lwjgl.opengl.GL15.*; //Vertex Buffer Array Rendering n'stuff
@@ -308,12 +307,10 @@ public class SensorTest {
 	}
 
 	private double genPullForce() {
-		// TODO return semi-random force for gravity pullers
 		return 300;
 	}
 
 	private double genRandMass() {
-		// TODO return random mass for simple grav pullables
 		return 30;
 	}
 
@@ -353,8 +350,12 @@ public class SensorTest {
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		protag.addComponent(new RandomTestSensor("rts"));
+		//protag.addComponent(new RandomTestSensor("rts"));
+		EntityBuilder.addDataTraitTo(protag);
+		protag.addComponent(new OmniscientEntitySensor());
 		entities.add(protag);
+		
+		//TODO Integrate world with protagonist, renderview of data points
 	}
 
 	private void addPoint(float x, float y, float z) {
@@ -554,13 +555,16 @@ public class SensorTest {
 		glMatrixMode(GL_PROJECTION);
 		gluPerspective(FOV, ASPECT_RATIO, CLOSE_RENDER_LIM, FAR_RENDER_LIM);
 		glMatrixMode(GL_MODELVIEW);
-
+		
+		/*
 		for (Entity e : entities) {
 			e.render();
-			// System.out.println(e.getPosition().x);
 		}
-		// System.out.println(entities.isEmpty());
-
+		* Old render, switching to Environment system:
+		*/
+		
+		//TODO Environment render
+		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glMatrixMode(GL_MODELVIEW);
