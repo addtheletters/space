@@ -34,9 +34,7 @@ import org.lwjgl.util.vector.Vector3f;
 import utility.Camera;
 import utility.FlyCamera;
 import atl.space.components.data.DataBank;
-import atl.space.components.data.sensor.OmniscientEntitySensor;
 import atl.space.components.data.sensor.OmniscientRangedEntitySensor;
-import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.data.Data;
 import atl.space.entities.Entity;
 import atl.space.entities.EntityBuilder;
@@ -126,9 +124,6 @@ public class SensorTest {
 	final int COLOR_DIM = 3; // no alpha, or it would be 4
 
 	final float camAccel = 50f;
-	// float zspeed = 0.0f;
-	// float xspeed = 0.0f;
-	// float yspeed = 0.0f;
 	float quadX = 100;
 	float quadY = 100;
 	float quadWidth = 100;
@@ -253,8 +248,8 @@ public class SensorTest {
 			// System.out.println(delta);
 			// tick(delta);
 			input();
-			render();
 			tick(delta);
+			render();
 			// zpos += zspeed * delta;
 			// xpos += xspeed * delta;
 			// ypos += yspeed * delta;
@@ -285,35 +280,11 @@ public class SensorTest {
 	}
 
 	/**
-	 * Basically creates NUM_STARS stars, NUM_TRAILERS trailers, etc for points,
-	 * trailers, facers, accelerators, dumb auto (wat...), and smart auto (2 x
-	 * wat...)
+	 * Adds starting entities to the environment.
 	 */
 	private void addEntities() {
 		for (int i = 0; i < NUM_STARS; i++) {
 			addPoint(numInFeild(), numInFeild(), numInFeild());
-		}
-		for (int i = 0; i < NUM_TRAILERS; i++) {
-			addTrailer(numInFeild(), numInFeild(), numInFeild(),
-					randTrajectory());
-		}
-		for (int i = 0; i < NUM_FACERS; i++) {
-			addFacer(numInFeild(), numInFeild(), numInFeild(), new Vector3f(0,
-					0, 0), randTrajectory());
-		}
-		for (int i = 0; i < NUM_ACCELERATORS; i++) {
-			addStraightAccelerator(numInFeild(), numInFeild(), numInFeild(),
-					new Vector3f(0, 0, 0), randTrajectory());
-		}
-		for (int i = 0; i < NUM_DUMB_AUTO; i++) {
-			addDumbAuto(numInFeild(), numInFeild(), numInFeild(), new Vector3f(
-					0, 0, 0), randTrajectory(), randAcceleration(), randTurn());
-		}
-		for (int i = 0; i < NUM_SMART_AUTO; i++) {
-			addSmartAuto(numInFeild(), numInFeild(), numInFeild(),
-					new Vector3f(0, 0, 0), randTrajectory(), new Vector3f(0, 0,
-							0), maxAccel[0], maxAccel[1], maxAccel[2],
-					randTurn());
 		}
 		for (int i = 0; i < NUM_GRAVPULLERS; i++) {
 			addGravityPuller(numInFeild(), numInFeild(), numInFeild(),
@@ -343,18 +314,6 @@ public class SensorTest {
 		return (float) (Math.random() * STAR_FIELD_SIZE) - STAR_FIELD_SIZE / 2;
 	}
 
-	private Vector3f randTrajectory() {
-		return new Vector3f((float) (Math.random() - .5) * TRAILER_SPEED,
-				(float) (Math.random() - .5) * TRAILER_SPEED,
-				(float) (Math.random() - .5) * TRAILER_SPEED);
-	}
-
-	private Vector3f randAcceleration() {
-		return new Vector3f((float) (Math.random() - .5) * ACCELERATION,
-				(float) (Math.random() - .5) * ACCELERATION,
-				(float) (Math.random() - .5) * ACCELERATION);
-	}
-
 	private Vector3f randTurn() {
 		return new Vector3f((float) (Math.random() - .5) * TURNLIM,
 				(float) (Math.random() - .5) * TURNLIM,
@@ -368,15 +327,11 @@ public class SensorTest {
 	}
 
 	
-	/**
-	 * AAAAAAAAAAAAAAAAAAAAAAAAAAAAA RENDEERRRRR SEE DATA CLASS convertDataToEntities() and below render()
-	 */
+	
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		// protag.addComponent(new RandomTestSensor("rts"));
-		//EntityBuilder.addDataTraitTo(protag);
-		protag.addComponent(new OmniscientRangedEntitySensor(5000)); //TODO make this work
+		protag.addComponent(new OmniscientRangedEntitySensor(500)); //TODO make this work
 		entities.add(protag);
 	}
 
@@ -384,46 +339,7 @@ public class SensorTest {
 		entities.add(EntityBuilder.point(x, y, z));
 	}
 
-	private void addTrailer(float x, float y, float z, Vector3f trajectory) {
-		entities.add(EntityBuilder.trailer(new Vector3f(x, y, z), trajectory,
-				TRAIL_LENGTH, TRAIL_FADE));
-	}
-
-	private void addFacer(float x, float y, float z, Vector3f dirMoving,
-			Vector3f dirFacing) {
-		Entity temp = EntityBuilder.facer(new Vector3f(x, y, z), dirMoving,
-				dirFacing);
-		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH,
-				TRAIL_FADE));
-		entities.add(temp);
-	}
-
-	private void addDumbAuto(float x, float y, float z, Vector3f dirMoving,
-			Vector3f dirFacing, Vector3f accel, Vector3f turn) {
-		Vector3f tempa = new Vector3f(accel);
-		tempa.scale(ACCELERATION);
-		Vector3f tempt = new Vector3f(turn);
-		Entity.restrictLength(tempt, TURNLIM);
-		Entity temp = EntityBuilder.dumbAuto(new Vector3f(x, y, z), dirMoving,
-				dirFacing, tempa, tempt);
-		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH,
-				TRAIL_FADE));
-		entities.add(temp);
-		// System.out.println(dirFacing + " " + tempt);
-	}
-
-	private void addSmartAuto(float x, float y, float z, Vector3f dirMoving,
-			Vector3f dirFacing, Vector3f accel, float maf, float mab,
-			float mas, Vector3f turn) {
-		Vector3f tempa = new Vector3f(accel);
-		tempa.scale(ACCELERATION);
-		Entity temp = EntityBuilder.smartAuto(new Vector3f(x, y, z), dirMoving,
-				dirFacing, tempa, maf, mab, mas, turn, TURNLIM);
-		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH,
-				TRAIL_FADE));
-		entities.add(temp);
-	}
-
+	
 	private void addGravityPuller(float x, float y, float z, double pullForce) {
 		Entity temp = EntityBuilder.gravityPuller(new Vector3f(x, y, z),
 				pullForce);
@@ -438,23 +354,6 @@ public class SensorTest {
 		entities.add(temp);
 	}
 
-	/*
-	 * private void addAccelerator(float x, float y, float z, Vector3f
-	 * dirMoving, Vector3f dirFacing, Vector3f accel){ Entity temp
-	 * =EntityBuilder.accelerator(new Vector3f(x, y, z), dirMoving, dirFacing,
-	 * accel); temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH,
-	 * TRAIL_FADE)); entities.add(temp); }
-	 */
-	private void addStraightAccelerator(float x, float y, float z,
-			Vector3f dirMoving, Vector3f dirFacing) {
-		Vector3f tempa = new Vector3f(dirFacing);
-		tempa.scale(ACCELERATION / 10);
-		Entity temp = EntityBuilder.accelerator(new Vector3f(x, y, z),
-				dirMoving, dirFacing, tempa);
-		temp.addComponent(new PointTrailRenderComponent(TRAIL_LENGTH,
-				TRAIL_FADE));
-		entities.add(temp);
-	}
 
 	/**
 	 * Calculates the new location of each of the entities in `entities`
@@ -501,8 +400,10 @@ public class SensorTest {
 		DataBank availableDisplayBank = (DataBank)protag.getComponent("databank");
 		List<Entity> toDisplay = Data.convertDataToEntities( availableDisplayBank.getData() );
 		
+		//if(DEBUG) System.out.println("[DEBUG]: gotem");
 		for (Entity e: toDisplay){
 			e.render();
+			//if(DEBUG) System.out.println("[DEBUG] rendered something");
 		}
 		
 		

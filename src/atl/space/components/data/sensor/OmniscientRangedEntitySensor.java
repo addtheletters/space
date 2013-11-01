@@ -31,24 +31,26 @@ public class OmniscientRangedEntitySensor extends OmniscientEntitySensor impleme
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Data> getData() {
+		//if(DEBUG) System.out.println(owner.getContainerEnvironment());
+		
 		List<Entity> tofilter = new ArrayList<Entity>(owner.getContainerEnvironment().getEntities());
-		if(DEBUG) System.out.println("[DEBUG] " + "Head");
+		List<Entity> filtered = new ArrayList<Entity>();
+		
+		//if(DEBUG) System.out.println("[DEBUG] " + "Head");
 		
 		for(int i = 0; i < tofilter.size(); i++){
-			float temp = owner.getDistance(tofilter.get(i));
-			
-			if( temp > maxDetectionRange){
-				tofilter.remove(i);
-				if(DEBUG) System.out.println("[DEBUG] " + temp + " is > " + maxDetectionRange);
-				//if(DEBUG) System.out.println("[DEBUG] " + tofilter.get(i).getPosition().length() + " is = " + owner.getDistance(tofilter.get(i)));
-				//if(DEBUG) System.out.println("Removed an entity from list.");
+			Entity ent = tofilter.get(i);
+			float temp = owner.getDistance(ent);
+			if( temp < maxDetectionRange){
+				filtered.add(ent);
+				//if(DEBUG) System.out.println("[DEBUG] Added to filtered list");
 			}
 			else{
-				if(DEBUG) System.out.println("[DEBUG] " + temp + " is < " + maxDetectionRange);
+				//if(DEBUG) System.out.println("[DEBUG] Rejected from filtered list");
 			}
 		}
 		//if(DEBUG) System.out.println(tofilter.size());
-		return Data.convertEntitiesToData(tofilter);
+		return Data.convertEntitiesToData(filtered);
 	}
 
 

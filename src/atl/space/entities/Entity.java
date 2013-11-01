@@ -15,7 +15,7 @@ import atl.space.world.Environment;
 
 public class Entity {
 	
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	
 	public String id;
 	public Vector3f position;

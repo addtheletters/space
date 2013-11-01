@@ -54,7 +54,13 @@ public class Environment {
 		}
 	}
 	
-	
+	public String toString(){
+		StringBuffer out = new StringBuffer("Environment: "); 
+		for(Entity e: entities) {
+			out.append(e.toString());
+		}
+		return out.toString();
+	}
 	/*
 	 * May end up doing bounds later, but don't need it for anything right now
 	 * 
