@@ -145,7 +145,6 @@ public class Entity {
 	}
 	
 	public List<String> checkPrerequisites(Component toAdd){
-		//TODO mess with this 
 		//return of null means prerequisites are satisfied.
 		//return of a list means prerequisite(s) are missing.
 		List<String> prIDs = toAdd.getPrerequisiteIDs();
@@ -246,13 +245,10 @@ public class Entity {
 	}
 
 	public void render() {
-		//System.out.println("Render!");
 		for (Component component : components) {
-			//System.out.println("Thing!");
 			if (component.isRenderable()) {
 				RenderableComponent rc = (RenderableComponent) component;
 				rc.render();
-				//System.out.println("render!");
 			}
 		}
 	}
@@ -275,7 +271,6 @@ public class Entity {
 	}
 	
 	public Environment getContainerEnvironment(){
-		//TODO this
 		return container;
 	}
 	
