@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 
+import me.zwad3.space.options.R;
+
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
@@ -22,8 +24,8 @@ public class DistanceDisplayComponent extends Overlay2DRenderComponent {
 	private Camera view;
 	private UnicodeFont font;
 	
-	private static float WIDTH = 640;
-	private static float HEIGHT = 480;
+	private static float WIDTH = R.WIDTH;
+	private static float HEIGHT = R.HEIGHT;
 	
 	public DistanceDisplayComponent(){
 		this((Camera)null);

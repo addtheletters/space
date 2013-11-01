@@ -13,6 +13,8 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 import java.nio.FloatBuffer;
 
 //import org.lwjgl.input.Mouse;
+import me.zwad3.space.options.R;
+
 import org.lwjgl.util.Color;
 
 
@@ -23,8 +25,8 @@ public class EquiTriangleOverlayRenderComponent extends
 	private float size;
 	//size is the length of one side of the triangle
 	
-	private static float WIDTH = 640;
-	private static float HEIGHT = 480;
+	private static float WIDTH = R.WIDTH;
+	private static float HEIGHT = R.HEIGHT;
 
 	// private static float ASPECTRATIO = (float)(WIDTH/HEIGHT);
 

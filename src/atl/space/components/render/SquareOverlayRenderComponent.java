@@ -6,6 +6,8 @@ import static org.lwjgl.opengl.GL11.*;
 import java.nio.FloatBuffer;
 //import java.nio.IntBuffer;
 
+import me.zwad3.space.options.R;
+
 import org.lwjgl.util.Color;
 
 
@@ -15,8 +17,8 @@ public class SquareOverlayRenderComponent extends Overlay2DRenderComponent {
 	private Color color;
 	private float size;
 
-	private static float WIDTH = 640;
-	private static float HEIGHT = 480;
+	private static float WIDTH = R.WIDTH;
+	private static float HEIGHT = R.HEIGHT;
 
 	// private static float ASPECTRATIO = (float)(WIDTH/HEIGHT);
 
