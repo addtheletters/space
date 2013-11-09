@@ -331,7 +331,7 @@ public class SensorTest {
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		protag.addComponent(new OmniscientRangedEntitySensor(500)); //TODO make this work
+		protag.addComponent(new OmniscientRangedEntitySensor(1000)); //TODO make this work
 		entities.add(protag);
 	}
 

@@ -10,8 +10,10 @@ import atl.space.entities.Entity;
  * Also contains utility methods for manipulating, displaying, and converting data.
  */
 public class Data<T> {
+	
 	public T data;
 	private String id;
+	
 	
 	public Data (T data, String id) {
 		this.data = data;
@@ -39,5 +41,6 @@ public class Data<T> {
 		}
 		return converted;
 	}
+	
 
 }

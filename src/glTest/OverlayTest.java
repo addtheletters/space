@@ -83,8 +83,8 @@ public class OverlayTest {
 
 	// Data representing the field
 
-	final float STAR_FIELD_SIZE = 5000;
-	final int NUM_STARS = 1000;
+	final float STAR_FIELD_SIZE = 2500;
+	final int NUM_STARS = 5000;
 	final int NUM_TRAILERS = 10;
 	final float TRAILER_SPEED = 0;
 	final float TRAIL_FADE = 0.005f;

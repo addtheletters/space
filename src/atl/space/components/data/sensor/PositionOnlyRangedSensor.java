@@ -3,6 +3,8 @@ package atl.space.components.data.sensor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import atl.space.components.Component;
 import atl.space.components.data.DatumAggregator;
 import atl.space.data.Data;
@@ -41,19 +43,19 @@ public class PositionOnlyRangedSensor extends Component implements
 	@Override
 	public List<Data> getData() {
 		List<Entity> tofilter = new ArrayList<Entity>(owner.getContainerEnvironment().getEntities());
-		List<Entity> filtered = new ArrayList<Entity>();
+		List<Data> filtered = new ArrayList<Data>();
 		
 		for(int i = 0; i < tofilter.size(); i++){
 			Entity ent = tofilter.get(i);
 			float temp = owner.getDistance(ent);
 			if( temp < maxDetectionRange){
-				filtered.add( new Entity(ent.getId(), ent.getPosition()) );
+				filtered.add( new Data<Vector3f>( ent.getPosition(), "LOCATION") );
 			}
 			else{
 				//if(DEBUG) System.out.println("[DEBUG] Rejected from filtered list");
 			}
 		}
-		return Data.convertEntitiesToData(filtered);
+		return filtered;
 	}
 
 	
