@@ -13,12 +13,16 @@ public class Renderer {
 	public void renderEntity(Entity e){
 		//differentiate based on entity ID
 		//differentiate based on identified components
+		//TODO this
 	}
 	public void renderData(Data d){
-		//
+		if(typeIsRenderable( d.getIdentifier() ) ){
+		//TODO this	
+		}
 	}
 	
-	public static boolean typeIsRenderable(DataType dt){
+	public static boolean typeIsRenderable(String identifier ){
+		//TODO this
 		return false;
 	}
 }
