@@ -40,8 +40,8 @@ public class OmniscientRangedEntitySensor extends OmniscientEntitySensor impleme
 		
 		for(int i = 0; i < tofilter.size(); i++){
 			Entity ent = tofilter.get(i);
-			float temp = owner.getDistance(ent);
-			if( temp < maxDetectionRange){
+			
+			if( passesFilter(ent) ){
 				filtered.add(ent);
 				//if(DEBUG) System.out.println("[DEBUG] Added to filtered list");
 			}
@@ -50,7 +50,16 @@ public class OmniscientRangedEntitySensor extends OmniscientEntitySensor impleme
 			}
 		}
 		//if(DEBUG) System.out.println(tofilter.size());
+		return distillWantedData(filtered);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	protected List<Data> distillWantedData(List<Entity> filtered){
 		return Data.convertEntitiesToData(filtered);
+	}
+	
+	protected boolean passesFilter(Entity ent){
+		return owner.getDistance(ent) < maxDetectionRange;
 	}
 
 

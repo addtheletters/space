@@ -22,6 +22,8 @@ import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import java.util.List;
 
+import me.zwad3.space.options.R;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
@@ -62,8 +64,8 @@ public class SensorTest {
 	private static final boolean DEBUG = true;
 	private final String TITLE = "Sensors!";
 
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
+	public static final int WIDTH = R.WIDTH;
+	public static final int HEIGHT = R.HEIGHT;
 
 	// List of dynamic variables used to calculate where the camera is
 	private boolean mouseEnabled = true;
