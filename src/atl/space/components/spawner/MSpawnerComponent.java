@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.components.MovementComponent;
+import atl.space.components.linearmotion.MovementComponent;
 import atl.space.entities.Entity;
 
 public abstract class MSpawnerComponent extends SpawnerComponent {
@@ -35,7 +35,7 @@ public abstract class MSpawnerComponent extends SpawnerComponent {
 		}
 		else{
 			MovementComponent mc = (MovementComponent)temp.getComponent("movement");
-			mc.speed = new Vector3f(((MovementComponent)owner.getComponent("movement")).speed);
+			mc.velocity = new Vector3f(((MovementComponent)owner.getComponent("movement")).velocity);
 		}
 	}
 	

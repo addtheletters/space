@@ -40,7 +40,7 @@ import atl.space.components.data.sensor.OmniscientRangedEntitySensor;
 import atl.space.data.Data;
 import atl.space.entities.Entity;
 import atl.space.entities.EntityBuilder;
-import atl.space.world.Environment;
+import atl.space.world.Scene;
 
 
 //RK4 okay.
@@ -77,7 +77,7 @@ public class SensorTest {
 
 	// all objects that need updating
 	// public ArrayList<Entity> entities;
-	public Environment entities;
+	public Scene entities;
 
 	Entity protag;
 
@@ -221,7 +221,7 @@ public class SensorTest {
 	 * @category setup
 	 */
 	private void setUpEntities() {
-		entities = new Environment();
+		entities = new Scene();
 
 		addEntities();
 	}

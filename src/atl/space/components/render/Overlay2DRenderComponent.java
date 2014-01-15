@@ -1,16 +1,26 @@
 package atl.space.components.render;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW_MATRIX;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION_MATRIX;
+import static org.lwjgl.opengl.GL11.GL_VIEWPORT;
+import static org.lwjgl.opengl.GL11.glColor4f;
+import static org.lwjgl.opengl.GL11.glGetFloat;
+import static org.lwjgl.opengl.GL11.glGetInteger;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glLoadMatrix;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.opengl.GL11.glOrtho;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.util.glu.GLU.gluProject;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.List;
-
-import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 import utility.BufferTools;
+import atl.space.components.Component;
 
 public class Overlay2DRenderComponent extends RenderableComponent {
 	
@@ -105,8 +115,4 @@ public class Overlay2DRenderComponent extends RenderableComponent {
 		
 	}
 
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		//do nothing? may need to do stuff in subclasses
-	}
 }

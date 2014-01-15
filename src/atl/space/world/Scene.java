@@ -8,13 +8,13 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.entities.Entity;
 
 //I have no idea if I actually need this. I don't yet, so meh, not gonna finish it until I do
-public class Environment {
+public class Scene {
 	
-	public Environment(){
+	public Scene(){
 		entities = new ArrayList<Entity>();
 	}
 	
-	public Environment(List<Entity> list){
+	public Scene(List<Entity> list){
 		entities = list;
 	}
 	
@@ -32,7 +32,7 @@ public class Environment {
 		return null;
 	}
 	
-	//For the sake of easier replacement of List<Entity> with Environments
+	//For the sake of easier replacement of List<Entity> with Scenes.
 	public void add(Entity e){
 		addEntity(e);
 	}
@@ -55,7 +55,7 @@ public class Environment {
 	}
 	
 	public String toString(){
-		StringBuffer out = new StringBuffer("Environment: "); 
+		StringBuffer out = new StringBuffer("Scene: "); 
 		for(Entity e: entities) {
 			out.append(e.toString());
 		}

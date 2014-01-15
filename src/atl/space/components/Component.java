@@ -3,6 +3,7 @@ package atl.space.components;
 import java.util.List;
 
 import atl.space.entities.Entity;
+import atl.space.world.Scene;
 
 public abstract class Component implements Cloneable{
 	 
@@ -37,7 +38,9 @@ public abstract class Component implements Cloneable{
     
     public abstract Component clone();
     
-    public abstract void update(int delta, List<Entity> entities);
+    public void update(int delta, Scene sce){
+    	// a lot will do nothing
+    }
     
     public boolean isRenderable(){
     	return false;

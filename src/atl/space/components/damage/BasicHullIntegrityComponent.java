@@ -1,9 +1,7 @@
 package atl.space.components.damage;
 
-import java.util.List;
-
 import atl.space.components.Component;
-import atl.space.entities.Entity;
+import atl.space.world.Scene;
 
 public class BasicHullIntegrityComponent extends Component {
 	
@@ -43,7 +41,7 @@ public class BasicHullIntegrityComponent extends Component {
 	}
 	
 	@Override
-	public void update(int delta, List<Entity> entities) {
+	public void update(int delta, Scene sce) {
 		if(integrity < 0) integrity = 0;
 	}
 

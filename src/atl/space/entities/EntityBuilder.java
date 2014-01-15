@@ -7,17 +7,22 @@ import org.lwjgl.util.Color;
 import org.lwjgl.util.vector.Vector3f;
 
 import utility.Camera;
-import atl.space.components.MovementComponent;
-import atl.space.components.accel.BasicAccelComponent;
-import atl.space.components.accel.NetAccelComponent;
-import atl.space.components.accel.RDAccelComponent;
+import atl.space.components.angularmotion.old.FacingComponent;
+import atl.space.components.angularmotion.old.RTurningComponent;
+import atl.space.components.angularmotion.old.TTurnControlComponent;
+import atl.space.components.angularmotion.old.TurningComponent;
 import atl.space.components.cargo.CargoComponent;
+import atl.space.components.data.DataBank;
 import atl.space.components.engine.AdjustableDirectionEngineComponent;
 import atl.space.components.engine.PrimaryEngineComponent;
 import atl.space.components.engine.ReverseEngineComponent;
 import atl.space.components.gravity.BasicGravPullerComponent;
 import atl.space.components.gravity.BasicGravPuller_MinMaxRange;
 import atl.space.components.gravity.GravPullableComponent;
+import atl.space.components.linearmotion.MovementComponent;
+import atl.space.components.linearmotion.accel.BasicAccelComponent;
+import atl.space.components.linearmotion.accel.NetAccelComponent;
+import atl.space.components.linearmotion.accel.RDAccelComponent;
 import atl.space.components.mass.BasicMassiveComponent;
 import atl.space.components.mass.MassAggregatorComponent;
 import atl.space.components.render.DistanceDisplayComponent;
@@ -25,13 +30,7 @@ import atl.space.components.render.EquiTriangleOverlayRenderComponent;
 import atl.space.components.render.PointRenderComponent;
 import atl.space.components.render.PointTrailRenderComponent;
 import atl.space.components.render.SquareOverlayRenderComponent;
-import atl.space.components.render.TargetingOverlayRenderComponent;
 import atl.space.components.spawner.MissileLauncherTestComponent;
-import atl.space.components.turn.FacingComponent;
-import atl.space.components.turn.RTurningComponent;
-import atl.space.components.turn.TTurnControlComponent;
-import atl.space.components.turn.TurningComponent;
-import atl.space.components.data.DataBank;
 import atl.space.inventory.items.Item;
 import atl.space.inventory.items.TestMissileAmmo;
 
@@ -106,7 +105,7 @@ public class EntityBuilder {
 		temp.addComponent(new RTurningComponent(turn, maxturn));
 		//this will not be here permanently
 		//temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255)));
-		temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255), "res/lena.jpg", "JPG"));
+		//temp.addComponent(new TargetingOverlayRenderComponent(glTest.EntityTest.randomColor(255), "res/lena.jpg", "JPG"));
 		
 		return temp;	
 	}

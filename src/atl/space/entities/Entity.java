@@ -11,7 +11,7 @@ import atl.space.components.Component;
 import atl.space.components.PrerequisiteNotFoundException;
 import atl.space.components.data.DatumAggregator;
 import atl.space.components.render.RenderableComponent;
-import atl.space.world.Environment;
+import atl.space.world.Scene;
 
 public class Entity {
 	
@@ -20,7 +20,7 @@ public class Entity {
 	public String id;
 	public Vector3f position;
 	
-	private Environment container = null;
+	private Scene container = null;
 
 	/**
 	 * List of all components
@@ -238,13 +238,9 @@ public class Entity {
 		this.position = position;
 	}
 
-	public void update(int delta, Environment parent){
-		this.update(delta, parent.getEntities());
-	}
-	
-	public void update(int delta, List<Entity> entities) {
+	public void update(int delta, Scene parent){
 		for (Component component : components) {
-			component.update(delta, entities);
+			component.update(delta, parent);
 		}
 	}
 
@@ -256,13 +252,13 @@ public class Entity {
 			}
 		}
 	}
-	public Entity getStepped(int delta, List<Entity> entities) {
+	public Entity getStepped(int delta, Scene sce) {
 		Entity stepped = new Entity(id, position, components);
-		stepped.update(delta, entities);
+		stepped.update(delta, sce);
 		return stepped;
 	}
 	
-	public void setContainerEnvironment(Environment world){
+	public void setContainerEnvironment(Scene world){
 		if(DEBUG){
 			if(world==null){
 				System.out.println("Attempting to add entity ("+this+") to null environment.");
@@ -274,7 +270,7 @@ public class Entity {
 		container = world;
 	}
 	
-	public Environment getContainerEnvironment(){
+	public Scene getContainerEnvironment(){
 		return container;
 	}
 	

@@ -1,7 +1,5 @@
 package atl.space.components.gravity;
 
-import java.util.List;
-
 import atl.space.components.render.RenderableComponent;
 import atl.space.entities.Entity;
 
@@ -33,11 +31,6 @@ public class BasicGravPullerComponent extends RenderableComponent implements Gra
 	public BasicGravPullerComponent clone() {
 		BasicGravPullerComponent temp = new BasicGravPullerComponent(this);
 		return temp;
-	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		//do nothing
 	}
 
 	@Override

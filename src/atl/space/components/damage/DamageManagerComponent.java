@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public abstract class DamageManagerComponent extends Component {
 	
@@ -42,12 +41,6 @@ public abstract class DamageManagerComponent extends Component {
 			}
 		}
 		return damageable;
-	}
-	
-	
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		//do nothing
 	}
 
 }

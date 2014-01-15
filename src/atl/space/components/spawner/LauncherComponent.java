@@ -3,7 +3,7 @@ package atl.space.components.spawner;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.components.MovementComponent;
+import atl.space.components.linearmotion.MovementComponent;
 import atl.space.entities.Entity;
 
 public abstract class LauncherComponent extends MSpawnerComponent {
@@ -30,14 +30,14 @@ public abstract class LauncherComponent extends MSpawnerComponent {
 	@Override
 	protected void applyEffect(Entity temp) {
 		Vector3f netVel = new Vector3f();
-		Vector3f.add(((MovementComponent)owner.getComponent("movement")).speed, expulsionSpeed, netVel);
+		Vector3f.add(((MovementComponent)owner.getComponent("movement")).velocity, expulsionSpeed, netVel);
 		if(!temp.hasComponent("movement")){
 			if(DEBUG) System.out.println("DEBUG: No movement component detected, adding...");
 			temp.addComponent(new MovementComponent(netVel));
 		}
 		else{
 			MovementComponent mc = (MovementComponent)temp.getComponent("movement");
-			mc.speed = netVel;
+			mc.velocity = netVel;
 		}
 	}
 	

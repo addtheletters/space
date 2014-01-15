@@ -10,9 +10,6 @@ import atl.space.entities.Entity;
 public class OmniscientRangedEntitySensor extends OmniscientEntitySensor implements
 		DatumAggregator {
 	
-	private static boolean DEBUG = true;
-	
-	
 	float maxDetectionRange;
 	
 	public OmniscientRangedEntitySensor(){

@@ -4,11 +4,7 @@ import static org.lwjgl.opengl.GL11.GL_POINTS;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-
-import java.util.List;
-
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public class InfoRenderComponent extends RenderableComponent {
 	//Will display an info box with statistics next to it's entity
@@ -30,9 +26,4 @@ public class InfoRenderComponent extends RenderableComponent {
 		glEnd();
 	}
 
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
-		
-	}
 }

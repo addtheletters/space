@@ -1,11 +1,10 @@
 package atl.space.components.data;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import atl.space.components.Component;
 import atl.space.data.Data;
-import atl.space.entities.Entity;
+import atl.space.world.Scene;
 
 @SuppressWarnings("rawtypes")
 public class DataBank extends Component {
@@ -35,10 +34,8 @@ public class DataBank extends Component {
 	}
 	
 	@Override
-	public void update(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
+	public void update(int delta, Scene sce) {
 		accumulateData();
-		//System.out.println(dataList);
 	}
 	
 

@@ -6,7 +6,6 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public class EngineControlComponent extends Component {
 
@@ -45,11 +44,6 @@ public class EngineControlComponent extends Component {
 	@Override
 	public Component clone() {
 		return new EngineControlComponent(this);
-	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// do nothing?
 	}
 
 }

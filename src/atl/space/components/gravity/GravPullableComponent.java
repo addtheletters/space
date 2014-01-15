@@ -8,6 +8,7 @@ import org.lwjgl.util.vector.Vector3f;
 import atl.space.components.Component;
 import atl.space.components.mass.MassAggregatorComponent;
 import atl.space.entities.Entity;
+import atl.space.world.Scene;
 
 public class GravPullableComponent extends Component implements
 		GravPullable {
@@ -97,12 +98,7 @@ public class GravPullableComponent extends Component implements
 	}
 
 	@Override
-	public void update(int delta, List<Entity> entities) {
-		//applyPull(delta, entities);
-	}
-
-	@Override
-	public Vector3f getAccel(int delta, List<Entity> entities) {
-		return getNetPull(delta, entities);
+	public Vector3f getAccel(int delta, Scene sce) {
+		return getNetPull(delta, sce.getEntities());
 	}
 }

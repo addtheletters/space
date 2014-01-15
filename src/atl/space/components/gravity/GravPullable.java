@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.components.accel.AccelProvider;
+import atl.space.components.linearmotion.accel.AccelProvider;
 import atl.space.entities.Entity;
 
 public interface GravPullable extends AccelProvider{

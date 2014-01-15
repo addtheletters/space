@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public class BasicMassiveComponent extends Component implements Massive {
 
@@ -40,11 +39,6 @@ public class BasicMassiveComponent extends Component implements Massive {
 	@Override
 	public Component clone() {
 		return new BasicMassiveComponent(this);
-	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// may be needed in subclasses
 	}
 
 }

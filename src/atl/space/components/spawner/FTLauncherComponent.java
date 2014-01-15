@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.components.turn.TurnControlComponent;
+import atl.space.components.angularmotion.old.TurnControlComponent;
 import atl.space.entities.Entity;
 
 public abstract class FTLauncherComponent extends FacingLauncherComponent {

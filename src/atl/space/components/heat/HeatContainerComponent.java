@@ -1,10 +1,8 @@
 package atl.space.components.heat;
 
 import java.util.Collection;
-import java.util.List;
 
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public abstract class HeatContainerComponent extends Component implements HeatContainer {
 	
@@ -99,9 +97,6 @@ public abstract class HeatContainerComponent extends Component implements HeatCo
 
 	@Override
 	public abstract HeatContainerComponent clone();
-
-	@Override
-	public abstract void update(int delta, List<Entity> entities);
 	
 	@Override
 	public abstract Collection<HeatContainer> possibleTransferTargets();

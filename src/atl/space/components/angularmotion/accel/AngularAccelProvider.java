@@ -1,4 +1,8 @@
-package atl.space.components.angular;
+package atl.space.components.angularmotion.accel;
+
+import org.lwjgl.util.vector.Vector3f;
+
+import atl.space.world.Scene;
 
 public interface AngularAccelProvider {
 	/*
@@ -7,6 +11,6 @@ public interface AngularAccelProvider {
 	 * Processed by NetAngularAccelComponent.
 	 */
 	
-	
+	public Vector3f getAngularAccel(int delta, Scene sce);
 	
 }

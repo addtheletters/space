@@ -1,7 +1,6 @@
 package atl.space.render;
 
 import atl.space.data.Data;
-import atl.space.data.DataType;
 import atl.space.entities.Entity;
 
 /**
@@ -15,6 +14,7 @@ public class Renderer {
 		//differentiate based on identified components
 		//TODO this
 	}
+	@SuppressWarnings("rawtypes")
 	public void renderData(Data d){
 		if(typeIsRenderable( d.getIdentifier() ) ){
 		//TODO this	

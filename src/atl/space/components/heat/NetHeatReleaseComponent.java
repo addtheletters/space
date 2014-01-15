@@ -1,9 +1,6 @@
 package atl.space.components.heat;
 
-import java.util.List;
-
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public class NetHeatReleaseComponent extends Component {
 
@@ -26,12 +23,5 @@ public class NetHeatReleaseComponent extends Component {
 		// TODO Auto-generated method stub
 		return new NetHeatReleaseComponent(this);
 	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// Do nothing		
-	}
-	
-	
 	
 }

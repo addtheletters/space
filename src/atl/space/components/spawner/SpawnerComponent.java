@@ -31,8 +31,4 @@ public abstract class SpawnerComponent extends Component implements Triggerable 
 	protected abstract boolean canEmit();
 	protected abstract void applyEffect(Entity temp);
 
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		//do nothing
-	}
 }

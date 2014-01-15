@@ -46,11 +46,6 @@ public class PositionOnlyRangedSensor extends OmniscientRangedEntitySensor {
 	}
 
 	@Override
-	public void update(int delta, List<Entity> entities) {
-		// Do nothing
-	}
-
-	@Override
 	public Component clone() {
 		return new PositionOnlyRangedSensor(this);
 	}

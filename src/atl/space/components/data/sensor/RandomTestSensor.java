@@ -7,7 +7,6 @@ import atl.space.components.Component;
 import atl.space.components.data.DatumAggregator;
 import atl.space.data.Data;
 import atl.space.data.DataType;
-import atl.space.entities.Entity;
 
 public class RandomTestSensor extends Component implements DatumAggregator {
 
@@ -37,10 +36,5 @@ public class RandomTestSensor extends Component implements DatumAggregator {
 		return null;
 	}
 
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		
-		
-	}
 
 }

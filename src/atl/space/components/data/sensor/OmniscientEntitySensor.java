@@ -6,7 +6,6 @@ import atl.space.components.Component;
 import atl.space.components.data.DatumAggregator;
 import atl.space.data.Data;
 import atl.space.data.DataType;
-import atl.space.entities.Entity;
 
 public class OmniscientEntitySensor extends Component implements
 		DatumAggregator {
@@ -37,11 +36,6 @@ public class OmniscientEntitySensor extends Component implements
 	@Override
 	public Component clone() {
 		return new OmniscientEntitySensor(this);
-	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		//Do nothing
 	}
 
 }

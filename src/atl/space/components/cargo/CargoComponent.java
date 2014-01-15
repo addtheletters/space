@@ -5,7 +5,6 @@ import java.util.List;
 
 import atl.space.components.Component;
 import atl.space.components.mass.Massive;
-import atl.space.entities.Entity;
 import atl.space.inventory.BasicInventory;
 import atl.space.inventory.Inventory;
 import atl.space.inventory.InventoryException;
@@ -45,12 +44,6 @@ public class CargoComponent extends Component implements Massive, Inventory{
 	public Component clone() {
 		return new CargoComponent(this);
 	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		//do nothing?
-	}
-	
 	
 	@Override
 	public double getMass() {

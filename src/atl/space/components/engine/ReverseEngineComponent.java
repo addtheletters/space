@@ -3,7 +3,7 @@ package atl.space.components.engine;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
-import atl.space.components.turn.FacingComponent;
+import atl.space.components.angularmotion.old.FacingComponent;
 
 public class ReverseEngineComponent extends AbstractDirectionalEngineComponent {
 	

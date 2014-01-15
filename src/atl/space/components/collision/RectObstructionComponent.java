@@ -66,7 +66,7 @@ public class RectObstructionComponent extends ObstructionComponent {
 		}	
 	}
 	
-	@Override
+	/*@Override
 	public boolean hasCollided(Entity e, int delta, List<Entity> entities) {
 		//TODO make this less stupid and use isInHitbox if possible
 		//Take advantage of getLastPos and getNextPos or whatever from MovementComponent, if applicable
@@ -116,6 +116,7 @@ public class RectObstructionComponent extends ObstructionComponent {
 			return false;
 		}
 	}
+	*/
 
 	@Override
 	public boolean isTouching(Entity e) {
@@ -128,11 +129,6 @@ public class RectObstructionComponent extends ObstructionComponent {
 		
 		return false;
 	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// do nothing?
-	}
 	
 	protected class Coord {
 		public double value;
@@ -142,6 +138,12 @@ public class RectObstructionComponent extends ObstructionComponent {
 			value = v;
 			obsSize = s;
 		}
+	}
+
+	@Override
+	public boolean hasCollided(Entity e, int delta, List<Entity> entities) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

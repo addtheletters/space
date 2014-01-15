@@ -1,10 +1,8 @@
-package atl.space.components.accel;
-
-import java.util.List;
+package atl.space.components.linearmotion.accel;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import atl.space.entities.Entity;
+import atl.space.world.Scene;
 
 public interface AccelProvider {
 	/*
@@ -12,7 +10,7 @@ public interface AccelProvider {
 	 * Gravity, engines, etc.
 	 * Implementations will likely have a prerequisite of movement...
 	 */
-	public Vector3f getAccel(int delta, List<Entity> entities); //entity list temporary for
+	public Vector3f getAccel(int delta, Scene sce); //entity list temporary for
 																//reference to container environment
 	
 	

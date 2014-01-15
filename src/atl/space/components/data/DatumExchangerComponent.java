@@ -6,7 +6,6 @@ import java.util.List;
 import atl.space.components.Component;
 import atl.space.data.Data;
 import atl.space.data.DataType;
-import atl.space.entities.Entity;
 
 @SuppressWarnings("rawtypes")
 public class DatumExchangerComponent extends Component implements DatumAggregator{
@@ -38,12 +37,6 @@ public class DatumExchangerComponent extends Component implements DatumAggregato
 		return bank.getData();
 		
 		//getting it ALL. Subclasses may only get some specific, or transfer what is needed
-	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

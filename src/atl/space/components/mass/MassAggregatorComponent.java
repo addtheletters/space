@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import atl.space.components.Component;
-import atl.space.entities.Entity;
 
 public class MassAggregatorComponent extends Component {
 	
@@ -41,12 +40,6 @@ public class MassAggregatorComponent extends Component {
 	@Override
 	public Component clone() {
 		return new MassAggregatorComponent(this);
-	}
-
-	@Override
-	public void update(int delta, List<Entity> entities) {
-		// do nothing?
-
 	}
 
 }
