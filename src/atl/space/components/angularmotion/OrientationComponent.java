@@ -24,6 +24,17 @@ public class OrientationComponent extends Component {
 		this.orientation = oc.orientation;
 	}
 	
+	/**
+	 * Links in to old angular motion system.
+	 * @return Unit vector representing the direction the entity is facing.
+	 */
+	public Vector3f getFacingVector(){
+		//TODO this
+		Vector3f facing = new Vector3f();
+		return facing;
+	}
+	
+	
 	@Override
 	public Component clone() {
 		return new OrientationComponent(this);
@@ -31,7 +42,7 @@ public class OrientationComponent extends Component {
 	
 	@Override
 	public void update(int delta, Scene sce) {
-		//TODO make it so updates fix angles to between 0 and 360.
+		//TODO make it so updates fix angles to be 0 <= angle < 360.
 		// All usage of OrientationComponent should be written to handle
 		// values outside this range, but
 		// keeping it in is helpful to make debugging easier
