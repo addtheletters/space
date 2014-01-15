@@ -6,7 +6,6 @@ import java.util.List;
 import org.lwjgl.util.vector.Vector3f;
 
 import atl.space.components.Component;
-import atl.space.components.OrientationComponent;
 import atl.space.world.Scene;
 
 public class AngularMovementComponent extends Component {
