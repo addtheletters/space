@@ -50,7 +50,7 @@ public class Environment {
 
 	public void updateWorld(int delta) {
 		for (Entity e : entities) {
-			e.update(delta, entities);
+			e.update(delta, this);
 		}
 	}
 	

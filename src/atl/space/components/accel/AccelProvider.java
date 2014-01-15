@@ -12,7 +12,8 @@ public interface AccelProvider {
 	 * Gravity, engines, etc.
 	 * Implementations will likely have a prerequisite of movement...
 	 */
-	public Vector3f getAccel(int delta, List<Entity> entities);
+	public Vector3f getAccel(int delta, List<Entity> entities); //entity list temporary for
+																//reference to container environment
 	
 	
 }

@@ -238,6 +238,10 @@ public class Entity {
 		this.position = position;
 	}
 
+	public void update(int delta, Environment parent){
+		this.update(delta, parent.getEntities());
+	}
+	
 	public void update(int delta, List<Entity> entities) {
 		for (Component component : components) {
 			component.update(delta, entities);
