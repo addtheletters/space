@@ -40,13 +40,30 @@ public class OrientationComponent extends Component {
 		return new OrientationComponent(this);
 	}
 	
+	private float getReducedAngle(float angle){
+		float reduced = angle % 360;
+		if(reduced < 0){
+			return 360 + reduced;
+		}
+		return reduced;
+	}
+	
+	private boolean isAngleReduced(float angle){
+		return angle < 360 && angle > 0;
+	}
+	
 	@Override
 	public void update(int delta, Scene sce) {
-		//TODO make it so updates fix angles to be 0 <= angle < 360.
+		// updates fix angles to be 0 <= angle < 360.
+		//  perhaps should be 0 <= angle <= 2pi
 		// All usage of OrientationComponent should be written to handle
 		// values outside this range, but
 		// keeping it in is helpful to make debugging easier
 		// and avoid overflow errors.
+		
+		if(!isAngleReduced(orientation.getX())) orientation.setX(getReducedAngle(orientation.getX()));
+		if(!isAngleReduced(orientation.getY())) orientation.setY(getReducedAngle(orientation.getY()));
+		if(!isAngleReduced(orientation.getZ())) orientation.setZ(getReducedAngle(orientation.getZ()));
 	}
 
 }
