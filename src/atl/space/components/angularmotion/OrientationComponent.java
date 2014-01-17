@@ -7,6 +7,10 @@ import atl.space.world.Scene;
 
 public class OrientationComponent extends Component {
 
+	//the difference between wormholes and hyperspace is that
+	//in hyperspace you can do whatever the heck you want
+	//because it's made up.
+	
 	/**
 	 * pitch, roll, yaw, done with degree angles.
 	 * 
