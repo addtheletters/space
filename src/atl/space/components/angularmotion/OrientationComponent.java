@@ -9,6 +9,11 @@ public class OrientationComponent extends Component {
 
 	/**
 	 * pitch, roll, yaw, done with degree angles.
+	 * 
+	 * Pitch is around the X axis, 	within the Y-Z plane.
+	 * Roll is around the Y axis, 	within the X-Z plane.
+	 * Yaw is around the Z axis, 	within the X-Y plane.
+	 * 
 	 */
 	public Vector3f orientation;
 	
@@ -30,7 +35,16 @@ public class OrientationComponent extends Component {
 	 */
 	public Vector3f getFacingVector(){
 		//TODO this
-		Vector3f facing = new Vector3f();
+		
+		/*
+		 * Orientation vector of <0, 0, 0> means facing vector of +1 in the Y axis.
+		 */
+		Vector3f facing = new Vector3f(0, 1, 0);
+		
+		facing.setX( (float) (Math.cos(orientation.getY()) * Math.cos(orientation.getZ())) );
+		facing.setY( (float) (Math.cos(orientation.getX()) * Math.cos(orientation.getZ())) );
+		facing.setZ( (float) (Math.cos(orientation.getY()) * Math.cos(orientation.getX())) );
+		
 		return facing;
 	}
 	
@@ -41,11 +55,11 @@ public class OrientationComponent extends Component {
 	}
 	
 	private float getReducedAngle(float angle){
-		float reduced = angle % 360;
+		double reduced = (float)(angle % (2 * Math.PI));
 		if(reduced < 0){
-			return 360 + reduced;
+			return (float)((2*Math.PI) + reduced);
 		}
-		return reduced;
+		return (float)reduced;
 	}
 	
 	private boolean isAngleReduced(float angle){
