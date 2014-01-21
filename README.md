@@ -7,7 +7,7 @@ Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
 Dev diary: https://github.com/addtheletters/space/wiki/Dev-Diary
 
-Currrent Objective: Create data systems. Any advice is welcome :P
+Currrent Objective: Finish features. Get things in a working state!
 
 Priority tasks:
 - Polishing player ship movement / control
