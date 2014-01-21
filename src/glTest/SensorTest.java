@@ -286,14 +286,14 @@ public class SensorTest {
 	 */
 	private void addEntities() {
 		for (int i = 0; i < NUM_STARS; i++) {
-			addPoint(numInFeild(), numInFeild(), numInFeild());
+			addPoint(numInField(), numInField(), numInField());
 		}
 		for (int i = 0; i < NUM_GRAVPULLERS; i++) {
-			addGravityPuller(numInFeild(), numInFeild(), numInFeild(),
+			addGravityPuller(numInField(), numInField(), numInField(),
 					genPullForce());
 		}
 		for (int i = 0; i < NUM_SIMPLEGRAVPULLABLES; i++) {
-			addSimpleGravityPullable(numInFeild(), numInFeild(), numInFeild(),
+			addSimpleGravityPullable(numInField(), numInField(), numInField(),
 					genRandMass());
 		}
 		addProtagonist();
@@ -312,7 +312,7 @@ public class SensorTest {
 	 * 
 	 * @return randum number w/i STAR_FIELD_SIZE
 	 */
-	private float numInFeild() {
+	private float numInField() {
 		return (float) (Math.random() * STAR_FIELD_SIZE) - STAR_FIELD_SIZE / 2;
 	}
 
@@ -333,7 +333,7 @@ public class SensorTest {
 	private void addProtagonist() {
 		protag = EntityBuilder.protagonist(new Vector3f(), randTurn(),
 				maxAccel[0], maxAccel[1], maxAccel[2], TURNLIM, camera);
-		protag.addComponent(new OmniscientRangedEntitySensor(1000)); //TODO make this work
+		protag.addComponent(new OmniscientRangedEntitySensor(1000)); 
 		entities.add(protag);
 	}
 

@@ -6,6 +6,8 @@ import java.util.List;
 import atl.space.components.data.DatumAggregator;
 import atl.space.data.Data;
 import atl.space.entities.Entity;
+import atl.space.components.Component;
+import atl.space.components.heat.HeatContainerComponent;
 
 public class OmniscientRangedEntitySensor extends OmniscientEntitySensor implements
 		DatumAggregator {
@@ -56,7 +58,20 @@ public class OmniscientRangedEntitySensor extends OmniscientEntitySensor impleme
 	}
 	
 	protected boolean passesFilter(Entity ent){
-		return owner.getDistance(ent) < maxDetectionRange;
+		double tolheat=0;
+		//Checks all components of ent to see if they are
+		//HeatContainerComponents, and if they are adds their
+		//Heat to tolheat
+		for(Component c: ent.getComponents()){
+			if(c!=null&&HeatContainerComponent.class.isAssignableFrom(c.getClass())){
+				tolheat+=((HeatContainerComponent) c).getHeat();
+			}
+		}
+		//tolheat is the subtracted from getDistance, and divided
+		//by four, so if something is hot, you can see it from
+		//further away. This is clearly an incorrect calculation
+		//but it's just a placeholder.
+		return (owner.getDistance(ent)-(tolheat/4)) < maxDetectionRange;
 	}
 
 

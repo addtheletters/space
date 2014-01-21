@@ -53,9 +53,21 @@ public abstract class HeatHull extends HeatContainerComponent implements HeatRel
 		return heatDifferenceCompensation;
 	}
 	
+	public void setDispersionFactor(double factor){
+		this.heatDispersionFactor=factor;
+	}
+	//Damaged hull could disperse more heat
+	public void setDifferenceCompensation(double factor){
+		this.heatDifferenceCompensation=factor;
+	}
+	
 	@Override
 	public void releaseHeat(double factor) {
 		loseHeat(calculateHeatRelease() * factor);
+		//if(calculateHeatRelease() * factor>=2){
+			//2 is arbitrary
+			//Create a floating HeatContainer that slowly degrades?
+		//}
 		//do other stuff?
 	}
 
