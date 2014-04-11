@@ -205,35 +205,6 @@ public class Entity {
 		return id;
 	}
 	
-	public Entity getNearest(List<Entity> entities){
-		Entity nearest = entities.get(0);
-		float longestdistance = getDistance(nearest.getPosition());
-		//Vector3f temp = new Vector3f();
-		for(Entity e : entities){
-			float dist = getDistance(e.getPosition());
-			if(dist < longestdistance && this != e){
-				nearest = e;
-				longestdistance = dist;
-			}
-		}
-		return nearest;
-	}
-	
-	public Entity getNearestTarget(List<Entity> entities){
-		Entity nearest = entities.get(0);
-		float longestdistance = getDistance(nearest.getPosition());
-		//Vector3f temp = new Vector3f();
-		for(Entity e : entities){
-			float dist = getDistance(e.getPosition());
-			if(dist < longestdistance && this != e && e.getId() != "missile"){
-				nearest = e;
-				longestdistance = dist;
-			}
-		}
-		if(DEBUG) System.out.println("DEBUG: " + nearest);
-		return nearest;
-	}
-
 	public void setPosition(Vector3f position) {
 		this.position = position;
 	}
@@ -267,7 +238,9 @@ public class Entity {
 				System.out.println("Moving entity ("+this+") out of (" + container + ") to (" + world);
 			}
 		}
+		container.removeEntity(this);
 		container = world;
+		container.addEntity(this);
 	}
 	
 	public Scene getContainerEnvironment(){
