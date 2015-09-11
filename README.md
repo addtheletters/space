@@ -1,7 +1,7 @@
 space
 =====
 
-A space game / engine / thing. Will likely include gravity, collisions, and other stuff.
+A space game / engine / toybox, using component-based architecture. Includes gravity, framework for collisions, and attempts at many other cool space things. Uses LWJGL. A for-fun project put on the backburner; perhaps soon the time will come where I have accumulated the requisite knowledge to complete it.
 
 Wiki has mechanics info: https://github.com/addtheletters/space/wiki
 
